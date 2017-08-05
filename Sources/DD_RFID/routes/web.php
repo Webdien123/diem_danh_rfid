@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    echo "tao la siêu nhân";
+    return view('home');
+    // echo "tao la siêu nhân";
 });
