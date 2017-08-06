@@ -13,5 +13,10 @@
 
 Route::get('/', function () {
     return view('home');
-    // echo "tao la siêu nhân";
 });
+
+
+Route::get('login', function() {
+    return view('login');
+});
+
