@@ -9,6 +9,6 @@
 </head>
 <body>
     @include('header')
-    
+    <h1>Trang đăng nhập</h1>
 </body>
 </html>
