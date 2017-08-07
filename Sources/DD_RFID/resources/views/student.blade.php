@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang chủ</title>
+    <title>Trang quản trị</title>
     @include('import')
 </head>
 <body class="container-fluid">
     <div class=" row">
-        <!-- @include('header') -->
+          {{--  @include('header')    --}}
          @include('ad_menu') 
         
          <div class="row col-xs-12"> 
