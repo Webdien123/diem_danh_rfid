@@ -20,5 +20,5 @@ Route::get('login', function() {
 })->name('login');
 
 Route::get('student', function() {
-    return view('student');
+    return view('sub_views/student');
 })->name('student');

@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trang quản trị</title>
-    @include('import')
+    @include('link_views.import')
 </head>
 <body class="container-fluid">
     <div class=" row">
           {{--  @include('header')    --}}
-        @include('ad_menu') 
+        @include('link_views.ad_menu') 
         
         <div class="col-xs-12">
             

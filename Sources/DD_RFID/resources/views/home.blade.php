@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trang chủ</title>
-    @include('import')
+    @include('link_views.import')
 </head>
 <body>
-    @include('header')
+    @include('link_views.header')
     <h1>Trang chủ</h1>    
     <a class="btn btn-default" href="{{ route('student') }}" role="button">Trang quản trị</a>
     <a class="btn btn-default" href="{{ route('login') }}" role="button">Trang đăng nhập</a>
