@@ -10,5 +10,7 @@
 <body>
     @include('header')
     <h1>Trang đăng nhập</h1>
+    <a class="btn btn-default" href="{{ route('student') }}" role="button">Trang quản trị</a>
+    <a class="btn btn-default" href="{{ route('home') }}" role="button">Trang chủ</a>
 </body>
 </html>
