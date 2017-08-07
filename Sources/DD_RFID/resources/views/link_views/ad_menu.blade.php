@@ -9,7 +9,7 @@
             <div class="row">
             
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="#" class="btn btn-info btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('chart') }}" class="btn btn-info btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-bar-chart fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Thống kê điểm danh</div>
                         {{--  <button class="btn btn-default btn-block">Pacific</button>  --}}
@@ -17,7 +17,7 @@
                 </div>
                 
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="#" class="btn btn-success btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('event') }}" class="btn btn-success btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-bell-o fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Sự kiện</div>
                         {{--  <button class="btn btn-default btn-block">Tix2</button>  --}}
@@ -33,7 +33,7 @@
                 </div>
                 
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="#" class="btn btn-primary btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('staff') }}" class="btn btn-primary btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-users fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Cán bộ</div>
                         {{--  <button class="btn btn-default  btn-block">Yes</button>  --}}
