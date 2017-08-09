@@ -15,14 +15,14 @@
 ?>
 
 
-@if (strpos ($_SERVER['REQUEST_URI'], 'student'))
+{{--  @if (strpos ($_SERVER['REQUEST_URI'], 'student'))
     {!! '<body class="container-fluid bg-danger">' !!}
 @else
     {!! '<body class="container-fluid bg-success">' !!}
-@endif
+@endif  --}}
 
 
-{{--  <body class="container-fluid bg-success">  --}}
+ <body class="container-fluid"> 
     <div class=" row">
           {{--  @include('header')    --}}
         @include('link_views.ad_menu') 
