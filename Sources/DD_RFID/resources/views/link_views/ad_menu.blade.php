@@ -12,7 +12,6 @@
                     <a href="{{ route('chart') }}" class="btn btn-info btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-bar-chart fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Thống kê điểm danh</div>
-                        {{--  <button class="btn btn-default btn-block">Pacific</button>  --}}
                     </a>
                 </div>
                 
@@ -20,7 +19,6 @@
                     <a href="{{ route('event') }}" class="btn btn-success btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-bell-o fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Sự kiện</div>
-                        {{--  <button class="btn btn-default btn-block">Tix2</button>  --}}
                     </a>
                 </div>
                 
@@ -28,7 +26,6 @@
                     <a href="{{ route('student') }}" class="btn btn-danger btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-graduation-cap fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Sinh viên</div>
-                        {{--  <button class="btn btn-default btn-block">Authorize.net</button>  --}}
                     </a>
                 </div>
                 
@@ -36,7 +33,6 @@
                     <a href="{{ route('staff') }}" class="btn btn-primary btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-users fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Cán bộ</div>
-                        {{--  <button class="btn btn-default  btn-block">Yes</button>  --}}
                     </a>
                 </div>
                 
@@ -44,7 +40,6 @@
                     <a href="{{ route('home') }}" class="btn btn-default btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-home fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Về trang chủ</div>
-                        {{--  <button class="btn btn-default btn-block">Steve Moore</button>  --}}
                     </a>
                 </div>
 
@@ -52,7 +47,6 @@
                     <a href="#" class="btn btn-warning btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-sign-out fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Đăng xuất</div>
-                        {{--  <button class="btn btn-default btn-block">Silvia Mahoney</button>  --}}
                     </a>
                 </div>
                 

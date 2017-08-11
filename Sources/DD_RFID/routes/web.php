@@ -11,34 +11,58 @@
 |
 */
 
+// Dẫn vào trang chủ
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// Dẫn vào trang đăng nhập
 Route::get('login', function() {
     return view('login');
 })->name('login');
 
+// Dẫn vào trang điều khiển của admin
 Route::get('admin', function() {
     return view('admin');
 })->name('admin');
 
+// Dẫn vào trang thống kê điểm danh
 Route::get('chart', function() {
     return view('sub_views.chart');
 })->name('chart');
 
+// Dẫn vào trang Quản Lý sự kiện
 Route::get('event', function() {
     return view('sub_views.event');
 })->name('event');
 
+// Dẫn vào trang Quản Lý sinh viên
 Route::get('student', function() {
     return view('sub_views.student');
 })->name('student');
 
+// Dẫn vào trang Quản Lý cán bộ
 Route::get('staff', function() {
     return view('sub_views.staff');
 })->name('staff');
 
+
+/*
+|--------------------------------------------------------------------------
+| Test route
+|--------------------------------------------------------------------------
+|
+| Phần này định nghĩa các route phụ dùng để test thử giao diện
+| trong quá trình phát triển phần mềm
+|
+*/
+
 Route::get('blade', function () {
     return view('orther_views.s');
 });
+
+
+Route::get('tabs', function() {
+    return view('orther_views.tabs');
+});
+
