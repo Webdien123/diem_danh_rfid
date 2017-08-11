@@ -24,8 +24,6 @@
 
  <body class="container-fluid"> 
     <div class=" row">
-          {{--  @include('header')    --}}
-        
         @include('link_views.ad_menu') 
         @yield('chart')
         @yield('event')

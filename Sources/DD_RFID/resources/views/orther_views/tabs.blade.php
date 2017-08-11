@@ -62,19 +62,19 @@
                         <div class="panel-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="tab1default">
-                                    @include('sub_views.chart')
+                                    @include('sub_views.sub_2.chart')
                                 </div>
 
                                 <div class="tab-pane fade" id="tab2default">
-                                    @include('sub_views.event')
+                                    @include('sub_views.sub_2.event')
                                 </div>
 
                                 <div class="tab-pane fade" id="tab3default">
-                                    @include('sub_views.student')
+                                    @include('sub_views.sub_2.student')
                                 </div>
                                 
                                 <div class="tab-pane fade" id="tab4default">
-                                    @include('sub_views.staff')
+                                    @include('sub_views.sub_2.staff')
                                 </div>
                             </div>
                         </div>
