@@ -10,6 +10,7 @@
 <body>
     @include('link_views.header')
     <h1>Trang đăng nhập</h1>
+    <h2>Nội dung đang cập nhật</h2>
     <a class="btn btn-default" href="{{ route('admin') }}" role="button">Trang quản trị</a>
     <a class="btn btn-default" href="{{ route('home') }}" role="button">Trang chủ</a>
 </body>

@@ -18,10 +18,11 @@
     <script type="text/javascript" src="{{ asset('public/js/exc_teacher_chart.js') }}"></script>
 
     <div class="col-xs-12">
-            
         
             <div class="container-fluid">
+
             <h1>Sinh viên</h1>
+
             <div class="row">
                 <div class="col-xs-12 col-md-6" id="piechart1" style="border: blue 1px solid"></div>
                 <div class="col-xs-12 col-md-6" id="piechart2" style="border: blue 1px solid"></div>
@@ -34,6 +35,21 @@
             </div>
             </div>
             <center><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
+
+            <div class="row">
+            <div class="col-xs-12 col-md-4 col-md-offset-8">
+                <form action="" method="get" class="form-inline" role="search">
+                    {{ csrf_field() }}
+                    <b>Tìm kiếm:</b>
+                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Tìm
+                    </button>
+                </form>
+            </div>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-condensed">
                     <thead>
