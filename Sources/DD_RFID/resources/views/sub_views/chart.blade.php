@@ -1,16 +1,161 @@
 @extends('admin')
 
 @section('chart')
+
+    <!--Load the GOOGLE CHART API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Tạo biểu đồ điểm danh sinh viên lên id piechart1-->
+    <script type="text/javascript" src="{{ asset('public/js/student_chart.js') }}"></script>
+
+    <!-- Tạo biểu đồ số liệu bất thường sinh viên lên id piechart2-->
+    <script type="text/javascript" src="{{ asset('public/js/exc_student_chart.js') }}"></script>
+
+    <!-- Tạo biểu đồ điểm danh cán bộ lên id piechart3-->
+    <script type="text/javascript" src="{{ asset('public/js/teacher_chart.js') }}"></script>
+
+    <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
+    <script type="text/javascript" src="{{ asset('public/js/exc_teacher_chart.js') }}"></script>
+
     <div class="col-xs-12">
             
-        <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Thống kê điểm danh</h3>
-                </div>
-                <div class="panel-body">
-                    các biểu đồ
-                </div>
-        </div>
+        
+            <div class="container-fluid">
+            <h1>Sinh viên</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" id="piechart1" style="border: blue 1px solid"></div>
+                <div class="col-xs-12 col-md-6" id="piechart2" style="border: blue 1px solid"></div>
+            </div>
+
+            <h1>Cán bộ</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" id="piechart3" style="border: blue 1px solid"></div>
+                <div class="col-xs-12 col-md-6" id="piechart4" style="border: blue 1px solid"></div>
+            </div>
+            </div>
+            <center><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>MSSV</th>
+                            <th>Họ tên</th>
+                            <th>Khoa</th>
+                            <th>Ngành</th>
+                            <th>Lớp</th>
+                            <th>Niên khóa</th>
+                            <th>Mã RFID</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="info">
+                            <td>B1305056</td>
+                            <td>Trần lý văn</td>
+                            <td>CNTT</td>
+                            <td>CNTT</td>
+                            <td>A2</td>
+                            <td>K39</td>
+                            <td>234123412431234</td>
+                            <td>
+                                <a href="#" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>B1305056</td>
+                            <td>Trần lý văn</td>
+                            <td>CNTT</td>
+                            <td>CNTT</td>
+                            <td>A2</td>
+                            <td>K39</td>
+                            <td>234123412431234</td>
+                            <td>
+                                <a href="#" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr class="info">
+                            <td>B1305056</td>
+                            <td>Trần lý văn</td>
+                            <td>CNTT</td>
+                            <td>CNTT</td>
+                            <td>A2</td>
+                            <td>K39</td>
+                            <td>234123412431234</td>
+                            <td>
+                                <a href="#" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>B1305056</td>
+                            <td>Trần lý văn</td>
+                            <td>CNTT</td>
+                            <td>CNTT</td>
+                            <td>A2</td>
+                            <td>K39</td>
+                            <td>234123412431234</td>
+                            <td>
+                                <a href="#" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr class="info">
+                            <td>B1305056</td>
+                            <td>Trần lý văn</td>
+                            <td>CNTT</td>
+                            <td>CNTT</td>
+                            <td>A2</td>
+                            <td>K39</td>
+                            <td>234123412431234</td>
+                            <td>
+                                <a href="#" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
     </div>
 @endsection
