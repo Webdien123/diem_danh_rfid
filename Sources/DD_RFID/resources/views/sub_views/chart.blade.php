@@ -6,16 +6,16 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!-- Tạo biểu đồ điểm danh sinh viên lên id piechart1-->
-    <script type="text/javascript" src="{{ asset('public/js/student_chart.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/student_chart.js') }}"></script>
 
     <!-- Tạo biểu đồ số liệu bất thường sinh viên lên id piechart2-->
-    <script type="text/javascript" src="{{ asset('public/js/exc_student_chart.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/exc_student_chart.js') }}"></script>
 
     <!-- Tạo biểu đồ điểm danh cán bộ lên id piechart3-->
-    <script type="text/javascript" src="{{ asset('public/js/teacher_chart.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/teacher_chart.js') }}"></script>
 
     <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
-    <script type="text/javascript" src="{{ asset('public/js/exc_teacher_chart.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
 
     <div class="col-xs-12">
         
