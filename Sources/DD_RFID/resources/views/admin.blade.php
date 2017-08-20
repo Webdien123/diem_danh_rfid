@@ -9,12 +9,6 @@
 </head>
 
 
-
-<?php
-
-?>
-
-
 {{--  @if (strpos ($_SERVER['REQUEST_URI'], 'student'))
     {!! '<body class="container-fluid bg-danger">' !!}
 @else
