@@ -97,9 +97,9 @@
                             <td>K39</td>
                             <td>234123412431234</td>
                             <td>
-                                <a href="#" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Sửa thông tin
+                                <a href="#" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                    Chuyển danh sách
                                 </a>
                                 
                                 <button type="button" class="btn btn-danger">
@@ -118,9 +118,9 @@
                             <td>K39</td>
                             <td>234123412431234</td>
                             <td>
-                                <a href="#" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Sửa thông tin
+                                <a href="#" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                    Chuyển danh sách
                                 </a>
                                 
                                 <button type="button" class="btn btn-danger">
@@ -139,9 +139,9 @@
                             <td>K39</td>
                             <td>234123412431234</td>
                             <td>
-                                <a href="#" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Sửa thông tin
+                                <a href="#" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                    Chuyển danh sách
                                 </a>
                                 
                                 <button type="button" class="btn btn-danger">
@@ -160,9 +160,9 @@
                             <td>K39</td>
                             <td>234123412431234</td>
                             <td>
-                                <a href="#" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Sửa thông tin
+                                <a href="#" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                    Chuyển danh sách
                                 </a>
                                 
                                 <button type="button" class="btn btn-danger">
@@ -181,9 +181,9 @@
                             <td>K39</td>
                             <td>234123412431234</td>
                             <td>
-                                <a href="#" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Sửa thông tin
+                                <a href="#" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                    Chuyển danh sách
                                 </a>
                                 
                                 <button type="button" class="btn btn-danger">
