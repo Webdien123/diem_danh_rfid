@@ -21,37 +21,68 @@
         
             <div class="container-fluid">
 
-            <h1>Sinh viên</h1>
+                <h1>Sinh viên</h1>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6" id="piechart1" style="border: blue 1px solid"></div>
+                    <div class="col-xs-12 col-md-6" id="piechart2" style="border: blue 1px solid"></div>
+                </div>
+
+                <h1>Cán bộ</h1>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6" id="piechart3" style="border: blue 1px solid"></div>
+                    <div class="col-xs-12 col-md-6" id="piechart4" style="border: blue 1px solid"></div>
+                </div>
+            
+            </div>
+
+            <center style="margin-top: 5%;"><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
 
             <div class="row">
-                <div class="col-xs-12 col-md-6" id="piechart1" style="border: blue 1px solid"></div>
-                <div class="col-xs-12 col-md-6" id="piechart2" style="border: blue 1px solid"></div>
-            </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-primary"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                            Thêm sinh viên
+                        </button>
+                    </div>
+                </div>
 
-            <h1>Cán bộ</h1>
-            <div class="row">
-                <div class="col-xs-12 col-md-6" id="piechart3" style="border: blue 1px solid"></div>
-                <div class="col-xs-12 col-md-6" id="piechart4" style="border: blue 1px solid"></div>
-            </div>
-            </div>
-            <center><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
+                <div class="col-xs-12 col-md-4">
+                <div class="form-group has-warning form-inline">
+                    <label for="sel1">Danh sách:</label>
+                    <select class="form-control" id="sel1">
+                        <option>Sinh viên vắng mặt</option>
+                        <option>Sinh viên có mặt</option>
+                        <option>Sinh viên có vào không ra</option>
+                        <option>Sinh viên có ra không vào</option>
+                        <option>Sinh viên chưa có thông tin</option>
+                        <option>Cán bộ vắng mặt</option>
+                        <option>Cán bộ có mặt</option>
+                        <option>Cán bộ có vào không ra</option>
+                        <option>Cán bộ có ra không vào</option>
+                        <option>Cán bộ chưa có thông tin</option>
+                    </select>
+                </div>
+                </div>
 
-            <div class="row">
-            <div class="col-xs-12 col-md-4 col-md-offset-8">
-                <form action="" method="get" class="form-inline" role="search">
-                    {{ csrf_field() }}
-                    <b>Tìm kiếm:</b>
-                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        Tìm
-                    </button>
-                </form>
-            </div>
+                <div class="col-xs-12 col-md-4">
+                    <form action="" method="get" class="form-inline" role="search">
+                        {{ csrf_field() }}
+                        <b>Tìm kiếm:</b>
+                        <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+                        <button type="submit" class="btn btn-info">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            Tìm
+                        </button>
+                    </form>  
+                </div>
+
             </div>
 
             <div class="table-responsive">
-                <table class="table table-condensed">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>MSSV</th>
@@ -65,7 +96,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="info">
+                        <tr>
                             <td>B1305056</td>
                             <td>Trần lý văn</td>
                             <td>CNTT</td>
@@ -107,7 +138,7 @@
                             </td>
                         </tr>
 
-                        <tr class="info">
+                        <tr>
                             <td>B1305056</td>
                             <td>Trần lý văn</td>
                             <td>CNTT</td>
@@ -149,7 +180,7 @@
                             </td>
                         </tr>
 
-                        <tr class="info">
+                        <tr>
                             <td>B1305056</td>
                             <td>Trần lý văn</td>
                             <td>CNTT</td>
