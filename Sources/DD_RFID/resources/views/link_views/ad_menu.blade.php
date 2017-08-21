@@ -1,8 +1,16 @@
 <div class="col-xs-12">
-    <div class="panel panel-primary">
+@if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
+    {!! '<div class="panel panel-info">' !!}
+@elseif (strpos ($_SERVER['REQUEST_URI'], 'event'))
+    {!! '<div class="panel panel-success">' !!}
+@elseif (strpos ($_SERVER['REQUEST_URI'], 'student'))
+    {!! '<div class="panel panel-danger">' !!}
+@else
+    {!! '<div class="panel panel-primary">' !!}
+@endif
         <div class="panel-heading">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-dash"></span> Bản điều khiển quản trị
+                <span class="glyphicon glyphicon-dash"></span> Xin chào: Nguyễn Văn A
             </h3>
         </div>
         <div class="panel-body">

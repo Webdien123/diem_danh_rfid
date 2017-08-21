@@ -8,14 +8,6 @@
     @include('link_views.import')
 </head>
 
-
-{{--  @if (strpos ($_SERVER['REQUEST_URI'], 'student'))
-    {!! '<body class="container-fluid bg-danger">' !!}
-@else
-    {!! '<body class="container-fluid bg-success">' !!}
-@endif  --}}
-
-
  <body class="container-fluid"> 
     <div class=" row">
         @include('link_views.ad_menu') 

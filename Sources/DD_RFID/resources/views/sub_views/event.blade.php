@@ -22,7 +22,7 @@
         <center><h1>Danh sách sự kiện</h1></center>
 
         <div class="pull-left">
-                <button type="button" class="btn btn-primary"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
+                <button type="button" class="btn btn-success"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                     Thêm sự kiện
                 </button>
