@@ -40,16 +40,8 @@
             <center style="margin-top: 5%;"><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
 
             <div class="row">
-                <div class="col-xs-12 col-md-4">
-                    <div class="pull-left">
-                        <button type="button" class="btn btn-primary"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                            Thêm sinh viên
-                        </button>
-                    </div>
-                </div>
 
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-4 col-md-offset-4">
                 <div class="form-group has-warning form-inline">
                     <label for="sel1">Danh sách:</label>
                     <select class="form-control" id="sel1">
