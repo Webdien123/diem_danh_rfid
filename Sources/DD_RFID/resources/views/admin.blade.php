@@ -8,7 +8,7 @@
     @include('link_views.import')
 </head>
 
- <body class="container-fluid"> 
+ <body class="container-fluid" style="background-color: #f0f6f6;"> 
     <div class=" row">
         @include('link_views.ad_menu') 
         @yield('chart')

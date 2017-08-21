@@ -74,7 +74,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="background-color: white">
                     <thead>
                         <tr>
                             <th>MSSV</th>
@@ -90,7 +90,7 @@
                     <tbody>
                         <tr>
                             <td>B1305056</td>
-                            <td>Trần lý văn</td>
+                            <td>Nguyễn Thị A</td>
                             <td>CNTT</td>
                             <td>CNTT</td>
                             <td>A2</td>
@@ -111,7 +111,7 @@
 
                         <tr>
                             <td>B1305056</td>
-                            <td>Trần lý văn</td>
+                            <td>Nguyễn Thị A</td>
                             <td>CNTT</td>
                             <td>CNTT</td>
                             <td>A2</td>
@@ -132,7 +132,7 @@
 
                         <tr>
                             <td>B1305056</td>
-                            <td>Trần lý văn</td>
+                            <td>Nguyễn Thị A</td>
                             <td>CNTT</td>
                             <td>CNTT</td>
                             <td>A2</td>
@@ -153,7 +153,7 @@
 
                         <tr>
                             <td>B1305056</td>
-                            <td>Trần lý văn</td>
+                            <td>Nguyễn Thị A</td>
                             <td>CNTT</td>
                             <td>CNTT</td>
                             <td>A2</td>
@@ -174,7 +174,7 @@
 
                         <tr>
                             <td>B1305056</td>
-                            <td>Trần lý văn</td>
+                            <td>Nguyễn Thị A</td>
                             <td>CNTT</td>
                             <td>CNTT</td>
                             <td>A2</td>
