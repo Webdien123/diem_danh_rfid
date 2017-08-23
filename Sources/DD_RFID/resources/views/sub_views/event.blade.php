@@ -1,9 +1,7 @@
 @extends('admin')
 
 @section('event')
-    <div class="col-xs-12">
-            
-        <div class="pull-right">
+    <div class="col-xs-12 col-md-4 col-md-offset-8">
 			<form action="" method="get" class="form-inline" role="search">
 				<input type="hidden" name="_token" value="HdmoKcKa4GbZY5A1e2NUvlH4Jtab0z0bitquS7OQ">
 				<b>Tìm kiếm:</b>
@@ -13,21 +11,24 @@
 					Tìm
 				</button>
 			</form>
-		</div>
+    </div>
         
     </div>
     </div>
-    <div class="row">
-    </div>
-        <center><h1>Danh sách sự kiện</h1></center>
+    <center><h1>Danh sách sự kiện</h1></center>
 
+    <div class="row">
+        <div class="col-xs-12">
         <div class="pull-left">
                 <button type="button" class="btn btn-success"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                     Thêm sự kiện
                 </button>
         </div>
+        </div>
+    </div>
 
+        <div class="table-responsive">
         <table class="table table-hover table-bordered" style="background-color: white">
             <thead>
                 <tr>
@@ -185,7 +186,7 @@
                 </tr>	
             </tbody>
         </table>
-
+        </div>
     
 @endsection
 
