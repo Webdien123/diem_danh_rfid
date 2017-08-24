@@ -41,12 +41,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Ngày hội việc làm</td>
+                    <td>Ngày hội việc làm 0</td>
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -70,12 +70,46 @@
                 </tr>	
 
                 <tr>
-                    <td>Ngày hội việc làm</td>
+                    <td>Ngày hội việc làm 1</td>
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        <a href="" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            Sửa thông tin
+                        </a>
+
+                        <button type="button" class="btn btn-danger" 
+                            onclick="
+                                if(window.confirm('Xóa này?')){
+                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
+                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
+
+                                    }
+                                    else{
+                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
+                                    }
+                                }
+                            ">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            Xóa
+                        </button>
+
+                        <a href="" class="btn btn-default" style="background-color: #8064A2; color: white">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            Xem kết quả
+                        </a>
+                    </td>
+                </tr>	
+
+                <tr>
+                    <td>Ngày hội việc làm 2</td>
+                    <td>24/08/2017</td>
+                    <td>14:00</td>
+                    <td>17:00</td>
+                    <td>
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -99,12 +133,12 @@
                 </tr>	
 
                 <tr>
-                    <td>Ngày hội việc làm</td>
+                    <td>Ngày hội việc làm 3</td>
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -128,41 +162,12 @@
                 </tr>	
 
                 <tr>
-                    <td>Ngày hội việc làm</td>
+                    <td>Ngày hội việc làm 4</td>
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-
-                        <button type="button" class="btn btn-danger" 
-                            onclick="
-                                if(window.confirm('Xóa này?')){
-                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
-                                    }
-                                    else{
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                    }
-                                }
-                            ">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>	
-
-                <tr>
-                    <td>Ngày hội việc làm</td>
-                    <td>24/08/2017</td>
-                    <td>14:00</td>
-                    <td>17:00</td>
-                    <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>

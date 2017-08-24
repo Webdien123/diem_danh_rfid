@@ -102,6 +102,11 @@
                                     Chuyển danh sách
                                 </a>
                                 
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
@@ -123,6 +128,11 @@
                                     Chuyển danh sách
                                 </a>
                                 
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
@@ -144,6 +154,11 @@
                                     Chuyển danh sách
                                 </a>
                                 
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
@@ -165,6 +180,11 @@
                                     Chuyển danh sách
                                 </a>
                                 
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
@@ -186,6 +206,11 @@
                                     Chuyển danh sách
                                 </a>
                                 
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
