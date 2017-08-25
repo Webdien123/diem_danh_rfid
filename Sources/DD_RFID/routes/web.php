@@ -67,3 +67,9 @@ Route::get('tabs', function() {
     return view('orther_views.tabs');
 });
 
+// Thử menu thông báo
+Route::get('no_menu', function() {
+    return view('orther_views.notification_menu');
+});
+
+

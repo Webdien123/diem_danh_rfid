@@ -15,7 +15,14 @@
 
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading">
-            <h3 class="panel-title">
+            <h3 class="panel-title">  
+                
+                <!-- Menu thông báo -->
+                <!--  -->
+                <!--  -->
+                <!--  -->
+
+                <!-- Chào người quản trị bằng tên -->
                 <span class="glyphicon glyphicon-dash"></span> Xin chào: Nguyễn Văn A
             </h3>
         </div>
