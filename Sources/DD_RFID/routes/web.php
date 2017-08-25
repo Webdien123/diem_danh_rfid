@@ -57,11 +57,12 @@ Route::get('staff', function() {
 |
 */
 
+// Thử blade template
 Route::get('blade', function () {
     return view('orther_views.s');
 });
 
-
+// Thử giao diện đa tab
 Route::get('tabs', function() {
     return view('orther_views.tabs');
 });

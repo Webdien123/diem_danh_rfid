@@ -1,3 +1,5 @@
+{{--  Trang cán bộ cho giao diện đa tab  --}}
+
 <div class="col-xs-12">
         
     <div class="panel panel-primary">

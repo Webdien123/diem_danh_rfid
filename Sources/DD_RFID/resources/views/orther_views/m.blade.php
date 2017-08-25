@@ -1,3 +1,5 @@
+{{--  Trang thử nghiệm master cho blade template  --}}
+
 <html>
     <head>
         <title>App Name - @yield('title')</title>

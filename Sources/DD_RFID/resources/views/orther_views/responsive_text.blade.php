@@ -1,3 +1,5 @@
+{{--  Trang thử nghiệm điều chính kích thước text theo độ phân giải  --}}
+
 <!DOCTYPE html>
 <html>
 <head>

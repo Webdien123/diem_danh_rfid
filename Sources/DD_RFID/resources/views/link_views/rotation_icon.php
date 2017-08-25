@@ -1,3 +1,4 @@
+ <!-- Trang định nghĩa mã lệnh xoay icon loading cho trang sự kiện-->
     <style>
         .gly-spin {
             -webkit-animation: spin 2s infinite linear;

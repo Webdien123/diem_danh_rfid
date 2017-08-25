@@ -1,3 +1,5 @@
+{{--  Trang thử nghiệm section cho blade template  --}}
+
 @extends('orther_views.m')
 
 @section('title', 'Page Title')

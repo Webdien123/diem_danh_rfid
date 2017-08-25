@@ -1,3 +1,6 @@
+{{--  Trang định nghĩa liên kết tới css, jquery và 
+các tài nguyên dùng chung cho cả website  --}}
+
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 

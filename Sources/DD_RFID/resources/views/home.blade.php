@@ -1,3 +1,5 @@
+{{--  Định nghĩa trang chủ  --}}
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
