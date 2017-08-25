@@ -28,7 +28,7 @@
         </div>
     </div>
 
-        <div class="table-responsive">
+    <div class="table-responsive">
         <table class="table table-hover table-bordered" style="background-color: white">
             <thead>
                 <tr>
@@ -40,6 +40,13 @@
                 </tr>
             </thead>
             <tbody>
+
+                {{--  Phần nội dung không có sự kiện  --}}
+                <tr>
+                    <th colspan="5" class="text-center"><i>Danh sách rỗng.</i></th>
+                </tr>
+
+                {{-- Phần nội dung khi có sự kiện   --}}
                 <tr>
                     <td>Ngày hội việc làm 0</td>
                     <td>24/08/2017</td>
@@ -188,10 +195,12 @@
                             Xóa
                         </button>
                     </td>
-                </tr>	
+                </tr>
+                
+
             </tbody>
         </table>
-        </div>
+    </div>
     
 @endsection
 

@@ -19,12 +19,20 @@
 
     <div class="col-xs-12">
         
-            <div class="container-fluid">
+        <!-- Phần nội dung khi không có kết quả thống kê -->
+        <!-- <div class="container-fluid">
+            <div class="panel panel-info">
+                    <div class="panel-body">
+                        <h2>Hiện chưa có kết quả điểm đanh cho các sự kiện</h2>
+                    </div>
+            </div>
+        </div> -->
 
-
+        <!-- Phần nội dung khi có kết quả thống kế -->
+        <div class="container-fluid">
             
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Thông tin sự kiện</h3>
@@ -57,21 +65,19 @@
                 </div>
             </div>
             
-                
+            <h1>Sinh viên</h1>
 
-                <h1>Sinh viên</h1>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" id="piechart1" style="border: blue 1px solid"></div>
+                <div class="col-xs-12 col-md-6" id="piechart2" style="border: blue 1px solid"></div>
+            </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-md-6" id="piechart1" style="border: blue 1px solid"></div>
-                    <div class="col-xs-12 col-md-6" id="piechart2" style="border: blue 1px solid"></div>
-                </div>
+            <h1>Cán bộ</h1>
 
-                <h1>Cán bộ</h1>
-
-                <div class="row">
-                    <div class="col-xs-12 col-md-6" id="piechart3" style="border: blue 1px solid"></div>
-                    <div class="col-xs-12 col-md-6" id="piechart4" style="border: blue 1px solid"></div>
-                </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" id="piechart3" style="border: blue 1px solid"></div>
+                <div class="col-xs-12 col-md-6" id="piechart4" style="border: blue 1px solid"></div>
+            </div>
             
             </div>
 
@@ -110,9 +116,9 @@
                 </div>
 
             </div>
-
+            <!-- Danh sách sinh viên -->
             <div class="table-responsive">
-                <table class="table table-bordered" style="background-color: white">
+                <table class="table table-hover table-bordered" style="background-color: white">
                     <thead>
                         <tr>
                             <th>MSSV</th>
@@ -126,6 +132,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Phần nội dung không có sinh viên -->
+                        <tr>
+                            <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
+                        </tr>
+
+                        <!-- Phần nội dung khi có sinh viên -->
                         <tr>
                             <td>B1305056</td>
                             <td>Nguyễn Thị A</td>
@@ -258,6 +270,6 @@
                     </tbody>
                 </table>
             </div>
-
+        </div>
     </div>
 @endsection

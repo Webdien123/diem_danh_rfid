@@ -30,7 +30,7 @@
     </div>
 
         <div class="table-responsive">
-                <table class="table table-bordered" style="background-color: white">
+                <table class="table table-hover table-bordered" style="background-color: white">
                     <thead>
                         <tr>
                             <th>MSSV</th>
@@ -44,6 +44,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{--  Phần nội dung không có sinh viên  --}}
+                        <tr>
+                            <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
+                        </tr>
+
+                        <!-- Phần nội dung khi có sinh viên -->
                         <tr>
                             <td>B1305056</td>
                             <td>Nguyễn Thị A</td>

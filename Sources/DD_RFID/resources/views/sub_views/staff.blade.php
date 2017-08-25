@@ -30,7 +30,7 @@
     </div>
 
         <div class="table-responsive">
-                <table class="table table-bordered" style="background-color: white">
+                <table class="table table-hover table-bordered" style="background-color: white">
                     <thead>
                         <tr>
                             <th>MSCB</th>
@@ -43,6 +43,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{--  Phần nội dung không có cán bộ  --}}
+                        <tr>
+                            <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
+                        </tr>
+
+                        <!-- Phần nội dung khi có cán bộ -->
+
                         <tr>
                             <td>001220</td>
                             <td>Lê Văn B</td>
