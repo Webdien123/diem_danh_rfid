@@ -1,6 +1,9 @@
 @extends('admin')
 
 @section('event')
+    
+    @include('link_views.rotation_icon')
+
     <div class="col-xs-12 col-md-4 col-md-offset-8">
 			<form action="" method="get" class="form-inline" role="search">
 				<input type="hidden" name="_token" value="HdmoKcKa4GbZY5A1e2NUvlH4Jtab0z0bitquS7OQ">
@@ -36,6 +39,7 @@
                     <th>Ngày thực hiện</th>
                     <th>Điểm danh vào</th>
                     <th>Điểm danh ra</th>
+                    <th>Kết quả điểm danh</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
@@ -43,7 +47,7 @@
 
                 {{--  Phần nội dung không có sự kiện  --}}
                 <tr>
-                    <th colspan="5" class="text-center"><i>Danh sách rỗng.</i></th>
+                    <th colspan="6" class="text-center"><i>Danh sách rỗng.</i></th>
                 </tr>
 
                 {{-- Phần nội dung khi có sự kiện   --}}
@@ -52,6 +56,10 @@
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
+                    <td><center>
+                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                        Đang cập nhật
+                    </center></td>                    
                     <td>
                         <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -82,6 +90,12 @@
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
+                        <a href="" class="btn btn-default btn-block" style="background-color: #8064A2; color: white">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            Xem kết quả
+                        </a>
+                    </td>         
+                    <td>
                         <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
@@ -102,11 +116,6 @@
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             Xóa
                         </button>
-
-                        <a href="" class="btn btn-default" style="background-color: #8064A2; color: white">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            Xem kết quả
-                        </a>
                     </td>
                 </tr>	
 
@@ -115,6 +124,10 @@
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
+                    <td><center>
+                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                        Đang cập nhật
+                    </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -144,6 +157,10 @@
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
+                    <td><center>
+                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                        Đang cập nhật
+                    </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -173,6 +190,10 @@
                     <td>24/08/2017</td>
                     <td>14:00</td>
                     <td>17:00</td>
+                    <td><center>
+                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                        Đang cập nhật
+                    </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
