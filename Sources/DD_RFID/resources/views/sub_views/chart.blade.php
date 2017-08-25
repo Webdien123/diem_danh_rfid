@@ -21,6 +21,44 @@
         
             <div class="container-fluid">
 
+
+            
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Thông tin sự kiện</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Sự kiện</th>
+                                            <td>Ngày hội việc làm 1</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ngày thực hiện</th>
+                                            <td>24/08/2017</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <a href="#" class="btn btn-primary btn-block">
+                                                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                                    Đổi sự kiện
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+                
+
                 <h1>Sinh viên</h1>
 
                 <div class="row">
