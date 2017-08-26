@@ -4,6 +4,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/noti_menu.css') }}">
+
     {{--  Chuyển đổi màu thanh menu theo trang con.  --}}
     @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
         {!! '<div class="panel panel-info">' !!}
@@ -34,13 +36,37 @@
                                 </button>
 
                                 <!-- Danh sách thông báo -->
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header"><b>Thông báo</b></li>
+                                <ul class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu"">
+                                    <li class="dropdown-header"><h4>Thông báo</h4></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">HTML</a></li>
-                                    <li><a href="#">CSS</a></li>
-                                    <li><a href="#">JavaScript</a></li>
-                                </ul>   
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
+                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
+                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href='#'>View all items</a></li>
+                                </ul>
+                                
                             </span>
                         </div>
 
