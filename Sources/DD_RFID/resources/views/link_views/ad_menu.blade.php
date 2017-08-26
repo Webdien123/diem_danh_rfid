@@ -2,6 +2,8 @@
 
 <div class="col-xs-12">
 
+    <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
+
     {{--  Chuyển đổi màu thanh menu theo trang con.  --}}
     @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
         {!! '<div class="panel panel-info">' !!}
@@ -15,17 +17,44 @@
 
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading">
-            <h3 class="panel-title">  
+            <h3 class="panel-title" >  
                 
                 <!-- Menu thông báo -->
-                <!--  -->
-                <!--  -->
-                <!--  -->
+                <div class="row" >
+                    <div class="pull-right">
+                        <div class="dropdown" onclick="anthongbao();">
+                            <span class="item">
 
-                <!-- Chào người quản trị bằng tên -->
-                <span class="glyphicon glyphicon-dash"></span> Xin chào: Nguyễn Văn A
+                                <!-- Chào người quản trị bằng tên -->
+                                <span id="hoten">Xin chào: <b>Nguyễn Văn A</b></span>
+                                <span class="notify-badge">3</span>
+                                    
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="fa fa-comment-o fa-2x" aria-hidden="true"></i>
+                                </button>
+
+                                <!-- Danh sách thông báo -->
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header"><b>Thông báo</b></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">JavaScript</a></li>
+                                </ul>   
+                            </span>
+                        </div>
+
+                        <script>
+                            function anthongbao() {
+                                $(".notify-badge").hide();
+                            }
+                        </script>
+                    </div>
+                </div>  
             </h3>
+
         </div>
+
         {{--  Phần trình bày các nút liên kết qua các trang con  --}}
         <div class="panel-body">
             <div class="row">
