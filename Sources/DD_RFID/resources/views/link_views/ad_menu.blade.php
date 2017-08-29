@@ -2,9 +2,9 @@
 
 <div class="col-xs-12">
 
-    <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/noti_menu.css') }}">
+
+    <script src="{{ asset('js/noti_menu.js') }}"></script>
 
     {{--  Chuyển đổi màu thanh menu theo trang con.  --}}
     @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
@@ -19,65 +19,64 @@
 
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading">
-            <h3 class="panel-title" >  
+            {{--  <h3 class="panel-title" >    --}}
                 
                 <!-- Menu thông báo -->
                 <div class="row" >
                     <div class="pull-right">
-                        <div class="dropdown" onclick="anthongbao();">
-                            <span class="item">
+                        <ul id="nav">
+                            <li id="notification_li">
+                            <a href="#" id="notificationLink">
+                                <span class="fa fa-comment-o fa-2x" style="color: white">
+                            </a>
+                                <span id="notification_count">3</span>
+                                <div id="notificationContainer">
+                                    <div id="notificationTitle">Thông báo</div>
+                                    <div id="notificationsBody" class="notifications pre-scrollable">
+                                            <a class="btn" href="#">
+                                                <span class="fa fa-users fa-2x">
+                                                Bổ sung thông tin cán bộ 002233
+                                            </a>                                       
+                                        <div class="text-danger">
+                                            <span class="fa fa-graduation-cap fa-2x">
+                                            <a>Bổ sung thông tin sinh viên 002233</a>
+                                        </div>
+                                        <div class="text-primary">
+                                            <span class="fa fa-users fa-2x">
+                                            <a>Bổ sung thông tin cán bộ 002233</a>
+                                        </div>
+                                        <div class="text-danger">
+                                            <span class="fa fa-graduation-cap fa-2x">
+                                            <a>Bổ sung thông tin sinh viên 002233</a>
+                                        </div>
+                                        <div class="text-primary">
+                                            <span class="fa fa-users fa-2x">
+                                            <a>Bổ sung thông tin cán bộ 002233</a>
+                                        </div>
+                                        <div class="text-danger">
+                                            <span class="fa fa-graduation-cap fa-2x">
+                                            <a>Bổ sung thông tin sinh viên 002233</a>
+                                        </div>
+                                        <div class="text-primary">
+                                            <span class="fa fa-users fa-2x">
+                                            <a>Bổ sung thông tin cán bộ 002233</a>
+                                        </div>
+                                        <div class="text-danger">
+                                            <span class="fa fa-graduation-cap fa-2x">
+                                            <a>Bổ sung thông tin sinh viên 002233</a>
+                                        </div>
+                                    </div>
+                                    <div id="notificationFooter"><a href="#">See All</a></div>
+                                </div>
+                    
+                            </li>
+                        </ul>
 
-                                <!-- Chào người quản trị bằng tên -->
-                                <span id="hoten">Xin chào: <b>Nguyễn Văn A</b></span>
-                                <span class="notify-badge">3</span>
-                                    
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <i class="fa fa-comment-o fa-2x" aria-hidden="true"></i>
-                                </button>
 
-                                <!-- Danh sách thông báo -->
-                                <ul class="dropdown-menu dropdown-menu-right scrollable-menu" role="menu"">
-                                    <li class="dropdown-header"><h4>Thông báo</h4></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709344</a></li>
-                                    <li><a href="#">Thêm thông tin cán bộ 003456</a></li>
-                                    <li><a href="#">Thêm thông tin sinh viên B1709347</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href='#'>View all items</a></li>
-                                </ul>
-                                
-                            </span>
-                        </div>
-
-                        <script>
-                            function anthongbao() {
-                                $(".notify-badge").hide();
-                            }
-                        </script>
+                        
                     </div>
                 </div>  
-            </h3>
+            {{--  </h3>  --}}
 
         </div>
 
