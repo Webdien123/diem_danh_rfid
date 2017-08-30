@@ -1,6 +1,7 @@
 #nav
 {
     list-style:none;margin: 0px;padding: 0px;
+    
 }
 
 #nav li 
@@ -12,21 +13,10 @@
     font-weight:bold;
 }
 
-/* #nav li a:hover
-{
-    color:#006699;
-    text-decoration:none;
-}
-
-#nav li a:visited
-{
-    color: plum;
-    text-decoration:none;
-} */
-
 #notification_li
 {
-    position:relative
+    position:relative;
+    background-color: white;
 }
 
 #notificationContainer 
@@ -84,6 +74,11 @@
     padding: 8px;
     font-size: 12px;
     border-top: 1px solid #dddddd;
+}
+
+.notificationData
+{
+    border: solid 1px rgba(16, 39, 206, 0.62);
 }
 
 #notification_count 

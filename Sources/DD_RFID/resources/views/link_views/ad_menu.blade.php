@@ -27,46 +27,35 @@
                         <ul id="nav">
                             <li id="notification_li">
                             <a href="#" id="notificationLink">
-                                <span class="fa fa-comment-o fa-2x" style="color: white">
+                                <span class="fa fa-comment-o fa-2x" style="color: black">
                             </a>
                                 <span id="notification_count">3</span>
                                 <div id="notificationContainer">
                                     <div id="notificationTitle">Thông báo</div>
                                     <div id="notificationsBody" class="notifications pre-scrollable">
-                                            <a class="btn" href="#">
-                                                <span class="fa fa-users fa-2x">
-                                                Bổ sung thông tin cán bộ 002233
-                                            </a>                                       
-                                        <div class="text-danger">
-                                            <span class="fa fa-graduation-cap fa-2x">
-                                            <a>Bổ sung thông tin sinh viên 002233</a>
+                                        <div class="text-primary notificationData">
+                                            <span class="fa fa-users fa-2x"></span>
+                                            Bổ sung thông tin cán bộ 002233
+                                            <button class="btn btn-link">
+                                                Xem nội dung
+                                            </button>
+                                        </div>                              
+                                        <div class="text-danger notificationData">
+                                            <span class="fa fa-graduation-cap fa-2x"></span>
+                                            Bổ sung thông tin sinh viên 002233
+                                            <button class="btn btn-link">
+                                                Xem nội dung
+                                            </button>
                                         </div>
-                                        <div class="text-primary">
-                                            <span class="fa fa-users fa-2x">
-                                            <a>Bổ sung thông tin cán bộ 002233</a>
-                                        </div>
-                                        <div class="text-danger">
-                                            <span class="fa fa-graduation-cap fa-2x">
-                                            <a>Bổ sung thông tin sinh viên 002233</a>
-                                        </div>
-                                        <div class="text-primary">
-                                            <span class="fa fa-users fa-2x">
-                                            <a>Bổ sung thông tin cán bộ 002233</a>
-                                        </div>
-                                        <div class="text-danger">
-                                            <span class="fa fa-graduation-cap fa-2x">
-                                            <a>Bổ sung thông tin sinh viên 002233</a>
-                                        </div>
-                                        <div class="text-primary">
-                                            <span class="fa fa-users fa-2x">
-                                            <a>Bổ sung thông tin cán bộ 002233</a>
-                                        </div>
-                                        <div class="text-danger">
-                                            <span class="fa fa-graduation-cap fa-2x">
-                                            <a>Bổ sung thông tin sinh viên 002233</a>
+                                        <div class="text-danger notificationData">
+                                            <span class="fa fa-graduation-cap fa-2x"></span>
+                                            Bổ sung thông tin sinh viên 002234
+                                            <button class="btn btn-link">
+                                                Xem nội dung
+                                            </button>
                                         </div>
                                     </div>
-                                    <div id="notificationFooter"><a href="#">See All</a></div>
+                                    <div id="notificationFooter"><a href="#">Xem tất cả</a></div>
                                 </div>
                     
                             </li>
