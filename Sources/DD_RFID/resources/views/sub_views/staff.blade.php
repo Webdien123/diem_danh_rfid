@@ -22,13 +22,15 @@
     {{--  Hiển thị tiêu đề và nút thêm cán bộ  --}}
     <center><h1>Danh sách cán bộ</h1></center>
     <div class="row">
-        <div class="col-xs-12">
-        <div class="pull-left">
-                <button type="button" class="btn btn-primary"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    Thêm cán bộ
-                </button>
-        </div>
+        <div class="col-xs-12 col-md-6">
+            <a type="button" class="btn btn-primary"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                Thêm cán bộ
+            </a>
+            <a class="btn btn-default" style="background-color: #001a66; color: white">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                Thêm cán bộ từ excel
+            </a>
         </div>
     </div>
 
@@ -100,7 +102,7 @@
                     <td>CNTT</td>
                     <td>CNTT</td>
                     <td>lvbe@ctu.edu</td>
-                    <td>234123412431234</td>
+                    <td>chưa đăng ký</td>
                     <td>
                         <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

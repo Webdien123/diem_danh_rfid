@@ -25,13 +25,16 @@
     {{--  Hiển thị tiêu đề và nút thêm sự kiện  --}}
     <center><h1>Danh sách sự kiện</h1></center>
     <div class="row">
-        <div class="col-xs-12">
-        <div class="pull-left">
-                <button type="button" class="btn btn-success"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    Thêm sự kiện
-                </button>
-        </div>
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-success"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                Thêm sự kiện
+            </a>
+
+            <a class="btn btn-default" style="background-color: #001a66; color: white">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                Thêm sự kiện từ excel
+            </a>
         </div>
     </div>
 

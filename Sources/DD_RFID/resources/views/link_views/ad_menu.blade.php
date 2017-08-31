@@ -19,12 +19,12 @@
 
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading">
-            {{--  <h3 class="panel-title" >    --}}
                 
                 <!-- Menu thông báo -->
                 <div class="row" >
                     <div class="pull-right">
                         <ul id="nav">
+                            <li>Xin chào: <b>Nguyễn Văn A</b></li>
                             <li id="notification_li">
                             <a href="#" id="notificationLink">
                                 <span class="fa fa-comment-o fa-2x" style="color: black">
@@ -42,14 +42,14 @@
                                         </div>                              
                                         <div class="text-danger notificationData">
                                             <span class="fa fa-graduation-cap fa-2x"></span>
-                                            Bổ sung thông tin sinh viên 002233
+                                            Bổ sung thông tin sinh viên 00223344
                                             <button class="btn btn-link">
                                                 Xem nội dung
                                             </button>
                                         </div>
                                         <div class="text-danger notificationData">
                                             <span class="fa fa-graduation-cap fa-2x"></span>
-                                            Bổ sung thông tin sinh viên 002234
+                                            Bổ sung thông tin sinh viên B1305056
                                             <button class="btn btn-link">
                                                 Xem nội dung
                                             </button>
@@ -65,7 +65,6 @@
                         
                     </div>
                 </div>  
-            {{--  </h3>  --}}
 
         </div>
 

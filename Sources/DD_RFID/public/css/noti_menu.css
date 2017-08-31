@@ -27,8 +27,8 @@
     overflow: visible;
     position: absolute;
     top: 40px;
-    margin-left: -1700%;
-    width: 1800%;
+    margin-left: -1100%;
+    width: 1200%;
     z-index: 1;
     display: none;
 }
@@ -44,7 +44,7 @@
     border: 10px solid black;
     border-color: transparent transparent white;
     margin-top: -20px;
-    margin-left: 95%;
+    margin-left: 90%;
 }
 
 #notificationTitle
@@ -78,7 +78,8 @@
 
 .notificationData
 {
-    border: solid 1px rgba(16, 39, 206, 0.62);
+    border: solid 1px rgba(16, 117, 206, 0.62);
+    border-radius: 9px;
 }
 
 #notification_count 

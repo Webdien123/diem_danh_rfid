@@ -19,23 +19,38 @@
     <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
     <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
 
+    
     <div class="col-xs-12">
-        
+        {{--  Tìm kiếm thông tin tổng hợp  --}}
+        <div class="row">
+            <div class="col-xs-12 col-md-4 col-md-offset-8">
+			<form action="" method="get" class="form-inline" role="search">
+				<input type="hidden" name="_token" value="HdmoKcKa4GbZY5A1e2NUvlH4Jtab0z0bitquS7OQ">
+				<b>Tìm kiếm:</b>
+				<input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+				<button type="submit" class="btn btn-info">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					Tìm
+				</button>
+			</form>
+            </div>
+        </div>
+
         <!-- Phần nội dung khi không có kết quả thống kê -->
-        <!-- <div class="container-fluid">
+        <div class="container-fluid">
             <div class="panel panel-info">
                     <div class="panel-body">
-                        <h2>Hiện chưa có kết quả điểm đanh cho các sự kiện</h2>
+                        <h2 class="text-center">Hiện chưa có kết quả điểm đanh cho các sự kiện</h2>
                     </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Phần nội dung khi có kết quả thống kế -->
         <div class="container-fluid">
             
             {{--  Phần thông tin sự kiện đang hiển thị --}}
             <div class="row">    
-                <div class="col-xs-8 col-xs-offset-2">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
                     <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Thông tin sự kiện</h3>
@@ -46,7 +61,7 @@
                                     <tbody>
                                         <tr>
                                             <th>Sự kiện</th>
-                                            <td>Ngày hội việc làm 1</td>
+                                            <td class="lead">Ngày hội việc làm 1</td>
                                         </tr>
                                         <tr>
                                             <th>Ngày thực hiện</th>
@@ -87,11 +102,19 @@
         {{--  Phần hiển thị thông tin danh sách đang hiển thị  --}}
         <center style="margin-top: 5%;"><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
 
-        {{--  Phần chọn danh sách thống kê khác và tìm kiếm thông tin  --}}
+        {{--  Phần xuất danh sách, chọn danh sách thống kê khác và tìm kiếm thông tin  --}}
         <div class="row">
 
+            {{--  Phần xuất file excel  --}}
+            <div class="col-xs-12 col-md-4">
+                <a href="#" class="btn btn-success">
+                    <span class="fa fa-file-excel-o fa-2x" aria-hidden="true"></span>
+                    Xuất danh sách ra excel
+                </a>
+            </div>
+
             {{--  Phần chọn danh sách thống kê  --}}
-            <div class="col-xs-12 col-md-4 col-md-offset-4">
+            <div class="col-xs-12 col-md-4">
                 <div class="form-group has-warning form-inline">
                     <label for="sel1">Danh sách:</label>
                     <select class="form-control" id="sel1">
@@ -108,20 +131,6 @@
                     </select>
                 </div>
             </div>
-
-            {{--  Tìm kiếm thông tin tổng hợp  --}}
-            <div class="col-xs-12 col-md-4">
-                <form action="" method="get" class="form-inline" role="search">
-                    {{ csrf_field() }}
-                    <b>Tìm kiếm:</b>
-                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        Tìm
-                    </button>
-                </form>  
-            </div>
-
         </div>
 
         <!-- Danh sách sinh viên -->
