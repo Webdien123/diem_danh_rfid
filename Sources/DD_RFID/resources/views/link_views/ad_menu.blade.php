@@ -68,13 +68,9 @@
                                 </div>
                     
                             </li>
-                        </ul>
-
-
-                        
+                        </ul>                        
                     </div>
                 </div>  
-
         </div>
 
         {{--  Phần trình bày các nút liên kết qua các trang con  --}}

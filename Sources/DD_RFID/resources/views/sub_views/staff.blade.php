@@ -64,9 +64,15 @@
                     <td>CNTT</td>
                     <td>Kỹ thuật phần mềm</td>
                     <td>lvbe@ctu.edu</td>
-                    <td>234123412431234</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        234123412431234
+                        
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -84,9 +90,15 @@
                     <td>CNTT</td>
                     <td>CNTT</td>
                     <td>lvbe@ctu.edu</td>
-                    <td>234123412431234</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        234123412431234
+                        
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -106,7 +118,7 @@
                     <td>lvbe@ctu.edu</td>
                     <td>chưa đăng ký</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -124,9 +136,15 @@
                     <td>CNTT</td>
                     <td>CNTT</td>
                     <td>lvbe@ctu.edu</td>
-                    <td>234123412431234</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        234123412431234
+                        
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>
@@ -144,9 +162,15 @@
                     <td>CNTT</td>
                     <td>CNTT</td>
                     <td>lvbe@ctu.edu</td>
-                    <td>234123412431234</td>
                     <td>
-                        <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
+                        234123412431234
+                        
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Sửa thông tin
                         </a>

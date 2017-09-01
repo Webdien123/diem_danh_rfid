@@ -66,7 +66,12 @@
                     <td>CNTT</td>
                     <td>A2</td>
                     <td>K39</td>
-                    <td>234123412431234</td>
+                    <td>
+                        234123412431234
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td>
                         <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -87,7 +92,12 @@
                     <td>CNTT</td>
                     <td>A2</td>
                     <td>K39</td>
-                    <td>234123412431234</td>
+                    <td>
+                        234123412431234
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td>
                         <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -108,7 +118,12 @@
                     <td>CNTT</td>
                     <td>A2</td>
                     <td>K39</td>
-                    <td>234123412431234</td>
+                    <td>
+                        234123412431234
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td>
                         <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -129,7 +144,12 @@
                     <td>CNTT</td>
                     <td>A2</td>
                     <td>K39</td>
-                    <td>234123412431234</td>
+                    <td>
+                        234123412431234
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td>
                         <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -150,7 +170,12 @@
                     <td>CNTT</td>
                     <td>A2</td>
                     <td>K39</td>
-                    <td>234123412431234</td>
+                    <td>
+                        234123412431234
+                        <button type="button" class="btn btn-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td>
                         <a href="http://lyvan:8080/SuaSV/B1300001" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

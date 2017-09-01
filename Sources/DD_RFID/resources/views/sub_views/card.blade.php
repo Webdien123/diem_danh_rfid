@@ -5,6 +5,8 @@
 @section('title', 'Trang đăng ký thẻ')
 
 @section('chart')
+    <script src="{{ asset('js/card.js') }}"></script>
+
     <div class="col-xs-12" >
         <!-- Nội dung trang card. 
         // Dùng container-fluid để đảm bảo kích thước chiều ngang -->
@@ -17,7 +19,7 @@
                     <form action="{{ route('home') }}" method="post" id="f_quet_the">
                         {{ csrf_field() }}
                         <label for="">Mã thẻ</label>
-                        <input type="text" class="form-control" name="TuKhoa" placeholder="Quét thẻ cần đăng ký" required>
+                        <input type="text" class="form-control" name="TuKhoa" placeholder="Quét thẻ cần đăng ký" required id="id_the">
                         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
                     </form>
                     <hr>
@@ -79,10 +81,4 @@
             </div>  --}}
         </div>        
     </div>
-
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-    </script>
 @endsection
