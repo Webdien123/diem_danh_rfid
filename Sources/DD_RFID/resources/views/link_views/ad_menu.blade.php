@@ -106,9 +106,9 @@
                 
                 {{--  Trang chủ  --}}
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="{{ route('home') }}" class="btn btn-default btn-lg btn-block dash-widget" role="button" style="padding:2px;">
-                        <div id="box_1"><span class="fa fa-home fa-3x"></span></div>
-                        <div id="box_2" class="icon-label">Về trang chủ</div>
+                    <a href="{{ route('card') }}" class="btn btn-default btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                        <div id="box_1"><span class="fa fa-id-card-o fa-3x"></span></div>
+                        <div id="box_2" class="icon-label">Đăng ký thẻ</div>
                     </a>
                 </div>
 

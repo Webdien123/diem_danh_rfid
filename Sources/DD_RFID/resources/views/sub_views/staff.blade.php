@@ -2,6 +2,8 @@
 
 @extends('admin')
 
+@section('title', 'Trang cán bộ')
+
 @section('student')
 
     {{--  Tìm kiếm cán bộ  --}}

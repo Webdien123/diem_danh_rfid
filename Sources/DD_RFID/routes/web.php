@@ -47,6 +47,10 @@ Route::get('staff', function() {
 })->name('staff');
 
 
+Route::get('card', function() {
+    return view('sub_views.card');
+})->name('card');
+
 /*
 |--------------------------------------------------------------------------
 | Test route

@@ -2,6 +2,8 @@
 
 @extends('admin')
 
+@section('title', 'Trang sự kiện')
+
 @section('event')
     
     {{--  Gọi code thực hiện xoay icon đang cập nhật  --}}

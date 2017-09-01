@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang quản trị</title>
+    <title>@yield('title')</title>
     @include('link_views.import')
 </head>
 
@@ -26,6 +26,9 @@
 
         {{--  Gọi hiển thị GD cán bộ cho trang cán bộ  --}}
         @yield('staff')
+
+        {{--  Gọi hiển thị GD đăng ký thẻ  --}}
+        @yield('card')
     </div>
 </body>
 </html>

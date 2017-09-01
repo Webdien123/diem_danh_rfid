@@ -2,6 +2,8 @@
 
 @extends('admin')
 
+@section('title', 'Trang thống kê')
+
 @section('chart')
 
     <!--Load the GOOGLE CHART API-->
@@ -19,7 +21,6 @@
     <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
     <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
 
-    
     <div class="col-xs-12">
         {{--  Tìm kiếm thông tin tổng hợp  --}}
         <div class="row">
