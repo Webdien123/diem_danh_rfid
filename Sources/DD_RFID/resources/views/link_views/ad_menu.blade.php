@@ -18,10 +18,19 @@
     @endif
 
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
-        <div class="panel-heading">
+        <div class="panel-heading" style="padding: 0px 15px 0px 15px">
                 
                 <!-- Menu thông báo -->
-                <div class="row" >
+                <div class="row">
+
+                    {{--  Phần di chuyển về trang chủ  --}}
+                    <div class="pull-left">
+                        <a href="{{ route('home') }}" class="btn btn-default">
+                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    {{--  Phần tên quản trị và nút thông báo  --}}
                     <div class="pull-right">
                         <ul id="nav">
                             <li>Xin chào: <b>Nguyễn Văn A</b></li>
