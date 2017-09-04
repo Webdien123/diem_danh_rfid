@@ -69,11 +69,71 @@
                                             <td>24/08/2017</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
-                                                <a href="#" class="btn btn-primary btn-block">
+                                            {{--  Nút chuyển sự kiện hiển thị  --}}
+                                            <td colspan="2">                                                
+                                                <a class="btn btn-primary btn-block" data-toggle="modal" href='#modal-id-sk'>
                                                     <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                                                     Đổi sự kiện
                                                 </a>
+                                                <div class="modal fade" id="modal-id-sk">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Đổi sự kiện (10 sự kiện gần nhất)</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                
+                                                                <form action="#" id="form_id_sk">
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio" checked>Ngày hội việc làm 1</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 2</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 3</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 4</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 5</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 6</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 7</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 8</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 9</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" name="optradio">Ngày hội việc làm 10</label>
+                                                                    </div>
+                                                                    
+                                                                </form>
+                                                                
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                                    <i class="fa fa-window-close" aria-hidden="true"></i>
+                                                                    Đóng
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary" form="form_id_sk">
+                                                                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                                                    Chuyển sự kiện
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -164,11 +224,52 @@
                         <td>A2</td>
                         <td>K39</td>
                         <td>234123412431234</td>
-                        <td>
-                            <a href="#" class="btn btn-info">
+                        {{--  Nút chuyển danh sách  --}}
+                        <td>      
+                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                 Chuyển danh sách
                             </a>
+                            <div class="modal fade" id="modal-id-ds">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">
+                                                Chuyển danh sách
+                                                <span>sinh viên</span>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/" id="form_id_ds">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="optradio" checked>Có mặt</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="optradio">Vắng mặt</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="optradio">Có vào không ra</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="optradio">Có ra không vào</label>
+                                                </div>                                                        
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <i class="fa fa-window-close" aria-hidden="true"></i>
+                                                Đóng
+                                            </button>
+                                            <button type="submit" class="btn btn-primary" form="form_id_ds">
+                                                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                                Chuyển sự kiện
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             
                             <a href="" class="btn btn-success">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -176,7 +277,7 @@
                             </a>
 
                             <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Xóa
                             </button>
                         </td>
@@ -202,7 +303,7 @@
                             </a>
 
                             <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Xóa
                             </button>
                         </td>
@@ -228,7 +329,7 @@
                             </a>
 
                             <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Xóa
                             </button>
                         </td>
@@ -254,7 +355,7 @@
                             </a>
 
                             <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Xóa
                             </button>
                         </td>
@@ -280,11 +381,12 @@
                             </a>
 
                             <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Xóa
                             </button>
                         </td>
                     </tr>
+                    {{--  ./ Phần nội dung khi có sinh viên  --}}
                 </tbody>
             </table>
         </div>

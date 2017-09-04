@@ -13,7 +13,7 @@
     <div class="col-xs-12 col-md-4 col-md-offset-8">
 			<form action="" method="get" class="form-inline" role="search">
 				<input type="hidden" name="_token" value="HdmoKcKa4GbZY5A1e2NUvlH4Jtab0z0bitquS7OQ">
-				<b>Tìm kiếm:</b>
+				<b>Tìm kiếm sự kiện:</b>
 				<input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
 				<button type="submit" class="btn btn-success">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
