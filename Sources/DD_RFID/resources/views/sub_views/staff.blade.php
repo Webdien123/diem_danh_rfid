@@ -7,16 +7,26 @@
 @section('student')
 
     {{--  Tìm kiếm cán bộ  --}}
-    <div class="col-xs-12 col-md-4 col-md-offset-8">
-			<form action="" method="get" class="form-inline" role="search">
-				{{ csrf_field() }}
-				<b>Tìm kiếm cán bộ:</b>
-				<input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-				<button type="submit" class="btn btn-primary">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					Tìm
-				</button>
-			</form>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+            {{ csrf_field() }}
+            <b>Tìm kiếm cán bộ:</b>
+            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Tìm
+            </button>
+        </form>
+
+        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+            {{ csrf_field() }}
+            <b>Tìm kiếm cán bộ:</b>
+            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Tìm
+            </button>
+        </form>
     </div>
         
     </div> {{--  kết thúc container của trang master  --}}

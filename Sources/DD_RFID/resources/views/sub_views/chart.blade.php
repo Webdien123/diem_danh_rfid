@@ -21,21 +21,34 @@
     <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
     <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
 
+    {{--  Tìm kiếm thông tin --}}
+    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+            {{ csrf_field() }}
+            <b>Tìm kiếm:</b>
+            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Tìm
+            </button>
+        </form>
+
+        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+            {{ csrf_field() }}
+            <b>Tìm kiếm:</b>
+            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Tìm
+            </button>
+        </form>
+    </div>
+
     <div class="col-xs-12">
         {{--  Tìm kiếm thông tin tổng hợp  --}}
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-6">
-			<form action="" method="get" class="form-inline" role="search">
-				{{ csrf_field() }}
-				<b>Tìm kiếm:</b>
-				<input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-				<button type="submit" class="btn btn-info">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					Tìm
-				</button>
-			</form>
-            </div>
-        </div>
+        {{--  <div class="row">  --}}
+            
+        {{--  </div>  --}}
 
         <!-- Phần nội dung khi không có kết quả thống kê -->
         <div class="container-fluid">
@@ -263,7 +276,7 @@
                                             </button>
                                             <button type="submit" class="btn btn-primary" form="form_id_ds">
                                                 <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                                                Chuyển sự kiện
+                                                Chuyển danh sách
                                             </button>
                                         </div>
                                     </div>
