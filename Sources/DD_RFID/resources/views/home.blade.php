@@ -9,16 +9,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trang chủ</title>
     @include('link_views.import')
+
+    {{--  Gọi css căn chỉnh ảnh nền và giao diện home  --}}
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
+    {{--  Gọi script autosize của text tên sự kiện trên trang home  --}}
     <script src="{{ asset('js/jquery.fittext.js') }}"></script>
 </head>
-
 <body>
+    {{--  Thẻ hiển thị ảnh nền  --}}
     <div id="home_bg"></div>
+
+    {{--  Thẻ chứa nội dung trang home  --}}
     <div class="container text-center" id="home_content">
+
+        {{--  Loại điểm danh  --}}
         <h1>Điểm danh vào</h1>
         {{--  <h1>Điểm danh ra</h1>  --}}
+
+        {{--  Tên sự kiện  --}}
         <h2><strong id="event_name" class="text-danger">TUẦN LỄ CHỦ NHẬT XANH VÀ MÙA HÈ XANH LÈ XANH LÉT XANH TÉT BÉT</strong></h2>
+
+        {{--  Thời gian, địa điểm  --}}
         <div class="row">
             <div class="col-xs-12">
                 <h2>Thời gian: <b>14:00</b> - Địa điểm: <b>Hội trường rùa</b></h2>
@@ -26,6 +38,7 @@
         </div>
         <hr>
 
+        {{--  Phần quét thẻ điểm danh  --}}
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">KHUNG ĐIỂM DANH</h3>
