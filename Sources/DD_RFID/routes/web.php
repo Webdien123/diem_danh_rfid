@@ -76,4 +76,8 @@ Route::get('no_menu', function() {
     return view('orther_views.notification_menu');
 });
 
+// Thử giao diện text autosize
+Route::get('text', function() {
+    return view('orther_views.responsive_text');
+});
 

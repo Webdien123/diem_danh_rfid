@@ -57,6 +57,7 @@
                 <tr>
                     <th>Tên sự kiện</th>
                     <th>Ngày thực hiện</th>
+                    <th>Địa điểm</th>
                     <th>Điểm danh vào</th>
                     <th>Điểm danh ra</th>
                     <th>Kết quả điểm danh</th>
@@ -67,13 +68,14 @@
 
                 {{--  Phần nội dung không có sự kiện  --}}
                 <tr>
-                    <th colspan="6" class="text-center"><i>Danh sách rỗng.</i></th>
+                    <th colspan="7" class="text-center"><i>Danh sách rỗng.</i></th>
                 </tr>
 
                 {{-- Phần nội dung khi có sự kiện   --}}
                 <tr>
                     <td>Ngày hội việc làm 0</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
@@ -107,6 +109,7 @@
                 <tr>
                     <td>Ngày hội việc làm 1</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
@@ -142,6 +145,7 @@
                 <tr>
                     <td>Ngày hội việc làm 2</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
@@ -175,6 +179,7 @@
                 <tr>
                     <td>Ngày hội việc làm 3</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
@@ -208,6 +213,7 @@
                 <tr>
                     <td>Ngày hội việc làm 4</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>

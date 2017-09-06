@@ -1,0 +1,19 @@
+#home_bg
+{
+    background-image: url('../imgs/Banner5.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: 100%; 
+    filter: blur(5px); 
+    height: 100%;
+    /* border: 1px solid red; */
+    -webkit-filter: blur(5px);  
+    z-index: -1;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+#home_content
+{
+    z-index: 2;
+}

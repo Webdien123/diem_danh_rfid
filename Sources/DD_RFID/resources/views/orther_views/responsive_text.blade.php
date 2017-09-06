@@ -4,12 +4,11 @@
 <html>
 <head>
 	<title>Trang chủ</title>
-    @include('import')
+    @include('link_views.import')
 	<script src="{{ asset('public/js/jquery.fittext.js') }}"></script>
 </head>
 <body>
-    @include('header')
-	<h4 id="abc">Trang chủ</h4>
+	<h1 id="abc">Trang chủ</h1>
 	<script>
         //call fitText() function for the element you want to be fluid
         $("#abc").fitText();
