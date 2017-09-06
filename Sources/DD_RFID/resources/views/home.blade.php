@@ -19,6 +19,11 @@
         <h1>Điểm danh vào</h1>
         {{--  <h1>Điểm danh ra</h1>  --}}
         <h2><strong id="event_name" class="text-danger">TUẦN LỄ CHỦ NHẬT XANH VÀ MÙA HÈ XANH LÈ XANH LÉT XANH TÉT BÉT</strong></h2>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Thời gian: <b>14:00</b> - Địa điểm: <b>Hội trường rùa</b></h2>
+            </div>
+        </div>
         <hr>
 
         <div class="panel panel-primary">
@@ -40,8 +45,12 @@
                 </div>
             </div>
         </div>
+
+        
+        
+        
     </div>
-    
+
     <script>
         jQuery("#event_name").fitText(1.8);
     </script>
