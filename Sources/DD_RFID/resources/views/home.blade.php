@@ -28,7 +28,7 @@
         {{--  <h1>Điểm danh ra</h1>  --}}
 
         {{--  Tên sự kiện  --}}
-        <h2><strong id="event_name" class="text-danger">TUẦN LỄ CHỦ NHẬT XANH VÀ MÙA HÈ XANH LÈ XANH LÉT XANH TÉT BÉT</strong></h2>
+        <h2><strong id="event_name" class="text-danger">TUẦN LỄ CHỦ NHẬT XANH VÀ MÙA HÈ XANH NGÁT XANH</strong></h2>
 
         {{--  Thời gian, địa điểm  --}}
         <div class="row">
