@@ -27,7 +27,7 @@
             </div>
     
             <!-- Phần nội dung hiển thị sau khi quét thẻ hợp lệ -->
-            {{--  <div class="row text-center">
+            <div class="row text-center">
                 <h3 class="text-success"><i>Mã thẻ hợp lệ. Chọn chế độ đăng ký:</i></h3>
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3">
                     <button type="button" class="btn btn-lg btn-success" data-toggle="tooltip" data-placement="top" title="Dùng khi người đăng ký chưa có thông tin trong hệ thống">
@@ -39,10 +39,10 @@
                         Cập nhật thẻ cũ
                     </button>
                 </div>
-            </div>  --}}
+            </div>
     
             <!-- Phần nội dung hiển thị sau khi quét thẻ đã sử dụng -->
-            {{--  <div class="row text-center" style="margin-top: 2%">
+            <div class="row text-center" style="margin-top: 2%">
                 <h3 class="text-danger"><i>Thẻ đã đăng ký, vui lòng sử dụng thẻ khác:</i></h3>
                 <div class="col-xs-12 col-sm-4 col-sm-offset-4">
                         <div class="panel panel-info">
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                 </div>                
-            </div>  --}}
+            </div>
         </div>        
     </div>
 @endsection
