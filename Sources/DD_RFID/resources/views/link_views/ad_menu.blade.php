@@ -14,7 +14,7 @@
     @elseif (strpos ($_SERVER['REQUEST_URI'], 'student'))
         {!! '<div class="panel panel-danger">' !!}
     @else
-        {!! '<div class="panel panel-primary">' !!}
+        {!! '<div class="panel panel-default">' !!}
     @endif
 
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
