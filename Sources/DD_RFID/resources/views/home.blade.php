@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
                         <h1 class="text-center">Quét thẻ để điểm danh</h1>
-                        <form action="{{ route('home') }}" method="post" id="f_quet_the">
+                        <form action="" method="post" id="f_quet_the">
                             {{ csrf_field() }}
                             <input type="text" class="form-control" name="TuKhoa" placeholder="Quét thẻ của bạn" required id="id_the">
                             <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
