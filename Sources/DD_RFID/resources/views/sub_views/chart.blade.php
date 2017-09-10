@@ -21,6 +21,16 @@
     <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
     <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
 
+    <!-- Auto resize các biểu độ -->
+    <script>
+        $(window).resize(function(){
+            drawChart1();
+            drawChart2();
+            drawChart3();
+            drawChart4();            
+        });
+    </script>
+
     {{--  Tìm kiếm thông tin --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
         <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -37,7 +47,7 @@
             {{ csrf_field() }}
             <b>Tìm kiếm:</b>
             <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-info">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
