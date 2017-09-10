@@ -32,7 +32,8 @@
         {{--  Gọi hiển thị GD đăng ký thẻ  --}}
         @yield('card')
 
-        <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+        <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" role="button" 
+        title="Lên đầu trang" data-toggle="tooltip" data-placement="left">
             <span class="glyphicon glyphicon-chevron-up"></span>
         </a>
         
