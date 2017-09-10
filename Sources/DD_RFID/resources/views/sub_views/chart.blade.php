@@ -27,7 +27,7 @@
             {{ csrf_field() }}
             <b>Tìm kiếm:</b>
             <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-info">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>

@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     @include('link_views.import')
+    <link rel="stylesheet" href="{{ asset('css/back_to_top.css') }}">
+    <script src="{{ asset('js/back_to_top.js') }}"></script>
 </head>
 
  <body class="container-fluid" style="background-color: #f0f6f6;"> 
@@ -29,6 +31,11 @@
 
         {{--  Gọi hiển thị GD đăng ký thẻ  --}}
         @yield('card')
+
+        <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+        
     </div>
 </body>
 </html>
