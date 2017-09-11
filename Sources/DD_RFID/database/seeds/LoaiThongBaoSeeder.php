@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class LoaiThongBaoSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Tạo dữ liệu bảng Loại Thông Báo.
      *
      * @return void
      */

@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class ChuyenNganhSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Tạo dữ liệu bảng Chuyên Ngành.
      *
      * @return void
      */

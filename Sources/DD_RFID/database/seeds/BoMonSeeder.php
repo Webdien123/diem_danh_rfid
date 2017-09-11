@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class BoMonSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Tạo dữ liệu bảng Bộ Môn.
      *
      * @return void
      */

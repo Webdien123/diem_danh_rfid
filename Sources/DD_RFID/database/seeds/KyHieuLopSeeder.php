@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class KyHieuLopSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Tạo dữ liệu bảng Ký Hiệu Lớp.
      *
      * @return void
      */

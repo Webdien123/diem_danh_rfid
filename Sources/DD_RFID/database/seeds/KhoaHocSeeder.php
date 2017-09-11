@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class KhoaHocSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Tạo dữ liệu bảng Khóa Học.
      *
      * @return void
      */
