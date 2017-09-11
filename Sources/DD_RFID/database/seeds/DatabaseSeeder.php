@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Tạo dữ liệu cho tất cả các bảng có kể tên trong hàm run.
+     * Tạo dữ liệu cho tất cả các bảng có kể tên trong hàm run
      *
      * @return void
      */

@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class KhoaSeeder extends Seeder
 {
     /**
-     * Tạo dữ liệu bảng Khoa.
+     * Tạo dữ liệu bảng Khoa
      *
      * @return void
      */

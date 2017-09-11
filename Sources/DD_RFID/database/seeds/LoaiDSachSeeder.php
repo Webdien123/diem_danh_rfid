@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class LoaiDSachSeeder extends Seeder
 {
     /**
-     * Tạo dữ liệu bảng Loại Danh Sách.
+     * Tạo dữ liệu bảng Loại Danh Sách
      *
      * @return void
      */
