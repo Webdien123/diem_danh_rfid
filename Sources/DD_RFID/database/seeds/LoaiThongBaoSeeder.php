@@ -11,7 +11,7 @@ class LoaiThongBaoSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert('insert into loaithongbao (MALOAITBAO, TENLOAITBAO) values (?, ?)', ['001', 'Bo sung SV']);
-        DB::insert('insert into loaithongbao (MALOAITBAO, TENLOAITBAO) values (?, ?)', ['002', 'Bo sung CB']);
+        DB::insert('insert into loaithongbao (MALOAITBAO, TENLOAITBAO) values (?, ?)', ['1', 'Bo sung SV']);
+        DB::insert('insert into loaithongbao (MALOAITBAO, TENLOAITBAO) values (?, ?)', ['2', 'Bo sung CB']);
     }
 }

@@ -11,11 +11,11 @@ class BoMonSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert('insert into bomon (TENBOMON) values (?)', ['Công nghệ thông tin']);
-        DB::insert('insert into bomon (TENBOMON) values (?)', ['Công nghệ phần mềm']);
-        DB::insert('insert into bomon (TENBOMON) values (?)', ['Hệ thống thông tin']);
-        DB::insert('insert into bomon (TENBOMON) values (?)', ['Mạng máy tính và TT']);
-        DB::insert('insert into bomon (TENBOMON) values (?)', ['Khoa học máy tính']);
-        DB::insert('insert into bomon (TENBOMON) values (?)', ['Tin học ứng dụng']);
+        DB::insert('insert into bomon (TENBOMON) values (?)', ['Công nghệ thông tin', 'Công nghệ thông tin và truyền thông']);
+        DB::insert('insert into bomon (TENBOMON) values (?)', ['Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông']);
+        DB::insert('insert into bomon (TENBOMON) values (?)', ['Hệ thống thông tin', 'Công nghệ thông tin và truyền thông']);
+        DB::insert('insert into bomon (TENBOMON) values (?)', ['Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông']);
+        DB::insert('insert into bomon (TENBOMON) values (?)', ['Khoa học máy tính', 'Công nghệ thông tin và truyền thông']);
+        DB::insert('insert into bomon (TENBOMON) values (?)', ['Tin học ứng dụng', 'Công nghệ thông tin và truyền thông']);
     }
 }
