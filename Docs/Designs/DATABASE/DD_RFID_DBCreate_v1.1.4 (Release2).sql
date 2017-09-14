@@ -1,10 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     12-09-17 7:28:22 PM                          */
+/* Created on:     14-09-17 6:58:47 PM                          */
 /*==============================================================*/
 
-
-drop table if exists BOMON;
 
 drop table if exists CANBO;
 
@@ -16,13 +14,13 @@ drop table if exists DANGKYTHESV;
 
 drop table if exists DANGTHONGBAO;
 
-drop table if exists DSDIEMDANHCB;
+drop table if exists DIEMDANHCB;
 
-drop table if exists DSDIEMDANHSV;
-
-drop table if exists KHOA;
+drop table if exists DIEMDANHSV;
 
 drop table if exists KHOAHOC;
+
+drop table if exists KHOA_PHONG;
 
 drop table if exists KYHIEULOP;
 
@@ -38,15 +36,7 @@ drop table if exists THONGBAO;
 
 drop table if exists THONGKEDIEMDANH;
 
-/*==============================================================*/
-/* Table: BOMON                                                 */
-/*==============================================================*/
-create table BOMON
-(
-   TENBOMON             varchar(50) not null,
-   TENKHOA              varchar(50) not null,
-   primary key (TENBOMON)
-);
+drop table if exists TO_BOMON;
 
 /*==============================================================*/
 /* Table: CANBO                                                 */
@@ -96,7 +86,7 @@ create table DANGKYTHESV
 /*==============================================================*/
 create table DANGTHONGBAO
 (
-   MATBAO               char(8) not null,
+   MATBAO               int not null,
    NGAYDANG             date not null,
    GIODANG              time not null,
    TENNGDANG            varchar(50) not null,
@@ -106,34 +96,25 @@ create table DANGTHONGBAO
 );
 
 /*==============================================================*/
-/* Table: DSDIEMDANHCB                                          */
+/* Table: DIEMDANHCB                                            */
 /*==============================================================*/
-create table DSDIEMDANHCB
+create table DIEMDANHCB
 (
-   MALOAIDS             char(1) not null,
-   MASK                 varchar(10) not null,
+   MALOAIDS             int not null,
+   MASK                 int not null,
    MSCB                 char(8) not null,
    primary key (MALOAIDS, MASK, MSCB)
 );
 
 /*==============================================================*/
-/* Table: DSDIEMDANHSV                                          */
+/* Table: DIEMDANHSV                                            */
 /*==============================================================*/
-create table DSDIEMDANHSV
+create table DIEMDANHSV
 (
    MSSV                 char(8) not null,
-   MALOAIDS             char(1) not null,
-   MASK                 varchar(10) not null,
+   MALOAIDS             int not null,
+   MASK                 int not null,
    primary key (MSSV, MALOAIDS, MASK)
-);
-
-/*==============================================================*/
-/* Table: KHOA                                                  */
-/*==============================================================*/
-create table KHOA
-(
-   TENKHOA              varchar(50) not null,
-   primary key (TENKHOA)
 );
 
 /*==============================================================*/
@@ -143,6 +124,15 @@ create table KHOAHOC
 (
    KHOAHOC              char(3) not null,
    primary key (KHOAHOC)
+);
+
+/*==============================================================*/
+/* Table: KHOA_PHONG                                            */
+/*==============================================================*/
+create table KHOA_PHONG
+(
+   TENKHOA              varchar(50) not null,
+   primary key (TENKHOA)
 );
 
 /*==============================================================*/
@@ -159,7 +149,7 @@ create table KYHIEULOP
 /*==============================================================*/
 create table LOAIDS
 (
-   MALOAIDS             char(1) not null,
+   MALOAIDS             int not null auto_increment,
    TENLOAIDS            varchar(30) not null,
    primary key (MALOAIDS)
 );
@@ -169,7 +159,7 @@ create table LOAIDS
 /*==============================================================*/
 create table LOAITHONGBAO
 (
-   MALOAITBAO           char(1) not null,
+   MALOAITBAO           int not null auto_increment,
    TENLOAITBAO          varchar(50) not null,
    primary key (MALOAITBAO)
 );
@@ -193,7 +183,7 @@ create table SINHVIEN
 /*==============================================================*/
 create table SUKIEN
 (
-   MASK                 varchar(10) not null,
+   MASK                 int not null auto_increment,
    TENSK                varchar(50) not null,
    NGTHUCHIEN           date not null,
    DIADIEM              varchar(150) not null,
@@ -207,8 +197,8 @@ create table SUKIEN
 /*==============================================================*/
 create table THONGBAO
 (
-   MATBAO               char(8) not null,
-   MALOAITBAO           char(1) not null,
+   MATBAO               int not null auto_increment,
+   MALOAITBAO           int not null,
    TIEUDE               varchar(50) not null,
    NOIDUNG              varchar(1000),
    primary key (MATBAO)
@@ -219,23 +209,30 @@ create table THONGBAO
 /*==============================================================*/
 create table THONGKEDIEMDANH
 (
-   MALOAIDS             char(1) not null,
-   MASK                 varchar(10) not null,
+   MALOAIDS             int not null,
+   MASK                 int not null,
    SOLUONG              int default 0,
    primary key (MALOAIDS, MASK)
 );
 
-alter table BOMON add constraint FK_KHOABOMON foreign key (TENKHOA)
-      references KHOA (TENKHOA) on delete restrict on update restrict;
+/*==============================================================*/
+/* Table: TO_BOMON                                              */
+/*==============================================================*/
+create table TO_BOMON
+(
+   TENBOMON             varchar(50) not null,
+   TENKHOA              varchar(50) not null,
+   primary key (TENBOMON)
+);
 
 alter table CANBO add constraint FK_BOMONCB foreign key (TENBOMON)
-      references BOMON (TENBOMON) on delete restrict on update restrict;
+      references TO_BOMON (TENBOMON) on delete restrict on update restrict;
 
 alter table CANBO add constraint FK_KHOACB foreign key (TENKHOA)
-      references KHOA (TENKHOA) on delete restrict on update restrict;
+      references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
 
 alter table CHUYENNGANH add constraint FK_KHOACHNGANH foreign key (TENKHOA)
-      references KHOA (TENKHOA) on delete restrict on update restrict;
+      references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
 
 alter table DANGKYTHECB add constraint FK_DANGKYTHECB foreign key (MSCB)
       references CANBO (MSCB) on delete restrict on update restrict;
@@ -246,29 +243,29 @@ alter table DANGKYTHESV add constraint FK_DANGKYTHESV foreign key (MSSV)
 alter table DANGTHONGBAO add constraint FK_DANGTBAO foreign key (MATBAO)
       references THONGBAO (MATBAO) on delete restrict on update restrict;
 
-alter table DSDIEMDANHCB add constraint FK_DIEMDANHCB foreign key (MSCB)
+alter table DIEMDANHCB add constraint FK_DIEMDANHCB foreign key (MSCB)
       references CANBO (MSCB) on delete restrict on update restrict;
 
-alter table DSDIEMDANHCB add constraint FK_LOAIDS_DSCB foreign key (MALOAIDS)
+alter table DIEMDANHCB add constraint FK_LOAIDS_DSCB foreign key (MALOAIDS)
       references LOAIDS (MALOAIDS) on delete restrict on update restrict;
 
-alter table DSDIEMDANHCB add constraint FK_SKIENDDCB foreign key (MASK)
+alter table DIEMDANHCB add constraint FK_SKIENDDCB foreign key (MASK)
       references SUKIEN (MASK) on delete restrict on update restrict;
 
-alter table DSDIEMDANHSV add constraint FK_DIEMDANHSV foreign key (MSSV)
+alter table DIEMDANHSV add constraint FK_DIEMDANHSV foreign key (MSSV)
       references SINHVIEN (MSSV) on delete restrict on update restrict;
 
-alter table DSDIEMDANHSV add constraint FK_LOAIDS_DSSV foreign key (MALOAIDS)
+alter table DIEMDANHSV add constraint FK_LOAIDS_DSSV foreign key (MALOAIDS)
       references LOAIDS (MALOAIDS) on delete restrict on update restrict;
 
-alter table DSDIEMDANHSV add constraint FK_SKIENDDSV foreign key (MASK)
+alter table DIEMDANHSV add constraint FK_SKIENDDSV foreign key (MASK)
       references SUKIEN (MASK) on delete restrict on update restrict;
 
 alter table SINHVIEN add constraint FK_KHOAHOCSV foreign key (KHOAHOC)
       references KHOAHOC (KHOAHOC) on delete restrict on update restrict;
 
 alter table SINHVIEN add constraint FK_KHOASV foreign key (TENKHOA)
-      references KHOA (TENKHOA) on delete restrict on update restrict;
+      references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
 
 alter table SINHVIEN add constraint FK_LOPSV foreign key (KYHIEULOP)
       references KYHIEULOP (KYHIEULOP) on delete restrict on update restrict;
@@ -284,4 +281,7 @@ alter table THONGKEDIEMDANH add constraint FK_THONGKELOAIDS foreign key (MALOAID
 
 alter table THONGKEDIEMDANH add constraint FK_THONGKESK foreign key (MASK)
       references SUKIEN (MASK) on delete restrict on update restrict;
+
+alter table TO_BOMON add constraint FK_KHOABOMON foreign key (TENKHOA)
+      references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
 
