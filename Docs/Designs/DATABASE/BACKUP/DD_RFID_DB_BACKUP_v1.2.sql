@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2017 at 05:31 PM
+-- Generation Time: Sep 12, 2017 at 03:08 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.0.20
 
@@ -29,20 +29,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bomon` (
-  `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
+  `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `bomon`
 --
 
-INSERT INTO `bomon` (`TENBOMON`) VALUES
-('Công nghệ phần mềm'),
-('Công nghệ thông tin'),
-('Hệ thống thông tin'),
-('Khoa học máy tính'),
-('Mạng máy tính và TT'),
-('Tin học ứng dụng');
+INSERT INTO `bomon` (`TENBOMON`, `TENKHOA`) VALUES
+('Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông'),
+('Công nghệ thông tin', 'Công nghệ thông tin và truyền thông'),
+('Hệ thống thông tin', 'Công nghệ thông tin và truyền thông'),
+('Khoa học máy tính', 'Công nghệ thông tin và truyền thông'),
+('Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông'),
+('Tin học ứng dụng', 'Công nghệ thông tin và truyền thông');
 
 -- --------------------------------------------------------
 
@@ -54,8 +55,8 @@ CREATE TABLE `canbo` (
   `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
   `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `EMAILCB` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `HOTENCB` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `EMAILCB` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `HOTENCB` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -65,20 +66,21 @@ CREATE TABLE `canbo` (
 --
 
 CREATE TABLE `chuyennganh` (
-  `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
+  `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `chuyennganh`
 --
 
-INSERT INTO `chuyennganh` (`TENCHNGANH`) VALUES
-('Công nghệ phần mềm'),
-('Công nghệ thông tin'),
-('Hệ thống thông tin'),
-('Khoa học máy tính'),
-('Mạng máy tính và TT'),
-('Tin học ứng dụng');
+INSERT INTO `chuyennganh` (`TENCHNGANH`, `TENKHOA`) VALUES
+('Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông'),
+('Công nghệ thông tin', 'Công nghệ thông tin và truyền thông'),
+('Hệ thống thông tin', 'Công nghệ thông tin và truyền thông'),
+('Khoa học máy tính', 'Công nghệ thông tin và truyền thông'),
+('Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông'),
+('Tin học ứng dụng', 'Công nghệ thông tin và truyền thông');
 
 -- --------------------------------------------------------
 
@@ -110,11 +112,11 @@ CREATE TABLE `dangkythesv` (
 
 CREATE TABLE `dangthongbao` (
   `MATBAO` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `NGAYDANG` date DEFAULT NULL,
-  `GIODANG` time DEFAULT NULL,
-  `TENNGDANG` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `SDTNGDANG` varchar(11) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `EMAILNGDANG` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `NGAYDANG` date NOT NULL,
+  `GIODANG` time NOT NULL,
+  `TENNGDANG` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `SDTNGDANG` varchar(11) COLLATE utf8_vietnamese_ci NOT NULL,
+  `EMAILNGDANG` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -124,7 +126,7 @@ CREATE TABLE `dangthongbao` (
 --
 
 CREATE TABLE `dsdiemdanhcb` (
-  `MALOAIDS` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
+  `MALOAIDS` char(1) COLLATE utf8_vietnamese_ci NOT NULL,
   `MASK` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
   `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
@@ -137,7 +139,7 @@ CREATE TABLE `dsdiemdanhcb` (
 
 CREATE TABLE `dsdiemdanhsv` (
   `MSSV` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `MALOAIDS` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
+  `MALOAIDS` char(1) COLLATE utf8_vietnamese_ci NOT NULL,
   `MASK` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
@@ -214,7 +216,7 @@ INSERT INTO `kyhieulop` (`KYHIEULOP`) VALUES
 --
 
 CREATE TABLE `loaids` (
-  `MALOAIDS` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
+  `MALOAIDS` char(1) COLLATE utf8_vietnamese_ci NOT NULL,
   `TENLOAIDS` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
@@ -223,10 +225,10 @@ CREATE TABLE `loaids` (
 --
 
 INSERT INTO `loaids` (`MALOAIDS`, `TENLOAIDS`) VALUES
-('01', 'Có mặt'),
-('02', 'Vắng mặt'),
-('03', 'Có vào không ra'),
-('04', 'Có ra không vào');
+('1', 'Có mặt'),
+('2', 'Vắng mặt'),
+('3', 'Có vào không ra'),
+('4', 'Có ra không vào');
 
 -- --------------------------------------------------------
 
@@ -235,8 +237,8 @@ INSERT INTO `loaids` (`MALOAIDS`, `TENLOAIDS`) VALUES
 --
 
 CREATE TABLE `loaithongbao` (
-  `MALOAITBAO` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENLOAITBAO` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL
+  `MALOAITBAO` char(1) COLLATE utf8_vietnamese_ci NOT NULL,
+  `TENLOAITBAO` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -244,8 +246,8 @@ CREATE TABLE `loaithongbao` (
 --
 
 INSERT INTO `loaithongbao` (`MALOAITBAO`, `TENLOAITBAO`) VALUES
-('001', 'Bo sung SV'),
-('002', 'Bo sung CB');
+('1', 'Bo sung SV'),
+('2', 'Bo sung CB');
 
 -- --------------------------------------------------------
 
@@ -291,7 +293,7 @@ CREATE TABLE `sinhvien` (
   `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `KHOAHOC` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
   `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `HOTENSV` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `HOTENSV` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -302,11 +304,11 @@ CREATE TABLE `sinhvien` (
 
 CREATE TABLE `sukien` (
   `MASK` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENSK` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `NGTHUCHIEN` date DEFAULT NULL,
-  `DIADIEM` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `DDVAO` time DEFAULT NULL,
-  `DDRA` time DEFAULT NULL
+  `TENSK` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `NGTHUCHIEN` date NOT NULL,
+  `DIADIEM` varchar(150) COLLATE utf8_vietnamese_ci NOT NULL,
+  `DDVAO` time NOT NULL,
+  `DDRA` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -317,9 +319,21 @@ CREATE TABLE `sukien` (
 
 CREATE TABLE `thongbao` (
   `MATBAO` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `MALOAITBAO` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TIEUDE` varchar(40) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `NOIDUNG` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `MALOAITBAO` char(1) COLLATE utf8_vietnamese_ci NOT NULL,
+  `TIEUDE` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `NOIDUNG` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thongkediemdanh`
+--
+
+CREATE TABLE `thongkediemdanh` (
+  `MALOAIDS` char(1) COLLATE utf8_vietnamese_ci NOT NULL,
+  `MASK` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
+  `SOLUONG` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -346,7 +360,8 @@ CREATE TABLE `users` (
 -- Indexes for table `bomon`
 --
 ALTER TABLE `bomon`
-  ADD PRIMARY KEY (`TENBOMON`);
+  ADD PRIMARY KEY (`TENBOMON`),
+  ADD KEY `FK_KHOABOMON` (`TENKHOA`);
 
 --
 -- Indexes for table `canbo`
@@ -360,7 +375,8 @@ ALTER TABLE `canbo`
 -- Indexes for table `chuyennganh`
 --
 ALTER TABLE `chuyennganh`
-  ADD PRIMARY KEY (`TENCHNGANH`);
+  ADD PRIMARY KEY (`TENCHNGANH`),
+  ADD KEY `FK_KHOACHNGANH` (`TENKHOA`);
 
 --
 -- Indexes for table `dangkythecb`
@@ -462,6 +478,13 @@ ALTER TABLE `thongbao`
   ADD KEY `FK_LOAITB_TBAO` (`MALOAITBAO`);
 
 --
+-- Indexes for table `thongkediemdanh`
+--
+ALTER TABLE `thongkediemdanh`
+  ADD PRIMARY KEY (`MALOAIDS`,`MASK`),
+  ADD KEY `FK_THONGKESK` (`MASK`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -487,11 +510,23 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `bomon`
+--
+ALTER TABLE `bomon`
+  ADD CONSTRAINT `FK_KHOABOMON` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa` (`TENKHOA`);
+
+--
 -- Constraints for table `canbo`
 --
 ALTER TABLE `canbo`
   ADD CONSTRAINT `FK_BOMONCB` FOREIGN KEY (`TENBOMON`) REFERENCES `bomon` (`TENBOMON`),
   ADD CONSTRAINT `FK_KHOACB` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa` (`TENKHOA`);
+
+--
+-- Constraints for table `chuyennganh`
+--
+ALTER TABLE `chuyennganh`
+  ADD CONSTRAINT `FK_KHOACHNGANH` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa` (`TENKHOA`);
 
 --
 -- Constraints for table `dangkythecb`
@@ -541,6 +576,13 @@ ALTER TABLE `sinhvien`
 --
 ALTER TABLE `thongbao`
   ADD CONSTRAINT `FK_LOAITB_TBAO` FOREIGN KEY (`MALOAITBAO`) REFERENCES `loaithongbao` (`MALOAITBAO`);
+
+--
+-- Constraints for table `thongkediemdanh`
+--
+ALTER TABLE `thongkediemdanh`
+  ADD CONSTRAINT `FK_THONGKELOAIDS` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`),
+  ADD CONSTRAINT `FK_THONGKESK` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
