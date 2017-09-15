@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     14-09-17 6:58:47 PM                          */
+/* Created on:     15-09-17 4:28:43 PM                          */
 /*==============================================================*/
 
 
@@ -87,8 +87,7 @@ create table DANGKYTHESV
 create table DANGTHONGBAO
 (
    MATBAO               int not null,
-   NGAYDANG             date not null,
-   GIODANG              time not null,
+   THOIGIANDANG         datetime not null default CURRENT_TIMESTAMP,
    TENNGDANG            varchar(50) not null,
    SDTNGDANG            varchar(11) not null,
    EMAILNGDANG          varchar(50) not null,
