@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BoMonSeeder::class);   
         $this->call(LoaiDSachSeeder::class);   
         
+        // DB::insert('insert into thongbao (MALOAITBAO, TIEUDE, NOIDUNG) values (?, ?, ?)', [1, 'Bổ sung cán bộ', '']);   
+        
+        // DB::insert('insert into dangthongbao (MATBAO, TENNGDANG, SDTNGDANG, EMAILNGDANG) values (?, ?, ?, ?)', [1, 'Nguyễn Văn Heo', '0123456789', 'abc@gmail.com']);
     }
 }
