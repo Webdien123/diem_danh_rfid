@@ -4,9 +4,8 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{091D0F00-78CF-45B8-BE31-C42D10FC5A53}" Loaded="No" Name="DD_RFID" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="DD_RFID.cdm"/>
-		<Model ID="{350576DD-9C4D-45BF-9BF0-C8EFEBF9B420}" Loaded="No" Name="DD_RFID" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="DD_RFID.pdm"/>
-		<Model Expanded="Yes" ID="{567E0E0F-6CC0-4D0C-9D86-A513AF446272}" Name="DD_RFID" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../CLASS/Power design files/DD_RFID.oom"/>
+		<Model ID="{091D0F00-78CF-45B8-BE31-C42D10FC5A53}" Name="DD_RFID" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="DD_RFID.cdm"/>
+		<Model ID="{350576DD-9C4D-45BF-9BF0-C8EFEBF9B420}" Name="DD_RFID" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="DD_RFID.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
