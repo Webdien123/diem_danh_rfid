@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     15-09-17 4:28:43 PM                          */
+/* Created on:     16-09-17 1:31:39 PM                          */
 /*==============================================================*/
 
 
@@ -46,8 +46,8 @@ create table CANBO
    MSCB                 char(8) not null,
    TENBOMON             varchar(50) not null,
    TENKHOA              varchar(50) not null,
-   EMAILCB              varchar(50) not null,
-   HOTENCB              varchar(50) not null,
+   EMAIL                varchar(50) not null,
+   HOTEN                varchar(50) not null,
    primary key (MSCB)
 );
 
@@ -67,7 +67,7 @@ create table CHUYENNGANH
 create table DANGKYTHECB
 (
    MSCB                 char(8) not null,
-   MATHECB              varchar(10) not null,
+   MATHE                varchar(10) not null,
    primary key (MSCB)
 );
 
@@ -77,7 +77,7 @@ create table DANGKYTHECB
 create table DANGKYTHESV
 (
    MSSV                 char(8) not null,
-   MATHESV              varchar(10) not null,
+   MATHE                varchar(10) not null,
    primary key (MSSV)
 );
 
@@ -88,9 +88,9 @@ create table DANGTHONGBAO
 (
    MATBAO               int not null,
    THOIGIANDANG         datetime not null default CURRENT_TIMESTAMP,
-   TENNGDANG            varchar(50) not null,
-   SDTNGDANG            varchar(11) not null,
-   EMAILNGDANG          varchar(50) not null,
+   HOTEN                varchar(50) not null,
+   SDT                  varchar(11) not null,
+   EMAIL                varchar(50) not null,
    primary key (MATBAO)
 );
 
@@ -173,7 +173,7 @@ create table SINHVIEN
    TENCHNGANH           varchar(50) not null,
    KHOAHOC              char(3) not null,
    TENKHOA              varchar(50) not null,
-   HOTENSV              varchar(50) not null,
+   HOTEN                varchar(50) not null,
    primary key (MSSV)
 );
 
