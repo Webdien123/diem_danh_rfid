@@ -80,4 +80,3 @@ Route::get('no_menu', function() {
 Route::get('text', function() {
     return view('orther_views.responsive_text');
 });
-
