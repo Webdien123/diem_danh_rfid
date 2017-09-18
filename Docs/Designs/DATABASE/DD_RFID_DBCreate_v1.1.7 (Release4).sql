@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     16-09-17 1:31:39 PM                          */
+/* Created on:     18-09-17 10:39:40 AM                         */
 /*==============================================================*/
 
 
@@ -200,6 +200,7 @@ create table THONGBAO
    MALOAITBAO           int not null,
    TIEUDE               varchar(50) not null,
    NOIDUNG              varchar(1000),
+   DAXULY               bool default false,
    primary key (MATBAO)
 );
 

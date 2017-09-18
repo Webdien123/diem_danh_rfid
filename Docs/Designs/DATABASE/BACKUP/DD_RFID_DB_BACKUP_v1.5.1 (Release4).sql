@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2017 at 08:47 AM
+-- Generation Time: Sep 18, 2017 at 05:56 AM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.0.20
 
@@ -297,7 +297,8 @@ CREATE TABLE `thongbao` (
   `MATBAO` int(11) NOT NULL,
   `MALOAITBAO` int(11) NOT NULL,
   `TIEUDE` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `NOIDUNG` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `NOIDUNG` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `DAXULY` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
