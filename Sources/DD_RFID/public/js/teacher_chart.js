@@ -1,7 +1,7 @@
 google.charts.setOnLoadCallback(drawChart3);
 
 function drawChart3() {
-    var data = google.visualization.arrayToDataTable([
+    data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
         ['Có mặt', 38],
         ['Vắng mặt', 12]
