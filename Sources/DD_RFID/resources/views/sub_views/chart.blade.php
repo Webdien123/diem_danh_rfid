@@ -247,11 +247,11 @@
                         <td>A2</td>
                         <td>K39</td>
                         <td>234123412431234</td>
-                        {{--  Nút chuyển danh sách  --}}
+                        {{--  Nút Sửa kết quả  --}}
                         <td>      
                             <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                Chuyển danh sách
+                                Sửa kết quả
                             </a>
                             <div class="modal fade" id="modal-id-ds">
                                 <div class="modal-dialog">
@@ -259,7 +259,7 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title">
-                                                Chuyển danh sách
+                                                Sửa kết quả
                                                 <span>sinh viên</span>
                                             </h4>
                                         </div>
@@ -286,7 +286,7 @@
                                             </button>
                                             <button type="submit" class="btn btn-primary" form="form_id_ds">
                                                 <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                                                Chuyển danh sách
+                                                Sửa kết quả
                                             </button>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                         <td>
                             <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                Chuyển danh sách
+                                Sửa kết quả
                             </a>
                             
                             <a href="" class="btn btn-success">
@@ -343,7 +343,7 @@
                         <td>
                             <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                Chuyển danh sách
+                                Sửa kết quả
                             </a>
                             
                             <a href="" class="btn btn-success">
@@ -369,7 +369,7 @@
                         <td>
                             <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                Chuyển danh sách
+                                Sửa kết quả
                             </a>
                             
                             <a href="" class="btn btn-success">
@@ -395,7 +395,7 @@
                         <td>
                             <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                Chuyển danh sách
+                                Sửa kết quả
                             </a>
                             
                             <a href="" class="btn btn-success">
