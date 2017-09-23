@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     18-09-17 10:39:40 AM                         */
+/* Created on:     23-09-17 10:49:32 AM                         */
 /*==============================================================*/
 
 
@@ -99,10 +99,10 @@ create table DANGTHONGBAO
 /*==============================================================*/
 create table DIEMDANHCB
 (
-   MALOAIDS             int not null,
    MASK                 int not null,
    MSCB                 char(8) not null,
-   primary key (MALOAIDS, MASK, MSCB)
+   MALOAIDS             int not null,
+   primary key (MASK, MSCB)
 );
 
 /*==============================================================*/
@@ -111,9 +111,9 @@ create table DIEMDANHCB
 create table DIEMDANHSV
 (
    MSSV                 char(8) not null,
-   MALOAIDS             int not null,
    MASK                 int not null,
-   primary key (MSSV, MALOAIDS, MASK)
+   MALOAIDS             int not null,
+   primary key (MSSV, MASK)
 );
 
 /*==============================================================*/

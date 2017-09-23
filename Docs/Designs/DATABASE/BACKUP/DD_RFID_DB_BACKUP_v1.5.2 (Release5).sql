@@ -2,10 +2,10 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 18, 2017 at 05:56 AM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.0.20
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th9 23, 2017 lúc 08:03 AM
+-- Phiên bản máy phục vụ: 10.1.24-MariaDB
+-- Phiên bản PHP: 7.0.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dd_rfid`
+-- Cơ sở dữ liệu: `dd_rfid`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `canbo`
+-- Cấu trúc bảng cho bảng `canbo`
 --
 
 CREATE TABLE `canbo` (
@@ -39,7 +39,7 @@ CREATE TABLE `canbo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chuyennganh`
+-- Cấu trúc bảng cho bảng `chuyennganh`
 --
 
 CREATE TABLE `chuyennganh` (
@@ -48,7 +48,7 @@ CREATE TABLE `chuyennganh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `chuyennganh`
+-- Đang đổ dữ liệu cho bảng `chuyennganh`
 --
 
 INSERT INTO `chuyennganh` (`TENCHNGANH`, `TENKHOA`) VALUES
@@ -62,7 +62,7 @@ INSERT INTO `chuyennganh` (`TENCHNGANH`, `TENKHOA`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dangkythecb`
+-- Cấu trúc bảng cho bảng `dangkythecb`
 --
 
 CREATE TABLE `dangkythecb` (
@@ -73,7 +73,7 @@ CREATE TABLE `dangkythecb` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dangkythesv`
+-- Cấu trúc bảng cho bảng `dangkythesv`
 --
 
 CREATE TABLE `dangkythesv` (
@@ -84,7 +84,7 @@ CREATE TABLE `dangkythesv` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dangthongbao`
+-- Cấu trúc bảng cho bảng `dangthongbao`
 --
 
 CREATE TABLE `dangthongbao` (
@@ -98,31 +98,31 @@ CREATE TABLE `dangthongbao` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diemdanhcb`
+-- Cấu trúc bảng cho bảng `diemdanhcb`
 --
 
 CREATE TABLE `diemdanhcb` (
-  `MALOAIDS` int(11) NOT NULL,
   `MASK` int(11) NOT NULL,
-  `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL
+  `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
+  `MALOAIDS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diemdanhsv`
+-- Cấu trúc bảng cho bảng `diemdanhsv`
 --
 
 CREATE TABLE `diemdanhsv` (
   `MSSV` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `MALOAIDS` int(11) NOT NULL,
-  `MASK` int(11) NOT NULL
+  `MASK` int(11) NOT NULL,
+  `MALOAIDS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khoahoc`
+-- Cấu trúc bảng cho bảng `khoahoc`
 --
 
 CREATE TABLE `khoahoc` (
@@ -130,7 +130,7 @@ CREATE TABLE `khoahoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `khoahoc`
+-- Đang đổ dữ liệu cho bảng `khoahoc`
 --
 
 INSERT INTO `khoahoc` (`KHOAHOC`) VALUES
@@ -147,7 +147,7 @@ INSERT INTO `khoahoc` (`KHOAHOC`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khoa_phong`
+-- Cấu trúc bảng cho bảng `khoa_phong`
 --
 
 CREATE TABLE `khoa_phong` (
@@ -155,7 +155,7 @@ CREATE TABLE `khoa_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `khoa_phong`
+-- Đang đổ dữ liệu cho bảng `khoa_phong`
 --
 
 INSERT INTO `khoa_phong` (`TENKHOA`) VALUES
@@ -164,7 +164,7 @@ INSERT INTO `khoa_phong` (`TENKHOA`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kyhieulop`
+-- Cấu trúc bảng cho bảng `kyhieulop`
 --
 
 CREATE TABLE `kyhieulop` (
@@ -172,7 +172,7 @@ CREATE TABLE `kyhieulop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `kyhieulop`
+-- Đang đổ dữ liệu cho bảng `kyhieulop`
 --
 
 INSERT INTO `kyhieulop` (`KYHIEULOP`) VALUES
@@ -188,7 +188,7 @@ INSERT INTO `kyhieulop` (`KYHIEULOP`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaids`
+-- Cấu trúc bảng cho bảng `loaids`
 --
 
 CREATE TABLE `loaids` (
@@ -197,7 +197,7 @@ CREATE TABLE `loaids` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `loaids`
+-- Đang đổ dữ liệu cho bảng `loaids`
 --
 
 INSERT INTO `loaids` (`MALOAIDS`, `TENLOAIDS`) VALUES
@@ -209,7 +209,7 @@ INSERT INTO `loaids` (`MALOAIDS`, `TENLOAIDS`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaithongbao`
+-- Cấu trúc bảng cho bảng `loaithongbao`
 --
 
 CREATE TABLE `loaithongbao` (
@@ -218,7 +218,7 @@ CREATE TABLE `loaithongbao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `loaithongbao`
+-- Đang đổ dữ liệu cho bảng `loaithongbao`
 --
 
 INSERT INTO `loaithongbao` (`MALOAITBAO`, `TENLOAITBAO`) VALUES
@@ -228,7 +228,7 @@ INSERT INTO `loaithongbao` (`MALOAITBAO`, `TENLOAITBAO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Cấu trúc bảng cho bảng `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -238,7 +238,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Đang đổ dữ liệu cho bảng `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -248,7 +248,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Cấu trúc bảng cho bảng `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -260,7 +260,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sinhvien`
+-- Cấu trúc bảng cho bảng `sinhvien`
 --
 
 CREATE TABLE `sinhvien` (
@@ -275,7 +275,7 @@ CREATE TABLE `sinhvien` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sukien`
+-- Cấu trúc bảng cho bảng `sukien`
 --
 
 CREATE TABLE `sukien` (
@@ -290,7 +290,7 @@ CREATE TABLE `sukien` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thongbao`
+-- Cấu trúc bảng cho bảng `thongbao`
 --
 
 CREATE TABLE `thongbao` (
@@ -304,7 +304,7 @@ CREATE TABLE `thongbao` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thongkediemdanh`
+-- Cấu trúc bảng cho bảng `thongkediemdanh`
 --
 
 CREATE TABLE `thongkediemdanh` (
@@ -316,7 +316,7 @@ CREATE TABLE `thongkediemdanh` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `to_bomon`
+-- Cấu trúc bảng cho bảng `to_bomon`
 --
 
 CREATE TABLE `to_bomon` (
@@ -325,7 +325,7 @@ CREATE TABLE `to_bomon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `to_bomon`
+-- Đang đổ dữ liệu cho bảng `to_bomon`
 --
 
 INSERT INTO `to_bomon` (`TENBOMON`, `TENKHOA`) VALUES
@@ -339,7 +339,7 @@ INSERT INTO `to_bomon` (`TENBOMON`, `TENKHOA`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -353,11 +353,11 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `canbo`
+-- Chỉ mục cho bảng `canbo`
 --
 ALTER TABLE `canbo`
   ADD PRIMARY KEY (`MSCB`),
@@ -365,90 +365,90 @@ ALTER TABLE `canbo`
   ADD KEY `FK_KHOACB` (`TENKHOA`);
 
 --
--- Indexes for table `chuyennganh`
+-- Chỉ mục cho bảng `chuyennganh`
 --
 ALTER TABLE `chuyennganh`
   ADD PRIMARY KEY (`TENCHNGANH`),
   ADD KEY `FK_KHOACHNGANH` (`TENKHOA`);
 
 --
--- Indexes for table `dangkythecb`
+-- Chỉ mục cho bảng `dangkythecb`
 --
 ALTER TABLE `dangkythecb`
   ADD PRIMARY KEY (`MSCB`);
 
 --
--- Indexes for table `dangkythesv`
+-- Chỉ mục cho bảng `dangkythesv`
 --
 ALTER TABLE `dangkythesv`
   ADD PRIMARY KEY (`MSSV`);
 
 --
--- Indexes for table `dangthongbao`
+-- Chỉ mục cho bảng `dangthongbao`
 --
 ALTER TABLE `dangthongbao`
   ADD PRIMARY KEY (`MATBAO`);
 
 --
--- Indexes for table `diemdanhcb`
+-- Chỉ mục cho bảng `diemdanhcb`
 --
 ALTER TABLE `diemdanhcb`
-  ADD PRIMARY KEY (`MALOAIDS`,`MASK`,`MSCB`),
+  ADD PRIMARY KEY (`MASK`,`MSCB`),
   ADD KEY `FK_DIEMDANHCB` (`MSCB`),
-  ADD KEY `FK_SKIENDDCB` (`MASK`);
+  ADD KEY `FK_LOAIDS_DSCB` (`MALOAIDS`);
 
 --
--- Indexes for table `diemdanhsv`
+-- Chỉ mục cho bảng `diemdanhsv`
 --
 ALTER TABLE `diemdanhsv`
-  ADD PRIMARY KEY (`MSSV`,`MALOAIDS`,`MASK`),
+  ADD PRIMARY KEY (`MSSV`,`MASK`),
   ADD KEY `FK_LOAIDS_DSSV` (`MALOAIDS`),
   ADD KEY `FK_SKIENDDSV` (`MASK`);
 
 --
--- Indexes for table `khoahoc`
+-- Chỉ mục cho bảng `khoahoc`
 --
 ALTER TABLE `khoahoc`
   ADD PRIMARY KEY (`KHOAHOC`);
 
 --
--- Indexes for table `khoa_phong`
+-- Chỉ mục cho bảng `khoa_phong`
 --
 ALTER TABLE `khoa_phong`
   ADD PRIMARY KEY (`TENKHOA`);
 
 --
--- Indexes for table `kyhieulop`
+-- Chỉ mục cho bảng `kyhieulop`
 --
 ALTER TABLE `kyhieulop`
   ADD PRIMARY KEY (`KYHIEULOP`);
 
 --
--- Indexes for table `loaids`
+-- Chỉ mục cho bảng `loaids`
 --
 ALTER TABLE `loaids`
   ADD PRIMARY KEY (`MALOAIDS`);
 
 --
--- Indexes for table `loaithongbao`
+-- Chỉ mục cho bảng `loaithongbao`
 --
 ALTER TABLE `loaithongbao`
   ADD PRIMARY KEY (`MALOAITBAO`);
 
 --
--- Indexes for table `migrations`
+-- Chỉ mục cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Chỉ mục cho bảng `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `sinhvien`
+-- Chỉ mục cho bảng `sinhvien`
 --
 ALTER TABLE `sinhvien`
   ADD PRIMARY KEY (`MSSV`),
@@ -458,151 +458,151 @@ ALTER TABLE `sinhvien`
   ADD KEY `FK_NGANHSV` (`TENCHNGANH`);
 
 --
--- Indexes for table `sukien`
+-- Chỉ mục cho bảng `sukien`
 --
 ALTER TABLE `sukien`
   ADD PRIMARY KEY (`MASK`);
 
 --
--- Indexes for table `thongbao`
+-- Chỉ mục cho bảng `thongbao`
 --
 ALTER TABLE `thongbao`
   ADD PRIMARY KEY (`MATBAO`),
   ADD KEY `FK_LOAITB_TBAO` (`MALOAITBAO`);
 
 --
--- Indexes for table `thongkediemdanh`
+-- Chỉ mục cho bảng `thongkediemdanh`
 --
 ALTER TABLE `thongkediemdanh`
   ADD PRIMARY KEY (`MALOAIDS`,`MASK`),
   ADD KEY `FK_THONGKESK` (`MASK`);
 
 --
--- Indexes for table `to_bomon`
+-- Chỉ mục cho bảng `to_bomon`
 --
 ALTER TABLE `to_bomon`
   ADD PRIMARY KEY (`TENBOMON`),
   ADD KEY `FK_KHOABOMON` (`TENKHOA`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `loaids`
+-- AUTO_INCREMENT cho bảng `loaids`
 --
 ALTER TABLE `loaids`
   MODIFY `MALOAIDS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `loaithongbao`
+-- AUTO_INCREMENT cho bảng `loaithongbao`
 --
 ALTER TABLE `loaithongbao`
   MODIFY `MALOAITBAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `sukien`
+-- AUTO_INCREMENT cho bảng `sukien`
 --
 ALTER TABLE `sukien`
   MODIFY `MASK` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `thongbao`
+-- AUTO_INCREMENT cho bảng `thongbao`
 --
 ALTER TABLE `thongbao`
   MODIFY `MATBAO` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `canbo`
+-- Các ràng buộc cho bảng `canbo`
 --
 ALTER TABLE `canbo`
-  ADD CONSTRAINT `FK_BOMONCB` FOREIGN KEY (`TENBOMON`) REFERENCES `to_bomon` (`TENBOMON`),
-  ADD CONSTRAINT `FK_KHOACB` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`);
+  ADD CONSTRAINT `FK_BOMONCB` FOREIGN KEY (`TENBOMON`) REFERENCES `to_bomon` (`TENBOMON`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_KHOACB` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `chuyennganh`
+-- Các ràng buộc cho bảng `chuyennganh`
 --
 ALTER TABLE `chuyennganh`
-  ADD CONSTRAINT `FK_KHOACHNGANH` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`);
+  ADD CONSTRAINT `FK_KHOACHNGANH` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `dangkythecb`
+-- Các ràng buộc cho bảng `dangkythecb`
 --
 ALTER TABLE `dangkythecb`
-  ADD CONSTRAINT `FK_DANGKYTHECB` FOREIGN KEY (`MSCB`) REFERENCES `canbo` (`MSCB`);
+  ADD CONSTRAINT `FK_DANGKYTHECB` FOREIGN KEY (`MSCB`) REFERENCES `canbo` (`MSCB`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `dangkythesv`
+-- Các ràng buộc cho bảng `dangkythesv`
 --
 ALTER TABLE `dangkythesv`
-  ADD CONSTRAINT `FK_DANGKYTHESV` FOREIGN KEY (`MSSV`) REFERENCES `sinhvien` (`MSSV`);
+  ADD CONSTRAINT `FK_DANGKYTHESV` FOREIGN KEY (`MSSV`) REFERENCES `sinhvien` (`MSSV`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `dangthongbao`
+-- Các ràng buộc cho bảng `dangthongbao`
 --
 ALTER TABLE `dangthongbao`
-  ADD CONSTRAINT `FK_DANGTBAO` FOREIGN KEY (`MATBAO`) REFERENCES `thongbao` (`MATBAO`);
+  ADD CONSTRAINT `FK_DANGTBAO` FOREIGN KEY (`MATBAO`) REFERENCES `thongbao` (`MATBAO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `diemdanhcb`
+-- Các ràng buộc cho bảng `diemdanhcb`
 --
 ALTER TABLE `diemdanhcb`
-  ADD CONSTRAINT `FK_DIEMDANHCB` FOREIGN KEY (`MSCB`) REFERENCES `canbo` (`MSCB`),
-  ADD CONSTRAINT `FK_LOAIDS_DSCB` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`),
-  ADD CONSTRAINT `FK_SKIENDDCB` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`);
+  ADD CONSTRAINT `FK_DIEMDANHCB` FOREIGN KEY (`MSCB`) REFERENCES `canbo` (`MSCB`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_LOAIDS_DSCB` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_SKIENDDCB` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `diemdanhsv`
+-- Các ràng buộc cho bảng `diemdanhsv`
 --
 ALTER TABLE `diemdanhsv`
-  ADD CONSTRAINT `FK_DIEMDANHSV` FOREIGN KEY (`MSSV`) REFERENCES `sinhvien` (`MSSV`),
-  ADD CONSTRAINT `FK_LOAIDS_DSSV` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`),
-  ADD CONSTRAINT `FK_SKIENDDSV` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`);
+  ADD CONSTRAINT `FK_DIEMDANHSV` FOREIGN KEY (`MSSV`) REFERENCES `sinhvien` (`MSSV`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_LOAIDS_DSSV` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_SKIENDDSV` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `sinhvien`
+-- Các ràng buộc cho bảng `sinhvien`
 --
 ALTER TABLE `sinhvien`
-  ADD CONSTRAINT `FK_KHOAHOCSV` FOREIGN KEY (`KHOAHOC`) REFERENCES `khoahoc` (`KHOAHOC`),
-  ADD CONSTRAINT `FK_KHOASV` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`),
-  ADD CONSTRAINT `FK_LOPSV` FOREIGN KEY (`KYHIEULOP`) REFERENCES `kyhieulop` (`KYHIEULOP`),
-  ADD CONSTRAINT `FK_NGANHSV` FOREIGN KEY (`TENCHNGANH`) REFERENCES `chuyennganh` (`TENCHNGANH`);
+  ADD CONSTRAINT `FK_KHOAHOCSV` FOREIGN KEY (`KHOAHOC`) REFERENCES `khoahoc` (`KHOAHOC`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_KHOASV` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_LOPSV` FOREIGN KEY (`KYHIEULOP`) REFERENCES `kyhieulop` (`KYHIEULOP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_NGANHSV` FOREIGN KEY (`TENCHNGANH`) REFERENCES `chuyennganh` (`TENCHNGANH`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `thongbao`
+-- Các ràng buộc cho bảng `thongbao`
 --
 ALTER TABLE `thongbao`
-  ADD CONSTRAINT `FK_LOAITB_TBAO` FOREIGN KEY (`MALOAITBAO`) REFERENCES `loaithongbao` (`MALOAITBAO`);
+  ADD CONSTRAINT `FK_LOAITB_TBAO` FOREIGN KEY (`MALOAITBAO`) REFERENCES `loaithongbao` (`MALOAITBAO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `thongkediemdanh`
+-- Các ràng buộc cho bảng `thongkediemdanh`
 --
 ALTER TABLE `thongkediemdanh`
-  ADD CONSTRAINT `FK_THONGKELOAIDS` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`),
-  ADD CONSTRAINT `FK_THONGKESK` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`);
+  ADD CONSTRAINT `FK_THONGKELOAIDS` FOREIGN KEY (`MALOAIDS`) REFERENCES `loaids` (`MALOAIDS`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_THONGKESK` FOREIGN KEY (`MASK`) REFERENCES `sukien` (`MASK`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `to_bomon`
+-- Các ràng buộc cho bảng `to_bomon`
 --
 ALTER TABLE `to_bomon`
-  ADD CONSTRAINT `FK_KHOABOMON` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`);
+  ADD CONSTRAINT `FK_KHOABOMON` FOREIGN KEY (`TENKHOA`) REFERENCES `khoa_phong` (`TENKHOA`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
