@@ -10,7 +10,7 @@ class Khoa_Phong extends Model
     protected $table = 'khoa_phong';
 
     // Tên cột khóa chính.
-    protected $primaryKey = 'tenkhoa';
+    protected $primaryKey = 'TENKHOA';
 
     // Tên kiểu khóa chính
     protected $keyType = 'string';

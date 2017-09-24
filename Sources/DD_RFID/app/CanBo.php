@@ -1,16 +1,16 @@
 <?php
-// Lớp định nghĩa model tham chiếu đến bảng To_BoMon
+// Lớp định nghĩa model tham chiếu đến bảng CanBo
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class To_BoMon extends Model
+class CanBo extends Model
 {
     // Tên bảng tham chiếu.
-    protected $table = 'to_bomon';
-
+    protected $table = 'CanBo';
+    
     // Tên cột khóa chính.
-    protected $primaryKey = 'TENBOMON';
+    protected $primaryKey = 'MSCB';
 
     // Tên kiểu khóa chính
     protected $keyType = 'string';
@@ -19,15 +19,9 @@ class To_BoMon extends Model
     public $incrementing = false;
 
     // Danh sách các cột cố thể điền dữ liệu.
-    protected $fillable = ['TENBOMON', 'TENKHOA'];
+    protected $fillable = ["MSCB", "TENBOMON", "TENKHOA", "EMAIL", "HOTEN"];
 
     // Có tự động thêm 2 cột thời gian tạo và 
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;
-
-    public static function GetBoMon()
-    {
-        $bomons = \DB::select('select * from to_bomon');
-        return $bomons;
-    }
 }
