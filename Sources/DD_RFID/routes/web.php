@@ -42,9 +42,7 @@ Route::get('student', function() {
 })->name('student');
 
 // Dẫn vào trang Quản Lý cán bộ
-Route::get('staff', function() {
-    return view('sub_views.staff');
-})->name('staff');
+Route::get('staff', "CanBoController@GetPageCB")->name('staff');
 
 
 Route::get('card', function() {
@@ -83,9 +81,9 @@ Route::get('text', function() {
 
 // Thử hàm lấy tất cả dữ liệu
 
-use App\Khoa_Phong;
+use App\CanBo;
 
 Route::get('bomon', function() {
-    $bm = Khoa_Phong::GetKhoa();
-    var_dump($bm[0]->TENKHOA);
+    $bm = CanBo::GetCanBo();
+    var_dump($bm);
 });

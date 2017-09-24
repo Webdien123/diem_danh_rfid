@@ -24,4 +24,10 @@ class CanBo extends Model
     // Có tự động thêm 2 cột thời gian tạo và 
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;
+
+    public static function GetCanBo()
+    {
+        $canbos = \DB::select('select * from canbo');
+        return $canbos;
+    }
 }

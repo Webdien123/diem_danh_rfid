@@ -4,8 +4,7 @@
 
 @section('title', 'Trang cán bộ')
 
-@section('student')
-
+@section('student') 
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
         <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -66,13 +65,34 @@
 								</div>								
 
 								<div class="form-group">
-									<label for="">Số điện thoại:</label>
-									<input type="text" name="sdt" id="sdt" class="form-control" placeholder="số điện thoại">
+									<label for="">Bộ môn:</label>
+                                    <select class="form-control" id="bomon" name="bomon">
+                                        @foreach ($bomons as $bm)
+                                            <?php
+                                                echo "<option>". $bm->TENBOMON ."</option>";
+                                            ?>
+                                        @endforeach
+                                    </select>
 								</div>
 
+                                <script>
+                                    $("#bomon").change(function () {
+                                        var str = "";
+                                        $( "select option:selected" ).each(function() {
+                                            str += $( this ).text() + " ";
+                                        });
+                                        alert(str);
+                                    }).change();
+                                </script>
+
 								<div class="form-group">
-									<label for="">Ngày sinh:</label>
-									<input type="date" name="ngsinh" id="ngsinh" class="form-control">
+									<label for="">Khoa:</label>
+									<input type="text" name="khoa" id="khoa" class="form-control" placeholder="Tên khoa" disabled>
+								</div>
+
+                                <div class="form-group">
+									<label for="">Email:</label>
+									<input type="text" name="email" id="email" class="form-control" placeholder="Email cán bộ">
 								</div>
 
 								<button type="button" class="btn btn-default" data-dismiss="modal">
