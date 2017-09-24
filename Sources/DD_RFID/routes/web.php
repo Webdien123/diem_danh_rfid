@@ -80,3 +80,12 @@ Route::get('no_menu', function() {
 Route::get('text', function() {
     return view('orther_views.responsive_text');
 });
+
+// Thử hàm lấy tất cả dữ liệu
+
+use App\Khoa_Phong;
+
+Route::get('bomon', function() {
+    $bm = Khoa_Phong::GetKhoa();
+    var_dump($bm[0]->TENKHOA);
+});
