@@ -13,6 +13,8 @@
         {!! '<div class="panel panel-success">' !!}
     @elseif (strpos ($_SERVER['REQUEST_URI'], 'student'))
         {!! '<div class="panel panel-danger">' !!}
+    @elseif (strpos ($_SERVER['REQUEST_URI'], 'staff'))
+        {!! '<div class="panel panel-primary">' !!}
     @else
         {!! '<div class="panel panel-default">' !!}
     @endif
