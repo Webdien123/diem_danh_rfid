@@ -6,7 +6,7 @@
 
 @section('event')
     
-    {{--  Gọi code thực hiện xoay icon đang cập nhật  --}}
+    {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
     @include('link_views.rotation_icon')
 
     {{--  Tìm kiếm sự kiện  --}}
@@ -79,8 +79,7 @@
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
-                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        <i>Chưa Thực hiện.</i>
                     </center></td>                    
                     <td>
                         <a href="" class="btn btn-success">
@@ -150,7 +149,7 @@
                     <td>17:00</td>
                     <td><center>
                         <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        Đang điểm danh
                     </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
@@ -184,7 +183,7 @@
                     <td>17:00</td>
                     <td><center>
                         <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        Đang điểm danh
                     </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
@@ -218,7 +217,7 @@
                     <td>17:00</td>
                     <td><center>
                         <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        Đang điểm danh
                     </center></td>         
                     <td>
                         <a href="" class="btn btn-success">

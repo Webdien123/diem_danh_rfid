@@ -34,11 +34,62 @@
     {{--  Hiển thị tiêu đề và nút thêm cán bộ  --}}
     <center><h1>Danh sách cán bộ</h1></center>
     <div class="row">
-        <div class="col-xs-12 col-md-6">
-            <a type="button" class="btn btn-primary"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
+        <div class="col-xs-12 col-md-6">  
+
+            {{--  Nút thêm cán bộ  --}}
+            <a class="btn btn-primary" data-toggle="modal" href='#modal-themcb'>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 Thêm cán bộ
             </a>
+
+            {{--  Modal thêm các bộ  --}}
+            <div class="modal fade" id="modal-themcb">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Thêm cán bộ</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="POST" id="f_addcb">
+                                {{--  Phần mã xác thực form của laravel  --}}
+								{{ csrf_field() }}
+
+                                <div class="form-group">
+									<label for="">Mã số cán bộ:</label>
+									<input type="text" name="mssv" id="mscb" class="form-control" placeholder="mã số cán bộ">
+								</div>
+
+								<div class="form-group">
+									<label for="">Họ tên:</label>
+									<input type="text" name="hoten" id="hoten" class="form-control" placeholder="họ tên">
+								</div>								
+
+								<div class="form-group">
+									<label for="">Số điện thoại:</label>
+									<input type="text" name="sdt" id="sdt" class="form-control" placeholder="số điện thoại">
+								</div>
+
+								<div class="form-group">
+									<label for="">Ngày sinh:</label>
+									<input type="date" name="ngsinh" id="ngsinh" class="form-control">
+								</div>
+
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+									Hủy
+								</button>
+
+								<button type="submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+									Thêm sinh viên
+								</button>
+							</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <a class="btn btn-default" style="background-color: #001a66; color: white">
                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                 Thêm cán bộ từ excel
