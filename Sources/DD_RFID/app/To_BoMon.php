@@ -30,4 +30,10 @@ class To_BoMon extends Model
         $bomons = \DB::select('select * from to_bomon');
         return $bomons;
     }
+
+    public static function LayTenKhoa($bomon)
+    {
+        $tenkhoa = \DB::select('select TENKHOA from to_bomon where TENBOMON = ?', [$bomon]);
+        return $tenkhoa[0]->TENKHOA;
+    }
 }

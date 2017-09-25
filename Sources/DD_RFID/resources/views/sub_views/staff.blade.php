@@ -5,6 +5,9 @@
 @section('title', 'Trang cán bộ')
 
 @section('student') 
+
+    <script src="{{ asset('js/laytenkhoa.js') }}"></script>
+
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
         <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -69,21 +72,12 @@
                                     <select class="form-control" id="bomon" name="bomon">
                                         @foreach ($bomons as $bm)
                                             <?php
-                                                echo "<option>". $bm->TENBOMON ."</option>";
+                                                echo "<option value=''". $bm->TENBOMON ."'>". $bm->TENBOMON ."</option>";
                                             ?>
                                         @endforeach
+                                        <option >álkdjáld</option>
                                     </select>
 								</div>
-
-                                <script>
-                                    $("#bomon").change(function () {
-                                        var str = "";
-                                        $( "select option:selected" ).each(function() {
-                                            str += $( this ).text() + " ";
-                                        });
-                                        alert(str);
-                                    }).change();
-                                </script>
 
 								<div class="form-group">
 									<label for="">Khoa:</label>
@@ -102,7 +96,7 @@
 
 								<button type="submit" class="btn btn-primary">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-									Thêm sinh viên
+									Thêm cán bộ
 								</button>
 							</form>
                         </div>

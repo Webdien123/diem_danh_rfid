@@ -44,6 +44,10 @@ Route::get('student', function() {
 // Dẫn vào trang Quản Lý cán bộ
 Route::get('staff', "CanBoController@GetPageCB")->name('staff');
 
+// Lấy tên khoa khi có tên bộ môn
+Route::get('getKhoa/{bomon}', "CanBoController@GetKhoa");
+
+
 
 Route::get('card', function() {
     return view('sub_views.card');
