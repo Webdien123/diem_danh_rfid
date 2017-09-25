@@ -1,14 +1,19 @@
 {{--  Định nghĩa trang cán bộ   --}}
-
 @extends('admin')
 
 @section('title', 'Trang cán bộ')
 
 @section('student') 
 
+    {{--  Script xử lý lấy tên khoa khi có tên bộ môn  --}}
     <script src="{{ asset('js/laytenkhoa.js') }}"></script>
+
+    {{--  Script inport jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+    {{--  Script xử lý validate dữ liệu cán bộ  --}}
     <script src="{{ asset('js/validate_canbo.js') }}"></script>
+
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
         <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -54,7 +59,7 @@
                             <h4 class="modal-title">Thêm cán bộ</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('AddCB') }}" method="POST" id="f_addcb">
+                            <form action="{{ route('AddCB') }}" method="POST" id="form_canbo">
                                 {{--  Phần mã xác thực form của laravel  --}}
 								{{ csrf_field() }}
 
@@ -136,10 +141,8 @@
                 <tr>
                     <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
                 </tr>
-
                 @else
-                <!-- Phần nội dung khi có cán bộ -->
-                    
+                <!-- Phần nội dung khi có cán bộ -->                   
                     @foreach ($canbos as $canbo)
                         <tr>
                             <td>{{ $canbo->MSCB }}</td>
@@ -154,7 +157,7 @@
                                 </button>
                             </td>
                             <td>
-                                <a href="" class="btn btn-success">
+                                <a href="/staff_info/{{ $canbo->MSCB }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
                                 </a>

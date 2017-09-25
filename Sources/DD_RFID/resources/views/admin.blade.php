@@ -29,6 +29,9 @@
         {{--  Gọi hiển thị GD cán bộ cho trang cán bộ  --}}
         @yield('staff')
 
+        {{--  Gọi hiển thị GD thông tin cán bộ  --}}
+        @yield('staff_info')
+
         {{--  Gọi hiển thị GD đăng ký thẻ  --}}
         @yield('card')
 

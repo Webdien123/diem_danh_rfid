@@ -1,5 +1,5 @@
 <?php
-// Lớp định nghĩa model tham chiếu đến bảng CanBo
+// Lớp định nghĩa model tham chiếu đến bảng CanBo.
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ class CanBo extends Model
     // Tên cột khóa chính.
     protected $primaryKey = 'MSCB';
 
-    // Tên kiểu khóa chính
+    // Tên kiểu khóa chính.
     protected $keyType = 'string';
 
     // Cho phép khóa chính tự tăng hay không.
@@ -27,15 +27,15 @@ class CanBo extends Model
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;
 
-    // Lấy thông tin tất cả cán bộ
+    // Lấy thông tin tất cả cán bộ.
     public static function GetCanBo()
     {
-        // Lấy dữ liệu kết hợp phân trang (5 mẫu tin/trang)
+        // Lấy dữ liệu kết hợp phân trang (5 mẫu tin/trang).
         $canbos = \DB::table('canbo')->Paginate(5);
         return $canbos;
     }
 
-    // Thêm thông tin cán bộ mới
+    // Thêm thông tin cán bộ mới.
     public static function AddCB(Request $canbo)
     {
         try {
@@ -50,5 +50,12 @@ class CanBo extends Model
             echo $e->getMessage();
         }
         return;
+    }
+
+    // Lấy thông tin của một cán bộ theo mã cán bộ.
+    public static function GetCB($mscb)
+    {
+        $canbo = \DB::select('select * from canbo where MSCB = ?', [$mscb]);
+        return $canbo;
     }
 }

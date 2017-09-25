@@ -9,7 +9,7 @@ $(document).ready(function () {
     // });
 
     // Hàm xử lý thông báo và ràng buột khi nhập dữ liệu
-    $("#f_addcb").validate({
+    $("#form_canbo").validate({
         rules: {
             hoten: {
                 required: true,
@@ -48,7 +48,7 @@ $(document).ready(function () {
             error.insertAfter(element);
         },
 
-        errorClass: "has-error",
+        errorClass: "has-error text-left",
         validClass: "has-success",
         highlight: function(element,errorClass,validClass){
             $(element).parent(".form-group").addClass(errorClass).removeClass(validClass);   

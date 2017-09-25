@@ -50,6 +50,8 @@ Route::get('getKhoa/{bomon}', "CanBoController@GetKhoa");
 // Thêm cán bộ
 Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");
 
+// Lấy trang chỉnh sửa cán bộ
+Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo");
 
 // Dẫn vào trang đang ký thẻ
 Route::get('card', function() {
