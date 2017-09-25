@@ -21,14 +21,17 @@ class CanBoController extends Controller
         ]);
     }
 
+    // API trả về tên khoa theo bộ môn biết trước
     public function GetKhoa($bomon)
     {
         $tenkhoa = To_BoMon::LayTenKhoa($bomon);
         return json_encode($tenkhoa);
     }
 
+    // Thêm thông tin cán bộ với vào hệ thống
     public function ThemCanBo(Request $canbo)
     {
         CanBo::AddCB($canbo);
+        return redirect()->route('staff');
     }
 }

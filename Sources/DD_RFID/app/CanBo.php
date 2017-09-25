@@ -27,13 +27,15 @@ class CanBo extends Model
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;
 
+    // Lấy thông tin tất cả cán bộ
     public static function GetCanBo()
     {
-        // $canbos = \DB::select('select * from canbo');
+        // Lấy dữ liệu kết hợp phân trang (5 mẫu tin/trang)
         $canbos = \DB::table('canbo')->Paginate(5);
         return $canbos;
     }
 
+    // Thêm thông tin cán bộ mới
     public static function AddCB(Request $canbo)
     {
         try {
@@ -46,9 +48,7 @@ class CanBo extends Model
             ]);
         } catch (\Exception $e) {
             echo $e->getMessage();
-            // return redirect()->route('Error', 
-                // ['mes' => 'Thêm sinh viên thất bại', 'reason' => 'Mã số sinh viên đã tồn tại']);
         }
-        return redirect()->route('staff');
+        return;
     }
 }

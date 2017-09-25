@@ -74,7 +74,7 @@
                                     <select class="form-control" id="chonbomon" name="chonbomon">
                                         @foreach ($bomons as $bm)
                                             <?php
-                                                echo "<option value=''". $bm->TENBOMON ."'>". $bm->TENBOMON ."</option>";
+                                                echo "<option value='". $bm->TENBOMON ."'>". $bm->TENBOMON ."</option>";
                                             ?>
                                         @endforeach
                                     </select>
@@ -82,7 +82,8 @@
 
 								<div class="form-group">
 									<label for="">Khoa:</label>
-									<input type="text" name="khoa" id="khoa" class="form-control" placeholder="Tên khoa" disabled>
+                                    <input type="hidden" name="khoa" id="khoa">
+									<input type="text" id="tenkhoa" class="form-control" placeholder="Tên khoa" disabled>
 								</div>
 
                                 <div class="form-group">
@@ -189,9 +190,9 @@
                 @endif
             </tbody>
         </table>
-        <center>
-            {!! $canbos->links() !!}
-        </center>
     </div>
+    <center>
+        {!! $canbos->links() !!}
+    </center>
 @endsection
 

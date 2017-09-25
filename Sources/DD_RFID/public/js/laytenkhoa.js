@@ -21,10 +21,12 @@ $( document ).ready(function() {
 
             /* Xử lý biến data chưa dữ liệu khi xử lý thành công */
             success: function (data) { 
+                $("#tenkhoa").val(data);
                 $("#khoa").val(data);
             },
             error: function(xhr, textStatus, errorThrown){
                 console.log(xhr.responseText);
+                $("#tenkhoa").val("");
                 $("#khoa").val("");
              }
         }); 
