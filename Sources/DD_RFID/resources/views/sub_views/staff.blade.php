@@ -87,7 +87,7 @@
 
                                 <div class="form-group">
 									<label for="">Email:</label>
-									<input type="text" name="email" id="email" class="form-control" placeholder="Email cán bộ">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
 								</div>
 
 								<button type="button" class="btn btn-default" data-dismiss="modal">

@@ -19,13 +19,10 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 8
             },
-            sdt: {
+            email:{
                 required: true,
-                number: true,
-                minlength: 10,
-                maxlength: 11
-            },
-            ngsinh: "required"
+                email: 8
+            }
         },
 
         messages: {
@@ -37,13 +34,10 @@ $(document).ready(function () {
                 required: "Chưa nhập mã số cán bộ",
                 maxlength: "Mã số tối đa là 8 kí tự"
             },
-            sdt: {
-                required: "Bạn chưa nhập số điện thoại",
-                number: "Số điện thoại phải là chữ số",
-                minlength: "số điện thoại tối thiểu 10 chữ số",
-                maxlength: "số điện thoại tối đa 11 chữ số"
-            },
-            ngsinh: "Bạn chưa nhập ngày sinh"
+            email:{
+                required: "Chưa nhập email",
+                email: "Địa chỉ email không đúng định dạng"
+            }
         },
 
         errorPlacement: function (error, element) {
