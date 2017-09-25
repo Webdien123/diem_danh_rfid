@@ -7,6 +7,8 @@
 @section('student') 
 
     <script src="{{ asset('js/laytenkhoa.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/validate_canbo.js') }}"></script>
 
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
@@ -75,7 +77,6 @@
                                                 echo "<option value=''". $bm->TENBOMON ."'>". $bm->TENBOMON ."</option>";
                                             ?>
                                         @endforeach
-                                        <option >álkdjáld</option>
                                     </select>
 								</div>
 
