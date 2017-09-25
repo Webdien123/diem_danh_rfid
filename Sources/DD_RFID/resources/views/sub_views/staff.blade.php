@@ -9,7 +9,6 @@
     <script src="{{ asset('js/laytenkhoa.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/validate_canbo.js') }}"></script>
-
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
         <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -55,13 +54,13 @@
                             <h4 class="modal-title">Thêm cán bộ</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST" id="f_addcb">
+                            <form action="{{ route('AddCB') }}" method="POST" id="f_addcb">
                                 {{--  Phần mã xác thực form của laravel  --}}
 								{{ csrf_field() }}
 
                                 <div class="form-group">
 									<label for="">Mã số cán bộ:</label>
-									<input type="text" name="mssv" id="mscb" class="form-control" placeholder="mã số cán bộ">
+									<input type="text" name="mscb" id="mscb" class="form-control" placeholder="mã số cán bộ">
 								</div>
 
 								<div class="form-group">
@@ -71,7 +70,8 @@
 
 								<div class="form-group">
 									<label for="">Bộ môn:</label>
-                                    <select class="form-control" id="bomon" name="bomon">
+                                    <input type="hidden" name="bomon" id="bomon">
+                                    <select class="form-control" id="chonbomon" name="chonbomon">
                                         @foreach ($bomons as $bm)
                                             <?php
                                                 echo "<option value=''". $bm->TENBOMON ."'>". $bm->TENBOMON ."</option>";
@@ -127,136 +127,65 @@
                 </tr>
             </thead>
             <tbody>
+
+                {{--  Nếu danh sách cán bộ rỗng  --}}
+                @if (count($canbos) == 0)
+
                 {{--  Phần nội dung không có cán bộ  --}}
                 <tr>
                     <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
                 </tr>
 
+                @else
                 <!-- Phần nội dung khi có cán bộ -->
+                    
+                    @foreach ($canbos as $canbo)
+                        <tr>
+                            <td>{{ $canbo->MSCB }}</td>
+                            <td>{{ $canbo->HOTEN }}</td>
+                            <td>{{ $canbo->TENKHOA }}</td>
+                            <td>{{ $canbo->TENBOMON }}</td>
+                            <td>{{ $canbo->EMAIL }}</td>
+                            <td>
+                                234123412431234
+                                <button type="button" class="btn btn-warning">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
 
-                <tr>
-                    <td>001220</td>
-                    <td>Lê Văn B</td>
-                    <td>CNTT</td>
-                    <td>Kỹ thuật phần mềm</td>
-                    <td>lvbe@ctu.edu</td>
-                    <td>
-                        234123412431234
-                        
-                        <button type="button" class="btn btn-warning">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-                        
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>001220</td>
-                    <td>Lê Văn B</td>
-                    <td>CNTT</td>
-                    <td>CNTT</td>
-                    <td>lvbe@ctu.edu</td>
-                    <td>
-                        234123412431234
-                        
-                        <button type="button" class="btn btn-warning">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-                        
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>001220</td>
-                    <td>Lê Văn B</td>
-                    <td>CNTT</td>
-                    <td>CNTT</td>
-                    <td>lvbe@ctu.edu</td>
-                    <td>chưa đăng ký</td>
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-                        
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>001220</td>
-                    <td>Lê Văn B</td>
-                    <td>CNTT</td>
-                    <td>CNTT</td>
-                    <td>lvbe@ctu.edu</td>
-                    <td>
-                        234123412431234
-                        
-                        <button type="button" class="btn btn-warning">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-                        
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>001220</td>
-                    <td>Lê Văn B</td>
-                    <td>CNTT</td>
-                    <td>CNTT</td>
-                    <td>lvbe@ctu.edu</td>
-                    <td>
-                        234123412431234
-                        
-                        <button type="button" class="btn btn-warning">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-                        
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>
+                        {{--  <tr>
+                            <td>001220</td>
+                            <td>Lê Văn B</td>
+                            <td>CNTT</td>
+                            <td>CNTT</td>
+                            <td>lvbe@ctu.edu</td>
+                            <td>chưa đăng ký</td>
+                            <td>
+                                <a href="" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>  --}}
+                    @endforeach           
+                @endif
             </tbody>
         </table>
     </div>

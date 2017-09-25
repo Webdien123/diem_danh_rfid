@@ -15,9 +15,10 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 50
             },
-            mssv:{
+            mscb:{
                 required: true,
-                maxlength: 8
+                maxlength: 8,
+                minlength: 8
             },
             email:{
                 required: true,
@@ -30,9 +31,10 @@ $(document).ready(function () {
                 required: "Chưa nhập họ tên",
                 maxlength: "Họ tên tối đa là 50 kí tự"
             },
-            mssv: {
+            mscb: {
                 required: "Chưa nhập mã số cán bộ",
-                maxlength: "Mã số tối đa là 8 kí tự"
+                maxlength: "Mã số tối đa là 8 kí tự",
+                minlength: "Mã số phải đủ 8 kí tự"
             },
             email:{
                 required: "Chưa nhập email",

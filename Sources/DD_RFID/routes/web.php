@@ -47,8 +47,11 @@ Route::get('staff', "CanBoController@GetPageCB")->name('staff');
 // Lấy tên khoa khi có tên bộ môn
 Route::get('getKhoa/{bomon}', "CanBoController@GetKhoa");
 
+// Thêm cán bộ
+Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");
 
 
+// Dẫn vào trang đang ký thẻ
 Route::get('card', function() {
     return view('sub_views.card');
 })->name('card');

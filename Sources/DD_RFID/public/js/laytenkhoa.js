@@ -1,10 +1,12 @@
 
 // File thực hiện việc lấy tên khoa tự động khi đã chọn tên bộ môn.
 $( document ).ready(function() {
-    $("#bomon").change(function () {
+    $("#chonbomon").change(function () {
         var bomon = "";
         $( "select option:selected" ).each(function() {
             bomon += $( this ).text() + " ";
+            console.log(bomon);
+            $("#bomon").val(bomon);
         });
 
         $.ajax({

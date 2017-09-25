@@ -25,4 +25,9 @@ class CanBoController extends Controller
         $tenkhoa = To_BoMon::LayTenKhoa($bomon);
         return json_encode($tenkhoa);
     }
+
+    public function ThemCanBo(Request $canbo)
+    {
+        CanBo::AddCB($canbo);
+    }
 }

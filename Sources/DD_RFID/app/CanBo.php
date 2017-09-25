@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use \Symfony\Component\Console\Input\Input;
 
 class CanBo extends Model
 {
@@ -29,5 +31,23 @@ class CanBo extends Model
     {
         $canbos = \DB::select('select * from canbo');
         return $canbos;
+    }
+
+    public static function AddCB(Request $canbo)
+    {
+        try {
+            \DB::insert('insert into canbo (MSCB, TENBOMON, TENKHOA, EMAIL, HOTEN) values (?, ?, ?, ?, ?)', [
+                $canbo->mscb, 
+                $canbo->bomon,
+                $canbo->khoa,
+                $canbo->email,
+                $canbo->hoten
+            ]);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            // return redirect()->route('Error', 
+                // ['mes' => 'Thêm sinh viên thất bại', 'reason' => 'Mã số sinh viên đã tồn tại']);
+        }
+        return redirect()->route('staff');
     }
 }
