@@ -163,6 +163,7 @@
                                     Xóa
                                 </button>
                             </td>
+                            
                         </tr>
 
                         {{--  <tr>
@@ -188,6 +189,9 @@
                 @endif
             </tbody>
         </table>
+        <center>
+            {!! $canbos->links() !!}
+        </center>
     </div>
 @endsection
 

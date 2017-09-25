@@ -29,7 +29,8 @@ class CanBo extends Model
 
     public static function GetCanBo()
     {
-        $canbos = \DB::select('select * from canbo');
+        // $canbos = \DB::select('select * from canbo');
+        $canbos = \DB::table('canbo')->Paginate(5);
         return $canbos;
     }
 

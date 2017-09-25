@@ -14,6 +14,7 @@ class CanBoController extends Controller
     {
         $canbos = CanBo::GetCanBo();
         $bomons = To_BoMon::GetBoMon();
+        // var_dump($canbos);
         return view('sub_views.staff', [
                 'canbos' => $canbos, 
                 'bomons' => $bomons
