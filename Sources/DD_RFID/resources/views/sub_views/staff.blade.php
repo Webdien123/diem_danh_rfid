@@ -5,8 +5,9 @@
 
 @section('student') 
 
-    {{--  Script xử lý lấy tên khoa khi có tên bộ môn  --}}
-    <script src="{{ asset('js/laybomon.js') }}"></script>
+    {{--  Script lưu trữ mà lấy giá trị cần thiết khi 
+    chọn danh sách bộ môn hoặc danh sách khoa.  --}}
+    <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
 
     {{--  Script inport jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>

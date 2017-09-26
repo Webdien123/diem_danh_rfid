@@ -47,7 +47,7 @@ class CanBo extends Model
                 $canbo->hoten
             ]);
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            dd($e->getMessage());
         }
         return;
     }
