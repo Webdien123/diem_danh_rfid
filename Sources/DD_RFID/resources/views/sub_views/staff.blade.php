@@ -6,7 +6,7 @@
 @section('student') 
 
     {{--  Script xử lý lấy tên khoa khi có tên bộ môn  --}}
-    <script src="{{ asset('js/laytenkhoa.js') }}"></script>
+    <script src="{{ asset('js/laybomon.js') }}"></script>
 
     {{--  Script inport jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
@@ -74,21 +74,22 @@
 								</div>								
 
 								<div class="form-group">
-									<label for="">Bộ môn:</label>
-                                    <input type="hidden" name="bomon" id="bomon">
-                                    <select class="form-control" id="chonbomon" name="chonbomon">
-                                        @foreach ($bomons as $bm)
+									<label for="">Khoa:</label>
+                                    <input type="hidden" name="khoa" id="khoa">
+                                    <select class="form-control" id="chonkhoa" name="chonkhoa">
+                                        @foreach ($khoas as $khoa)
                                             <?php
-                                                echo "<option value='". $bm->TENBOMON ."'>". $bm->TENBOMON ."</option>";
+                                                echo "<option value='". $khoa->TENKHOA ."'>". $khoa->TENKHOA ."</option>";
                                             ?>
                                         @endforeach
                                     </select>
 								</div>
 
 								<div class="form-group">
-									<label for="">Khoa:</label>
-                                    <input type="hidden" name="khoa" id="khoa">
-									<input type="text" id="tenkhoa" class="form-control" placeholder="Tên khoa" disabled>
+									<label for="">Bộ môn:</label>
+                                    <input type="hidden" name="bomon" id="bomon">
+									<select class="form-control" id="chonbomon" name="chonbomon">
+                                    </select>
 								</div>
 
                                 <div class="form-group">

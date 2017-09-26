@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CanBo;
-use App\To_BoMon;
+use App\Khoa_Phong;
 
 class CanBoController extends Controller
 {
-    public $bomons;
+    // Lưu trữ danh sách khoa trong hệ thống.
+    private $khoas;
 
     public function __construct() {
-        $this->bomons = To_BoMon::GetBoMon();
+        $this->khoas = Khoa_Phong::GetKhoa();
     }
 
     // Trả về trang các bộ cùng các dữ liệu cần thiết.
@@ -20,15 +21,15 @@ class CanBoController extends Controller
         $canbos = CanBo::GetCanBo();
         return view('sub_views.staff', [
                 'canbos' => $canbos, 
-                'bomons' => $this->bomons
+                'khoas' => $this->khoas
         ]);
     }
 
-    // API trả về tên khoa theo bộ môn biết trước.
-    public function GetKhoa($bomon)
+    // API trả về tên các bộ môn theo bộ môn biết trước.
+    public function GetBoMon($tenkhoa)
     {
-        $tenkhoa = To_BoMon::LayTenKhoa($bomon);
-        return json_encode($tenkhoa);
+        $bomons = Khoa_Phong::LayBoMon($tenkhoa);
+        return json_encode($bomons);
     }
 
     // Thêm thông tin cán bộ với vào hệ thống.
@@ -44,7 +45,7 @@ class CanBoController extends Controller
         $canbo = CanBo::GetCB($mscb);
         return view('form_views.thongtin_canbo', [
             'canbo' => $canbo, 
-            'bomons' => $this->bomons
+            'khoas' => $this->khoas
         ]);
     }
 }

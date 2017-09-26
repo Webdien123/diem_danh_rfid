@@ -11,49 +11,49 @@
 |
 */
 
-// Dẫn vào trang chủ
+// Dẫn vào trang chủ.
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Dẫn vào trang đăng nhập
+// Dẫn vào trang đăng nhập.
 Route::get('login', function() {
     return view('login');
 })->name('login');
 
-// Dẫn vào trang điều khiển của admin
+// Dẫn vào trang điều khiển của admin.
 Route::get('admin', function() {
     return view('admin');
 })->name('admin');
 
-// Dẫn vào trang thống kê điểm danh
+// Dẫn vào trang thống kê điểm danh.
 Route::get('chart', function() {
     return view('sub_views.chart');
 })->name('chart');
 
-// Dẫn vào trang Quản Lý sự kiện
+// Dẫn vào trang Quản Lý sự kiện.
 Route::get('event', function() {
     return view('sub_views.event');
 })->name('event');
 
-// Dẫn vào trang Quản Lý sinh viên
+// Dẫn vào trang Quản Lý sinh viên.
 Route::get('student', function() {
     return view('sub_views.student');
 })->name('student');
 
-// Dẫn vào trang Quản Lý cán bộ
+// Dẫn vào trang Quản Lý cán bộ.
 Route::get('staff', "CanBoController@GetPageCB")->name('staff');
 
-// Lấy tên khoa khi có tên bộ môn
-Route::get('getKhoa/{bomon}', "CanBoController@GetKhoa");
+// API lấy danh sách bộ môn khi có tên khoa.
+Route::get('getBoMon/{tenkhoa}', "CanBoController@GetBoMon");
 
 // Thêm cán bộ
 Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");
 
-// Lấy trang chỉnh sửa cán bộ
+// Lấy trang chỉnh sửa cán bộ.
 Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo");
 
-// Dẫn vào trang đang ký thẻ
+// Dẫn vào trang đang ký thẻ.
 Route::get('card', function() {
     return view('sub_views.card');
 })->name('card');

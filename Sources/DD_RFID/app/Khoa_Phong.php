@@ -25,9 +25,17 @@ class Khoa_Phong extends Model
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;
 
+    // Lấy tất các tên khoa có trong hệ thống.
     public static function GetKhoa()
     {
         $khoas = \DB::select('select * from khoa_phong');
         return $khoas;
+    }
+
+    // Lấy tất cả bộ môn thuộc khoa cho trước.
+    public static function LayBoMon($tenkhoa)
+    {
+        $bomons = \DB::select('select TENBOMON from to_bomon where TENKHOA = ?', [$tenkhoa]);
+        return $bomons;
     }
 }

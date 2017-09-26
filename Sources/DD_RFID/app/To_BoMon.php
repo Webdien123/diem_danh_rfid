@@ -25,15 +25,10 @@ class To_BoMon extends Model
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;
 
+    // Lấy tất cả bộ môn hiện có trong hệ thống.
     public static function GetBoMon()
     {
         $bomons = \DB::select('select * from to_bomon');
         return $bomons;
-    }
-
-    public static function LayTenKhoa($bomon)
-    {
-        $tenkhoa = \DB::select('select TENKHOA from to_bomon where TENBOMON = ?', [$bomon]);
-        return $tenkhoa[0]->TENKHOA;
     }
 }
