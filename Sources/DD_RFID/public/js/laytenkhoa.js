@@ -5,7 +5,7 @@ $( document ).ready(function() {
         var bomon = "";
         $( "select option:selected" ).each(function() {
             bomon += $( this ).text() + " ";
-            console.log(bomon);
+            // console.log(bomon);
             $("#bomon").val(bomon);
         });
 

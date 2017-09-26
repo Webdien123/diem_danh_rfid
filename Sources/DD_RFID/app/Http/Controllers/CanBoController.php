@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CanBo;
 use App\To_BoMon;
-use App\Khoa_Phong;
 
 class CanBoController extends Controller
 {

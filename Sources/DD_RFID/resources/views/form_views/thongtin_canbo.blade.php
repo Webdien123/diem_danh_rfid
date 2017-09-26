@@ -17,8 +17,8 @@
     <script src="{{ asset('js/validate_canbo.js') }}"></script>
 
     <center>
-        <h1>Trang thông tin cán bộ</h1>
-        
+        <h1>Trang cập nhật cán bộ</h1>
+    </center>
         <div class="col-xs-12 col-sm-6 col-sm-offset-3">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -30,17 +30,17 @@
                       {{ csrf_field() }}
           
                       <div class="form-group">
-                          <label for="" class="pull-left">Mã số cán bộ:</label>
-                          <input type="text" name="mscb" id="mscb" class="form-control" placeholder="mã số cán bộ">
+                          <label>Mã số cán bộ:</label>
+                          <input value="{{ $canbo[0]->MSCB }}" type="text" name="mscb" id="mscb" class="form-control" placeholder="mã số cán bộ">
                       </div>
           
                       <div class="form-group">
-                          <label for="" class="pull-left">Họ tên:</label>
-                          <input type="text" name="hoten" id="hoten" class="form-control" placeholder="họ tên">
+                          <label>Họ tên:</label>
+                          <input value="{{ $canbo[0]->HOTEN }}" type="text" name="hoten" id="hoten" class="form-control" placeholder="họ tên">
                       </div>								
           
                       <div class="form-group">
-                          <label for="" class="pull-left">Bộ môn:</label>
+                          <label>Bộ môn:</label>
                           <input type="hidden" name="bomon" id="bomon">
                           <select class="form-control" id="chonbomon" name="chonbomon">
                               @foreach ($bomons as $bm)
@@ -50,16 +50,22 @@
                               @endforeach
                           </select>
                       </div>
+
+                      <script>                            
+                            var bm = "{{ $canbo[0]->TENBOMON }}";
+                            console.log(bm);
+                            $('chonbomon').val(bm);
+                      </script>
           
                       <div class="form-group">
-                          <label for="" class="pull-left">Khoa:</label>
-                          <input type="hidden" name="khoa" id="khoa">
-                          <input type="text" id="tenkhoa" class="form-control" placeholder="Tên khoa" disabled>
+                          <label>Khoa:</label>
+                          <input value="{{ $canbo[0]->TENKHOA }}" type="hidden" name="khoa" id="khoa">
+                          <input value="{{ $canbo[0]->TENKHOA }}" type="text" id="tenkhoa" class="form-control" placeholder="Tên khoa" disabled>
                       </div>
           
                       <div class="form-group">
-                          <label for="" class="pull-left">Email:</label>
-                          <input type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
+                          <label>Email:</label>
+                          <input value="{{ $canbo[0]->EMAIL }}" type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
                       </div>
           
                       <a href="/staff" class="btn btn-default pull-left">
@@ -75,9 +81,5 @@
                 </div>
             </div>
         </div>
-        
-
-        
-    </center>
 
 @endsection

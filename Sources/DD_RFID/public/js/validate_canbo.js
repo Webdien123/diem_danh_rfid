@@ -48,7 +48,7 @@ $(document).ready(function () {
             error.insertAfter(element);
         },
 
-        errorClass: "has-error text-left",
+        errorClass: "has-error",
         validClass: "has-success",
         highlight: function(element,errorClass,validClass){
             $(element).parent(".form-group").addClass(errorClass).removeClass(validClass);   
