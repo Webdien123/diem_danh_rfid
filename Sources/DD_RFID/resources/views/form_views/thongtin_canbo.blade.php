@@ -18,6 +18,9 @@
         var lan_dau = "{{ $lan_dau }}";
     </script>
 
+    {{--  Script xử lý 2 thông báo thành công hoặc thất bại khi cập nhật  --}}
+    <script src="{{ asset('js/thong_bao.js') }}"></script>
+
     {{--  Script xử lý lấy tên khoa khi có tên bộ môn  --}}
     <script src="{{ asset('js/load_khoa_bomon.js') }}"></script>
 
@@ -29,6 +32,27 @@
 
     <center>
         <h1>Trang cập nhật cán bộ</h1>
+        
+        <div class="container">
+            @if ($thong_bao == 0)
+                {{--  Thông báo thành công  --}}
+                <div class="alert alert-success alert-dismissable" id="success-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Đăng kí thành công!</strong> sinh viên: <?php echo Session::get('sv_dki'); ?>
+                </div>
+
+            @elseif ($thong_bao == 1)
+                {{--  Thông báo thất bại  --}}
+                <div class="alert alert-danger alert-dismissable" id="error-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Cập nhật thất bại!</strong> thông tin mới không hợp lệ
+                </div>                
+            @endif   
+        </div>
+        
+
+        
+
     </center>
 
     {{--  Panel chứa thông tin cán bộ cũ  --}}

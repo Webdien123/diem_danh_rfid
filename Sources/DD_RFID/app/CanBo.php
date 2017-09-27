@@ -59,10 +59,11 @@ class CanBo extends Model
         return $canbo;
     }
 
+    // Cập nhật thông tin cán bộ.
     public static function UpdateCB(Request $canbo)
     {
         try{
-            \DB::statement(
+            return \DB::statement(
                 'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
                 [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
             );

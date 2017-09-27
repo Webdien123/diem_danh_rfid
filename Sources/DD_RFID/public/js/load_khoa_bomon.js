@@ -1,6 +1,5 @@
 // Script xử lý việc chọn khoa và bộ môn.
 $( document ).ready(function() {
-
     console.log('bien thong tin = ' + thongtin_bm);
     console.log('bien lan dau = ' + lan_dau);
 
