@@ -1,7 +1,8 @@
 // Script xử lý việc chọn khoa và bộ môn.
 $( document ).ready(function() {
 
-    console.log('bien php = ' + thongtin_bm);
+    console.log('bien thong tin = ' + thongtin_bm);
+    console.log('bien lan dau = ' + lan_dau);
 
     // Xử lý lấy danh sách bộ môn khi chọn khoa.
     $("#chonkhoa").change(function () {        
@@ -50,6 +51,12 @@ $( document ).ready(function() {
                 });                
 
                 $('[name=chonbomon] option').filter(function() { 
+                    if (lan_dau == true) {
+                        lan_dau = false;
+                    }
+                    else{
+                        thongtin_bm = data[0].TENBOMON;
+                    }
                     return ($(this).text() == thongtin_bm);
                 }).prop('selected', true);
 
@@ -74,5 +81,6 @@ $( document ).ready(function() {
             bomon = $(this).text();           
             $("#bomon").val(bomon);
         });
+        console.log( 'Tên bộ môn đã chọn: ' + $('#bomon').val());
     }).change();
 });

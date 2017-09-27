@@ -61,19 +61,14 @@ class CanBo extends Model
 
     public static function UpdateCB(Request $canbo)
     {
-        echo $canbo->mscb." - ".
-        $canbo->bomon." - ".
-        $canbo->khoa." - ".
-        $canbo->email." - ".
-        $canbo->hoten;
-        // try{
-            // \DB::statement(
-            //     'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
-            //     [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
-            // );
-        // }
-        // catch (\Exception $e) {
+        try{
+            \DB::statement(
+                'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
+                [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
+            );
+        }
+        catch (\Exception $e) {
             
-        // }
+        }
     }
 }

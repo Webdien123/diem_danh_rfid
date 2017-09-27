@@ -10,10 +10,12 @@
     <!-- Tạo biến để truy xuất cho file js -->
     <?php
         $thongtin_bm = $canbo[0]->TENBOMON;
+        $lan_dau = true;
     ?>
     <!-- Liên kết biến sang js -->
     <script type="text/javascript">
         var thongtin_bm = "{{ $thongtin_bm }}";
+        var lan_dau = "{{ $lan_dau }}";
     </script>
 
     {{--  Script xử lý lấy tên khoa khi có tên bộ môn  --}}

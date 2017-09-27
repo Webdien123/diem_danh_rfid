@@ -53,5 +53,6 @@ class CanBoController extends Controller
     public function XuLyCapNhat(Request $canbo)
     {
         $canbo = CanBo::UpdateCB($canbo);
+        
     }
 }
