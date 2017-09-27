@@ -1,6 +1,8 @@
 // Script xử lý việc chọn khoa và bộ môn.
 $( document ).ready(function() {
 
+    console.log('bien php = ' + thongtin_bm);
+
     // Xử lý lấy danh sách bộ môn khi chọn khoa.
     $("#chonkhoa").change(function () {        
         var khoa = "";
@@ -10,7 +12,8 @@ $( document ).ready(function() {
         // để gửi request đi.
         $("#chonkhoa option:selected").each(function() {
             khoa = $(this).text();
-            $('#khoa').val(khoa);
+            $("#khoa").val(khoa);
+            console.log('Tên khoa đã chọn: ' + $('#khoa').val());
         });
 
         // ==================================================================
@@ -44,16 +47,22 @@ $( document ).ready(function() {
                         .attr("value",value.TENBOMON)
                         .text(value.TENBOMON)
                     );
-                });
-                var first = data[0].TENBOMON;
-                $('#bomon').val(first);
+                });                
+
+                $('[name=chonbomon] option').filter(function() { 
+                    return ($(this).text() == thongtin_bm);
+                }).prop('selected', true);
+
+                $('#bomon').val(thongtin_bm);
+
+                console.log( 'Tên bộ môn đã chọn: ' + $('#bomon').val());
             },
             error: function(xhr, textStatus, errorThrown){
                 console.log(xhr.responseText);
             }
         }); 
     }).change();
-
+        
     // Xử lý khi bấm chọn bộ môn.
     $("#chonbomon").change(function () {
         var bomon = "";
@@ -62,9 +71,8 @@ $( document ).ready(function() {
         // thì lấy nội dung option đã chọn gán vào trường input 'bomon'
         // để gửi request đi.
         $("#chonbomon option:selected").each(function() {
-            bomon = $(this).text();
+            bomon = $(this).text();           
             $("#bomon").val(bomon);
         });
     }).change();
 });
-

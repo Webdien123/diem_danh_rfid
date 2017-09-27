@@ -22,7 +22,8 @@ $(document).ready(function () {
             },
             email:{
                 required: true,
-                email: 8
+                email: 8,
+                maxlength: 50
             }
         },
 
@@ -38,7 +39,8 @@ $(document).ready(function () {
             },
             email:{
                 required: "Chưa nhập email",
-                email: "Địa chỉ email không đúng định dạng"
+                email: "Địa chỉ email không đúng định dạng",
+                maxlength: "Email tối đa 50 kí tự"
             }
         },
 

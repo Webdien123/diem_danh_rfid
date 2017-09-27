@@ -48,4 +48,10 @@ class CanBoController extends Controller
             'khoas' => $this->khoas
         ]);
     }
+
+    // Xử lý cập nhật thông tin các bộ.
+    public function XuLyCapNhat(Request $canbo)
+    {
+        $canbo = CanBo::UpdateCB($canbo);
+    }
 }

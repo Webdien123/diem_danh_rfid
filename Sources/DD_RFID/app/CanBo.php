@@ -30,7 +30,7 @@ class CanBo extends Model
     // Lấy thông tin tất cả cán bộ.
     public static function GetCanBo()
     {
-        // Lấy dữ liệu kết hợp phân trang (5 mẫu tin/trang).
+        // Lấy dữ liệu kết hợp phân trang (3 mẫu tin/trang).
         $canbos = \DB::table('canbo')->Paginate(5);
         return $canbos;
     }
@@ -49,7 +49,7 @@ class CanBo extends Model
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
-        return;
+        return; // Kết thúc hàm để CanBoCtrl tiếp tục thực hiện.
     }
 
     // Lấy thông tin của một cán bộ theo mã cán bộ.
@@ -57,5 +57,23 @@ class CanBo extends Model
     {
         $canbo = \DB::select('select * from canbo where MSCB = ?', [$mscb]);
         return $canbo;
+    }
+
+    public static function UpdateCB(Request $canbo)
+    {
+        echo $canbo->mscb." - ".
+        $canbo->bomon." - ".
+        $canbo->khoa." - ".
+        $canbo->email." - ".
+        $canbo->hoten;
+        // try{
+            // \DB::statement(
+            //     'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
+            //     [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
+            // );
+        // }
+        // catch (\Exception $e) {
+            
+        // }
     }
 }

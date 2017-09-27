@@ -47,11 +47,16 @@ Route::get('staff', "CanBoController@GetPageCB")->name('staff');
 // API lấy danh sách bộ môn khi có tên khoa.
 Route::get('getBoMon/{tenkhoa}', "CanBoController@GetBoMon");
 
-// Thêm cán bộ
+// Thêm cán bộ.
 Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");
 
 // Lấy trang chỉnh sửa cán bộ.
 Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo");
+
+// Chỉnh sửa cán bộ.
+Route::post('capnhatCanBo', "CanBoController@XuLyCapNhat")->name("UpdateCB");
+
+
 
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', function() {

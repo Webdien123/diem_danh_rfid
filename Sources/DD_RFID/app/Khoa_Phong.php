@@ -28,14 +28,18 @@ class Khoa_Phong extends Model
     // Lấy tất các tên khoa có trong hệ thống.
     public static function GetKhoa()
     {
-        $khoas = \DB::select('select * from khoa_phong');
+        // $khoas = \DB::select('select * from khoa_phong');
+        $khoas = \DB::select(\DB::raw("SELECT * FROM khoa_phong"));
         return $khoas;
     }
 
-    // Lấy tất cả bộ môn thuộc khoa cho trước.
+    // API lấy tất cả bộ môn thuộc khoa cho trước.
     public static function LayBoMon($tenkhoa)
     {
-        $bomons = \DB::select('select TENBOMON from to_bomon where TENKHOA = ?', [$tenkhoa]);
+        $bomons = \DB::select(\DB::raw("SELECT * FROM to_bomon WHERE TENKHOA = :v1"), 
+            array(
+            'v1' => $tenkhoa,
+        ));
         return $bomons;
     }
 }
