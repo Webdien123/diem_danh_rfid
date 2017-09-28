@@ -67,4 +67,14 @@ class CanBo extends Model
             [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
         );
     }
+
+    public static function DeleteCB($mscb)
+    {
+        try {
+            \DB::delete('DELETE FROM canbo WHERE MSCB = '.$mscb);
+            return 1;
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
 }

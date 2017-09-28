@@ -39,7 +39,7 @@ class CanBoController extends Controller
         if ($ketqua)
             return redirect()->route('staff');
         else
-        return redirect()->route('Error', 
+            return redirect()->route('Error', 
             ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
     }
 
@@ -60,5 +60,16 @@ class CanBoController extends Controller
         $ketqua = ($ketqua) ? 0 : 1 ;
         \Session::put('ketqua', $ketqua);
         return redirect('/staff_info/' . $canbo->mscb);       
+    }
+
+    // Xóa thông tin cán bộ.
+    public function XoaCanBo($mscb)
+    {
+        $ketqua = CanBo::DeleteCB($mscb);
+        if ($ketqua)
+            return redirect()->route('staff');
+        else
+            return redirect()->route('Error', 
+            ['mes' => 'Xóa cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý']);
     }
 }

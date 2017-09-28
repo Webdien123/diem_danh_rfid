@@ -164,10 +164,13 @@
                                     Sửa thông tin
                                 </a>
                                 
-                                <button type="button" class="btn btn-danger">
+                                <button type="button" class="btn btn-danger"
+                                    onclick="if(window.confirm('Xóa cán bộ này?')){
+                                    window.location.replace('<?php echo route("DeleteCB", 
+                                    ["mscb" => $canbo->MSCB]) ?>');}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
-                                </button>
+                                </button>K
                             </td>
                             
                         </tr>
