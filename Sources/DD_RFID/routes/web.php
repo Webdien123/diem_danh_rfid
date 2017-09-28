@@ -51,7 +51,7 @@ Route::get('getBoMon/{tenkhoa}', "CanBoController@GetBoMon");
 Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");
 
 // Lấy trang chỉnh sửa cán bộ.
-Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo");
+Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo")->name("CB_Info");
 
 // Chỉnh sửa cán bộ.
 Route::post('capnhatCanBo', "CanBoController@XuLyCapNhat")->name("UpdateCB");

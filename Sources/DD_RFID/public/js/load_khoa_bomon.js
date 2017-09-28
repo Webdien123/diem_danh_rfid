@@ -1,7 +1,6 @@
 // Script xử lý việc chọn khoa và bộ môn.
 $( document ).ready(function() {
     console.log('bien thong tin = ' + thongtin_bm);
-    console.log('bien lan dau = ' + lan_dau);
 
     // Xử lý lấy danh sách bộ môn khi chọn khoa.
     $("#chonkhoa").change(function () {        
@@ -49,16 +48,12 @@ $( document ).ready(function() {
                     );
                 });                
 
+                // Đặt giá trị tên bộ môn theo giá trị đã có của cán bộ.
                 $('[name=chonbomon] option').filter(function() { 
-                    if (lan_dau == true) {
-                        lan_dau = false;
-                    }
-                    else{
-                        thongtin_bm = data[0].TENBOMON;
-                    }
                     return ($(this).text() == thongtin_bm);
                 }).prop('selected', true);
 
+                // Đặt giá trị cho input ẩn chứa bộ môn cần gửi đi để cập nhật.
                 $('#bomon').val(thongtin_bm);
 
                 console.log( 'Tên bộ môn đã chọn: ' + $('#bomon').val());

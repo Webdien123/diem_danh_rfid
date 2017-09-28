@@ -10,12 +10,10 @@
     <!-- Tạo biến để truy xuất cho file js -->
     <?php
         $thongtin_bm = $canbo[0]->TENBOMON;
-        $lan_dau = true;
     ?>
     <!-- Liên kết biến sang js -->
     <script type="text/javascript">
         var thongtin_bm = "{{ $thongtin_bm }}";
-        var lan_dau = "{{ $lan_dau }}";
     </script>
 
     {{--  Script xử lý 2 thông báo thành công hoặc thất bại khi cập nhật  --}}
@@ -34,24 +32,25 @@
         <h1>Trang cập nhật cán bộ</h1>
         
         <div class="container">
-            @if ($thong_bao == 0)
+            @if (Session::get('ketqua') == 0)
                 {{--  Thông báo thành công  --}}
                 <div class="alert alert-success alert-dismissable" id="success-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Đăng kí thành công!</strong> sinh viên: <?php echo Session::get('sv_dki'); ?>
+                    <strong>Cập nhật thành công! cán bộ: {{ $canbo[0]->MSCB }} - {{ $canbo[0]->HOTEN }}</strong>
                 </div>
 
-            @elseif ($thong_bao == 1)
+            @elseif (Session::get('ketqua') == 1)
                 {{--  Thông báo thất bại  --}}
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Cập nhật thất bại!</strong> thông tin mới không hợp lệ
+                    <strong>Cập nhật thất bại!</strong>, có thể do đường truyền hoặc dữ liệu mới không hợp lệ.
                 </div>                
-            @endif   
+            @endif
         </div>
-        
 
-        
+        <?php
+            \Session::put('ketqua', 2);
+        ?>
 
     </center>
 
@@ -110,7 +109,7 @@
                         <input value="{{ $canbo[0]->EMAIL }}" type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
                     </div>
 
-                    <a href="{{ route('staff') }}" class="btn btn-default" data-dismiss="modal">
+                    <a href="{{ route('staff') }}" class="btn btn-default">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                         Hủy
                     </a>

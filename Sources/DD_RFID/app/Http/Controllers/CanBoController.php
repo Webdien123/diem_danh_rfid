@@ -45,8 +45,7 @@ class CanBoController extends Controller
         $canbo = CanBo::GetCB($mscb);
         return view('form_views.thongtin_canbo', [
             'canbo' => $canbo, 
-            'khoas' => $this->khoas,
-            'thong_bao' => 2
+            'khoas' => $this->khoas
         ]);
     }
 
@@ -54,15 +53,8 @@ class CanBoController extends Controller
     public function XuLyCapNhat(Request $canbo)
     {
         $ketqua = CanBo::UpdateCB($canbo);
-        // var_dump($ketqua);
         $ketqua = ($ketqua) ? 0 : 1 ;
-        // var_dump($ketqua);
-        $cb = CanBo::GetCB($canbo->mscb);
-        // var_dump($cb);
-        return view('form_views.thongtin_canbo', [
-            'canbo' => $cb, 
-            'khoas' => $this->khoas,
-            'thong_bao' => $ketqua
-        ]);
+        \Session::put('ketqua', $ketqua);
+        return redirect('/staff_info/' . $canbo->mscb);       
     }
 }
