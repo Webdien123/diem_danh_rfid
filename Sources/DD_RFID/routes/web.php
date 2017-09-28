@@ -56,7 +56,8 @@ Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo")->name("CB_Info")
 // Chỉnh sửa cán bộ.
 Route::post('capnhatCanBo', "CanBoController@XuLyCapNhat")->name("UpdateCB");
 
-
+// Trang thông báo lỗi.
+Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', function() {

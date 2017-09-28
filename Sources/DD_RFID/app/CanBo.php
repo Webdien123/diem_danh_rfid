@@ -46,10 +46,10 @@ class CanBo extends Model
                 $canbo->email,
                 $canbo->hoten
             ]);
+            return true; //Trả kết quả thêm để controller Cán bộ tiếp tục thực thi.
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return false;
         }
-        return; // Kết thúc hàm để CanBoCtrl tiếp tục thực hiện.
     }
 
     // Lấy thông tin của một cán bộ theo mã cán bộ.
@@ -62,14 +62,9 @@ class CanBo extends Model
     // Cập nhật thông tin cán bộ.
     public static function UpdateCB(Request $canbo)
     {
-        try{
-            return \DB::statement(
-                'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
-                [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
-            );
-        }
-        catch (\Exception $e) {
-            
-        }
+        return \DB::statement(
+            'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
+            [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
+        );
     }
 }

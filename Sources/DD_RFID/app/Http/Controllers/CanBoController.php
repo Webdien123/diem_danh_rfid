@@ -35,8 +35,12 @@ class CanBoController extends Controller
     // Thêm thông tin cán bộ với vào hệ thống.
     public function ThemCanBo(Request $canbo)
     {
-        CanBo::AddCB($canbo);
-        return redirect()->route('staff');
+        $ketqua =  CanBo::AddCB($canbo);
+        if ($ketqua)
+            return redirect()->route('staff');
+        else
+        return redirect()->route('Error', 
+            ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
     }
 
     // Tìm thông tin cán bộ cần update và hiển thị lên để chỉnh sửa.
