@@ -63,6 +63,7 @@ class CanBo extends Model
         }
     }
 
+    // Lấy thông tin của một cán bộ theo email.
     public static function GetCB_Email($email)
     {
         $canbo = \DB::select('select * from canbo where EMAIL = ?', [$email]);
@@ -76,12 +77,15 @@ class CanBo extends Model
     // Cập nhật thông tin cán bộ.
     public static function UpdateCB(Request $canbo)
     {
+        // Trả về kết quả của việc thực thi lệnh sql. 
+        //(true hoạc false - thành công hoặc thất bại)
         return \DB::statement(
             'UPDATE canbo SET TENBOMON=?, TENKHOA=?, EMAIL=?, HOTEN=?  WHERE MSCB = ?',
             [$canbo->bomon, $canbo->khoa, $canbo->email, $canbo->hoten, $canbo->mscb]
         );
     }
 
+    // Xóa cán bộ.
     public static function DeleteCB($mscb)
     {
         try {

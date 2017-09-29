@@ -80,10 +80,15 @@ class CanBoController extends Controller
     public function CapNhatCanBo($mscb)
     {
         $canbo = CanBo::GetCB($mscb);
-        return view('form_views.thongtin_canbo', [
-            'canbo' => $canbo, 
-            'khoas' => $this->khoas
-        ]);
+        if ($canbo != null) {
+            return view('form_views.thongtin_canbo', [
+                'canbo' => $canbo, 
+                'khoas' => $this->khoas
+            ]);
+        } else {
+            return redirect()->route('Error',
+            ['mes' => 'Lấy thông tin cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý. Hãy thử lại sau.']);
+        }
     }
 
     // Xử lý cập nhật thông tin các bộ.
