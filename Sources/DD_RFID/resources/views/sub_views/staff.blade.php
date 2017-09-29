@@ -17,20 +17,20 @@
 
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+        <form action="{{ route('FindCB') }}" method="get" class="form-inline pull-right hidden-xs" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
             <button type="submit" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
         </form>
 
-        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+        <form action="{{ route('FindCB') }}" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
             <button type="submit" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
@@ -39,7 +39,7 @@
     </div>
         
     </div> {{--  kết thúc container của trang master  --}}
-
+    
     {{--  Hiển thị tiêu đề và nút thêm cán bộ  --}}
     <center><h1>Danh sách cán bộ</h1></center>
     <div class="row">

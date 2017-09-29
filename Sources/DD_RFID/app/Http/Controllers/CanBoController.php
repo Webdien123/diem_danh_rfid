@@ -9,7 +9,9 @@ use App\Khoa_Phong;
 class CanBoController extends Controller
 {
     // Lưu trữ danh sách khoa trong hệ thống.
-    private $khoas;
+    public $khoas;
+
+    public static $so_dong = 5;
 
     public function __construct() {
         $this->khoas = Khoa_Phong::GetKhoa();
@@ -53,7 +55,7 @@ class CanBoController extends Controller
                 return redirect()->route('staff');
             else
                 return redirect()->route('Error',
-                ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý. Hãy thử lại sau.']);
+                ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
         }
         // Nếu mã số hoặc email đã bị trùng.
         else {
@@ -87,7 +89,7 @@ class CanBoController extends Controller
             ]);
         } else {
             return redirect()->route('Error',
-            ['mes' => 'Lấy thông tin cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý. Hãy thử lại sau.']);
+            ['mes' => 'Lấy thông tin cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
         }
     }
 
@@ -108,6 +110,31 @@ class CanBoController extends Controller
             return redirect()->route('staff');
         else
             return redirect()->route('Error', 
-            ['mes' => 'Xóa cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý']);
+            ['mes' => 'Xóa cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+    }
+
+    // Tìm cán bộ.
+    public function TimCanBo(Request $tukhoa)
+    {
+        try{
+            // Lấy từ khóa cần tìm ra khỏi request.
+            $TK = $tukhoa->tukhoa;
+        
+            // Tìm kiếm cán bộ đồng thời phân trang kết quả.
+            $canbos = \DB::table('canbo')
+                ->where('MSCB', 'like', "%$TK%")
+                ->orWhere('TENBOMON', 'like', "%$TK%")
+                ->orWhere('TENKHOA', 'like', "%$TK%")
+                ->orWhere('EMAIL', 'like', "%$TK%")
+                ->orWhere('HOTEN', 'like', "%$TK%")
+                ->paginate(self::$so_dong)->appends(['tukhoa' => $TK]);
+    
+            return view('sub_views.timcanbo', ['canbos' => $canbos, 'tukhoa' => $TK]);
+        }
+        catch (\Exception $e) {
+            return redirect()->route('Error', 
+            ['mes' => 'Tìm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+        }
+        
     }
 }

@@ -32,6 +32,8 @@
         {{--  Gọi hiển thị GD thông tin cán bộ  --}}
         @yield('staff_info')
 
+        @yield('timcanbo')
+
         {{--  Gọi hiển thị GD đăng ký thẻ  --}}
         @yield('card')
 

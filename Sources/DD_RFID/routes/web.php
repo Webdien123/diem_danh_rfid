@@ -56,10 +56,11 @@ Route::get('staff_info/{mscb}', "CanBoController@CapNhatCanBo")->name("CB_Info")
 // Chỉnh sửa cán bộ.
 Route::post('capnhatCanBo', "CanBoController@XuLyCapNhat")->name("UpdateCB");
 
-// Xóa cán bộ
+// Xóa cán bộ.
 Route::get('xoaCanbo/{mscb}', "CanBoController@XoaCanBo")->name("DeleteCB");
 
-
+// Tìm kiếm cán bộ.
+Route::get('timkiemCanBo', "CanBoController@TimCanBo")->name("FindCB");
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use \Symfony\Component\Console\Input\Input;
+use \App\Http\Controllers\CanBoController;
 
 class CanBo extends Model
 {
@@ -31,7 +32,7 @@ class CanBo extends Model
     public static function GetCanBo()
     {
         // Lấy dữ liệu kết hợp phân trang (3 mẫu tin/trang).
-        $canbos = \DB::table('canbo')->Paginate(5);
+        $canbos = \DB::table('canbo')->Paginate(CanBoController::$so_dong);
         return $canbos;
     }
 
