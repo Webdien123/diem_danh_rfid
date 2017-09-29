@@ -35,24 +35,40 @@ class CanBoController extends Controller
     // Thêm thông tin cán bộ với vào hệ thống.
     public function ThemCanBo(Request $canbo)
     {
+        // Tìm xem có các bộ nào đã có mã số này chưa.
         $maso = CanBo::GetCB($canbo->mscb);
+
+        // Tìm xem có các bộ nào đã có email này chưa.
         $email = CanBo::GetCB_Email($canbo->email);
 
+        // Nếu mã số và email đều chưa có.
         if ($maso == null && $email == null) {
+
+            // Thêm cán bộ vào hệ thống
             $ketqua =  CanBo::AddCB($canbo);
+
+            // Nếu xử lý thành công thì về trang cán bộ
+            // ngược lại báo lỗi do xử lý.
             if ($ketqua)
                 return redirect()->route('staff');
+            else
+                return redirect()->route('Error',
+                ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý. Hãy thử lại sau.']);
         }
+        // Nếu mã số hoặc email đã bị trùng.
         else {
+            // Báo lỗi trùng cả email và mã số.
             if ($maso != null && $email != null) {
                 return redirect()->route('Error',
                 ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ và email đã tồn tại']);
             }
             else
+                // Báo lỗi trùng email
                 if ($maso == null) {
                     return redirect()->route('Error',
                     ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Email đã tồn tại']);
                 }
+                // Báo lỗi trùng mã số.
                 else {
                     return redirect()->route('Error',
                     ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
