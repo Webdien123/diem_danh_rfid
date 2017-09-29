@@ -56,7 +56,21 @@ class CanBo extends Model
     public static function GetCB($mscb)
     {
         $canbo = \DB::select('select * from canbo where MSCB = ?', [$mscb]);
-        return $canbo;
+        if ($canbo) {
+            return $canbo;
+        } else {
+            return null;
+        }
+    }
+
+    public static function GetCB_Email($email)
+    {
+        $canbo = \DB::select('select * from canbo where EMAIL = ?', [$email]);
+        if ($canbo) {
+            return $canbo;
+        } else {
+            return null;
+        }
     }
 
     // Cập nhật thông tin cán bộ.

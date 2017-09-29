@@ -79,31 +79,10 @@ Route::get('card', function() {
 |
 */
 
-// Thử blade template
-Route::get('blade', function () {
-    return view('orther_views.s');
-});
-
-// Thử giao diện đa tab
-Route::get('tabs', function() {
-    return view('orther_views.tabs');
-});
-
-// Thử menu thông báo
-Route::get('no_menu', function() {
-    return view('orther_views.notification_menu');
-});
-
-// Thử giao diện text autosize
-Route::get('text', function() {
-    return view('orther_views.responsive_text');
-});
-
-// Thử hàm lấy tất cả dữ liệu
-
 use App\CanBo;
 
-Route::get('bomon', function() {
-    $bm = CanBo::GetCanBo();
-    var_dump($bm);
+// Route thử nghiệm
+Route::get('abc', function () {
+    $canbo = CanBo::GetCB_Email("abcs@gmail.com");
+    var_dump($canbo);
 });

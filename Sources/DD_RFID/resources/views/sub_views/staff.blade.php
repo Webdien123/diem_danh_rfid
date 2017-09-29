@@ -170,7 +170,7 @@
                                     ["mscb" => $canbo->MSCB]) ?>');}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
-                                </button>K
+                                </button>
                             </td>
                             
                         </tr>
