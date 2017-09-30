@@ -7,7 +7,7 @@
     <script src="{{ asset('js/noti_menu.js') }}"></script>
 
     {{--  Chuyển đổi màu thanh menu theo trang con.  --}}
-    @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
+    {{--  @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
         {!! '<div class="panel panel-info">' !!}
     @elseif (strpos ($_SERVER['REQUEST_URI'], 'event'))
         {!! '<div class="panel panel-success">' !!}
@@ -17,8 +17,8 @@
         {!! '<div class="panel panel-primary">' !!}
     @else
         {!! '<div class="panel panel-default">' !!}
-    @endif
-
+    @endif  --}}
+    <div class="panel panel-default">
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading" style="padding: 0px 15px 0px 15px">
                 

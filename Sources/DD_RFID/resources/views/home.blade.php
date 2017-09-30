@@ -36,13 +36,9 @@
                 <h2>Thời gian: <b>14:00</b> - Địa điểm: <b>Hội trường rùa</b></h2>
             </div>
         </div>
-        <a class="btn btn-primary" href="{{ route('admin') }}" role="button">
+        <a class="btn btn-primary" href="{{ route('login') }}" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
-        </a>
-        <a class="btn btn-primary" href="{{ route('login') }}" role="button">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-            TRANG ĐĂNG NHẬP
         </a>
         <hr>
 
