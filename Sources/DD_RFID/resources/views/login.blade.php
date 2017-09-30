@@ -26,13 +26,13 @@
                         <h3 class="panel-title">Đăng nhập</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="" method="POST" id="f_dgnhap">
+                        <form action="{{ route('login') }}" method="POST" id="f_dgnhap">
 							{{ csrf_field() }}
 							<div class="form-group">
 								<label for="">Email</label>
 						        <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{old('email')}}">
 							</div>
-						
+
 							<div class="form-group">
 								<label for="">Mật khẩu:</label>
 								<input type="password" class="form-control" name="pass" id="pass" placeholder="Mật khẩu">

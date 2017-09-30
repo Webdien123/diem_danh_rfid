@@ -35,7 +35,7 @@
                     {{--  Phần tên quản trị và nút thông báo  --}}
                     <div class="pull-right">
                         <ul id="nav">
-                            <li>Xin chào: <b>Nguyễn Văn A</b></li>
+                            <li>{!! 'Xin chào: <b>'.Session::get('uname').'</b>' !!}</li>
                             <li id="notification_li">
                             <a href="#" id="notificationLink">
                                 <span class="fa fa-comment-o fa-2x" style="color: black">
@@ -121,7 +121,7 @@
 
                 {{--  Thao tác đăng xuất  --}}
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="#" class="btn btn-warning btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('logout') }}" class="btn btn-warning btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-sign-out fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Đăng xuất</div>
                     </a>

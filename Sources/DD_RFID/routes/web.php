@@ -17,9 +17,13 @@ Route::get('/', function () {
 })->name('home');
 
 // Dẫn vào trang đăng nhập.
-Route::get('login', function() {
-    return view('login');
-})->name('login');
+Route::get('login', "LoginController@GetLogin");
+
+// Xử lý đăng nhập.
+Route::post('login_processing', "LoginController@LoginProcess")->name('login');
+
+// Đăng xuất.
+Route::get('logout', "LoginController@LogOut")->name('logout');
 
 // Dẫn vào trang điều khiển của admin.
 Route::get('admin', function() {

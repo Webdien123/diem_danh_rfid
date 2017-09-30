@@ -36,7 +36,7 @@
                 <h2>Thời gian: <b>14:00</b> - Địa điểm: <b>Hội trường rùa</b></h2>
             </div>
         </div>
-        <a class="btn btn-primary" href="{{ route('login') }}" role="button">
+        <a class="btn btn-primary" href="/login" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
         </a>
@@ -64,6 +64,7 @@
         </div>
     </div>
 
+    {{--  Script auto size text tiêu đề theo kích thước màn hình  --}}
     <script>
         jQuery("#event_name").fitText(1.8);
     </script>
