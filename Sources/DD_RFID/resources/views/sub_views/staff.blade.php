@@ -5,8 +5,7 @@
 
 @section('student') 
 
-    {{--  Script lưu trữ mà lấy giá trị cần thiết khi 
-    chọn danh sách bộ môn hoặc danh sách khoa.  --}}
+    {{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
     <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
 
     {{--  Script inport jquery validate  --}}
@@ -20,7 +19,10 @@
         <form action="{{ route('FindCB') }}" method="get" class="form-inline pull-right hidden-xs" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
-            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input
+                type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
+                oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
+                oninput="setCustomValidity('')">
             <button type="submit" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
@@ -174,26 +176,6 @@
                             </td>
                             
                         </tr>
-
-                        {{--  <tr>
-                            <td>001220</td>
-                            <td>Lê Văn B</td>
-                            <td>CNTT</td>
-                            <td>CNTT</td>
-                            <td>lvbe@ctu.edu</td>
-                            <td>chưa đăng ký</td>
-                            <td>
-                                <a href="" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Sửa thông tin
-                                </a>
-                                
-                                <button type="button" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    Xóa
-                                </button>
-                            </td>
-                        </tr>  --}}
                     @endforeach           
                 @endif
             </tbody>

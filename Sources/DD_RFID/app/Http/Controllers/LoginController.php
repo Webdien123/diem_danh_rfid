@@ -15,29 +15,44 @@ class LoginController extends Controller
         return view('login');
     }
 
-    // Xử lý đăng nhập
+    // Xử lý đăng nhập.
     public function LoginProcess(Request $user)
     {
+        // Lấy email và mật khẩu đã nhập.
         $email = $user->input('email');
         $password = $user->input('pass');
 
+        // Nếu thông tin được xác thực đúng.
         if( Auth::attempt(['email' => $email, 'password' =>$password])) {
+
+            // Truy vấn tên người đã đăng nhập lưu vào session.
             $name = \DB::select('SELECT name FROM users WHERE email = ?', [$email]);
             $name = $name[0]->name;
             \Session::put('uname', $name);
+
+            // Chuyển về trang quản trị.
             return redirect()->route('admin');
-        } else {
+        } 
+        // Ngược lại lưu giá trị lỗi vào session để quay về trang đăng nhập
+        // hiển thị cảnh báo cho người dùng.
+        else {
             \Session::put('err', '1');
             $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
             return redirect()->back()->withInput()->withErrors($errors);
         }
     }
 
+    // Xử lý đăng xuất.
     public function LogOut(Request $request)
     {
+        // Thoát phiên làm việc.
         Auth::logout();
+
+        // Xóa các session của người đăng nhập.
         \Session::forget('uname');
         \Session::forget('err');
+
+        // Về trang chủ.
         return redirect()->route('home');
     }
 }

@@ -110,8 +110,8 @@
                     </div>
 
                     <a href="{{ route('staff') }}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                        Hủy
+                        <span class="fa fa-arrow-left" aria-hidden="true"></span>
+                        Về trang cán bộ.
                     </a>
 
                     <button type="submit" class="btn btn-primary">

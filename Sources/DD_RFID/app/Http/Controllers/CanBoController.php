@@ -81,6 +81,8 @@ class CanBoController extends Controller
     // Tìm thông tin cán bộ cần update và hiển thị lên để chỉnh sửa.
     public function CapNhatCanBo($mscb)
     {
+        if (\Session::get('ketqua') != 2)
+            \Session::forget('ketqua');
         $canbo = CanBo::GetCB($mscb);
         if ($canbo != null) {
             return view('form_views.thongtin_canbo', [
