@@ -9,12 +9,6 @@ use App\User;
 
 class LoginController extends Controller
 {
-    // Lấy trang đăng nhập.
-    public function GetLogin()
-    {
-        return view('login');
-    }
-
     // Xử lý đăng nhập.
     public function LoginProcess(Request $user)
     {

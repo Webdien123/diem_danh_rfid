@@ -12,12 +12,10 @@
 */
 
 // Dẫn vào trang chủ.
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', "GetViewController@Home")->name('home');
 
 // Dẫn vào trang đăng nhập.
-Route::get('login', "LoginController@GetLogin");
+Route::get('login', "GetViewController@Login");
 
 // Xử lý đăng nhập.
 Route::post('login_processing', "LoginController@LoginProcess")->name('login');
@@ -26,24 +24,16 @@ Route::post('login_processing', "LoginController@LoginProcess")->name('login');
 Route::get('logout', "LoginController@LogOut")->name('logout');
 
 // Dẫn vào trang điều khiển của admin.
-Route::get('admin', function() {
-    return view('admin');
-})->name('admin');
+Route::get('admin', "GetViewController@Admin")->name('admin');
 
 // Dẫn vào trang thống kê điểm danh.
-Route::get('chart', function() {
-    return view('sub_views.chart');
-})->name('chart');
+Route::get('chart', "GetViewController@ThongKe")->name('chart');
 
 // Dẫn vào trang Quản Lý sự kiện.
-Route::get('event', function() {
-    return view('sub_views.event');
-})->name('event');
+Route::get('event', "GetViewController@SuKien")->name('event');
 
 // Dẫn vào trang Quản Lý sinh viên.
-Route::get('student', function() {
-    return view('sub_views.student');
-})->name('student');
+Route::get('student', "GetViewController@SinhVien")->name('student');
 
 // Dẫn vào trang Quản Lý cán bộ.
 Route::get('staff', "CanBoController@GetPageCB")->name('staff');
@@ -70,9 +60,9 @@ Route::get('timkiemCanBo', "CanBoController@TimCanBo")->name("FindCB");
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 
 // Dẫn vào trang đang ký thẻ.
-Route::get('card', function() {
-    return view('sub_views.card');
-})->name('card');
+Route::get('card', "GetViewController@Card")->name('card');
+
+
 
 /*
 |--------------------------------------------------------------------------
