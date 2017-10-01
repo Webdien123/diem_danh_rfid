@@ -35,6 +35,7 @@ class ExcelController extends Controller
 					if(!empty($insert)){
                         foreach ($insert as $item) {
                             $sodong++;
+                            // abc
                             $ketqua = CanBo::AddCB_Data(
                                 $item['mscb'], 
                                 $item['tenbomon'], 
