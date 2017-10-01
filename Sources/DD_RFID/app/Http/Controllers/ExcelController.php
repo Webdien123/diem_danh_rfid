@@ -1,23 +1,36 @@
 <?php
-
+// Lớp định nghĩa các hàm xử lý việc nhập xuất file excel.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Excel;
-use DB;
 use App\CanBo;
 
 class ExcelController extends Controller
 {
+    // Hàm import file excel theo tên bảng vào file dữ liệu cho trước.
+    // biến request dùng để nhận tên bảng khi post sang.
     public function ImportFile(Request $request)
     {
+        // Nếu phần file đã được chọn.
         if(Input::hasFile('im_file')){
-			$path = Input::file('im_file')->getRealPath();
+            
+            // Lấy đường dẫn của file.
+            $path = Input::file('im_file')->getRealPath();
+            
+            // Lấy dữ liệu trong file.
             $data = Excel::load($path, function($reader) {})->get();
+
+            // Lấy tên bảng.
+            $tenbang = $request->tenBang;
+
 			try{
+                // Nếu có dữ liệu trong file cần import.
 				if(!empty($data) && $data->count()){
-                    $insert = $this->TaoDuLieuCB($data);
+
+                    // Tạo dữ liệu cần insert tùy theo tên bảng.
+                    $insert = $this->TaoDuLieu($tenbang , $data);
                     $sodong = 0;
 					if(!empty($insert)){
                         foreach ($insert as $item) {
@@ -40,7 +53,12 @@ class ExcelController extends Controller
                                 ]);
                             }
                         }
-					}
+
+                    }
+                    else {
+                        return redirect()->route('Error', 
+                        ['mes' => 'Import cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+                    }
 				}
 			}
 			catch (\Exception $e) {
@@ -50,6 +68,16 @@ class ExcelController extends Controller
 		}
     }
 
+    // Hàm tạo dạng dữ liệu có thể lưu trữ vào csdl dựa theo tên bảng và
+    // dữ liệu lấy được từ file import.
+    public function TaoDuLieu($tenbang, $data)
+    {
+        if ($tenbang == "canbo") {
+            return $this->TaoDuLieuCB($data);
+        }
+    }
+
+    // Hàm tạo dữ liệu cho bảng cán bộ.
     public function TaoDuLieuCB($data)
     {
         foreach ($data as $key => $value) {
