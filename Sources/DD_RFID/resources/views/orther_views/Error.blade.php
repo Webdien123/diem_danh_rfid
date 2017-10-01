@@ -11,7 +11,7 @@
 
 	<center><img src="<?php echo asset('imgs/sad.png')?>" class="img-responsive" alt="Image"></center>
 
-	<h3 class="text-center"><b>{{ $re }}</b></h3>
+	<h3 class="text-center"><b>{!! $re !!}</b></h3>
 	
 	<h3 class="text-center">Bấm vào 
 		<a onclick="window.history.back();">đây</a>
