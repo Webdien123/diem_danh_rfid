@@ -56,6 +56,9 @@ Route::get('xoaCanbo/{mscb}', "CanBoController@XoaCanBo")->name("DeleteCB");
 // Tìm kiếm cán bộ.
 Route::get('timkiemCanBo', "CanBoController@TimCanBo")->name("FindCB");
 
+// Import cán bộ từ excel.
+Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
+
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 

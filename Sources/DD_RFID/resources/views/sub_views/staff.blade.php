@@ -45,10 +45,10 @@
     {{--  Hiển thị tiêu đề và nút thêm cán bộ  --}}
     <center><h1>Danh sách cán bộ</h1></center>
     <div class="row">
-        <div class="col-xs-12 col-md-6">  
+        <div class="col-xs-12" >  
 
             {{--  Nút thêm cán bộ  --}}
-            <a class="btn btn-primary" data-toggle="modal" href='#modal-themcb'>
+            <a class="btn btn-primary" class="pull-left" data-toggle="modal" href='#modal-themcb'>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 Thêm cán bộ
             </a>
@@ -62,6 +62,7 @@
                             <h4 class="modal-title">Thêm cán bộ</h4>
                         </div>
                         <div class="modal-body">
+                            {{--  Form thêm cán bộ  --}}
                             <form action="{{ route('AddCB') }}" method="POST" id="form_canbo">
                                 {{--  Phần mã xác thực form của laravel  --}}
 								{{ csrf_field() }}
@@ -100,7 +101,7 @@
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
 								</div>
 
-								<button type="button" class="btn btn-default" data-dismiss="modal">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">
 									<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
 									Hủy
 								</button>
@@ -114,11 +115,26 @@
                     </div>
                 </div>
             </div>
-            
-            <a class="btn btn-default" style="background-color: #001a66; color: white">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+
+            <button id="import_toggle" class="btn btn-default">
                 Thêm cán bộ từ excel
-            </a>
+            </button>
+
+            <div id="import_div">
+                <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" class="form-inline" role="form">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="tenBang" id="tenBang" value="canbo">
+                    <input type="file" class="form-control" name="im_file" placeholder="Hiện tên file">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        Import
+                    </button>
+                </form>
+            </div>
+
+            {{--  Script xử lý ẩn hiện phần import cán bộ.  --}}
+            <script src="{{ asset('js/toggle_import.js') }}"></script>  
+
         </div>
     </div>
 
@@ -161,7 +177,7 @@
                                 </button>
                             </td>
                             <td>
-                                <a href="/staff_info/{{ $canbo->MSCB }}" class="btn btn-success">
+                                <a href="/staff_default/{{ $canbo->MSCB }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
                                 </a>
