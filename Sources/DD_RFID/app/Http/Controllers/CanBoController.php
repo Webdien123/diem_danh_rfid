@@ -97,8 +97,6 @@ class CanBoController extends Controller
     public function CapNhatCanBo($mscb)
     {
         if (\Session::has('uname')) {
-            if (\Session::get('ketqua') != 2)
-                \Session::forget('ketqua');
             $canbo = CanBo::GetCB($mscb);
             if ($canbo != null) {
                 return view('form_views.thongtin_canbo', [
