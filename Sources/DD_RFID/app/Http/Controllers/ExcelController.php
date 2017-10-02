@@ -19,8 +19,8 @@ class ExcelController extends Controller
             // Lấy đường dẫn của file.
             $path = Input::file('im_file')->getRealPath();
             
-            // Lấy dữ liệu trong file.
-            $data = Excel::load($path, function($reader) {})->get();
+            // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
+            $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
 
             // Lấy tên bảng.
             $tenbang = $request->tenBang;
@@ -129,7 +129,7 @@ class ExcelController extends Controller
             ];
         }
         return $insert;
-    }    
+    }
 
     // Hàm import dòng dữ liệu item vào bảng cán bộ.
     public function ImportCanBo($item)
