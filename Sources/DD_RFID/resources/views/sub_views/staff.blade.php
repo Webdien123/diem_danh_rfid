@@ -116,20 +116,22 @@
                 </div>
             </div>
 
+            {{--  Nút ấn hiện chức năng import cán bộ từ excel.  --}}
             <button id="import_toggle" class="btn btn-default">
                 Thêm cán bộ từ excel
             </button>
 
             <div id="import_div">
-                <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" class="form-inline" role="form">
+                <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
                     {{ csrf_field() }}
                     <input type="hidden" name="tenBang" id="tenBang" value="canbo">
                     <input type="file" class="form-control" name="im_file" placeholder="Hiện tên file">
                     <button type="submit" class="btn btn-primary">
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                        Import
+                        Thêm
                     </button>
                 </form>
+                adfà
             </div>
 
             {{--  Script xử lý ẩn hiện phần import cán bộ.  --}}

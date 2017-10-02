@@ -31,18 +31,24 @@ class ExcelController extends Controller
 
                     // Tạo dữ liệu cần insert tùy theo tên bảng.
                     $insert = $this->TaoDuLieu($tenbang , $data);
+
+                    // Tính số thứ tự dòng đang import
                     $sodong = 0;
+
+                    // Nếu dữ liệu cần insert được tạo thành công.
 					if(!empty($insert)){
+
+                        // Với mỗi dòng dữ liệu cần insert.
                         foreach ($insert as $item) {
+
+                            // Đếm lại số thứ tự dòng.
                             $sodong++;
-                            // abc
-                            $ketqua = CanBo::AddCB_Data(
-                                $item['mscb'], 
-                                $item['tenbomon'], 
-                                $item['tenkhoa'], 
-                                $item['email'], 
-                                $item['hoten']
-                            );
+
+                            // Insert dòng dữ liệu vào bảng tương ứng.
+                            $ketqua = $this->ImportDuLieu($tenbang , $item);
+
+                            // Nếu thực thi không thành công thì hiển thị trang báo lỗi
+                            // để người dùng xem lại dữ liệu trong file.
                             if (!$ketqua) {
                                 return redirect()->route('Error',[
                                     'mes' => 'Import thất bại tại dòng dữ liệu thứ '.$sodong, 
@@ -54,8 +60,8 @@ class ExcelController extends Controller
                                 ]);
                             }
                         }
-
                     }
+                    // Nếu lấy dữ liệu insert thất bại.
                     else {
                         return redirect()->route('Error', 
                         ['mes' => 'Import cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
@@ -66,7 +72,9 @@ class ExcelController extends Controller
 				return redirect()->route('Error', 
                 ['mes' => 'Import cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
 			}
-		}
+        }
+        // Hiển thị về trang kết quả chứa dữ liệu cần import.
+        return $this->HienThiKetQua($tenbang);
     }
 
     // Hàm tạo dạng dữ liệu có thể lưu trữ vào csdl dựa theo tên bảng và
@@ -75,6 +83,23 @@ class ExcelController extends Controller
     {
         if ($tenbang == "canbo") {
             return $this->TaoDuLieuCB($data);
+        }
+    }
+
+    // Hàm import dòng dữ liệu item vào tên bảng tương ứng.
+    public function ImportDuLieu($tenbang, $item)
+    {
+        if ($tenbang == "canbo") {
+            return $this->ImportCanBo($item);
+        }
+    }
+
+    // Hàm hiển thị lại trang chứa dữ liệu cần import tương ứng
+    // với tên bảng dữ liệu.
+    public function HienThiKetQua($tenbang)
+    {
+        if ($tenbang == "canbo") {
+            return redirect()->route('staff');
         }
     }
 
@@ -91,9 +116,25 @@ class ExcelController extends Controller
             ];
         }
         return $insert;
+    }    
+
+    // Hàm import dòng dữ liệu item vào bảng cán bộ.
+    public function ImportCanBo($item)
+    {
+        try {
+            // Insert dòng dữ liệu vào bảng cán bộ theo giá trị trong mảng item.
+            \DB::insert('insert into canbo (MSCB, TENBOMON, TENKHOA, EMAIL, HOTEN) values (?, ?, ?, ?, ?)', [
+                $item['mscb'], 
+                $item['tenbomon'], 
+                $item['tenkhoa'], 
+                $item['email'], 
+                $item['hoten']
+            ]);
+            return true; //Trả kết quả import về cho hàm ImportDuLieu.
+        } catch (\Exception $e) {
+            return false;
+        }
     }
-    
-    
     
     
     

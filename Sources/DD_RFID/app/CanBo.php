@@ -53,22 +53,6 @@ class CanBo extends Model
         }
     }
 
-    public static function AddCB_Data($MSCB, $TENBOMON, $TENKHOA, $EMAIL, $HOTEN)
-    {
-        try {
-            \DB::insert('insert into canbo (MSCB, TENBOMON, TENKHOA, EMAIL, HOTEN) values (?, ?, ?, ?, ?)', [
-                $MSCB, 
-                $TENBOMON,
-                $TENKHOA,
-                $EMAIL,
-                $HOTEN
-            ]);
-            return true; //Trả kết quả thêm để controller Cán bộ tiếp tục thực thi.
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
     // Lấy thông tin của một cán bộ theo mã cán bộ.
     public static function GetCB($mscb)
     {
