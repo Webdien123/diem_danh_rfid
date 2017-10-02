@@ -125,13 +125,26 @@
                 <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
                     {{ csrf_field() }}
                     <input type="hidden" name="tenBang" id="tenBang" value="canbo">
-                    <input type="file" class="form-control" name="im_file" placeholder="Hiện tên file">
+                    <input type="file" required class="form-control" name="im_file"
+                    oninvalid="this.setCustomValidity('Vui lòng chọn file trước khi import')"
+                    oninput="setCustomValidity('')">
                     <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
                         Thêm
                     </button>
                 </form>
-                adfà
+
+                <form action="{{ route('download_file') }}" method="POST" class="form-inline" role="form">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label class="sr-only" for="">label</label>
+                        <input type="hidden" class="form-control" name="down_file" value="{{ public_path() . '\download\abc.xlsx' }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                        Tải file import mẫu
+                    </button>
+                </form>
             </div>
 
             {{--  Script xử lý ẩn hiện phần import cán bộ.  --}}
@@ -179,7 +192,7 @@
                                 </button>
                             </td>
                             <td>
-                                <a href="/staff_default/{{ $canbo->MSCB }}" class="btn btn-success">
+                                <a href="/staff_info/{{ $canbo->MSCB }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
                                 </a>

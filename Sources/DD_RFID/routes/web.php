@@ -56,8 +56,12 @@ Route::get('xoaCanbo/{mscb}', "CanBoController@XoaCanBo")->name("DeleteCB");
 // Tìm kiếm cán bộ.
 Route::get('timkiemCanBo', "CanBoController@TimCanBo")->name("FindCB");
 
-// Import cán bộ từ excel.
+// Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
+
+// Download file mẫu import.
+Route::post('download_file', "ExcelController@DownLoadFile")->name("download_file");
+
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
@@ -76,11 +80,7 @@ Route::get('card', "GetViewController@Card")->name('card');
 | trong quá trình phát triển phần mềm
 |
 */
-
-use App\CanBo;
-
 // Route thử nghiệm
 Route::get('abc', function () {
-    $canbo = CanBo::GetCB_Email("abcs@gmail.com");
-    var_dump($canbo);
+    return view('orther_views.codelab');
 });

@@ -77,6 +77,19 @@ class ExcelController extends Controller
         return $this->HienThiKetQua($tenbang);
     }
 
+    // Hàm download file đã lưu trữ.
+    // sử dụng để download file import mẫu.
+    public function DownLoadFile(Request $R)
+    {
+        // Lấy đường dẫn file, cấu hình header cho response và tên file đích.
+        $myFile = $R->down_file;   
+    	$headers = ['Content-Type: application/xlsx'];
+    	$newName = 'cde-'.'.xlsx';
+
+        // Trả về cửa sổ download tương ứng.
+    	return response()->download($myFile, $newName, $headers);
+    }
+
     // Hàm tạo dạng dữ liệu có thể lưu trữ vào csdl dựa theo tên bảng và
     // dữ liệu lấy được từ file import.
     public function TaoDuLieu($tenbang, $data)
@@ -135,7 +148,5 @@ class ExcelController extends Controller
             return false;
         }
     }
-    
-    
     
 }

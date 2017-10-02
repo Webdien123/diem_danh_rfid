@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CanBo;
+use Excel;
 
 class GetViewController extends Controller
 {
@@ -16,7 +18,7 @@ class GetViewController extends Controller
     public function Login()
     {
         if (\Session::has('uname')) {
-            return view('login');
+            return view('admin');
         }
         else{
             return view('login');
