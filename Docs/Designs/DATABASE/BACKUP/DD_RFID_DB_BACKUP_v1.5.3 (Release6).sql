@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 23, 2017 lúc 08:03 AM
+-- Thời gian đã tạo: Th10 03, 2017 lúc 12:30 PM
 -- Phiên bản máy phục vụ: 10.1.24-MariaDB
 -- Phiên bản PHP: 7.0.20
 
@@ -159,7 +159,9 @@ CREATE TABLE `khoa_phong` (
 --
 
 INSERT INTO `khoa_phong` (`TENKHOA`) VALUES
-('Công nghệ thông tin và truyền thông');
+('abc xyz'),
+('Công nghệ thông tin và truyền thông'),
+('khoa mới nè');
 
 -- --------------------------------------------------------
 
@@ -182,8 +184,9 @@ INSERT INTO `kyhieulop` (`KYHIEULOP`) VALUES
 ('A4'),
 ('A5'),
 ('A6'),
-('A7'),
-('A8');
+('F1'),
+('F2'),
+('F3');
 
 -- --------------------------------------------------------
 
@@ -329,12 +332,16 @@ CREATE TABLE `to_bomon` (
 --
 
 INSERT INTO `to_bomon` (`TENBOMON`, `TENKHOA`) VALUES
+('A', 'abc xyz'),
+('B', 'abc xyz'),
+('C', 'abc xyz'),
 ('Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông'),
 ('Công nghệ thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Hệ thống thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Khoa học máy tính', 'Công nghệ thông tin và truyền thông'),
 ('Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông'),
-('Tin học ứng dụng', 'Công nghệ thông tin và truyền thông');
+('Tin học ứng dụng', 'Công nghệ thông tin và truyền thông'),
+('bộ môn nè', 'khoa mới nè');
 
 -- --------------------------------------------------------
 
@@ -351,6 +358,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$3CkRLWFOiWQq4SMXCSQsbOm0D6LJkpzA41rzVBWiVRFbFENGYUOAK', 'FEIicO51r5wjUvIp7TFFcgMFEvnmKJqnQAI4Q8NPiu2wWEpTQuCdGtGZJiPs', NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -524,7 +538,7 @@ ALTER TABLE `thongbao`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
