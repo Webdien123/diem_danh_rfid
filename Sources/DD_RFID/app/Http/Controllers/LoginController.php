@@ -24,6 +24,9 @@ class LoginController extends Controller
             $name = $name[0]->name;
             \Session::put('uname', $name);
 
+            // Reset giá trị các session khác.
+            \Session::put('ketqua_up_cb', 2);
+
             // Chuyển về trang quản trị.
             return redirect()->route('admin');
         } 
@@ -45,7 +48,7 @@ class LoginController extends Controller
         // Xóa các session của người đăng nhập.
         \Session::forget('uname');
         \Session::forget('err');
-
+        \Session::forget('ketqua_up_cb');
         // Về trang chủ.
         return redirect()->route('home');
     }

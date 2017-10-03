@@ -32,14 +32,14 @@
         <h1>Trang cập nhật cán bộ</h1>
         
         <div class="container">
-            @if (Session::get('ketqua') == 0)
+            @if (Session::get('ketqua_up_cb') == 0)
                 {{--  Thông báo thành công  --}}
                 <div class="alert alert-success alert-dismissable" id="success-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Cập nhật thành công! cán bộ: {{ $canbo[0]->MSCB }} - {{ $canbo[0]->HOTEN }}</strong>
                 </div>
 
-            @elseif (Session::get('ketqua') == 1)
+            @elseif (Session::get('ketqua_up_cb') == 1)
                 {{--  Thông báo thất bại  --}}
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -49,7 +49,7 @@
         </div>
 
         <?php
-            \Session::put('ketqua', 2);
+            \Session::put('ketqua_up_cb', 2);
         ?>
 
     </center>

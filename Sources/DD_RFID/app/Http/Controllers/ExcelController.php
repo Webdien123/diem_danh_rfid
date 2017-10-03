@@ -83,7 +83,7 @@ class ExcelController extends Controller
     public function DownLoadFile(Request $R)
     {
         // Lấy đường dẫn file, cấu hình header cho response và tên file đích.
-        $myFile = $R->down_file; 
+        $myFile = $R->down_file;
         $headers = ['Content-Type: application/xlsx'];
         if (strpos ($myFile, 'canbo'))
             $newName = 'Mau_import_canbo'.'.xlsx';

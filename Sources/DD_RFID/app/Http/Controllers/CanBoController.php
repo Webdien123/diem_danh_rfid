@@ -119,7 +119,7 @@ class CanBoController extends Controller
         if (\Session::has('uname')) {
             $ketqua = CanBo::UpdateCB($canbo);
             $ketqua = ($ketqua) ? 0 : 1 ;
-            \Session::put('ketqua', $ketqua);
+            \Session::put('ketqua_up_cb', $ketqua);
             return redirect('/staff_info/' . $canbo->mscb);       
         }
         else{
