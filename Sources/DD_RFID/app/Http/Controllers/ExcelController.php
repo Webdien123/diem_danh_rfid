@@ -55,7 +55,8 @@ class ExcelController extends Controller
                                     'reason' => 
                                         'Vui lòng kiếm tra lại các thông tin sau:<br>
                                         1. Tên các cột so với file import mẫu<br>
-                                        2. Id dữ liệu so với id đã có trong hệ thống.<br>
+                                        2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
+                                        3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
                                         3. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.'
                                 ]);
                             }
@@ -82,9 +83,10 @@ class ExcelController extends Controller
     public function DownLoadFile(Request $R)
     {
         // Lấy đường dẫn file, cấu hình header cho response và tên file đích.
-        $myFile = $R->down_file;   
-    	$headers = ['Content-Type: application/xlsx'];
-    	$newName = 'cde-'.'.xlsx';
+        $myFile = $R->down_file; 
+        $headers = ['Content-Type: application/xlsx'];
+        if (strpos ($myFile, 'canbo'))
+            $newName = 'Mau_import_canbo'.'.xlsx';
 
         // Trả về cửa sổ download tương ứng.
     	return response()->download($myFile, $newName, $headers);

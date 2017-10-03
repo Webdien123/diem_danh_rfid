@@ -121,6 +121,7 @@
                 Thêm cán bộ từ excel
             </button>
 
+            {{--  Phần kích hoạt chức năng import cán bộ.  --}}
             <div id="import_div">
                 <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
                     {{ csrf_field() }}
@@ -138,7 +139,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="sr-only" for="">label</label>
-                        <input type="hidden" class="form-control" name="down_file" value="{{ public_path() . '\download\abc.xlsx' }}">
+                        <input type="hidden" class="form-control" name="down_file" value="{{ public_path() . '\download\canbo.xlsx' }}">
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
@@ -212,8 +213,12 @@
             </tbody>
         </table>
     </div>
+
+    {{--  Hiển thị dãy nút phân trang.  --}}
+    @if (count($canbos) != 0)
     <center>
         {!! $canbos->links() !!}
     </center>
+    @endif
 @endsection
 
