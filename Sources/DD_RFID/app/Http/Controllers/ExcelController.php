@@ -86,7 +86,7 @@ class ExcelController extends Controller
         $myFile = $R->down_file;
         $headers = ['Content-Type: application/xlsx'];
         if (strpos ($myFile, 'canbo'))
-            $newName = 'Mau_import_canbo'.'.xlsx';
+            $newName = 'Mẫu import cán bộ'.'.xlsx';
 
         // Trả về cửa sổ download tương ứng.
     	return response()->download($myFile, $newName, $headers);

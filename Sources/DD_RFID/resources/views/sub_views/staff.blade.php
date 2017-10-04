@@ -11,6 +11,8 @@
     {{--  Script inport jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
+    <script src="{{ asset('js/additional-methods.min.js') }}"></script>
+
     {{--  Script xử lý validate dữ liệu cán bộ  --}}
     <script src="{{ asset('js/validate_canbo.js') }}"></script>
 
@@ -123,12 +125,10 @@
 
             {{--  Phần kích hoạt chức năng import cán bộ.  --}}
             <div id="import_div">
-                <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
+                <form enctype="multipart/form-data" id="f_import_canbo" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
                     {{ csrf_field() }}
                     <input type="hidden" name="tenBang" id="tenBang" value="canbo">
-                    <input type="file" required class="form-control" name="im_file"
-                    oninvalid="this.setCustomValidity('Vui lòng chọn file trước khi import')"
-                    oninput="setCustomValidity('')">
+                    <input type="file" class="form-control" name="im_file" id="im_file">
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-upload" aria-hidden="true"></i>
                         Thêm

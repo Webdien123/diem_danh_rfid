@@ -1,13 +1,5 @@
 $(document).ready(function () {
 
-    // $("#success-alert").fadeTo(1100, 500).slideUp(500, function(){
-    //     $("#success-alert").slideUp(500);
-    // });
-
-    // $("#error-alert").fadeTo(2000, 500).slideUp(500, function(){
-    //     $("#success-alert").slideUp(500);
-    // });
-
     // Hàm xử lý thông báo và ràng buột khi nhập dữ liệu
     $("#form_canbo").validate({
         rules: {
@@ -60,5 +52,21 @@ $(document).ready(function () {
             $(element).parent(".form-group").removeClass(errorClass).addClass(validClass); 
         }
 
+    });
+
+    $( "#f_import_canbo" ).validate({
+        rules: {
+            im_file: {
+                required: true,
+                extension: "xls|xlsx|csv"
+            }
+        },
+
+        messages: {
+            im_file: {
+                required: "Chưa chọn file cần import",
+                extension: "file phải có định dạng xls, xlsx hoặc csv"
+            }
+        }
     });
 });
