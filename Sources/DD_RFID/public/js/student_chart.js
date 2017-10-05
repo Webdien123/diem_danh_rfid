@@ -1,8 +1,10 @@
 google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(drawChart1);
 
+var data;
+
 function drawChart1() {
-    var data = google.visualization.arrayToDataTable([
+    data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
         ['Có mặt', 22],
         ['Vắng mặt', 4],

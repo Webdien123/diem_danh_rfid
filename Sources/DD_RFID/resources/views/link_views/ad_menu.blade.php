@@ -7,24 +7,35 @@
     <script src="{{ asset('js/noti_menu.js') }}"></script>
 
     {{--  Chuyển đổi màu thanh menu theo trang con.  --}}
-    @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
+    {{--  @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
         {!! '<div class="panel panel-info">' !!}
     @elseif (strpos ($_SERVER['REQUEST_URI'], 'event'))
         {!! '<div class="panel panel-success">' !!}
     @elseif (strpos ($_SERVER['REQUEST_URI'], 'student'))
         {!! '<div class="panel panel-danger">' !!}
-    @else
+    @elseif (strpos ($_SERVER['REQUEST_URI'], 'staff'))
         {!! '<div class="panel panel-primary">' !!}
-    @endif
-
+    @else
+        {!! '<div class="panel panel-default">' !!}
+    @endif  --}}
+    <div class="panel panel-default">
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
-        <div class="panel-heading">
+        <div class="panel-heading" style="padding: 0px 15px 0px 15px">
                 
                 <!-- Menu thông báo -->
-                <div class="row" >
+                <div class="row">
+
+                    {{--  Phần di chuyển về trang chủ  --}}
+                    <div class="pull-left">
+                        <a href="{{ route('home') }}" class="btn btn-default">
+                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    {{--  Phần tên quản trị và nút thông báo  --}}
                     <div class="pull-right">
                         <ul id="nav">
-                            <li>Xin chào: <b>Nguyễn Văn A</b></li>
+                            <li>{!! 'Xin chào: <b>'.Session::get('uname').'</b>' !!}</li>
                             <li id="notification_li">
                             <a href="#" id="notificationLink">
                                 <span class="fa fa-comment-o fa-2x" style="color: black">
@@ -59,13 +70,9 @@
                                 </div>
                     
                             </li>
-                        </ul>
-
-
-                        
+                        </ul>                        
                     </div>
                 </div>  
-
         </div>
 
         {{--  Phần trình bày các nút liên kết qua các trang con  --}}
@@ -106,15 +113,15 @@
                 
                 {{--  Trang chủ  --}}
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="{{ route('home') }}" class="btn btn-default btn-lg btn-block dash-widget" role="button" style="padding:2px;">
-                        <div id="box_1"><span class="fa fa-home fa-3x"></span></div>
-                        <div id="box_2" class="icon-label">Về trang chủ</div>
+                    <a href="{{ route('card') }}" class="btn btn-default btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                        <div id="box_1"><span class="fa fa-id-card-o fa-3x"></span></div>
+                        <div id="box_2" class="icon-label">Đăng ký thẻ</div>
                     </a>
                 </div>
 
                 {{--  Thao tác đăng xuất  --}}
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="#" class="btn btn-warning btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('logout') }}" class="btn btn-warning btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-sign-out fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Đăng xuất</div>
                     </a>

@@ -4,16 +4,13 @@
 <html>
 <head>
 	<title>Trang chủ</title>
-    @include('import')
-	<script src="{{ asset('public/js/jquery.fittext.js') }}"></script>
+    @include('link_views.import')
 </head>
 <body>
-    @include('header')
-	<h4 id="abc">Trang chủ</h4>
-	<script>
-        //call fitText() function for the element you want to be fluid
-        $("#abc").fitText();
-        //Font-size = 1/10th of the element's width
+    <script src="{{ asset('js/jquery.fittext.js') }}"></script>
+    <div id="responsive_headline">LAKJLKJLADSKJFLSDKJFLSKDJLF</div>
+    <script>
+        jQuery("#responsive_headline").fitText(2);
     </script>
 </body>
 </html>

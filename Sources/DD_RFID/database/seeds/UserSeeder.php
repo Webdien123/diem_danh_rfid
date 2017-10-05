@@ -1,0 +1,16 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::insert('insert into users (name, email, password) values (?, ?, ?)', ['Trần Quản Trị', 'abc@gmail.com', bcrypt('123456')]);
+    }
+}

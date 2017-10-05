@@ -2,22 +2,34 @@
 
 @extends('admin')
 
+@section('title', 'Trang sự kiện')
+
 @section('event')
     
-    {{--  Gọi code thực hiện xoay icon đang cập nhật  --}}
+    {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
     @include('link_views.rotation_icon')
 
     {{--  Tìm kiếm sự kiện  --}}
-    <div class="col-xs-12 col-md-4 col-md-offset-8">
-			<form action="" method="get" class="form-inline" role="search">
-				<input type="hidden" name="_token" value="HdmoKcKa4GbZY5A1e2NUvlH4Jtab0z0bitquS7OQ">
-				<b>Tìm kiếm:</b>
-				<input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-				<button type="submit" class="btn btn-success">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					Tìm
-				</button>
-			</form>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+            {{ csrf_field() }}
+            <b>Tìm kiếm sự kiện:</b>
+            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Tìm
+            </button>
+        </form>
+
+        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+            {{ csrf_field() }}
+            <b>Tìm kiếm sự kiện:</b>
+            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Tìm
+            </button>
+        </form>
     </div>
     
     </div> {{--  kết thúc container của trang master  --}}
@@ -45,6 +57,7 @@
                 <tr>
                     <th>Tên sự kiện</th>
                     <th>Ngày thực hiện</th>
+                    <th>Địa điểm</th>
                     <th>Điểm danh vào</th>
                     <th>Điểm danh ra</th>
                     <th>Kết quả điểm danh</th>
@@ -55,18 +68,18 @@
 
                 {{--  Phần nội dung không có sự kiện  --}}
                 <tr>
-                    <th colspan="6" class="text-center"><i>Danh sách rỗng.</i></th>
+                    <th colspan="7" class="text-center"><i>Danh sách rỗng.</i></th>
                 </tr>
 
                 {{-- Phần nội dung khi có sự kiện   --}}
                 <tr>
                     <td>Ngày hội việc làm 0</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
-                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        <i>Chưa Thực hiện.</i>
                     </center></td>                    
                     <td>
                         <a href="" class="btn btn-success">
@@ -95,6 +108,7 @@
                 <tr>
                     <td>Ngày hội việc làm 1</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td>
@@ -130,11 +144,12 @@
                 <tr>
                     <td>Ngày hội việc làm 2</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
                         <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        Đang điểm danh
                     </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
@@ -163,11 +178,12 @@
                 <tr>
                     <td>Ngày hội việc làm 3</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
                         <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        Đang điểm danh
                     </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
@@ -196,11 +212,12 @@
                 <tr>
                     <td>Ngày hội việc làm 4</td>
                     <td>24/08/2017</td>
+                    <td>Hội trường lớn khu 2</td>
                     <td>14:00</td>
                     <td>17:00</td>
                     <td><center>
                         <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang cập nhật
+                        Đang điểm danh
                     </center></td>         
                     <td>
                         <a href="" class="btn btn-success">
