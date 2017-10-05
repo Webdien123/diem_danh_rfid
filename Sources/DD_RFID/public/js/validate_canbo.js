@@ -67,6 +67,13 @@ $(document).ready(function () {
                 required: "Chưa chọn file cần import",
                 extension: "file phải có định dạng xls, xlsx hoặc csv"
             }
+        },
+
+        errorPlacement: function (error, element) {
+            error.attr("color", "red");
+            error.addClass("help-block");
+            error.insertBefore(element);
+            // $("file_error").append(error);
         }
     });
 });

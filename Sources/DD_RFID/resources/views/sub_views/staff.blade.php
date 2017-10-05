@@ -135,7 +135,7 @@
                     </button>
                 </form>
 
-                <form action="{{ route('download_file') }}" method="POST" class="form-inline" role="form">
+                <form action="{{ route('download_file') }}" method="POST" class="pull-left form-inline" role="form">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="sr-only" for="">label</label>
