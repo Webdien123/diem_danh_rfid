@@ -11,13 +11,23 @@ class CardController extends Controller
     // nếu chưa trả về null, nếu có trả về thông tin chủ thẻ tương ứng.
     public function KiemTraDangKy(Request $mathe)
     {
+        // Lấy thông tin cán bộ có mã thẻ tương ứng.
         $canbo = DangKyTheCB::LayThongTinCanBo($mathe->id_the);
         
+        // Nếu tồn tại cán bộ đã đăng ký thẻ này
+        // thì chuyển sang giao diện hiển thị thông tin chủ thẻ
         if ($canbo) {
             return view('sub_views.sub_2.card_invalid', ['loaithe' => 'cán bộ', 'chuthe' => $canbo]);
         }
+        // Ngược lại hiển thị giao diện sảng sàng đăng ký thẻ.
         else {
             return view('sub_views.sub_2.card_valid', ['loaithe' => null, 'chuthe' => null]);
         }
+    }
+
+    //  Hàm đăng ký thẻ mới.
+    public function DangKyTheMoi()
+    {
+        echo "trang dang ký thẻ mới";
     }
 }

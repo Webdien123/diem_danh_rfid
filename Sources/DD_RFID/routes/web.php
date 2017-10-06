@@ -68,6 +68,9 @@ Route::get('card', "GetViewController@Card")->name('card');
 // Kiểm tra mã thẻ đã quét.
 Route::post('test_card', 'CardController@KiemTraDangKy')->name('test_card');
 
+// Lấy trang đăng ký thẻ mới.
+Route::get('dangkythemoi', 'CardController@DangKyTheMoi')->name('new_card');
+
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
