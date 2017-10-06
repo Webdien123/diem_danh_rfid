@@ -73,7 +73,7 @@ class GetViewController extends Controller
     public function Card()
     {
         if (\Session::has('uname')) {
-            return view('sub_views.card');
+            return view('sub_views.card', ['loaithe' => null, 'chuthe' => null]);
         }
         else{
             return view('login');

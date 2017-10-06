@@ -9,6 +9,14 @@
     {{--  Jquery điều khiển phần quét thẻ  --}}
     <script src="{{ asset('js/card.js') }}"></script>
 
+    <?php
+        if ($loaithe && $chuthe) {
+            var_dump($loaithe);
+            echo "</br>";
+            var_dump($chuthe);
+        }
+    ?>
+
     <div class="col-xs-12" >
         <!-- Nội dung trang card. 
         // Dùng container-fluid để đảm bảo kích thước chiều ngang -->
