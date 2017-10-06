@@ -12,11 +12,12 @@ class CardController extends Controller
     public function KiemTraDangKy(Request $mathe)
     {
         $canbo = DangKyTheCB::LayThongTinCanBo($mathe->id_the);
+        
         if ($canbo) {
-            return view('sub_views.card', ['loaithe' => 'cán bộ', 'chuthe' => $canbo]);
+            return view('sub_views.sub_2.card_invalid', ['loaithe' => 'cán bộ', 'chuthe' => $canbo]);
         }
         else {
-            return view('sub_views.card', ['loaithe' => null, 'chuthe' => null]);
+            return view('sub_views.sub_2.card_valid', ['loaithe' => null, 'chuthe' => null]);
         }
     }
 }
