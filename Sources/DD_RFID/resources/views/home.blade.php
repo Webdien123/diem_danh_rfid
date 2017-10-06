@@ -15,6 +15,9 @@
 
     {{--  Gọi script autosize của text tên sự kiện trên trang home  --}}
     <script src="{{ asset('js/jquery.fittext.js') }}"></script>
+
+    {{--  Jquery điều khiển phần quét thẻ  --}}
+    <script src="{{ asset('js/card.js') }}"></script>
 </head>
 <body>
     {{--  Thẻ hiển thị ảnh nền  --}}
@@ -54,7 +57,7 @@
                         <h1 class="text-center">Quét thẻ để điểm danh</h1>
                         <form action="" method="post" id="f_quet_the">
                             {{ csrf_field() }}
-                            <input type="text" class="form-control" name="TuKhoa" placeholder="Quét thẻ của bạn" required id="id_the">
+                            <input type="text" class="form-control" name="id_the" placeholder="Quét thẻ của bạn" required id="id_the">
                             <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
                         </form>
                         <hr>

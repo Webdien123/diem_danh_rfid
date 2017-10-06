@@ -5,6 +5,8 @@
 @section('title', 'Trang đăng ký thẻ')
 
 @section('chart')
+
+    {{--  Jquery điều khiển phần quét thẻ  --}}
     <script src="{{ asset('js/card.js') }}"></script>
 
     <div class="col-xs-12" >
@@ -16,10 +18,10 @@
             <div class="row">
                 <div class="col-xs-12 col-md-4 col-md-offset-4">
                     <h1 class="text-center">Quét thẻ cần đăng ký</h1>
-                    <form action="{{ route('home') }}" method="post" id="f_quet_the">
+                    <form action="{{ route('test_card') }}" method="post" id="f_quet_the">
                         {{ csrf_field() }}
                         <label for="">Mã thẻ</label>
-                        <input type="text" class="form-control" name="TuKhoa" placeholder="Quét thẻ cần đăng ký" required id="id_the">
+                        <input type="text" class="form-control" name="id_the" placeholder="Quét thẻ cần đăng ký" required id="id_the">
                         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
                     </form>
                     <hr>

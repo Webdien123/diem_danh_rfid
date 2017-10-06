@@ -62,15 +62,15 @@ Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
 // Download file mẫu import.
 Route::post('download_file', "ExcelController@DownLoadFile")->name("download_file");
 
-
-// Trang thông báo lỗi.
-Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
-
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', "GetViewController@Card")->name('card');
 
+// Kiểm tra mã thẻ đã quét.
+Route::post('test_card', 'CardController@TestCard')->name('test_card');
 
 
+// Trang thông báo lỗi.
+Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 /*
 |--------------------------------------------------------------------------
 | Test route
