@@ -32,6 +32,6 @@ class CardController extends Controller
     //  Hàm đăng ký thẻ mới.
     public function DangKyTheMoi(Request $R)
     {
-        // echo "mã thẻ: ".$mathe;
+        echo "Giá trị radio: ".var_dump($R->chon_cb_sv)."</br>";
     }
 }

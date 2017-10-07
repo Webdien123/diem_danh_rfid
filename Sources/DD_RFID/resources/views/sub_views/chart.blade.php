@@ -63,9 +63,9 @@
         <!-- Phần nội dung khi không có kết quả thống kê -->
         <div class="container-fluid">
             <div class="panel panel-info">
-                    <div class="panel-body">
-                        <h2 class="text-center">Hiện chưa có kết quả điểm đanh cho các sự kiện</h2>
-                    </div>
+                <div class="panel-body">
+                    <h2 class="text-center">Hiện chưa có kết quả điểm đanh cho các sự kiện</h2>
+                </div>
             </div>
         </div>
 

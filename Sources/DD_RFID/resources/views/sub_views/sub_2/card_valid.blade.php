@@ -21,8 +21,45 @@
         </button>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3" id="themoi_div">
-        thẻ mới
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="themoi_div">
+        
+        <form action="{{ route('new_card') }}" id="f_new_card" method="POST" role="form">
+            <legend>Thông tin đăng ký</legend>    
+            {{ csrf_field() }}
+            <input type="hidden" name="chon_cb_sv" id="chon_cb_sv">
+
+            <div class="form-group">
+                <label for="">Đăng ký cho:</label>
+                <div class="radio-inline">
+                    <label><input type="radio" name="rd_sv_cb" id="rd_sv" checked value="sinh viên">
+                        <span class="text-danger">
+                            <span class="fa fa-graduation-cap fa-2x"></span>
+                            Sinh viên
+                        </span>
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" name="rd_sv_cb" id="rd_cb" value="cán bộ">
+                        <span class="text-primary">
+                            <span class="fa fa-users fa-2x"></span>
+                            Cán bộ
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            {{--  script thay đổi giá trị giao diện theo chủ thẻ được chọn.  --}}
+            <script src="{{ asset('js/chuyen_chu_the.js') }}"></script>
+
+            <div class="form-group">
+                <label for="">Mã số</label>
+                <label id="ten_doi_tuong">sinh viên</label>
+                <input type="text" class="form-control" id="" placeholder="Mã số chủ thẻ">
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Đăng ký</button>
+        </form>
+        
     </div>
 
     <div class="col-xs-12 col-sm-6 col-sm-offset-3" id="thecu_div">
