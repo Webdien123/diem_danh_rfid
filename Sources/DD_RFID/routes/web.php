@@ -69,7 +69,7 @@ Route::get('card', "GetViewController@Card")->name('card');
 Route::post('test_card', 'CardController@KiemTraDangKy')->name('test_card');
 
 // Lấy trang đăng ký thẻ mới.
-Route::get('dangkythemoi', 'CardController@DangKyTheMoi')->name('new_card');
+Route::post('dangkythemoi', 'CardController@DangKyTheMoi')->name('new_card');
 
 
 // Trang thông báo lỗi.

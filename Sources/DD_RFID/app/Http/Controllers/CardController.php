@@ -17,17 +17,21 @@ class CardController extends Controller
         // Nếu tồn tại cán bộ đã đăng ký thẻ này
         // thì chuyển sang giao diện hiển thị thông tin chủ thẻ
         if ($canbo) {
-            return view('sub_views.sub_2.card_invalid', ['loaithe' => 'cán bộ', 'chuthe' => $canbo]);
+            return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Cán bộ', 'chuthe' => $canbo]);
         }
         // Ngược lại hiển thị giao diện sảng sàng đăng ký thẻ.
         else {
-            return view('sub_views.sub_2.card_valid', ['loaithe' => null, 'chuthe' => null]);
+            return view('sub_views.sub_2.card_valid', [
+                'loaithe' => null, 
+                'chuthe' => null, 
+                'mathe' => $mathe->id_the
+            ]);
         }
     }
 
     //  Hàm đăng ký thẻ mới.
-    public function DangKyTheMoi()
+    public function DangKyTheMoi(Request $R)
     {
-        echo "trang dang ký thẻ mới";
+        // echo "mã thẻ: ".$mathe;
     }
 }

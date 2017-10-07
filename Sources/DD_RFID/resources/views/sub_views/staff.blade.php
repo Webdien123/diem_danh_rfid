@@ -8,9 +8,10 @@
     {{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
     <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
 
-    {{--  Script inport jquery validate  --}}
+    {{--  Script import jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
+    {{--  script validate giá trị input file  --}}
     <script src="{{ asset('js/additional-methods.min.js') }}"></script>
 
     {{--  Script xử lý validate dữ liệu cán bộ  --}}
