@@ -62,18 +62,19 @@
 
             <div class="form-group">
                 <label for="">Mã thẻ</label>
-                <input type="text" class="form-control" id="" value="{{ $mathe }}" disabled>
+                <input type="hidden" name="mathe" value="{{ $mathe }}">
+                <input type="text" class="form-control" value="{{ $mathe }}" disabled>
             </div>
 
             <div class="form-group">
                 <label for="">Mã số</label>
                 <label id="ten_doi_tuong">sinh viên</label>
-                <input type="text" class="form-control" id="" placeholder="Mã số chủ thẻ">
+                <input type="text" class="form-control" name="maso" placeholder="Mã số chủ thẻ">
             </div>
 
             <div class="form-group">
                 <label for="">Họ tên</label>
-                <input type="text" class="form-control" id="" placeholder="Họ tên chủ thẻ">
+                <input type="text" class="form-control" name="hoten" placeholder="Họ tên chủ thẻ">
             </div>
 
             <div class="form-group">
