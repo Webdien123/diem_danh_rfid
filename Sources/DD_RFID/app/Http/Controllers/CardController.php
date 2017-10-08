@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DangKyTheCB;
+use App\Khoa_Phong;
 
 class CardController extends Controller
 {
@@ -21,10 +22,12 @@ class CardController extends Controller
         }
         // Ngược lại hiển thị giao diện sảng sàng đăng ký thẻ.
         else {
+            $khoas = Khoa_Phong::GetKhoa();
             return view('sub_views.sub_2.card_valid', [
                 'loaithe' => null, 
                 'chuthe' => null, 
-                'mathe' => $mathe->id_the
+                'mathe' => $mathe->id_the,
+                'khoas' => $khoas
             ]);
         }
     }

@@ -9,12 +9,12 @@ use App\Khoa_Phong;
 class CanBoController extends Controller
 {
     // Lưu trữ danh sách khoa trong hệ thống.
-    public $khoas;
+    public static $khoas;
 
     public static $so_dong = 5;
 
     public function __construct() {
-        $this->khoas = Khoa_Phong::GetKhoa();
+        self::$khoas = Khoa_Phong::GetKhoa();
     }
 
     // Hiện trang cán bộ.
@@ -24,7 +24,7 @@ class CanBoController extends Controller
             $canbos = CanBo::GetCanBo();
             return view('sub_views.staff', [
                     'canbos' => $canbos, 
-                    'khoas' => $this->khoas
+                    'khoas' => self::$khoas
             ]);
         }
         else{
@@ -101,7 +101,7 @@ class CanBoController extends Controller
             if ($canbo != null) {
                 return view('form_views.thongtin_canbo', [
                     'canbo' => $canbo, 
-                    'khoas' => $this->khoas
+                    'khoas' => self::$khoas
                 ]);
             } else {
                 return redirect()->route('Error',

@@ -6,6 +6,15 @@
 
 @section('card_valid')
 
+{{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
+<script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
+
+{{--  Script import jquery validate  --}}
+<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+{{--  Script xử lý validate dữ liệu cán bộ  --}}
+<script src="{{ asset('js/validate_dangkythe.js') }}"></script>
+
 <!-- Phần nội dung hiển thị sau khi quét thẻ chưa đăng ký -->
 <div class="row text-center">
     <h3 class="text-success"><i>Mã thẻ hợp lệ. Chọn chế độ đăng ký:</i></h3>
@@ -52,9 +61,63 @@
             <script src="{{ asset('js/chuyen_chu_the.js') }}"></script>
 
             <div class="form-group">
+                <label for="">Mã thẻ</label>
+                <input type="text" class="form-control" id="" value="{{ $mathe }}" disabled>
+            </div>
+
+            <div class="form-group">
                 <label for="">Mã số</label>
                 <label id="ten_doi_tuong">sinh viên</label>
                 <input type="text" class="form-control" id="" placeholder="Mã số chủ thẻ">
+            </div>
+
+            <div class="form-group">
+                <label for="">Họ tên</label>
+                <input type="text" class="form-control" id="" placeholder="Họ tên chủ thẻ">
+            </div>
+
+            <div class="form-group">
+                <label for="">Khoa:</label>
+                <input type="hidden" name="khoa" id="khoa">
+                <select class="form-control" id="chonkhoa" name="chonkhoa">
+                    @foreach ($khoas as $khoa)
+                        <?php
+                            echo "<option value='". $khoa->TENKHOA ."'>". $khoa->TENKHOA ."</option>";
+                        ?>
+                    @endforeach
+                </select>
+            </div>
+
+            {{--  Phần nội dung đăng ký riêng cho cán bộ  --}}
+            <div id="dky_cb">
+                <div class="form-group">
+                    <label for="">Bộ môn:</label>
+                    <input type="hidden" name="bomon" id="bomon">
+                    <select class="form-control" id="chonbomon" name="chonbomon">
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
+                </div>
+            </div>
+
+            <div id="dky_sv">
+                <div class="form-group">
+                    <label for="">Chuyên ngành</label>
+                    <input type="text" class="form-control" id="">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Ký hiệu lớp</label>
+                    <input type="text" class="form-control" id="">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Khóa học</label>
+                    <input type="text" class="form-control" id="">
+                </div>
             </div>
         
             <button type="submit" class="btn btn-primary">Đăng ký</button>
