@@ -36,10 +36,17 @@ class CardController extends Controller
     //  Hàm đăng ký thẻ mới.
     public function DangKyTheMoi(Request $R)
     {
+        // Nhận kết quả xử lý thêm thông tin chủ thẻ và thêm thông tin thẻ.
         $ketqua_cb = $this->ThemChuThe($R->maso, $R->bomon, $R->khoa, $R->email, $R->hoten);
         $ketqua_the = DangKyTheCB::LuuTheMoi($R->maso, $R->mathe);
-        echo "Them can bo: ".$ketqua_cb;
-        echo "Them the: ".$ketqua_the;
+
+        // Tính kết quả tổng hợp
+        $ketqua = ($ketqua_cb && $ketqua_the) ? 0 : 1 ;
+
+        // Nếu kết quả đều thành công hiện thị lại giao diện đăng ký thẻ
+        // kèm theo thông báo thành công.
+        \Session::put('ketqua_dangkythe', $ketqua);
+        return redirect('/card/');        
     }
 
     public function ThemChuThe($maso, $bomon, $khoa, $email, $hoten)
@@ -65,7 +72,24 @@ class CardController extends Controller
                     return false;
             }
             // Nếu mã số hoặc email đã bị trùng.
-            return false;
+            else {
+                // Báo lỗi trùng cả email và mã số.
+                if ($maso != null && $email != null) {
+                    return redirect()->route('Error',
+                    ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ và email đã tồn tại']);
+                }
+                else
+                    // Báo lỗi trùng email
+                    if ($maso == null) {
+                        return redirect()->route('Error',
+                        ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Email đã tồn tại']);
+                    }
+                    // Báo lỗi trùng mã số.
+                    else {
+                        return redirect()->route('Error',
+                        ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
+                    }
+            }
         }
         else{
             return view('login');

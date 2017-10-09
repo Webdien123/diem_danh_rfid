@@ -60,8 +60,18 @@ class DangKyTheCB extends Model
         }
     }
 
-    public function LayMaThe(Type $var = null)
+    public static function DeleteThe($machuthe)
     {
-        # code...
+        // Truy xuất mã thẻ cần tìm để lấy mã số cán bộ.
+        $mathe = \DB::select('select MATHE from dangkythecb where MSCB_THE = ?', [$machuthe]);
+        if (!$mathe) {
+            return true;
+        }   
+        try {
+            \DB::delete('DELETE FROM dangkythecb WHERE MSCB_THE = '.$machuthe);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

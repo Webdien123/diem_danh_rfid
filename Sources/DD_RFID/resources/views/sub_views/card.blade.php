@@ -9,6 +9,33 @@
     {{--  Jquery điều khiển phần quét thẻ  --}}
     <script src="{{ asset('js/card.js') }}"></script>
 
+    {{--  Script xử lý 2 thông báo thành công hoặc thất bại khi cập nhật  --}}
+    <script src="{{ asset('js/thong_bao.js') }}"></script>
+
+    <center>        
+        <div class="container">
+            @if (Session::get('ketqua_dangkythe') == 0)
+                {{--  Thông báo thành công  --}}
+                <div class="alert alert-success alert-dismissable" id="success-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Đăng ký thẻ thành công</strong>
+                </div>
+
+            @elseif (Session::get('ketqua_dangkythe') == 1)
+                {{--  Thông báo thất bại  --}}
+                <div class="alert alert-danger alert-dismissable" id="error-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Đăng ký thất bại vui lòng thử lại</strong>
+                </div>                
+            @endif
+        </div>
+
+        <?php
+            \Session::put('ketqua_dangkythe', 2);
+        ?>
+
+    </center>
+
     <div class="col-xs-12" >
         <!-- Nội dung trang card. 
         // Dùng container-fluid để đảm bảo kích thước chiều ngang -->

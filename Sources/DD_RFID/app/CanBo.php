@@ -110,9 +110,9 @@ class CanBo extends Model
     {
         try {
             \DB::delete('DELETE FROM canbo WHERE MSCB = '.$mscb);
-            return 1;
+            return true;
         } catch (\Exception $e) {
-            return 0;
+            return false;
         }
     }
 }

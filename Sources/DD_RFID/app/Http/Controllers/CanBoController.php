@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CanBo;
 use App\Khoa_Phong;
+use App\DangKyTheCB;
 
 class CanBoController extends Controller
 {
@@ -131,7 +132,12 @@ class CanBoController extends Controller
     public function XoaCanBo($mscb)
     {
         if (\Session::has('uname')) {
-            $ketqua = CanBo::DeleteCB($mscb);
+            $ketqua_the = DangKyTheCB::DeleteThe($mscb);
+            $ketqua_cb = CanBo::DeleteCB($mscb);
+
+            // Tính kết quả tổng hợp
+            $ketqua = ($ketqua_cb && $ketqua_the) ? true : false;
+
             if ($ketqua)
                 return redirect()->route('staff');
             else
