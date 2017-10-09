@@ -30,8 +30,9 @@
         </button>
     </div>
 
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="themoi_div">
-        
+    {{--  Phần đăng ký thông tin mới.  --}}
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="themoi_div">    
+        {{--  Form nhập thông tin đăng ký  --}}
         <form action="{{ route('new_card') }}" id="f_new_card" method="POST" role="form">
             <legend>Thông tin đăng ký</legend>    
             {{ csrf_field() }}
@@ -104,6 +105,7 @@
                 </div>
             </div>
 
+            {{--  Phần nội dung đăng ký riêng cho sinh viên  --}}
             <div id="dky_sv">
                 <div class="form-group">
                     <label for="">Chuyên ngành</label>
@@ -123,11 +125,22 @@
         
             <button type="submit" class="btn btn-primary">Đăng ký</button>
         </form>
-        
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3" id="thecu_div">
-        thẻ cũ
+    {{--  Phần cập nhật thẻ cũ  --}}
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="thecu_div">
+        
+        <form action="{{ route('old_card') }}" method="POST" id="f_old_card" role="form">
+            <legend>Cập nhật thẻ cũ</legend>
+        
+            <div class="form-group">
+                <label for="">mã số chủ thẻ:</label>
+                <input type="text" class="form-control" name="machuthe" placeholder="Mã số cán bộ hoặc sinh viên cần cập nhật thẻ">
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+        </form>
+        
     </div>
 
     {{--  Script xử lý ẩn hiện phần đăng ký thẻ.  --}}

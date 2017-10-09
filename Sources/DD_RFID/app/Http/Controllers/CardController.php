@@ -49,6 +49,7 @@ class CardController extends Controller
         return redirect('/card/');        
     }
 
+    // Thêm thông tin chủ thẻ mới.
     public function ThemChuThe($maso, $bomon, $khoa, $email, $hoten)
     {
         if (\Session::has('uname')) {
@@ -94,5 +95,10 @@ class CardController extends Controller
         else{
             return view('login');
         }
+    }
+
+    public function DangKyTheCu(Type $var = null)
+    {
+        # code...
     }
 }
