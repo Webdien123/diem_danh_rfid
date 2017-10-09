@@ -32,7 +32,6 @@ class CanBo extends Model
     public static function GetCanBo()
     {
         // Lấy dữ liệu kết hợp phân trang.
-        // $canbos = \DB::select('SELECT * FROM canbo LEFT OUTER JOIN dangkythecb on canbo.MSCB = dangkythecb.MSCB_THE');
         $canbos = \DB::table('canbo')
             ->leftJoin('dangkythecb', 'dangkythecb.mscb_the', '=', 'canbo.mscb')
             ->Paginate(CanBoController::$so_dong);
