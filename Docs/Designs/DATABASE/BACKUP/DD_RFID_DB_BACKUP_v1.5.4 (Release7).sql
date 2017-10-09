@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 03, 2017 lúc 12:30 PM
+-- Thời gian đã tạo: Th10 09, 2017 lúc 06:51 AM
 -- Phiên bản máy phục vụ: 10.1.24-MariaDB
 -- Phiên bản PHP: 7.0.20
 
@@ -66,7 +66,7 @@ INSERT INTO `chuyennganh` (`TENCHNGANH`, `TENKHOA`) VALUES
 --
 
 CREATE TABLE `dangkythecb` (
-  `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
+  `MSCB_THE` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
   `MATHE` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
@@ -364,7 +364,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$3CkRLWFOiWQq4SMXCSQsbOm0D6LJkpzA41rzVBWiVRFbFENGYUOAK', 'FEIicO51r5wjUvIp7TFFcgMFEvnmKJqnQAI4Q8NPiu2wWEpTQuCdGtGZJiPs', NULL, NULL);
+(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$3CkRLWFOiWQq4SMXCSQsbOm0D6LJkpzA41rzVBWiVRFbFENGYUOAK', 'XTBPYrHkcr38DzAxhKELMbmc8qzYPyeRoEliPuzAljAZMVJHkkP9ljYjuj6S', NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -389,7 +389,7 @@ ALTER TABLE `chuyennganh`
 -- Chỉ mục cho bảng `dangkythecb`
 --
 ALTER TABLE `dangkythecb`
-  ADD PRIMARY KEY (`MSCB`);
+  ADD PRIMARY KEY (`MSCB_THE`);
 
 --
 -- Chỉ mục cho bảng `dangkythesv`
@@ -560,7 +560,7 @@ ALTER TABLE `chuyennganh`
 -- Các ràng buộc cho bảng `dangkythecb`
 --
 ALTER TABLE `dangkythecb`
-  ADD CONSTRAINT `FK_DANGKYTHECB` FOREIGN KEY (`MSCB`) REFERENCES `canbo` (`MSCB`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_DANGKYTHECB` FOREIGN KEY (`MSCB_THE`) REFERENCES `canbo` (`MSCB`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Các ràng buộc cho bảng `dangkythesv`

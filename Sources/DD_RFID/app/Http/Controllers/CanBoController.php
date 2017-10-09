@@ -23,8 +23,8 @@ class CanBoController extends Controller
         if (\Session::has('uname')) {
             $canbos = CanBo::GetCanBo();
             return view('sub_views.staff', [
-                    'canbos' => $canbos, 
-                    'khoas' => self::$khoas
+                'canbos' => $canbos, 
+                'khoas' => self::$khoas
             ]);
         }
         else{

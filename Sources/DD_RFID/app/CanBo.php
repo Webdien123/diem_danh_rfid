@@ -31,8 +31,11 @@ class CanBo extends Model
     // Lấy thông tin tất cả cán bộ.
     public static function GetCanBo()
     {
-        // Lấy dữ liệu kết hợp phân trang (3 mẫu tin/trang).
-        $canbos = \DB::table('canbo')->Paginate(CanBoController::$so_dong);
+        // Lấy dữ liệu kết hợp phân trang.
+        // $canbos = \DB::select('SELECT * FROM canbo LEFT OUTER JOIN dangkythecb on canbo.MSCB = dangkythecb.MSCB_THE');
+        $canbos = \DB::table('canbo')
+            ->leftJoin('dangkythecb', 'dangkythecb.mscb_the', '=', 'canbo.mscb')
+            ->Paginate(CanBoController::$so_dong);
         return $canbos;
     }
 
@@ -48,6 +51,22 @@ class CanBo extends Model
                 $canbo->hoten
             ]);
             return true; //Trả kết quả thêm để controller Cán bộ tiếp tục thực thi.
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public static function AddCB_Para($maso, $bomon, $khoa, $email, $hoten)
+    {
+        try {
+            \DB::insert('insert into canbo (MSCB, TENBOMON, TENKHOA, EMAIL, HOTEN) values (?, ?, ?, ?, ?)', [
+                $maso, 
+                $bomon,
+                $khoa,
+                $email,
+                $hoten
+            ]);
+            return true; //Trả kết quả thêm để controller tiếp tục thực thi.
         } catch (\Exception $e) {
             return false;
         }

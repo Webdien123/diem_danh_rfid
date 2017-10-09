@@ -188,7 +188,12 @@
                             <td>{{ $canbo->TENBOMON }}</td>
                             <td>{{ $canbo->EMAIL }}</td>
                             <td>
-                                234123412431234
+                                
+                                @if ($canbo->MATHE)
+                                    {{ $canbo->MATHE }}
+                                @else
+                                    {!! "<b><i>Chưa đăng ký<i><b>" !!}
+                                @endif
                                 <button type="button" class="btn btn-warning">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
