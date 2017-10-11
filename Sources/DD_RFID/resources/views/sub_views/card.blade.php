@@ -12,7 +12,10 @@
     {{--  Script xử lý 2 thông báo thành công hoặc thất bại khi cập nhật  --}}
     <script src="{{ asset('js/thong_bao.js') }}"></script>
 
-    <center>        
+    {{--  Phần hiển thị thông báo  --}}
+    <center>
+
+        {{--  Thông báo đăng ký thẻ  --}}
         <div class="container">
             @if (Session::get('ketqua_dangkythe') == 0)
                 {{--  Thông báo thành công  --}}
@@ -26,12 +29,32 @@
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Đăng ký thất bại vui lòng thử lại</strong>
-                </div>                
+                </div>
             @endif
         </div>
 
+        {{--  Thông báo cập nhật thẻ  --}}
+        <div class="container">
+            @if (Session::get('ketqua_capnhatthe') == 0)
+                {{--  Thông báo thành công  --}}
+                <div class="alert alert-success alert-dismissable" id="success-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Cập nhật thẻ thành công</strong>
+                </div>
+
+            @elseif (Session::get('ketqua_capnhatthe') == 1)
+                {{--  Thông báo thất bại  --}}
+                <div class="alert alert-danger alert-dismissable" id="error-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Cập nhật thẻ thất bại vui lòng thử lại</strong>
+                </div>
+            @endif
+        </div>
+
+        {{--  Reset giá trị session để ẩn thông báo đi sau khi đã hiển thi  --}}
         <?php
             \Session::put('ketqua_dangkythe', 2);
+            \Session::put('ketqua_capnhatthe', 2);
         ?>
 
     </center>

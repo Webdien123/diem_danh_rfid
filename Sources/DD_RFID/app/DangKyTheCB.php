@@ -29,7 +29,7 @@ class DangKyTheCB extends Model
     // Hàm lấy thông tin cán bộ đã đăng ký từ mã thẻ.
     public static function LayThongTinCanBo($mathe)
     {
-        // Truy xuất mã thẻ cần tìm để lấy mã số cán bộ.
+        // Truy xuất mã số cán bộ.
         $mscb = \DB::select('select MSCB_THE from dangkythecb where MATHE = ?', [$mathe]);
         if (!$mscb) {
             $mscb = null;
@@ -46,6 +46,18 @@ class DangKyTheCB extends Model
         return null;
     }
 
+    // Lấy thông tin thẻ từ mã số chủ thẻ
+    public static function LayThongTinThe($machuthe)
+    {
+        // Truy xuất mã thẻ của mã chủ thẻ.
+        $mathe = \DB::select('select MATHE from dangkythecb where MSCB_THE = ?', [$machuthe]);
+        // Nếu mã thẻ có tồn tại.
+        if ($mathe) {
+            return true;
+        }
+        return false;
+    }
+
     // Lưu thông tin thẻ đăng ký
     public static function LuuTheMoi($machuthe, $mathe)
     {
@@ -60,6 +72,18 @@ class DangKyTheCB extends Model
         }
     }
 
+    // Cập nhật thông tin thẻ đã lưu.
+    public static function UpdateThe($machuthe, $mathe)
+    {
+        // Trả về kết quả của việc thực thi lệnh sql. 
+        //(true hoạc false - thành công hoặc thất bại)
+        return \DB::statement(
+            "UPDATE dangkythecb SET MATHE=? WHERE MSCB_THE = ?",
+            [$mathe, $machuthe]
+        );
+    }
+
+    // Xóa thẻ đã đăng ký.
     public static function DeleteThe($machuthe)
     {
         // Truy xuất mã thẻ cần tìm để lấy mã số cán bộ.

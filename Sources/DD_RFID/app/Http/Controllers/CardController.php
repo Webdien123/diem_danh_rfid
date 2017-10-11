@@ -77,18 +77,18 @@ class CardController extends Controller
                 // Báo lỗi trùng cả email và mã số.
                 if ($maso != null && $email != null) {
                     return redirect()->route('Error',
-                    ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ và email đã tồn tại']);
+                    ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số cán bộ và email đã tồn tại']);
                 }
                 else
                     // Báo lỗi trùng email
                     if ($maso == null) {
                         return redirect()->route('Error',
-                        ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Email đã tồn tại']);
+                        ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Email đã tồn tại']);
                     }
                     // Báo lỗi trùng mã số.
                     else {
                         return redirect()->route('Error',
-                        ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
+                        ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
                     }
             }
         }
@@ -97,8 +97,47 @@ class CardController extends Controller
         }
     }
 
-    public function DangKyTheCu(Type $var = null)
+    public function DangKyTheCu(Request $R)
     {
-        # code...
+        echo "mã số thẻ mới: ".$R->mathe."<br>";
+        echo "mã chủ thẻ: ".$R->machuthe."<br>";
+        echo "tên trang: ".$R->trang."<br>";
+
+        //=================================
+        // Xử lý khi chưa có cán bộ trong hệ thống
+        // ================================
+
+        // Tìm xem chủ thẻ đã có mã thẻ nào chưa.
+        $the = DangKyTheCB::LayThongTinThe($R->machuthe);
+
+        $ketqua;
+
+        // Nếu chủ thẻ đã đăng ký thì 1 lần, cập nhật mã thẻ cũ.
+        if ($the) {
+            // Cập nhật thẻ cũ cho cán bộ.
+            $ketqua = DangKyTheCB::UpdateThe($R->machuthe, $R->mathe);
+            echo "Cập nhật<br>";
+        } 
+        // Ngược lại thêm mã cán bộ và mã thẻ vào bảng đăng ký.
+        else {
+            $ketqua = DangKyTheCB::LuuTheMoi($R->machuthe, $R->mathe);
+            echo "Thêm lần đầu<br>";
+        }
+        
+        // Xử lý thành công.
+        if ($ketqua) {
+            if ($R->trang == "the") {
+                $ketqua = ($ketqua) ? 0 : 1 ;
+                \Session::put('ketqua_capnhatthe', $ketqua);
+                return redirect('/card/');  
+            } else {
+                ;
+            }
+            
+        }
+        // Xử lý thất bại.
+        else {
+            ;
+        }
     }
 }

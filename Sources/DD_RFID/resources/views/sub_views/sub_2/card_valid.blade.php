@@ -132,6 +132,13 @@
         
         <form action="{{ route('old_card') }}" method="POST" id="f_old_card" role="form">
             <legend>Cập nhật thẻ cũ</legend>
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="">Mã thẻ mới</label>
+                <input type="hidden" name="mathe" value="{{ $mathe }}">
+                <input type="hidden" name="trang" value="the">
+                <input type="text" class="form-control" value="{{ $mathe }}" disabled>
+            </div>
         
             <div class="form-group">
                 <label for="">mã số chủ thẻ:</label>
