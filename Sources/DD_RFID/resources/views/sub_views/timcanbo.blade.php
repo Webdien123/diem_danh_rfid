@@ -79,7 +79,7 @@
                                 {!! ToMau($canbo->EMAIL, $tukhoa) !!}
                             </td>
                             <td>
-                                234123412431234
+                                {!! ToMau($canbo->MATHE, $tukhoa) !!}
                                 <button type="button" class="btn btn-warning">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>

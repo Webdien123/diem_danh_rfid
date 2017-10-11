@@ -110,6 +110,8 @@ class CardController extends Controller
         // Tìm xem chủ thẻ đã có mã thẻ nào chưa.
         $the = DangKyTheCB::LayThongTinThe($R->machuthe);
 
+        echo "mã thẻ cũ: ".var_dump($the);
+
         $ketqua;
 
         // Nếu chủ thẻ đã đăng ký thì 1 lần, cập nhật mã thẻ cũ.
@@ -126,12 +128,13 @@ class CardController extends Controller
         
         // Xử lý thành công.
         if ($ketqua) {
+            $ketqua = ($ketqua) ? 0 : 1 ;
+            \Session::put('ketqua_capnhatthe', $ketqua);
             if ($R->trang == "the") {
-                $ketqua = ($ketqua) ? 0 : 1 ;
-                \Session::put('ketqua_capnhatthe', $ketqua);
                 return redirect('/card/');  
-            } else {
-                ;
+            }
+            if ($R->trang == "canbo") {
+                return redirect('/staff/');
             }
             
         }

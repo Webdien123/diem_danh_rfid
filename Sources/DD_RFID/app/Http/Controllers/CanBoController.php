@@ -159,11 +159,13 @@ class CanBoController extends Controller
             
                 // Tìm kiếm cán bộ đồng thời phân trang kết quả.
                 $canbos = \DB::table('canbo')
+                    ->leftJoin('dangkythecb', 'dangkythecb.mscb_the', '=', 'canbo.mscb')
                     ->where('MSCB', 'like', "%$TK%")
                     ->orWhere('TENBOMON', 'like', "%$TK%")
                     ->orWhere('TENKHOA', 'like', "%$TK%")
                     ->orWhere('EMAIL', 'like', "%$TK%")
                     ->orWhere('HOTEN', 'like', "%$TK%")
+                    ->orWhere('MATHE', 'like', "%$TK%")
                     ->paginate(self::$so_dong)->appends(['tukhoa' => $TK]);
         
                 return view('sub_views.timcanbo', ['canbos' => $canbos, 'tukhoa' => $TK]);
