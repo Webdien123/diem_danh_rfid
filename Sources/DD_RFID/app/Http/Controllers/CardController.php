@@ -21,7 +21,7 @@ class CardController extends Controller
         if ($canbo) {
             return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Cán bộ', 'chuthe' => $canbo]);
         }
-        // Ngược lại hiển thị giao diện sảng sàng đăng ký thẻ.
+        // Ngược lại hiển thị giao diện sản sàng đăng ký thẻ.
         else {
             $khoas = Khoa_Phong::GetKhoa();
             return view('sub_views.sub_2.card_valid', [
@@ -97,33 +97,56 @@ class CardController extends Controller
         }
     }
 
+    // Kiểm tra xem mã thẻ có thể sử dụng được không.
+    public static function CheckThe($mathe)
+    {
+        // Lấy thông tin cán bộ có mã thẻ tương ứng.
+        $canbo = DangKyTheCB::LayThongTinCanBo($mathe);
+        
+        // Nếu tồn tại cán bộ hoặc sinh viên đã đăng ký thẻ này
+        // thì thẻ không thẻ sử dụng.
+        if ($canbo) {
+            return 1;
+        }
+        // ===================
+        // Phần sinh viên
+        // ===================
+
+        // Ngược lại thì thẻ có thể sử dụng.
+        return 0;
+    }
+
+    // Hàm cập nhật mã thẻ cũ.
     public function DangKyTheCu(Request $R)
     {
-        echo "mã số thẻ mới: ".$R->mathe."<br>";
-        echo "mã chủ thẻ: ".$R->machuthe."<br>";
-        echo "tên trang: ".$R->trang."<br>";
+        // Kiểm tra mã thẻ có thể sử dụng hay không.
+        $kiemtra = self::CheckThe($R->mathe);
+        
+        // Nếu thẻ không thể dùng được vì có cán bộ sở hữu.
+        if ($kiemtra == 1) {
+            // Lấy thông tin cán bộ có mã thẻ tương ứng.
+            $canbo = DangKyTheCB::LayThongTinCanBo($R->mathe);
+            return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Cán bộ', 'chuthe' => $canbo]);
+        }
 
-        //=================================
-        // Xử lý khi chưa có cán bộ trong hệ thống
-        // ================================
+        // =======================================================================
+        // phần sinh viên.
+        // ========================================================================
 
         // Tìm xem chủ thẻ đã có mã thẻ nào chưa.
         $the = DangKyTheCB::LayThongTinThe($R->machuthe);
 
-        echo "mã thẻ cũ: ".var_dump($the);
-
+        // Lưu kết quả xử lý.
         $ketqua;
 
-        // Nếu chủ thẻ đã đăng ký thì 1 lần, cập nhật mã thẻ cũ.
+        // Nếu chủ thẻ đang có mã thẻ khác, cập nhật mã thẻ cũ.
         if ($the) {
             // Cập nhật thẻ cũ cho cán bộ.
             $ketqua = DangKyTheCB::UpdateThe($R->machuthe, $R->mathe);
-            echo "Cập nhật<br>";
-        } 
+        }
         // Ngược lại thêm mã cán bộ và mã thẻ vào bảng đăng ký.
         else {
             $ketqua = DangKyTheCB::LuuTheMoi($R->machuthe, $R->mathe);
-            echo "Thêm lần đầu<br>";
         }
         
         // Xử lý thành công.
@@ -140,7 +163,8 @@ class CardController extends Controller
         }
         // Xử lý thất bại.
         else {
-            ;
+            return redirect()->route('Error', 
+            ['mes' => 'Cập nhật thẻ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
         }
     }
 }

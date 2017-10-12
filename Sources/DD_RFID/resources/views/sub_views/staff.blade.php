@@ -253,14 +253,19 @@
                             <td>
                                 @if ($canbo->MATHE)
                                     {{ $canbo->MATHE }}
+                                    {{--  Nút cập nhật mã thẻ cũ  --}}
+                                    <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
                                 @else
                                     {!! "<b><i>Chưa đăng ký<i><b>" !!}
+                                    {{--  Nút cập nhật mã thẻ mới  --}}
+                                    <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-primary" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Đăng ký thẻ">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
                                 @endif
 
-                                {{--  Nút cập nhật mã thẻ cũ  --}}
-                                <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-warning" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
+                                
                             </td>
                             <td>
                                 <a href="/staff_info/{{ $canbo->MSCB }}" class="btn btn-success">
@@ -282,8 +287,13 @@
                     
                     {{--  Script điền mã cán bộ vào form cập nhật thẻ cũ  --}}
                     <script>
-                        function HienMaSo(mathe) {
-                            $('.machuthe').val(mathe);
+                        function HienMaSo(maso) {
+                            $('.machuthe').val(maso);
+                            
+                            // forcus lại thẻ input khi click nút cập nhật thẻ
+                            $('#modal-updatethe').on('shown.bs.modal', function() {
+                                $("#mathemoi").focus();
+                            });
                         }
                     </script>
                 @endif

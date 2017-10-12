@@ -34,6 +34,7 @@ class DangKyTheCB extends Model
         if (!$mscb) {
             $mscb = null;
         }
+
         // Nếu mã số cán bộ có tồn tại.
         if ($mscb) {
 
@@ -41,7 +42,6 @@ class DangKyTheCB extends Model
             $canbo = CanBo::GetCB($mscb[0]->MSCB_THE);
             return $canbo;
         }
-
         // Nếu mã số chưa có trả về giao diện thẻ hợp lệ để sẳn sàng đăng ký.
         return null;
     }

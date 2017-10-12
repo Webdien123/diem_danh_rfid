@@ -38,6 +38,7 @@
             {{ csrf_field() }}
             <input type="hidden" name="chon_cb_sv" id="chon_cb_sv">
 
+            {{--  Phần chọn đối tượng đăng ký thẻ  --}}
             <div class="form-group">
                 <label for="">Đăng ký cho:</label>
                 <div class="radio-inline">
