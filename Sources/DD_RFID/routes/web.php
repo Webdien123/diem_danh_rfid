@@ -44,9 +44,6 @@ Route::get('getBoMon/{tenkhoa}', "CanBoController@GetBoMon");
 // API lấy danh sách chuyên ngành khi có tên khoa.
 Route::get('getChNganh/{tenkhoa}', "SinhVienController@GetChNganh");
 
-// API lấy danh sách chuyên ngành khi có tên khoa.
-// Route::get('getKyHieuLop', "SinhVienController@GetKyHieuLop");
-
 // Thêm cán bộ.
 Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");
 
@@ -61,6 +58,12 @@ Route::get('xoaCanbo/{mscb}', "CanBoController@XoaCanBo")->name("DeleteCB");
 
 // Tìm kiếm cán bộ.
 Route::get('timkiemCanBo', "CanBoController@TimCanBo")->name("FindCB");
+
+// Thêm cán bộ.
+Route::post('themSinhVien/', "SinhVienController@ThemSinhVien")->name("AddSV");
+
+// Lấy trang chỉnh sửa sinh viên.
+Route::get('student_info/{mssv}', "SinhVienController@CapNhatSinhVien")->name("SV_Info");
 
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");

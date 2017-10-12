@@ -8,25 +8,6 @@ use \App\Http\Controllers\CanBoController;
 
 class CanBo extends Model
 {
-    // Tên bảng tham chiếu.
-    protected $table = 'canbo';
-    
-    // Tên cột khóa chính.
-    protected $primaryKey = 'MSCB';
-
-    // Tên kiểu khóa chính.
-    protected $keyType = 'string';
-
-    // Cho phép khóa chính tự tăng hay không.
-    public $incrementing = false;
-
-    // Danh sách các cột cố thể điền dữ liệu.
-    protected $fillable = ["MSCB", "TENBOMON", "TENKHOA", "EMAIL", "HOTEN"];
-
-    // Có tự động thêm 2 cột thời gian tạo và 
-    // cập nhật gần nhất cho mỗi mẫu tin hay không?
-    public $timestamps = false;
-
     // Lấy thông tin tất cả cán bộ.
     public static function GetCanBo()
     {

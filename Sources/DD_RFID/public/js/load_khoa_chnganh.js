@@ -20,7 +20,7 @@ $( document ).ready(function() {
         // Phần ajax xử lý lấy danh sác chuyên ngành.
         $.ajax({
             /* Đường dẫn kèm tham số cần truy vấn */
-            url: '/getBoMon/' + khoa,
+            url: '/getChNganh/' + khoa,
 
             // Dang method
             type: 'GET',
@@ -32,24 +32,30 @@ $( document ).ready(function() {
             success: function (data) {
 
                 // Xóa danh sách lựa chọn cũ.
-                $("#chonbomon option").remove();
+                $("#chonchnganh option").remove();
+                
+                // Lấy select cần thêm dữ liệu.
+                var mySelect = $('#chonchnganh');
+
+                console.log(data);
 
                 // Xét qua từng dòng dữ liệu, thêm vào danh sách theo thẻ option.
                 $.each(data, function(key, value) {
-                    $('#chonbomon')
+                    $('#chonchnganh')
                         .append($("<option></option>")
-                        .attr("value",value.TENBOMON)
-                        .text(value.TENBOMON)
+                        .attr("value",value.TENCHNGANH)
+                        .text(value.TENCHNGANH)
                     );
-                });                
+                });             
 
                 // Đặt giá trị tên bộ môn theo giá trị đã có của cán bộ.
                 $('[name=chonbomon] option').filter(function() { 
-                    return ($(this).text() == thongtin_bm);
+                    return ($(this).text() == chnganh);
                 }).prop('selected', true);
 
                 // Đặt giá trị cho input ẩn chứa bộ môn cần gửi đi để cập nhật.
-                $('#bomon').val(thongtin_bm);
+                $('#bomon').val(chnganh);
+
             },
             error: function(xhr, textStatus, errorThrown){
                 console.log(xhr.responseText);

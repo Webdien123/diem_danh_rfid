@@ -38,9 +38,6 @@ $( document ).ready(function() {
                 // Xóa danh sách lựa chọn cũ.
                 $("#chonchnganh option").remove();
 
-                // Lấy select cần thêm dữ liệu.
-                var mySelect = $('#chonchnganh');
-
                 // Xét qua từng dòng dữ liệu, thêm vào danh sách theo thẻ option.
                 $.each(data, function(key, value) {
                     $('#chonchnganh')

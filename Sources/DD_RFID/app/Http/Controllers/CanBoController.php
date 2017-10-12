@@ -44,10 +44,10 @@ class CanBoController extends Controller
     public function ThemCanBo(Request $canbo)
     {
         if (\Session::has('uname')) {
-            // Tìm xem có các bộ nào đã có mã số này chưa.
+            // Tìm xem có cán bộ nào đã có mã số này chưa.
             $maso = CanBo::GetCB($canbo->mscb);
 
-            // Tìm xem có các bộ nào đã có email này chưa.
+            // Tìm xem có cán bộ nào đã có email này chưa.
             $email = CanBo::GetCB_Email($canbo->email);
 
             // Nếu mã số và email đều chưa có.

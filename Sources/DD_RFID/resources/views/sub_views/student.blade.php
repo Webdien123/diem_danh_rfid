@@ -9,6 +9,15 @@
     Và các danh sách nằm trên form thêm sinh viên  --}}
     <script src="{{ asset('js/select_khoa_chnganh.js') }}"></script>
 
+    {{--  Script import jquery validate  --}}
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+    {{--  script validate giá trị input file  --}}
+    {{--  <script src="{{ asset('js/additional-methods.min.js') }}"></script>  --}}
+
+    {{--  Script xử lý validate dữ liệu cán bộ  --}}
+    <script src="{{ asset('js/validate_sinhvien.js') }}"></script>
+
     {{--  Tìm kiếm sinh viên  --}}
     <div class="col-xs-12 col-sm-5 col-sm-offset-7">
         <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -54,13 +63,13 @@
                         </div>
                         <div class="modal-body">
                             {{--  Form thêm sinh viên  --}}
-                            <form action="{{ route('AddCB') }}" method="POST" id="form_canbo">
+                            <form action="{{ route('AddSV') }}" method="POST" id="form_sinhvien">
                                 {{--  Phần mã xác thực form của laravel  --}}
 								{{ csrf_field() }}
 
                                 <div class="form-group">
 									<label for="">Mã số sinh viên:</label>
-									<input type="text" name="mscb" id="mscb" class="form-control" placeholder="mã số sinh viên">
+									<input type="text" name="mssv" id="mssv" class="form-control" placeholder="mã số sinh viên">
 								</div>
 
 								<div class="form-group">
@@ -172,7 +181,7 @@
                             </button>
                         </td>
                         <td>
-                            <a href="" class="btn btn-success">
+                            <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 Sửa thông tin
                             </a>
@@ -188,5 +197,12 @@
             </tbody>
         </table>
     </div>
+
+    {{--  Hiển thị dãy nút phân trang.  --}}
+    @if (count($sinhviens) != 0)
+    <center>
+        {!! $sinhviens->links() !!}
+    </center>
+    @endif
 @endsection
 

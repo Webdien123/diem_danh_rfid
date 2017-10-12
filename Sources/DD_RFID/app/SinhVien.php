@@ -8,25 +8,6 @@ use \App\Http\Controllers\SinhVienController;
 
 class SinhVien extends Model
 {
-    // Tên bảng tham chiếu.
-    protected $table = 'sinhvien';
-    
-    // Tên cột khóa chính.
-    protected $primaryKey = 'MSSV';
-
-    // Tên kiểu khóa chính.
-    protected $keyType = 'string';
-
-    // Cho phép khóa chính tự tăng hay không.
-    public $incrementing = false;
-
-    // Danh sách các cột cố thể điền dữ liệu.
-    protected $fillable = ["MSSV", "KYHIEULOP", "TENCHNGANH", "KHOAHOC", "TENKHOA", "HOTEN"];
-
-    // Có tự động thêm 2 cột thời gian tạo và 
-    // cập nhật gần nhất cho mỗi mẫu tin hay không?
-    public $timestamps = false;
-
     // Lấy thông tin tất cả cán bộ.
     public static function GetSinhVien()
     {
@@ -35,5 +16,34 @@ class SinhVien extends Model
             ->leftJoin('dangkythesv', 'dangkythesv.mssv_the', '=', 'sinhvien.mssv')
             ->Paginate(SinhVienController::$so_dong);
         return $canbos;
+    }
+
+    // Thêm thông tin sinh viên mới.
+    public static function AddSV(Request $sinhvien)
+    {
+        try {
+            \DB::insert('insert into sinhvien (MSSV, KYHIEULOP, TENCHNGANH, KHOAHOC, TENKHOA, HOTEN) values (?, ?, ?, ?, ?, ?)', [
+                $sinhvien->mssv, 
+                $sinhvien->lop,
+                $sinhvien->chnganh,
+                $sinhvien->khoahoc,
+                $sinhvien->khoa,
+                $sinhvien->hoten
+            ]);
+            return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    // Lấy thông tin của một sinh viên theo mã sinh viên.
+    public static function GetSV($mssv)
+    {
+        $sinhvien = \DB::select('select * from sinhvien where MSSV = ?', [$mssv]);
+        if ($sinhvien) {
+            return $sinhvien;
+        } else {
+            return null;
+        }
     }
 }
