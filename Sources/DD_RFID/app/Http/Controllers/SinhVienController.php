@@ -107,4 +107,39 @@ class SinhVienController extends Controller
             return view('login');
         }
     }
+
+    // Xử lý cập nhật thông tin sinh viên.
+    public function XuLyCapNhat(Request $sinhvien)
+    {
+        if (\Session::has('uname')) {
+            $ketqua = SinhVien::UpdateSV($sinhvien);
+            $ketqua = ($ketqua) ? 0 : 1 ;
+            \Session::put('ketqua_up_sv', $ketqua);
+            return redirect('/student_info/' . $sinhvien->mssv);       
+        }
+        else{
+            return view('login');
+        }            
+    }
+
+    // Xóa thông tin sinh viên.
+    public function XoaSinhVien($mssv)
+    {
+        if (\Session::has('uname')) {
+            // $ketqua_the = DangKyTheSV::DeleteThe($mssv);
+            $ketqua_sv = SinhVien::DeleteSV($mssv);
+
+            // Tính kết quả tổng hợp
+            $ketqua = ($ketqua_sv) ? true : false;
+
+            if ($ketqua)
+                return redirect()->route('student');
+            else
+                return redirect()->route('Error', 
+                ['mes' => 'Xóa sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+        }
+        else{
+            return view('login');
+        }
+    }
 }

@@ -32,14 +32,14 @@
         <h1>Trang cập nhật sinh viên</h1>
         
         <div class="container">
-            @if (Session::get('ketqua_up_cb') == 0)
+            @if (Session::get('ketqua_up_sv') == 0)
                 {{--  Thông báo thành công  --}}
                 <div class="alert alert-success alert-dismissable" id="success-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Cập nhật thành công! sinh viên: {{ $sv[0]->MSSV }} - {{ $sv[0]->HOTEN }}</strong>
                 </div>
 
-            @elseif (Session::get('ketqua_up_cb') == 1)
+            @elseif (Session::get('ketqua_up_sv') == 1)
                 {{--  Thông báo thất bại  --}}
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -49,7 +49,7 @@
         </div>
 
         <?php
-            \Session::put('ketqua_up_cb', 2);
+            \Session::put('ketqua_up_sv', 2);
         ?>
 
     </center>
@@ -62,7 +62,7 @@
             </div>
             <div class="panel-body">
                 {{--  Form cập nhật sinh viên  --}}
-                <form action="#" method="POST" id="form_sinhvien">
+                <form action="{{ route('UpdateSV') }}" method="POST" id="form_sinhvien">
                     {{--  Phần mã xác thực form của laravel  --}}
                     {{ csrf_field() }}
 
@@ -90,14 +90,21 @@
 
                     <div class="form-group">
                         <label for="">Chuyên ngành:</label>
-                        <input type="hidden" name="chnganh" id="chnganh">
+                        <input type="hidden" value="{{ $sv[0]->TENCHNGANH }}" name="chnganh" id="chnganh">
                         <select class="form-control" id="chonchnganh" name="chonchnganh">
                         </select>
                     </div>
 
+                    {{--  Đặt giá trị tên khoa theo giá trị đã có của sinh viên.  --}}
+                    <script>
+                        $('[name=chonkhoa] option').filter(function() { 
+                            return ($(this).text() == "{{ $sv[0]->TENKHOA }}");
+                        }).prop('selected', true);
+                    </script>
+
                     <div class="form-group">
                         <label for="">Lớp:</label>
-                        <input type="hidden" name="lop" id="lop">
+                        <input type="hidden" value="{{ $sv[0]->KYHIEULOP }}" name="lop" id="lop">
                         <select class="form-control" id="chonlop" name="chonlop">
                             @foreach ($lops as $lop)
                                 <?php
@@ -107,9 +114,16 @@
                         </select>
                     </div>
 
+                    {{--  Đặt giá trị ký hiệu lớp theo giá trị đã có của sinh viên.  --}}
+                    <script>
+                        $('[name=chonlop] option').filter(function() { 
+                            return ($(this).text() == "{{ $sv[0]->KYHIEULOP }}");
+                        }).prop('selected', true);
+                    </script>
+
                     <div class="form-group">
                         <label for="">Khóa học:</label>
-                        <input type="hidden" name="khoahoc" id="khoahoc">
+                        <input type="hidden" value="{{ $sv[0]->KHOAHOC }}" name="khoahoc" id="khoahoc">
                         <select class="form-control" id="chonkhoahoc" name="chonkhoahoc">
                             @foreach ($khoahocs as $khoahoc)
                                 <?php
@@ -118,6 +132,13 @@
                             @endforeach
                         </select>
                     </div>
+
+                    {{--  Đặt giá trị khóa học theo giá trị đã có của sinh viên.  --}}
+                    <script>
+                        $('[name=chonkhoahoc] option').filter(function() { 
+                            return ($(this).text() == "{{ $sv[0]->KHOAHOC }}");
+                        }).prop('selected', true);
+                    </script>
 
                     <a href="{{ route('student') }}" class="btn btn-default">
                         <span class="fa fa-arrow-left" aria-hidden="true"></span>

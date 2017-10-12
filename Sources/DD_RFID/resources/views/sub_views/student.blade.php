@@ -186,7 +186,10 @@
                                 Sửa thông tin
                             </a>
                             
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger"
+                                onclick="if(window.confirm('Xóa sinh viên này?')){
+                                window.location.replace('<?php echo route("DeleteSV", 
+                                ["mssv" => $sv->MSSV]) ?>');}">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 Xóa
                             </button>

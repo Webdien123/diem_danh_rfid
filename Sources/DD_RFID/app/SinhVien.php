@@ -46,4 +46,27 @@ class SinhVien extends Model
             return null;
         }
     }
+
+    // Cập nhật thông tin sinh viên.
+    public static function UpdateSV(Request $sinhvien)
+    {
+        // Trả về kết quả của việc thực thi lệnh sql. 
+        //(true hoạc false - thành công hoặc thất bại)
+        return \DB::statement(
+            'UPDATE sinhvien SET KYHIEULOP = ?, TENCHNGANH = ?, KHOAHOC = ?, TENKHOA = ?, HOTEN = ?
+            WHERE MSSV = ?',
+            [$sinhvien->lop, $sinhvien->chnganh, $sinhvien->khoahoc, $sinhvien->khoa, $sinhvien->hoten, $sinhvien->mssv]
+        );
+    }
+
+    // Xóa sinh viên.
+    public static function DeleteSV($mssv)
+    {
+        try {
+            \DB::delete('DELETE FROM sinhvien WHERE MSSV = '.$mssv);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

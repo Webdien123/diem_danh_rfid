@@ -58,7 +58,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <div class="panel panel-info">
             <div class="panel-heading">
-                    <h3 class="panel-title"><b>Thông tin cán bộ {{ $canbo[0]->MSCB }}</b></h3>
+                <h3 class="panel-title"><b>Thông tin cán bộ {{ $canbo[0]->MSCB }}</b></h3>
             </div>
             <div class="panel-body">
 

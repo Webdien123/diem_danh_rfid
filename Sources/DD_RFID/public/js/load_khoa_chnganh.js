@@ -49,12 +49,12 @@ $( document ).ready(function() {
                 });             
 
                 // Đặt giá trị tên bộ môn theo giá trị đã có của cán bộ.
-                $('[name=chonbomon] option').filter(function() { 
+                $('[name=chonchnganh] option').filter(function() { 
                     return ($(this).text() == chnganh);
                 }).prop('selected', true);
 
                 // Đặt giá trị cho input ẩn chứa bộ môn cần gửi đi để cập nhật.
-                $('#bomon').val(chnganh);
+                $('#chnganh').val(chnganh);
 
             },
             error: function(xhr, textStatus, errorThrown){
@@ -63,16 +63,42 @@ $( document ).ready(function() {
         }); 
     }).change();
         
-    // Xử lý khi bấm chọn bộ môn.
-    $("#chonbomon").change(function () {
-        var bomon = "";
+    // Xử lý khi bấm chọn chuyên ngành.
+    $("#chonchnganh").change(function () {
+        var chnganh = "";
 
-        // Khi select chọn bộ môn được click
-        // thì lấy nội dung option đã chọn gán vào trường input 'bomon'
+        // Khi select chọn chuyên ngành được click
+        // thì lấy nội dung option đã chọn gán vào trường input 'chnganh'
         // để gửi request đi.
-        $("#chonbomon option:selected").each(function() {
-            bomon = $(this).text();           
-            $("#bomon").val(bomon);
+        $("#chonchnganh option:selected").each(function() {
+            chnganh = $(this).text();
+            $("#chnganh").val(chnganh);
+        });
+    }).change();
+
+    // Xử lý khi bấm chọn ký hiệu lớp.
+    $("#chonlop").change(function () {
+        var lop = "";
+
+        // Khi select chọn ký hiệu lớp được click
+        // thì lấy nội dung option đã chọn gán vào trường input 'lop'
+        // để gửi request đi.
+        $("#chonlop option:selected").each(function() {
+            lop = $(this).text();
+            $("#lop").val(lop);
+        });
+    }).change();
+
+    // Xử lý khi bấm chọn khóa học.
+    $("#chonkhoahoc").change(function () {
+        var khoahoc = "";
+
+        // Khi select chọn khóa học được click
+        // thì lấy nội dung option đã chọn gán vào trường input 'khoahoc'
+        // để gửi request đi.
+        $("#chonkhoahoc option:selected").each(function() {
+            khoahoc = $(this).text();
+            $("#khoahoc").val(khoahoc);
         });
     }).change();
 });
