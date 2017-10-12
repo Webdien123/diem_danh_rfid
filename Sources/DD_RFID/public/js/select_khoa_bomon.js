@@ -17,7 +17,7 @@ $( document ).ready(function() {
         // AJAX==============================================================
         // ==================================================================
 
-        // Phần ajax xử lý lấy danh sác chuyên ngành.
+        // Phần ajax xử lý lấy danh sách chuyên ngành.
         $.ajax({
             /* Đường dẫn kèm tham số cần truy vấn */
             url: '/getBoMon/' + khoa,

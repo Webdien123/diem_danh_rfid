@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use \Symfony\Component\Console\Input\Input;
 use \App\Http\Controllers\CanBoController;
 
 class CanBo extends Model
 {
     // Tên bảng tham chiếu.
-    protected $table = 'CanBo';
+    protected $table = 'canbo';
     
     // Tên cột khóa chính.
     protected $primaryKey = 'MSCB';

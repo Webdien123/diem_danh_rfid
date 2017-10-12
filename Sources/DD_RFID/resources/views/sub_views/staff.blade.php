@@ -242,7 +242,7 @@
                         </div>
                     </div>
 
-                    <!-- Phần nội dung khi có cán bộ -->                   
+                    {{--  Phần nội dung khi có cán bộ  --}}
                     @foreach ($canbos as $canbo)
                         <tr>
                             <td>{{ $canbo->MSCB }}</td>

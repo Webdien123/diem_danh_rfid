@@ -33,13 +33,19 @@ Route::get('chart', "GetViewController@ThongKe")->name('chart');
 Route::get('event', "GetViewController@SuKien")->name('event');
 
 // Dẫn vào trang Quản Lý sinh viên.
-Route::get('student', "GetViewController@SinhVien")->name('student');
+Route::get('student', "SinhVienController@GetPageSV")->name('student');
 
 // Dẫn vào trang Quản Lý cán bộ.
 Route::get('staff', "CanBoController@GetPageCB")->name('staff');
 
 // API lấy danh sách bộ môn khi có tên khoa.
 Route::get('getBoMon/{tenkhoa}', "CanBoController@GetBoMon");
+
+// API lấy danh sách chuyên ngành khi có tên khoa.
+Route::get('getChNganh/{tenkhoa}', "SinhVienController@GetChNganh");
+
+// API lấy danh sách chuyên ngành khi có tên khoa.
+// Route::get('getKyHieuLop', "SinhVienController@GetKyHieuLop");
 
 // Thêm cán bộ.
 Route::post('themCanBo/', "CanBoController@ThemCanBo")->name("AddCB");

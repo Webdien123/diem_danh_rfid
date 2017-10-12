@@ -58,17 +58,6 @@ class GetViewController extends Controller
         }
     }
 
-    // Hiện trang sinh viên.
-    public function SinhVien()
-    {
-        if (\Session::has('uname')) {
-            return view('sub_views.student');
-        }
-        else{
-            return view('login');
-        }
-    }
-
     // Hiện trang đăng ký thẻ.
     public function Card()
     {

@@ -42,4 +42,14 @@ class Khoa_Phong extends Model
         ));
         return $bomons;
     }
+
+    // API lấy tất cả chuyên ngành thuộc khoa cho trước.
+    public static function LayChNganh($tenkhoa)
+    {
+        $chnganhs = \DB::select(\DB::raw("SELECT * FROM chuyennganh WHERE TENKHOA = :v1"), 
+            array(
+            'v1' => $tenkhoa,
+        ));
+        return $chnganhs;
+    }
 }

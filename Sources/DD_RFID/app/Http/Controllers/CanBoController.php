@@ -36,13 +36,8 @@ class CanBoController extends Controller
     // API trả về tên các bộ môn theo bộ môn biết trước.
     public function GetBoMon($tenkhoa)
     {
-        if (\Session::has('uname')) {
-            $bomons = Khoa_Phong::LayBoMon($tenkhoa);
-            return json_encode($bomons);
-        }
-        else{
-            return view('login');
-        }
+        $bomons = Khoa_Phong::LayBoMon($tenkhoa);
+        return json_encode($bomons);
     }
 
     // Thêm thông tin cán bộ với vào hệ thống.
