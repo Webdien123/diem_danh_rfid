@@ -119,7 +119,7 @@ class SinhVienController extends Controller
         }
         else{
             return view('login');
-        }            
+        }
     }
 
     // Xóa thông tin sinh viên.
@@ -137,6 +137,37 @@ class SinhVienController extends Controller
             else
                 return redirect()->route('Error', 
                 ['mes' => 'Xóa sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+        }
+        else{
+            return view('login');
+        }
+    }
+
+    // Tìm sinh viên.
+    public function TimSinhVien(Request $tukhoa)
+    {
+        if (\Session::has('uname')) {
+            try{
+                // Lấy từ khóa cần tìm ra khỏi request.
+                $TK = $tukhoa->tukhoa;
+            
+                // Tìm kiếm sinh viên đồng thời phân trang kết quả.
+                $sinhviens = \DB::table('sinhvien')
+                    ->leftJoin('dangkythesv', 'dangkythesv.mssv_the', '=', 'sinhvien.mssv')
+                    ->where('MSSV', 'like', "%$TK%")
+                    ->orWhere('KYHIEULOP', 'like', "%$TK%")
+                    ->orWhere('TENCHNGANH', 'like', "%$TK%")
+                    ->orWhere('KHOAHOC', 'like', "%$TK%")
+                    ->orWhere('TENKHOA', 'like', "%$TK%")
+                    ->orWhere('HOTEN', 'like', "%$TK%")
+                    ->orWhere('MATHE', 'like', "%$TK%")
+                    ->paginate(self::$so_dong)->appends(['tukhoa' => $TK]);
+                return view('sub_views.timsinhvien', ['sinhviens' => $sinhviens, 'tukhoa' => $TK]);
+            }
+            catch (\Exception $e) {
+                return redirect()->route('Error', 
+                ['mes' => 'Tìm sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+            }
         }
         else{
             return view('login');

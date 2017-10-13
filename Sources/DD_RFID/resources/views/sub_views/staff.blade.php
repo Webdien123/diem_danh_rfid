@@ -38,7 +38,9 @@
         <form action="{{ route('FindCB') }}" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
-            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
+            oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
+            oninput="setCustomValidity('')">
             <button type="submit" class="btn btn-primary">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm

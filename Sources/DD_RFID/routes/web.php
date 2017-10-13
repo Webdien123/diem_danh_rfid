@@ -71,6 +71,9 @@ Route::post('capnhatSinhVien', "SinhVienController@XuLyCapNhat")->name("UpdateSV
 // Xóa sinh viên.
 Route::get('xoaSinhVien/{mssv}', "SinhVienController@XoaSinhVien")->name("DeleteSV");
 
+// Tìm kiếm sinh viên.
+Route::get('timkiemSinhVien', "SinhVienController@TimSinhVien")->name("FindSV");
+
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
 

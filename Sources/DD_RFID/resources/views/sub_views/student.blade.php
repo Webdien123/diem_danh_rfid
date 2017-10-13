@@ -20,20 +20,24 @@
 
     {{--  Tìm kiếm sinh viên  --}}
     <div class="col-xs-12 col-sm-5 col-sm-offset-7">
-        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+        <form action="{{ route('FindSV') }}" method="get" class="form-inline pull-right hidden-xs" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm sinh viên:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
+            oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
+            oninput="setCustomValidity('')">
             <button type="submit" class="btn btn-danger">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
         </form>
 
-        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+        <form action="{{ route('FindSV') }}" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm sinh viên:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
+            oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
+            oninput="setCustomValidity('')">
             <button type="submit" class="btn btn-danger">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
@@ -167,34 +171,34 @@
                 @else
                     {{--  Phần nội dung khi có sinh viên  --}}
                     @foreach ($sinhviens as $sv)
-                    <tr>
-                        <td>{{ $sv->MSSV }}</td>
-                        <td>{{ $sv->HOTEN }}</td>
-                        <td>{{ $sv->TENKHOA }}</td>
-                        <td>{{ $sv->TENCHNGANH }}</td>
-                        <td>{{ $sv->KYHIEULOP }}</td>
-                        <td>{{ $sv->KHOAHOC }}</td>
-                        <td>
-                            234123412431234
-                            <button type="button" class="btn btn-warning">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                Sửa thông tin
-                            </a>
-                            
-                            <button class="btn btn-danger"
-                                onclick="if(window.confirm('Xóa sinh viên này?')){
-                                window.location.replace('<?php echo route("DeleteSV", 
-                                ["mssv" => $sv->MSSV]) ?>');}">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                Xóa
-                            </button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $sv->MSSV }}</td>
+                            <td>{{ $sv->HOTEN }}</td>
+                            <td>{{ $sv->TENKHOA }}</td>
+                            <td>{{ $sv->TENCHNGANH }}</td>
+                            <td>{{ $sv->KYHIEULOP }}</td>
+                            <td>{{ $sv->KHOAHOC }}</td>
+                            <td>
+                                234123412431234
+                                <button type="button" class="btn btn-warning">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                                
+                                <button class="btn btn-danger"
+                                    onclick="if(window.confirm('Xóa sinh viên này?')){
+                                    window.location.replace('<?php echo route("DeleteSV", 
+                                    ["mssv" => $sv->MSSV]) ?>');}">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Xóa
+                                </button>
+                            </td>
+                        </tr>
                     @endforeach
                 @endif
             </tbody>

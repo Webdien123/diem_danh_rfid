@@ -1,11 +1,11 @@
-{{--  Định nghĩa trang cán bộ   --}}
+{{--  Định nghĩa trang kết quả tìm kiếm cán bộ   --}}
 @extends('admin')
 
 @section('title', 'Tìm cán bộ')
 
 @section('timcanbo')
 
-    
+    {{--  Import code tô màu từ khóa sau khi hiển thị kết quả  --}}
     @include('link_views.to_mau_tu_khoa')
 
     {{--  Tìm kiếm cán bộ  --}}
