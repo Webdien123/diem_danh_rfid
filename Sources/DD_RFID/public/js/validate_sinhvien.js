@@ -44,26 +44,25 @@ $(document).ready(function () {
 
     });
 
-    // $( "#f_import_canbo" ).validate({
-    //     rules: {
-    //         im_file: {
-    //             required: true,
-    //             extension: "xls|xlsx|csv"
-    //         }
-    //     },
+    $( "#f_import_sv" ).validate({
+        rules: {
+            im_file: {
+                required: true,
+                extension: "xls|xlsx|csv"
+            }
+        },
 
-    //     messages: {
-    //         im_file: {
-    //             required: "Chưa chọn file cần import",
-    //             extension: "file phải có định dạng xls, xlsx hoặc csv"
-    //         }
-    //     },
+        messages: {
+            im_file: {
+                required: "Chưa chọn file cần import",
+                extension: "file phải có định dạng xls, xlsx hoặc csv"
+            }
+        },
 
-    //     errorPlacement: function (error, element) {
-    //         error.attr("color", "red");
-    //         error.addClass("help-block");
-    //         error.insertBefore(element);
-    //         // $("file_error").append(error);
-    //     }
-    // });
+        errorPlacement: function (error, element) {
+            error.attr("color", "red");
+            error.addClass("help-block");
+            error.insertBefore(element);
+        }
+    });
 });

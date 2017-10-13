@@ -73,7 +73,6 @@ $(document).ready(function () {
             error.attr("color", "red");
             error.addClass("help-block");
             error.insertBefore(element);
-            // $("file_error").append(error);
         }
     });
 });

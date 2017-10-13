@@ -13,7 +13,7 @@
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
     {{--  script validate giá trị input file  --}}
-    {{--  <script src="{{ asset('js/additional-methods.min.js') }}"></script>  --}}
+    <script src="{{ asset('js/additional-methods.min.js') }}"></script>
 
     {{--  Script xử lý validate dữ liệu cán bộ  --}}
     <script src="{{ asset('js/validate_sinhvien.js') }}"></script>
@@ -47,7 +47,7 @@
 
     </div> {{--  kết thúc container của trang master  --}}
 
-    {{--  Hiển thị tiêu đề và nút thêm sinh viên  --}}
+    {{--  Hiển thị tiêu đề và các nút thêm sinh viên  --}}
     <center><h1>Danh sách sinh viên</h1></center>
     <div class="row">
         <div class="col-xs-12 col-md-6">
@@ -139,10 +139,38 @@
                 </div>
             </div>
 
-            <a class="btn btn-default" style="background-color: #001a66; color: white">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+            {{--  Nút ấn hiện chức năng import sinh viên từ excel.  --}}
+            <button id="import_toggle" class="btn btn-default">
                 Thêm sinh viên từ excel
-            </a>
+            </button>
+
+            {{--  Phần kích hoạt chức năng import sinh viên.  --}}
+            <div id="import_div">
+                <form enctype="multipart/form-data" id="f_import_sv" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="tenBang" id="tenBang" value="sinhvien">
+                    <input type="file" class="form-control" name="im_file" id="im_file">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        Thêm
+                    </button>
+                </form>
+
+                <form action="{{ route('download_file') }}" method="POST" class="pull-left form-inline" role="form">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label class="sr-only" for="">label</label>
+                        <input type="hidden" class="form-control" name="down_file" value="./download/sinhvien.xlsx">
+                    </div>
+                    <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                        Tải file import mẫu
+                    </button>
+                </form>
+            </div>
+
+            {{--  Script xử lý ẩn hiện phần import sinh viên.  --}}
+            <script src="{{ asset('js/toggle_import.js') }}"></script>  
         </div>
     </div>
 
@@ -179,10 +207,19 @@
                             <td>{{ $sv->KYHIEULOP }}</td>
                             <td>{{ $sv->KHOAHOC }}</td>
                             <td>
-                                234123412431234
-                                <button type="button" class="btn btn-warning">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
+                                @if ($sv->MATHE)
+                                    {{ $sv->MATHE }}
+                                    {{--  Nút cập nhật mã thẻ cũ  --}}
+                                    {{--  <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>  --}}
+                                @else
+                                    {!! "<b><i>Chưa đăng ký<i><b>" !!}
+                                    {{--  Nút cập nhật mã thẻ mới  --}}
+                                    {{--  <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-primary" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Đăng ký thẻ">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>  --}}
+                                @endif
                             </td>
                             <td>
                                 <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">

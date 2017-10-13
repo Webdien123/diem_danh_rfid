@@ -19,12 +19,17 @@ class ExcelController extends Controller
             // Lấy đường dẫn của file.
             $path = Input::file('im_file')->getRealPath();
             
-            // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
-            $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
-
             // Lấy tên bảng.
             $tenbang = $request->tenBang;
 
+            if ($tenbang == "sinhvien") {
+                // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien'.
+                $data = Excel::selectSheets('dssinhvien')->load($path, function($reader) {})->get();
+            }
+            if ($tenbang == "canbo") {
+                // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
+                $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
+            }
 			try{
                 // Nếu có dữ liệu trong file cần import.
 				if(!empty($data) && $data->count()){
@@ -65,7 +70,7 @@ class ExcelController extends Controller
                     // Nếu lấy dữ liệu insert thất bại.
                     else {
                         return redirect()->route('Error', 
-                        ['mes' => 'Import cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+                        ['mes' => 'Import thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
                     }
 				}
 			}
@@ -87,7 +92,8 @@ class ExcelController extends Controller
         $headers = ['Content-Type: application/xlsx'];
         if (strpos ($myFile, 'canbo'))
             $newName = 'Mẫu import cán bộ'.'.xlsx';
-
+        if (strpos ($myFile, 'sinhvien'))
+            $newName = 'Mẫu import sinh viên'.'.xlsx';
         // Trả về cửa sổ download tương ứng.
     	return response()->download($myFile, $newName, $headers);
     }
@@ -99,6 +105,9 @@ class ExcelController extends Controller
         if ($tenbang == "canbo") {
             return $this->TaoDuLieuCB($data);
         }
+        if ($tenbang == "sinhvien") {
+            return $this->TaoDuLieuSV($data);
+        }
     }
 
     // Hàm import dòng dữ liệu item vào tên bảng tương ứng.
@@ -106,6 +115,9 @@ class ExcelController extends Controller
     {
         if ($tenbang == "canbo") {
             return $this->ImportCanBo($item);
+        }
+        if ($tenbang == "sinhvien") {
+            return $this->ImportSinhVien($item);
         }
     }
 
@@ -115,6 +127,9 @@ class ExcelController extends Controller
     {
         if ($tenbang == "canbo") {
             return redirect()->route('staff');
+        }
+        if ($tenbang == "sinhvien") {
+            return redirect()->route('student');
         }
     }
 
@@ -133,6 +148,22 @@ class ExcelController extends Controller
         return $insert;
     }
 
+    // Hàm tạo dữ liệu cho bảng sinh viên.
+    public function TaoDuLieuSV($data)
+    {
+        foreach ($data as $key => $value) {
+            $insert[] = [
+                'mssv' => $value->mssv,
+                'lop' => $value->kyhieulop,
+                'chnganh' => $value->tenchnganh,
+                'khoahoc' => $value->khoahoc,
+                'khoa' => $value->tenkhoa,
+                'hoten' => $value->hoten
+            ];
+        }
+        return $insert;
+    }
+
     // Hàm import dòng dữ liệu item vào bảng cán bộ.
     public function ImportCanBo($item)
     {
@@ -143,6 +174,25 @@ class ExcelController extends Controller
                 $item['tenbomon'], 
                 $item['tenkhoa'], 
                 $item['email'], 
+                $item['hoten']
+            ]);
+            return true; //Trả kết quả import về cho hàm ImportDuLieu.
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    // Hàm import dòng dữ liệu item vào bảng sinh viên.
+    public function ImportSinhVien($item)
+    {
+        try {
+            // Insert dòng dữ liệu vào bảng sinh viên theo giá trị trong mảng item.
+            \DB::insert('insert into sinhvien (MSSV, KYHIEULOP, TENCHNGANH, KHOAHOC, TENKHOA, HOTEN) values (?, ?, ?, ?, ?, ?)', [
+                $item['mssv'], 
+                $item['lop'],
+                $item['chnganh'],
+                $item['khoahoc'],
+                $item['khoa'],
                 $item['hoten']
             ]);
             return true; //Trả kết quả import về cho hàm ImportDuLieu.
