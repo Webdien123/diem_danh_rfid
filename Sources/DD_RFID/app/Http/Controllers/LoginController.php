@@ -52,6 +52,7 @@ class LoginController extends Controller
         \Session::forget('uname');
         \Session::forget('err');
         \Session::forget('ketqua_up_cb');
+        \Session::forget('ketqua_up_sv');        
         \Session::forget('ketqua_dangkythe');
         
         // Về trang chủ.

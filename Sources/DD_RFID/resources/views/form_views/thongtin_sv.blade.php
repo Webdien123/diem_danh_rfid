@@ -68,7 +68,8 @@
 
                     <div class="form-group">
                         <label for="">Mã số sinh viên:</label>
-                        <input type="text" name="mssv" value="{{ $sv[0]->MSSV }}" id="mssv" class="form-control">
+                        <input type="hidden" value="{{ $sv[0]->MSSV }}" name="mssv">
+                        <input type="text" disabled value="{{ $sv[0]->MSSV }}" id="mssv" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -152,7 +153,7 @@
 
                     <button type="button" class="btn btn-danger"
                         onclick="if(window.confirm('Xóa sinh viên này?')){
-                        window.location.replace('<?php echo route("DeleteCB", 
+                        window.location.replace('<?php echo route("DeleteSV", 
                         ["mssv" => $sv[0]->MSSV]) ?>');}">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         Xóa
