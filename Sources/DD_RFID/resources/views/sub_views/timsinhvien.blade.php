@@ -59,7 +59,7 @@
                 @if (count($sinhviens) == 0)
                     {{--  Phần nội dung không có sinh viên  --}}
                     <tr>
-                        <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
+                        <th colspan="8" class="text-center"><i>Không tìm thấy kết quả</i></th>
                     </tr>
                 @else
                     {{--  Phần nội dung khi có sinh viên  --}}

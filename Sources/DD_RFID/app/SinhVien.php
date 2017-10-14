@@ -77,11 +77,11 @@ class SinhVien extends Model
         );
     }
 
-    // Xóa sinh viên.
+    // Xóa cán bộ.
     public static function DeleteSV($mssv)
     {
         try {
-            \DB::delete('DELETE FROM sinhvien WHERE MSSV = '.$mssv);
+            \DB::delete('DELETE FROM sinhvien WHERE MSSV = ?',[$mssv]);
             return true;
         } catch (\Exception $e) {
             return false;

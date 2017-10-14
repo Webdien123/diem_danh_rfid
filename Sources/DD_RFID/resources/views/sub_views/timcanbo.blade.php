@@ -57,7 +57,7 @@
 
                 {{--  Phần nội dung không có cán bộ  --}}
                 <tr>
-                    <th colspan="8" class="text-center"><i>Không tìm thấy kết quả.</i></th>
+                    <th colspan="8" class="text-center"><i>Không tìm thấy kết quả</i></th>
                 </tr>
                 @else
                 <!-- Phần nội dung khi có cán bộ -->                   

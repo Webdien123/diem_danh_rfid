@@ -26,6 +26,18 @@ class DangKyTheSV extends Model
         return null;
     }
 
+    // Lấy thông tin thẻ từ mã số chủ thẻ
+    public static function LayThongTinThe($machuthe)
+    {
+        // Truy xuất mã thẻ của mã chủ thẻ.
+        $mathe = \DB::select('select MATHE from dangkythesv where MSSV_THE = ?', [$machuthe]);
+        // Nếu mã thẻ có tồn tại.
+        if ($mathe) {
+            return true;
+        }
+        return false;
+    }
+
     // Lưu thông tin thẻ đăng ký
     public static function LuuTheMoi($machuthe, $mathe)
     {
@@ -38,6 +50,17 @@ class DangKyTheSV extends Model
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    // Cập nhật thông tin thẻ đã lưu.
+    public static function UpdateThe($machuthe, $mathe)
+    {
+        // Trả về kết quả của việc thực thi lệnh sql. 
+        //(true hoạc false - thành công hoặc thất bại)
+        return \DB::statement(
+            "UPDATE dangkythesv SET MATHE=? WHERE MSSV_THE = ?",
+            [$mathe, $machuthe]
+        );
     }
 
     // Xóa thẻ đã đăng ký.
@@ -53,7 +76,7 @@ class DangKyTheSV extends Model
         }
         // Ngược lại thực hiện xóa thẻ. 
         try {
-            \DB::delete('DELETE FROM dangkythesv WHERE MSSV_THE = '.$machuthe);
+            \DB::delete('DELETE FROM dangkythesv WHERE MSSV_THE = ?', [$machuthe]);
             return true;
         } catch (\Exception $e) {
             return false;
