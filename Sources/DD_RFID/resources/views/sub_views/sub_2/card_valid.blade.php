@@ -9,6 +9,10 @@
 {{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
 <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
 
+{{--  Script xử lý khi select danh sách chuyên ngành, danh sách khoa.
+Và các danh sách nằm trên form thêm sinh viên  --}}
+<script src="{{ asset('js/select_khoa_chnganh.js') }}"></script>
+
 {{--  Script import jquery validate  --}}
 <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
@@ -109,18 +113,34 @@
             {{--  Phần nội dung đăng ký riêng cho sinh viên  --}}
             <div id="dky_sv">
                 <div class="form-group">
-                    <label for="">Chuyên ngành</label>
-                    <input type="text" class="form-control" id="">
+                    <label for="">Chuyên ngành:</label>
+                    <input type="hidden" name="chnganh" id="chnganh">
+                    <select class="form-control" id="chonchnganh" name="chonchnganh">
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Ký hiệu lớp</label>
-                    <input type="text" class="form-control" id="">
+                    <label for="">Lớp:</label>
+                    <input type="hidden" name="lop" id="lop">
+                    <select class="form-control" id="chonlop" name="chonlop">
+                        @foreach ($lops as $lop)
+                            <?php
+                                echo "<option value='". $lop->KYHIEULOP ."'>". $lop->KYHIEULOP ."</option>";
+                            ?>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Khóa học</label>
-                    <input type="text" class="form-control" id="">
+                    <label for="">Khóa học:</label>
+                    <input type="hidden" name="khoahoc" id="khoahoc">
+                    <select class="form-control" id="chonkhoahoc" name="chonkhoahoc">
+                        @foreach ($khoahocs as $khoahoc)
+                            <?php
+                                echo "<option value='". $khoahoc->KHOAHOC ."'>". $khoahoc->KHOAHOC ."</option>";
+                            ?>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         

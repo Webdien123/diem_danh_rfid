@@ -7,6 +7,7 @@ use App\SinhVien;
 use App\Khoa_Phong;
 use App\KyHieuLop;
 use App\KhoaHoc;
+use App\DangKyTheSV;
 
 class SinhVienController extends Controller
 {
@@ -126,11 +127,11 @@ class SinhVienController extends Controller
     public function XoaSinhVien($mssv)
     {
         if (\Session::has('uname')) {
-            // $ketqua_the = DangKyTheSV::DeleteThe($mssv);
+            $ketqua_the = DangKyTheSV::DeleteThe($mssv);
             $ketqua_sv = SinhVien::DeleteSV($mssv);
 
             // Tính kết quả tổng hợp
-            $ketqua = ($ketqua_sv) ? true : false;
+            $ketqua = ($ketqua_sv && $ketqua_the) ? true : false;
 
             if ($ketqua)
                 return redirect()->route('student');

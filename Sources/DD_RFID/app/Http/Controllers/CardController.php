@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\DangKyTheCB;
 use App\Khoa_Phong;
 use App\CanBo;
+use App\SinhVien;
+use App\DangKyTheSV;
+use App\KyHieuLop;
+use App\KhoaHoc;
 
 class CardController extends Controller
 {
@@ -21,14 +25,28 @@ class CardController extends Controller
         if ($canbo) {
             return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Cán bộ', 'chuthe' => $canbo]);
         }
+
+        // Lấy thông tin sinh viên có mã thẻ tương ứng.
+        $sv = DangKyTheSV::LayThongTinSinhVien($mathe->id_the);
+
+        // Nếu tồn tại sinh viên đã đăng ký thẻ này
+        // thì chuyển sang giao diện hiển thị thông tin chủ thẻ
+        if ($sv) {
+            return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Sinh viên', 'chuthe' => $sv]);
+        }
+
         // Ngược lại hiển thị giao diện sản sàng đăng ký thẻ.
         else {
             $khoas = Khoa_Phong::GetKhoa();
+            $lops = KyHieuLop::LayKyHieuLop();
+            $khoahocs = KhoaHoc::LayKhoaHoc();
             return view('sub_views.sub_2.card_valid', [
                 'loaithe' => null, 
                 'chuthe' => null, 
                 'mathe' => $mathe->id_the,
-                'khoas' => $khoas
+                'khoas' => $khoas,
+                'lops' => $lops,
+                'khoahocs' => $khoahocs
             ]);
         }
     }
@@ -36,21 +54,40 @@ class CardController extends Controller
     //  Hàm đăng ký thẻ mới.
     public function DangKyTheMoi(Request $R)
     {
-        // Nhận kết quả xử lý thêm thông tin chủ thẻ và thêm thông tin thẻ.
-        $ketqua_cb = $this->ThemChuThe($R->maso, $R->bomon, $R->khoa, $R->email, $R->hoten);
-        $ketqua_the = DangKyTheCB::LuuTheMoi($R->maso, $R->mathe);
+        // Thêm thông tin chủ thẻ vào hệ thống ghi nhận kết quả xử lý.
+        $ketqua_chuthe = $this->ThemChuThe($R);
+
+        // Thêm thông tin thẻ vào hệ thống, ghi nhận kết quả xử lý.
+        if ($R->chon_cb_sv == "cán bộ") {
+            $ketqua_the = DangKyTheCB::LuuTheMoi($R->maso, $R->mathe);
+        }
+        if ($R->chon_cb_sv == "sinh viên") {
+            $ketqua_the = DangKyTheSV::LuuTheMoi($R->maso, $R->mathe);
+        }
 
         // Tính kết quả tổng hợp
-        $ketqua = ($ketqua_cb && $ketqua_the) ? 0 : 1 ;
+        $ketqua = ($ketqua_chuthe && $ketqua_the) ? 0 : 1 ;
 
         // Nếu kết quả đều thành công hiện thị lại giao diện đăng ký thẻ
         // kèm theo thông báo thành công.
         \Session::put('ketqua_dangkythe', $ketqua);
-        return redirect('/card/');        
+        return redirect('/card/');   
     }
 
-    // Thêm thông tin chủ thẻ mới.
-    public function ThemChuThe($maso, $bomon, $khoa, $email, $hoten)
+    public function ThemChuThe(Request $R)
+    {
+        if ($R->chon_cb_sv == "cán bộ") {
+            
+            // Nhận kết quả xử lý thêm thông tin chủ thẻ và thêm thông tin thẻ.
+            return $this->ThemChuTheCB($R->maso, $R->bomon, $R->khoa, $R->email, $R->hoten);
+        }
+        if ($R->chon_cb_sv == "sinh viên") {
+            return $this->ThemChuTheSV($R->maso, $R->hoten, $R->khoa, $R->chnganh, $R->lop, $R->khoahoc);
+        }
+    }
+
+    // Thêm thông tin chủ thẻ mới là cán bộ.
+    public function ThemChuTheCB($maso, $bomon, $khoa, $email, $hoten)
     {
         if (\Session::has('uname')) {
             // Tìm xem có các bộ nào đã có mã số này chưa.
@@ -90,6 +127,38 @@ class CardController extends Controller
                         return redirect()->route('Error',
                         ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
                     }
+            }
+        }
+        else{
+            return view('login');
+        }
+    }
+
+    // Thêm thông tin chủ thẻ mới là sinh viên.
+    public function ThemChuTheSV($maso, $hoten, $khoa, $chnganh, $lop, $khoahoc)
+    {
+        if (\Session::has('uname')) {
+            // Tìm xem có sinh viên nào đã có mã số này chưa.
+            $maso_tim = SinhVien::GetSV($maso);
+
+            // Nếu mã số chưa có.
+            if ($maso_tim == null) {
+
+                // Thêm sinh viên vào hệ thống
+                $ketqua =  SinhVien::AddSV_Para($maso, $hoten, $khoa, $chnganh, $lop, $khoahoc);              
+
+                // Nếu xử lý thành công thì trả về true để xử lý tiếp.
+                // ngược lại báo lỗi do xử lý.
+                if ($ketqua)
+                    return true;
+                else
+                    return false;
+            }
+            // Nếu mã số đã bị trùng.
+            else {
+                // Báo lỗi trùng mã số
+                return redirect()->route('Error',
+                ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số sinh viên đã tồn tại']);
             }
         }
         else{

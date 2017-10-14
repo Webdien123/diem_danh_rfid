@@ -36,6 +36,24 @@ class SinhVien extends Model
         }
     }
 
+    // Thêm thông tin sinh viên mới từ danh sách tham số.
+    public static function AddSV_Para($maso, $hoten, $khoa, $chnganh, $lop, $khoahoc)
+    {
+        try {
+            \DB::insert('insert into sinhvien (MSSV, KYHIEULOP, TENCHNGANH, KHOAHOC, TENKHOA, HOTEN) values (?, ?, ?, ?, ?, ?)', [
+                $maso, 
+                $lop,
+                $chnganh,
+                $khoahoc,
+                $khoa,
+                $hoten
+            ]);
+            return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     // Lấy thông tin của một sinh viên theo mã sinh viên.
     public static function GetSV($mssv)
     {

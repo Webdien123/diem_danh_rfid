@@ -35,6 +35,7 @@ class CanBo extends Model
         }
     }
 
+    // Thêm thông tin cán bộ từ danh sách tham số.
     public static function AddCB_Para($maso, $bomon, $khoa, $email, $hoten)
     {
         try {

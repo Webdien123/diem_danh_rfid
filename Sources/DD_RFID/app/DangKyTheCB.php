@@ -7,25 +7,6 @@ use App\CanBo;
 
 class DangKyTheCB extends Model
 {
-    // Tên bảng tham chiếu.
-    protected $table = 'dangkythecb';
-    
-    // Tên cột khóa chính.
-    protected $primaryKey = ['MSCB', 'MATHE'];
-
-    // Tên kiểu khóa chính.
-    protected $keyType = 'string';
-
-    // Cho phép khóa chính tự tăng hay không.
-    public $incrementing = false;
-
-    // Danh sách các cột cố thể điền dữ liệu.
-    protected $fillable = ['MSCB_THE', 'MATHE'];
-
-    // Có tự động thêm 2 cột thời gian tạo và 
-    // cập nhật gần nhất cho mỗi mẫu tin hay không?
-    public $timestamps = false;
-
     // Hàm lấy thông tin cán bộ đã đăng ký từ mã thẻ.
     public static function LayThongTinCanBo($mathe)
     {
@@ -86,11 +67,15 @@ class DangKyTheCB extends Model
     // Xóa thẻ đã đăng ký.
     public static function DeleteThe($machuthe)
     {
-        // Truy xuất mã thẻ cần tìm để lấy mã số cán bộ.
+        // Truy xuất mã thẻ đã có từ mã cán bộ.
         $mathe = \DB::select('select MATHE from dangkythecb where MSCB_THE = ?', [$machuthe]);
+
+        // Nếu chủ thẻ chưa có mã thẻ nào
         if (!$mathe) {
+            // Xem như đã xóa thành công.
             return true;
-        }   
+        }
+        // Ngược lại thực hiện xóa thẻ. 
         try {
             \DB::delete('DELETE FROM dangkythecb WHERE MSCB_THE = '.$machuthe);
             return true;
