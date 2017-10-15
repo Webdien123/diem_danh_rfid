@@ -8,7 +8,7 @@ use \App\Http\Controllers\SinhVienController;
 
 class SinhVien extends Model
 {
-    // Lấy thông tin tất cả cán bộ.
+    // Lấy thông tin tất cả sinh viên.
     public static function GetSinhVien()
     {
         // Lấy dữ liệu kết hợp phân trang.

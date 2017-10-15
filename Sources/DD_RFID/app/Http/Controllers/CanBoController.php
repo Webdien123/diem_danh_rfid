@@ -12,6 +12,7 @@ class CanBoController extends Controller
     // Lưu trữ danh sách khoa trong hệ thống.
     public static $khoas;
 
+    // Lưu số dòng phân trang cho trang cán bộ.
     public static $so_dong = 5;
 
     public function __construct() {
@@ -40,7 +41,7 @@ class CanBoController extends Controller
         return json_encode($bomons);
     }
 
-    // Thêm thông tin cán bộ với vào hệ thống.
+    // Thêm thông tin cán bộ mới vào hệ thống.
     public function ThemCanBo(Request $canbo)
     {
         if (\Session::has('uname')) {

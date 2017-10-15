@@ -20,6 +20,7 @@ class SinhVienController extends Controller
     // Lưu trữ danh sách khóa học.
     public static $khoahocs;
 
+    // Lưu số dòng phân trang cho trang sinh viên.
     public static $so_dong = 5;
 
     public function __construct() {
@@ -52,7 +53,7 @@ class SinhVienController extends Controller
         return json_encode($chnganhs);
     }
 
-    // Thêm thông tin sinh viên với vào hệ thống.
+    // Thêm thông tin sinh viên mới vào hệ thống.
     public function ThemSinhVien(Request $sinhvien)
     {
         if (\Session::has('uname')) {
@@ -87,7 +88,7 @@ class SinhVienController extends Controller
         }
     }
 
-    // Tìm thông tin sinhviên cần update và hiển thị lên để chỉnh sửa.
+    // Tìm thông tin sinh viên cần update và hiển thị lên để chỉnh sửa.
     public function CapNhatSinhVien($mssv)
     {
         if (\Session::has('uname')) {
@@ -101,7 +102,7 @@ class SinhVienController extends Controller
                 ]);
             } else {
                 return redirect()->route('Error',
-                ['mes' => 'Lấy thông tin sinhviên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+                ['mes' => 'Lấy thông tin sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
             }
         }
         else{

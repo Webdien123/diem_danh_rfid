@@ -30,7 +30,7 @@ Route::get('admin', "CanBoController@GetPageCB")->name('admin');
 Route::get('chart', "GetViewController@ThongKe")->name('chart');
 
 // Dẫn vào trang Quản Lý sự kiện.
-Route::get('event', "GetViewController@SuKien")->name('event');
+Route::get('event', "EventController@GetPageSK")->name('event');
 
 // Dẫn vào trang Quản Lý sinh viên.
 Route::get('student', "SinhVienController@GetPageSV")->name('student');
@@ -73,6 +73,15 @@ Route::get('xoaSinhVien/{mssv}', "SinhVienController@XoaSinhVien")->name("Delete
 
 // Tìm kiếm sinh viên.
 Route::get('timkiemSinhVien', "SinhVienController@TimSinhVien")->name("FindSV");
+
+// Thêm sự kiện.
+Route::post('themSuKien/', "EventController@ThemSuKien")->name("AddSK");
+
+// Lấy trang chỉnh sửa sự kiện.
+Route::get('event_info/{mssk}', "EventController@CapNhatSuKien")->name("SV_Info");
+
+// Chỉnh sửa sự kiện.
+Route::post('capnhatSuKien', "EventController@XuLyCapNhat")->name("UpdateSK");
 
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");

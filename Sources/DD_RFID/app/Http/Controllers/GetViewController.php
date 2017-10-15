@@ -47,17 +47,6 @@ class GetViewController extends Controller
         }
     }
 
-    // Hiện trang sự kiện.
-    public function SuKien()
-    {
-        if (\Session::has('uname')) {
-            return view('sub_views.event');
-        }
-        else{
-            return view('login');
-        }
-    }
-
     // Hiện trang đăng ký thẻ.
     public function Card()
     {

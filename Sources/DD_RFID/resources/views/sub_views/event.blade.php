@@ -6,6 +6,27 @@
 
 @section('event')
     
+    {{--  Khai báo biến thời gian toàn cục dùng cho validate form vào 2 biến time và today  --}}
+    <script src="{{ asset('js/get_current_datetime.js') }}"></script>
+
+    {{--  Script tạo giá trị mặc định cho các trường thời gian và ngày tháng  --}}
+    <script>
+        $(document).ready(function () {
+            // Tính ngày hiện tại gán vào id 'ngthuchien'
+            $('#ngthuchien').val(today);
+
+            // Tính giờ hiện tại gán vào id 'ddvao'
+            $('#ddvao').val(time);
+            $('#ddra').val(time);
+        });
+    </script>
+
+    {{--  Script import jquery validate  --}}
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+    {{--  Script xử lý validate dữ liệu sự kiện  --}}
+    <script src="{{ asset('js/validate_sukien.js') }}"></script>
+
     {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
     @include('link_views.rotation_icon')
 
@@ -38,15 +59,74 @@
     <center><h1>Danh sách sự kiện</h1></center>
     <div class="row">
         <div class="col-xs-12 col-md-6">
-            <a class="btn btn-success"  data-toggle="modal" href='#modal-themsv' id="btn_them_sv">
+            <a class="btn btn-success"  data-toggle="modal" href='#modal-themsk'>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 Thêm sự kiện
             </a>
+
+            {{--  modal thêm sự kiện  --}}
+            <div class="modal fade" id="modal-themsk">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Thêm sự kiện</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{--  Form thêm sự kiện  --}}
+                            <form action="{{ route('AddSK') }}" method="POST" id="form_sukien">
+                                {{--  Phần mã xác thực form của laravel  --}}
+								{{ csrf_field() }}
+
+                                <div class="form-group">
+									<label>Tên sự kiện:</label>
+									<input type="text" name="tensk" id="tensk" class="form-control" placeholder="mã số sinh viên">
+								</div>
+
+								<div class="form-group">
+									<label>Ngày thực hiện:</label>
+                                    <input type="date" name="ngthuchien" id="ngthuchien" class="form-control" required="required" title="Ngày diễn ra sự kiện">
+                                </div>
+
+                                <div class="form-group">
+									<label>Địa điểm:</label>
+									<input type="text" name="diadiem" id="diadiem" class="form-control" placeholder="Nơi diễn ra sự kiện">
+                                </div>
+                                
+                                <div class="form-group">
+									<label>Giờ điểm danh vào:</label>
+                                    <input type="time" name="ddvao" id="ddvao" class="form-control" required="required" title="Ngày diễn ra sự kiện">
+                                </div>
+
+                                <div class="form-group">
+									<label>Giờ điểm danh ra:</label>
+                                    <input type="time" name="ddra" id="ddra" class="form-control" required="required" title="Ngày diễn ra sự kiện">
+                                </div>
+
+								<button type="button" class="btn btn-success" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+									Hủy
+								</button>
+
+								<button type="submit" class="btn btn-success">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+									Thêm sự kiện
+								</button>
+							</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
 
             <a class="btn btn-default" style="background-color: #001a66; color: white">
                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                 Thêm sự kiện từ excel
             </a>
+
+            {{--  Script cập nhật lại miền giá trị hợp lệ cho sự kiện  --}}
+            <script src="{{ asset('js/update_time.js') }}"></script>  
+
         </div>
     </div>
 
@@ -55,6 +135,7 @@
         <table class="table table-hover table-bordered" style="background-color: white">
             <thead>
                 <tr>
+                    <th>Mã số</th>             
                     <th>Tên sự kiện</th>
                     <th>Ngày thực hiện</th>
                     <th>Địa điểm</th>
@@ -66,184 +147,50 @@
             </thead>
             <tbody>
 
-                {{--  Phần nội dung không có sự kiện  --}}
-                <tr>
-                    <th colspan="7" class="text-center"><i>Danh sách rỗng.</i></th>
-                </tr>
+                {{--  Nếu danh sách sự kiện rỗng  --}}
+                @if (count($sukiens) == 0)
+                    {{--  Phần nội dung không có sự kiện  --}}
+                    <tr>
+                        <th colspan="8" class="text-center"><i>Danh sách rỗng.</i></th>
+                    </tr>
+                @else
+                    {{-- Phần nội dung khi có sự kiện   --}}
+                    @foreach ($sukiens as $sk)
+                    <tr>
+                        <td>{{ $sk->MASK }}</td>            
+                        <td>{{ $sk->TENSK }}</td>
+                        <td>{{ $sk->NGTHUCHIEN }}</td>
+                        <td>{{ $sk->DIADIEM }}</td>
+                        <td>{{ $sk->DDVAO }}</td>
+                        <td>{{ $sk->DDRA }}</td>
+                        <td><center>
+                            <i>Chưa Thực hiện.</i>
+                        </center></td>                    
+                        <td>
+                            <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                Sửa thông tin
+                            </a>
 
-                {{-- Phần nội dung khi có sự kiện   --}}
-                <tr>
-                    <td>Ngày hội việc làm 0</td>
-                    <td>24/08/2017</td>
-                    <td>Hội trường lớn khu 2</td>
-                    <td>14:00</td>
-                    <td>17:00</td>
-                    <td><center>
-                        <i>Chưa Thực hiện.</i>
-                    </center></td>                    
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
+                            <button type="button" class="btn btn-danger" 
+                                onclick="
+                                    if(window.confirm('Xóa này?')){
+                                        if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
+                                            window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
 
-                        <button type="button" class="btn btn-danger" 
-                            onclick="
-                                if(window.confirm('Xóa này?')){
-                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
+                                        }
+                                        else{
+                                            window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
+                                        }
                                     }
-                                    else{
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                    }
-                                }
-                            ">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>	
-
-                <tr>
-                    <td>Ngày hội việc làm 1</td>
-                    <td>24/08/2017</td>
-                    <td>Hội trường lớn khu 2</td>
-                    <td>14:00</td>
-                    <td>17:00</td>
-                    <td>
-                        <a href="" class="btn btn-default btn-block" style="background-color: #8064A2; color: white">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            Xem kết quả
-                        </a>
-                    </td>         
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-
-                        <button type="button" class="btn btn-danger" 
-                            onclick="
-                                if(window.confirm('Xóa này?')){
-                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
-                                    }
-                                    else{
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                    }
-                                }
-                            ">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>	
-
-                <tr>
-                    <td>Ngày hội việc làm 2</td>
-                    <td>24/08/2017</td>
-                    <td>Hội trường lớn khu 2</td>
-                    <td>14:00</td>
-                    <td>17:00</td>
-                    <td><center>
-                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang điểm danh
-                    </center></td>         
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-
-                        <button type="button" class="btn btn-danger" 
-                            onclick="
-                                if(window.confirm('Xóa này?')){
-                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
-                                    }
-                                    else{
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                    }
-                                }
-                            ">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>	
-
-                <tr>
-                    <td>Ngày hội việc làm 3</td>
-                    <td>24/08/2017</td>
-                    <td>Hội trường lớn khu 2</td>
-                    <td>14:00</td>
-                    <td>17:00</td>
-                    <td><center>
-                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang điểm danh
-                    </center></td>         
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-
-                        <button type="button" class="btn btn-danger" 
-                            onclick="
-                                if(window.confirm('Xóa này?')){
-                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
-                                    }
-                                    else{
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                    }
-                                }
-                            ">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>	
-
-                <tr>
-                    <td>Ngày hội việc làm 4</td>
-                    <td>24/08/2017</td>
-                    <td>Hội trường lớn khu 2</td>
-                    <td>14:00</td>
-                    <td>17:00</td>
-                    <td><center>
-                        <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                        Đang điểm danh
-                    </center></td>         
-                    <td>
-                        <a href="" class="btn btn-success">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Sửa thông tin
-                        </a>
-
-                        <button type="button" class="btn btn-danger" 
-                            onclick="
-                                if(window.confirm('Xóa này?')){
-                                    if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
-                                    }
-                                    else{
-                                        window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                    }
-                                }
-                            ">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            Xóa
-                        </button>
-                    </td>
-                </tr>
-                
-
+                                ">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                Xóa
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>
