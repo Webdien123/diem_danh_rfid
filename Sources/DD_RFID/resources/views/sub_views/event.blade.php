@@ -9,17 +9,8 @@
     {{--  Khai báo biến thời gian toàn cục dùng cho validate form vào 2 biến time và today  --}}
     <script src="{{ asset('js/get_current_datetime.js') }}"></script>
 
-    {{--  Script tạo giá trị mặc định cho các trường thời gian và ngày tháng  --}}
-    <script>
-        $(document).ready(function () {
-            // Tính ngày hiện tại gán vào id 'ngthuchien'
-            $('#ngthuchien').val(today);
-
-            // Tính giờ hiện tại gán vào id 'ddvao'
-            $('#ddvao').val(time);
-            $('#ddra').val(time);
-        });
-    </script>
+    {{--  Script tạo giá trị ban đầu cho các trường thời gian và ngày tháng  --}}
+    <script src="{{ asset('js/set_formAddEvent.js') }}"></script>
 
     {{--  Script import jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
@@ -95,12 +86,12 @@
                                 
                                 <div class="form-group">
 									<label>Giờ điểm danh vào:</label>
-                                    <input type="time" name="ddvao" id="ddvao" class="form-control" required="required" title="Ngày diễn ra sự kiện">
+                                    <input type="time" name="ddvao" id="ddvao" class="form-control">
                                 </div>
 
                                 <div class="form-group">
 									<label>Giờ điểm danh ra:</label>
-                                    <input type="time" name="ddra" id="ddra" class="form-control" required="required" title="Ngày diễn ra sự kiện">
+                                    <input type="time" name="ddra" min="document.getElementById('ddvao').value" id="ddra" class="form-control">
                                 </div>
 
 								<button type="button" class="btn btn-success" data-dismiss="modal">

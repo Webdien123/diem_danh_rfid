@@ -67,7 +67,7 @@ class EventController extends Controller
     public function XuLyCapNhat(Request $sukien)
     {
         if (\Session::has('uname')) {
-            $ketqua = SinhVien::UpdateSV($sukien);
+            $ketqua = SuKien::UpdateSK($sukien);
             $ketqua = ($ketqua) ? 0 : 1 ;
             \Session::put('ketqua_up_sk', $ketqua);
             return redirect('/event_info/' . $sukien->mask);

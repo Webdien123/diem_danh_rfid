@@ -56,10 +56,7 @@
                     {{--  Phần mã xác thực form của laravel  --}}
                     {{ csrf_field() }}
 
-                    <div class="form-group">
-                        <label>Tên sự kiện:</label>
-                        <input type="hidden" name="mask" value="{{ $sukien[0]->MASK }}" id="mask" class="form-control">
-                    </div>
+                    <input type="hidden" name="mask" value="{{ $sukien[0]->MASK }}" id="mask">
 
                     <div class="form-group">
                         <label>Tên sự kiện:</label>
@@ -101,9 +98,9 @@
                         Xóa
                     </button>
                 </form>
-
+                
                 {{--  Script cập nhật lại miền giá trị hợp lệ cho sự kiện  --}}
-                <script src="{{ asset('js/update_time.js') }}"></script>        
+                <script src="{{ asset('js/update_time.js') }}"></script> 
             </div>
         </div>
     </div>

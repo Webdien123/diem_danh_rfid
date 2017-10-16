@@ -27,6 +27,7 @@ class LoginController extends Controller
             // Reset giá trị các session khác.
             \Session::put('ketqua_up_cb', 2);
             \Session::put('ketqua_up_sv', 2);
+            \Session::put('ketqua_up_sk', 2);
             \Session::put('ketqua_dangkythe', 2);
             \Session::put('ketqua_capnhatthe', 2);
 
@@ -53,6 +54,7 @@ class LoginController extends Controller
         \Session::forget('err');
         \Session::forget('ketqua_up_cb');
         \Session::forget('ketqua_up_sv');        
+        \Session::forget('ketqua_up_sk');        
         \Session::forget('ketqua_dangkythe');
         
         // Về trang chủ.

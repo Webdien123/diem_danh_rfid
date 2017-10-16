@@ -12,12 +12,6 @@ $(document).ready(function () {
             },
             ngthuchien:{
                 min: today
-            },
-            ddvao:{
-                min: time
-            },
-            ddra:{
-                min: time
             }
         },
 
@@ -34,10 +28,10 @@ $(document).ready(function () {
                 min: "Ngày tạo sự kiện phải từ ngày hiện tại trở đi"
             },
             ddvao:{
-                min: "Giờ bắt đầu phải từ giờ hiện tại trở đi"
-            },
+                min: "Giờ điểm danh vào phải từ giờ hiện tại trở đi"
+            },            
             ddra:{
-                min: "Giờ kết thúc phải từ giờ hiện tại trở đi"
+                min: "Giờ điểm danh ra phải sau giờ điểm danh vào"
             }
         },
 

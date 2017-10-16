@@ -44,4 +44,23 @@ class SuKien extends Model
             return null;
         }
     }
+
+    // Cập nhật thông tin sự kiện.
+    public static function UpdateSK(Request $sukien)
+    {
+        // Trả về kết quả của việc thực thi lệnh sql. 
+        //(true hoạc false - thành công hoặc thất bại)
+        return \DB::statement(
+            'UPDATE sukien SET TENSK = ?, NGTHUCHIEN = ?, DIADIEM = ?, DDVAO = ?, DDRA = ?
+            WHERE MASK = ?',
+            [
+                $sukien->tensk,
+                $sukien->ngthuchien,
+                $sukien->diadiem,
+                $sukien->ddvao,
+                $sukien->ddra,
+                $sukien->mask                
+            ]
+        );
+    }
 }
