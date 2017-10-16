@@ -24,7 +24,7 @@ Route::post('login_processing', "LoginController@LoginProcess")->name('login');
 Route::get('logout', "LoginController@LogOut")->name('logout');
 
 // Dẫn vào trang điều khiển của admin.
-Route::get('admin', "CanBoController@GetPageCB")->name('admin');
+Route::get('admin', "GetViewController@Admin")->name('admin');
 
 // Dẫn vào trang thống kê điểm danh.
 Route::get('chart', "GetViewController@ThongKe")->name('chart');
@@ -82,6 +82,12 @@ Route::get('event_info/{mssk}', "EventController@CapNhatSuKien")->name("SV_Info"
 
 // Chỉnh sửa sự kiện.
 Route::post('capnhatSuKien', "EventController@XuLyCapNhat")->name("UpdateSK");
+
+// Xóa sự kiện.
+Route::get('xoaSuKien/{mssk}', "EventController@XoaSuKien")->name("DeleteSK");
+
+// Tìm kiếm sự kiện.
+Route::get('timkiemSuKien', "EventController@TimSuKien")->name("FindSK");
 
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");

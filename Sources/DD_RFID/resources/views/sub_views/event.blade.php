@@ -23,20 +23,20 @@
 
     {{--  Tìm kiếm sự kiện  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+        <form action="{{ route('FindSK') }}" method="get" class="form-inline pull-right hidden-xs" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm sự kiện:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
             <button type="submit" class="btn btn-success">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
         </form>
 
-        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+        <form action="{{ route('FindSK') }}" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm sự kiện:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
             <button type="submit" class="btn btn-success">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
@@ -163,21 +163,13 @@
                                 Sửa thông tin
                             </a>
 
-                            <button type="button" class="btn btn-danger" 
-                                onclick="
-                                    if(window.confirm('Xóa này?')){
-                                        if(window.confirm('Xóa cả thông tin của sinh viên này trong bộ nhớ?')){
-                                            window.location.replace('http://lyvan:8080/XuLyXoaThe/333/true');
-
-                                        }
-                                        else{
-                                            window.location.replace('http://lyvan:8080/XuLyXoaThe/333/false');
-                                        }
-                                    }
-                                ">
+                            <a class="btn btn-danger"
+                                onclick="if(window.confirm('Xóa sinh viên này?')){
+                                window.location.replace('<?php echo route("DeleteSK", 
+                                ["mssk" => $sk->MASK]) ?>');}">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 Xóa
-                            </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach
@@ -185,6 +177,13 @@
             </tbody>
         </table>
     </div>
+
+    {{--  Hiển thị dãy nút phân trang.  --}}
+    @if (count($sukiens) != 0)
+    <center>
+        {!! $sukiens->links() !!}
+    </center>
+    @endif
     
 @endsection
 

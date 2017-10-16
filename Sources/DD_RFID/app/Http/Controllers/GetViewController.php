@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CanBo;
+use App\SuKien;
 use Excel;
 
 class GetViewController extends Controller
@@ -11,7 +12,16 @@ class GetViewController extends Controller
     // Hiện trang chủ.
     public function Home()
     {
-        return view('home');
+        // Nếu có cookie tên sự kiện được chọn.
+        if (\Cookie::get('ten_sukien') !== null){
+            return view('home');
+        }
+        // Nếu không có sự kiện nào được lưu vào cookie
+        // thì chuyển sang trang chọn sự kiện để điểm danh.
+        else {
+            $sukiens = SuKien::GetSuKienSSang();
+            return view('chon_sukien', ['sukiens' => $sukiens]);
+        }
     }
 
     // Hiện trang đăng nhập.

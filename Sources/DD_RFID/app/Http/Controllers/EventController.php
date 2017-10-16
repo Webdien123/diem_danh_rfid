@@ -76,4 +76,53 @@ class EventController extends Controller
             return view('login');
         }
     }
+
+    // Xóa thông tin sự kiện.
+    public function XoaSuKien($mssk)
+    {
+        if (\Session::has('uname')) {
+            $ketqua_sk = SuKien::DeleteSV($mssk);
+
+            // Tính kết quả tổng hợp
+            $ketqua = ($ketqua_sk) ? true : false;
+
+            if ($ketqua)
+                return redirect()->route('event');
+            else
+                return redirect()->route('Error', 
+                ['mes' => 'Xóa sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+        }
+        else{
+            return view('login');
+        }
+    }
+
+    // Tìm sự kiện.
+    public function TimSuKien(Request $tukhoa)
+    {
+        if (\Session::has('uname')) {
+            try{
+                // Lấy từ khóa cần tìm ra khỏi request.
+                $TK = $tukhoa->tukhoa;
+            
+                // Tìm kiếm sự kiện đồng thời phân trang kết quả.
+                $sukiens = \DB::table('sukien')
+                    ->where('MASK', 'like', "%$TK%")
+                    ->orWhere('TENSK', 'like', "%$TK%")
+                    ->orWhere('NGTHUCHIEN', 'like', "%$TK%")
+                    ->orWhere('DIADIEM', 'like', "%$TK%")
+                    ->orWhere('DDVAO', 'like', "%$TK%")
+                    ->orWhere('DDRA', 'like', "%$TK%")
+                    ->paginate(self::$so_dong)->appends(['tukhoa' => $TK]);
+                return view('sub_views.timsukien', ['sukiens' => $sukiens, 'tukhoa' => $TK]);
+            }
+            catch (\Exception $e) {
+                return redirect()->route('Error', 
+                ['mes' => 'Tìm sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+            }
+        }
+        else{
+            return view('login');
+        }
+    }
 }

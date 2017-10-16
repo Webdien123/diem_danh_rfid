@@ -63,4 +63,29 @@ class SuKien extends Model
             ]
         );
     }
+
+    // Xóa sự kiện.
+    public static function DeleteSV($mssk)
+    {
+        try {
+            \DB::delete('DELETE FROM sukien WHERE MASK = ?',[$mssk]);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    // API Lấy danh sách sự kiện sẳn sàng điểm danh
+    public static function GetSuKienSSang()
+    {
+        $today = date("Y-m-d");
+        $time = date("h:i:s");
+        $sukiens = \DB::select(\DB::raw("SELECT * FROM sukien WHERE NGTHUCHIEN = :v1
+        AND DDVAO >= :v2"),
+            array(
+            'v1' => $today,
+            'v2' => $time
+        ));
+        return $sukiens;
+    }
 }

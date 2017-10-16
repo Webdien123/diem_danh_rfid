@@ -77,7 +77,7 @@ class SinhVien extends Model
         );
     }
 
-    // Xóa cán bộ.
+    // Xóa sinh viên.
     public static function DeleteSV($mssv)
     {
         try {

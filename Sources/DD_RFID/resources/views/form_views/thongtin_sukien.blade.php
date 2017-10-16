@@ -20,7 +20,6 @@
 
     <center>
         <h1>Trang cập nhật sự kiện</h1>
-        
         <div class="container">
             @if (Session::get('ketqua_up_sk') == 0)
                 {{--  Thông báo thành công  --}}
