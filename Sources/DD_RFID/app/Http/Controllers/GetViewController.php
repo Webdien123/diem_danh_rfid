@@ -13,8 +13,8 @@ class GetViewController extends Controller
     public function Home()
     {
         // Nếu có cookie tên sự kiện được chọn.
-        if (\Cookie::get('ten_sukien') !== null){
-            return view('home');
+        if (\Cookie::get('sukien_diemdanh') !== null){
+            return EventController::CapNhatSuKienDiemDanh();
         }
         // Nếu không có sự kiện nào được lưu vào cookie
         // thì chuyển sang trang chọn sự kiện để điểm danh.

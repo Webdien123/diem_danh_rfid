@@ -78,8 +78,9 @@ class SuKien extends Model
     // API Lấy danh sách sự kiện sẳn sàng điểm danh
     public static function GetSuKienSSang()
     {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $today = date("Y-m-d");
-        $time = date("h:i:s");
+        $time = date("H:i:s");
         $sukiens = \DB::select(\DB::raw("SELECT * FROM sukien WHERE NGTHUCHIEN = :v1
         AND DDVAO >= :v2"),
             array(

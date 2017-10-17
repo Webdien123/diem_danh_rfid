@@ -18,7 +18,11 @@
     @else
         {!! '<div class="panel panel-default">' !!}
     @endif  --}}
-    <?php echo \Cookie::get('ten_sukien'); ?>
+    <?php 
+        var_dump(\Cookie::get('sukien_diemdanh')); 
+        echo "<br>";
+        echo "Trạng thái sự kiện: ".Session::get('trangthai_sukien');
+    ?>
     <div class="panel panel-default">
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading" style="padding: 0px 15px 0px 15px">

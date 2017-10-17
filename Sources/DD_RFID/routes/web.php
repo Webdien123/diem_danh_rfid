@@ -89,6 +89,12 @@ Route::get('xoaSuKien/{mssk}', "EventController@XoaSuKien")->name("DeleteSK");
 // Tìm kiếm sự kiện.
 Route::get('timkiemSuKien', "EventController@TimSuKien")->name("FindSK");
 
+// Chọn sự kiện để điểm danh.
+Route::get('chonSuKien/{mask}', "EventController@ChonSuKien");
+
+// Kiểm tra trạng thái sự kiện.
+Route::get('updateTrangThaiSK', "EventController@CapNhatSuKienDiemDanh")->name("updateTTSK");
+
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
 

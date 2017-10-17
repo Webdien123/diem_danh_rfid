@@ -31,9 +31,6 @@ class LoginController extends Controller
             \Session::put('ketqua_dangkythe', 2);
             \Session::put('ketqua_capnhatthe', 2);
 
-            // TẠO COOKIE
-            \Cookie::queue("ten_sukien", "123", 2);
-
             // Chuyển về trang quản trị.
             return redirect()->route('admin');
         } 
