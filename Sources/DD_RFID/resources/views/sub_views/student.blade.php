@@ -73,7 +73,7 @@
         \Session::put('ketqua_capnhatthe', 2);
     ?>
 
-    {{--  Hiển thị tiêu đề và các nút thêm sinh viên  --}}
+    {{--  Hiển thị tiêu đề và các nút thêm, import sinh viên  --}}
     <center><h1>Danh sách sinh viên</h1></center>
     <div class="row">
         <div class="col-xs-12 col-md-6">

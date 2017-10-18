@@ -109,15 +109,41 @@
                 </div>
             </div>
             
-
-            <a class="btn btn-default" style="background-color: #001a66; color: white">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                Thêm sự kiện từ excel
-            </a>
-
             {{--  Script cập nhật lại miền giá trị hợp lệ cho sự kiện  --}}
             <script src="{{ asset('js/update_time.js') }}"></script>  
 
+            {{--  Nút ấn hiện chức năng import sinh viên từ excel.  --}}
+            <button id="import_toggle" class="btn btn-default">
+                Thêm sự kiện từ excel
+            </button>
+
+            {{--  Phần kích hoạt chức năng import sinh viên.  --}}
+            <div id="import_div">
+                <form enctype="multipart/form-data" id="f_import_sv" action="{{ route('import_file') }}" method="POST" class="pull-left form-inline" role="form">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="tenBang" id="tenBang" value="sinhvien">
+                    <input type="file" class="form-control" name="im_file" id="im_file">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        Thêm
+                    </button>
+                </form>
+
+                <form action="{{ route('download_file') }}" method="POST" class="pull-left form-inline" role="form">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label class="sr-only" for="">label</label>
+                        <input type="hidden" class="form-control" name="down_file" value="./download/sinhvien.xlsx">
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                        Tải file import mẫu
+                    </button>
+                </form>
+            </div>
+
+            {{--  Script xử lý ẩn hiện phần import sinh viên.  --}}
+            <script src="{{ asset('js/toggle_import.js') }}"></script>
         </div>
     </div>
 

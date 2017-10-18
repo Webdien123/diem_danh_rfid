@@ -73,7 +73,7 @@
         \Session::put('ketqua_capnhatthe', 2);
     ?>
 
-    {{--  Hiển thị tiêu đề và các nút thêm cán bộ  --}}
+    {{--  Hiển thị tiêu đề và các nút thêm, import cán bộ  --}}
     <center><h1>Danh sách cán bộ</h1></center>
     <div class="row">
         <div class="col-xs-12" >  
