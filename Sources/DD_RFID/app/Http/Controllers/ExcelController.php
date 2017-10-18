@@ -36,7 +36,7 @@ class ExcelController extends Controller
 				if(!empty($data) && $data->count()){
 
                     // Tạo dữ liệu cần insert tùy theo tên bảng.
-                    $insert = $this->TaoDuLieu($tenbang , $data);
+                    $insert = $this->TaoDuLieu($tenbang , $data);                    
 
                     // Tính số thứ tự dòng đang import
                     $sodong = 0;
@@ -143,7 +143,8 @@ class ExcelController extends Controller
                 'hoten' => $value->hoten,
                 'tenbomon' => $value->tenbomon,
                 'tenkhoa' => $value->tenkhoa,
-                'email' => $value->email
+                'email' => $value->email,
+                'mathe' => $value->mathe
             ];
         }
         return $insert;
@@ -159,7 +160,8 @@ class ExcelController extends Controller
                 'chnganh' => $value->tenchnganh,
                 'khoahoc' => $value->khoahoc,
                 'khoa' => $value->tenkhoa,
-                'hoten' => $value->hoten
+                'hoten' => $value->hoten,
+                'mathe' => $value->mathe
             ];
         }
         return $insert;
@@ -177,6 +179,14 @@ class ExcelController extends Controller
                 $item['email'], 
                 $item['hoten']
             ]);
+
+            if ($item['mathe']) {
+                // Insert dòng dữ liệu vào bảng đăng ký thẻ cán bộ theo giá trị trong mảng item.
+                \DB::insert('insert into dangkythecb (MSCB_THE, MATHE) values (?, ?)', [
+                    $item['mscb'],
+                    $item['mathe']
+                ]);
+            }
             return true; //Trả kết quả import về cho hàm ImportDuLieu.
         } catch (\Exception $e) {
             return false;
@@ -196,6 +206,13 @@ class ExcelController extends Controller
                 $item['khoa'],
                 $item['hoten']
             ]);
+            if ($item['mathe']) {
+                // Insert dòng dữ liệu vào bảng đăng ký thẻ sv theo giá trị trong mảng item.
+                \DB::insert('insert into dangkythesv (MSSV_THE, MATHE) values (?, ?)', [
+                    $item['mssv'],
+                    $item['mathe']
+                ]);
+            }
             return true; //Trả kết quả import về cho hàm ImportDuLieu.
         } catch (\Exception $e) {
             return false;
