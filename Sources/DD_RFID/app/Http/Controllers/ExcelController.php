@@ -30,6 +30,7 @@ class ExcelController extends Controller
                 // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
                 $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
             }
+
 			try{
                 // Nếu có dữ liệu trong file cần import.
 				if(!empty($data) && $data->count()){
@@ -89,11 +90,11 @@ class ExcelController extends Controller
     {
         // Lấy đường dẫn file, cấu hình header cho response và tên file đích.
         $myFile = $R->down_file;
-        $headers = ['Content-Type: application/xlsx'];
+        $headers = ['Content-Type: application/xls'];
         if (strpos ($myFile, 'canbo'))
-            $newName = 'Mẫu import cán bộ'.'.xlsx';
+            $newName = 'Mẫu import cán bộ'.'.xls';
         if (strpos ($myFile, 'sinhvien'))
-            $newName = 'Mẫu import sinh viên'.'.xlsx';
+            $newName = 'Mẫu import sinh viên'.'.xls';
         // Trả về cửa sổ download tương ứng.
     	return response()->download($myFile, $newName, $headers);
     }

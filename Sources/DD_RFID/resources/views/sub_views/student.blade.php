@@ -186,7 +186,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="sr-only" for="">label</label>
-                        <input type="hidden" class="form-control" name="down_file" value="./download/sinhvien.xlsx">
+                        <input type="hidden" class="form-control" name="down_file" value="./download/sinhvien.xls">
                     </div>
                     <button type="submit" class="btn btn-danger">
                         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
