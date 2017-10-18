@@ -39,7 +39,7 @@
 
         {{--  Nếu không có sự kiện nào sẳn sàng  --}}
         @if (count($sukiens) == 0)
-            <h1>KHONG CO GI</h1>
+            <center><h1>Không còn sự kiện nào hôm nay.</h1></center>
         {{--  Nếu có sự kiện sẳn sàng  --}}
         @else
             <div class="row">

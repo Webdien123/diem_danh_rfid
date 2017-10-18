@@ -47,8 +47,8 @@ class EventController extends Controller
         // Lấy thông tin sự kiện từ mã sự kiện.
         $sukien = SuKien::GetSK($mask);
 
-        // TẠO COOKIE chứa sự kiện đang điểm danh.
-        \Cookie::queue("sukien_diemdanh", $sukien, 200);
+        // TẠO Session chứa sự kiện đang điểm danh.
+        \Session::put('sukien_diemdanh', $sukien);
 
         // Tạo trạng thái sự kiện.
         $trangthai = self::KiemTraTrangThai($sukien);
@@ -57,19 +57,17 @@ class EventController extends Controller
         // Tính lại thời gian còn lại của sự kiện.
         $thoigian = EventController::ThoiGianConLai($sukien);
 
-        var_dump($sukien);
-        echo "<br>";
-        var_dump($trangthai);
-        echo "<br>";
-        var_dump($thoigian);
-
         return view('home', ['thoigian' => $thoigian]);
     }
 
     public static function CapNhatSuKienDiemDanh()
     {
+        if (\Session::get('sukien_diemdanh') == null){
+            $sukiens = SuKien::GetSuKienSSang();
+            return view('chon_sukien', ['sukiens' => $sukiens]);
+        }
         // Lấy giá trị sự kiện đang cần điểm danh.
-        $sukien = \Cookie::get('sukien_diemdanh');
+        $sukien = \Session::get('sukien_diemdanh');
 
         // Tính lại trạng thái sự kiện.
         $trangthai = self::KiemTraTrangThai($sukien);
@@ -77,12 +75,6 @@ class EventController extends Controller
 
         // Tính lại thời gian còn lại của sự kiện.
         $thoigian = EventController::ThoiGianConLai($sukien);
-
-        var_dump($sukien);
-        echo "<br>";
-        var_dump($trangthai);
-        echo "<br>";
-        var_dump($thoigian);
 
         return view('home', ['thoigian' => $thoigian]);
     }

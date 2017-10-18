@@ -24,7 +24,7 @@
 </head>
 <body>
     <?php
-        $sukien = \Cookie::get('sukien_diemdanh');
+        $sukien = \Session::get('sukien_diemdanh');
         $sukien = $sukien[0];
     ?>
 
@@ -110,6 +110,9 @@
 
         @if (Session::get('trangthai_sukien') == 4)
             <h1>Hết giờ điểm danh</h1>
+            <?php
+                \Session::forget('sukien_diemdanh');
+            ?>
         @endif
     </div>
 
