@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     23-09-17 10:49:32 AM                         */
+/* Created on:     19-10-17 11:24:47 AM                         */
 /*==============================================================*/
 
 
@@ -38,6 +38,8 @@ drop table if exists THONGKEDIEMDANH;
 
 drop table if exists TO_BOMON;
 
+drop table if exists TRANGTHAISK;
+
 /*==============================================================*/
 /* Table: CANBO                                                 */
 /*==============================================================*/
@@ -66,9 +68,9 @@ create table CHUYENNGANH
 /*==============================================================*/
 create table DANGKYTHECB
 (
-   MSCB                 char(8) not null,
+   MSCB_THE             char(8) not null,
    MATHE                varchar(10) not null,
-   primary key (MSCB)
+   primary key (MSCB_THE)
 );
 
 /*==============================================================*/
@@ -76,9 +78,9 @@ create table DANGKYTHECB
 /*==============================================================*/
 create table DANGKYTHESV
 (
-   MSSV                 char(8) not null,
+   MSSV_THE             char(8) not null,
    MATHE                varchar(10) not null,
-   primary key (MSSV)
+   primary key (MSSV_THE)
 );
 
 /*==============================================================*/
@@ -183,6 +185,7 @@ create table SINHVIEN
 create table SUKIEN
 (
    MASK                 int not null auto_increment,
+   MATTHAI              int not null,
    TENSK                varchar(50) not null,
    NGTHUCHIEN           date not null,
    DIADIEM              varchar(150) not null,
@@ -211,7 +214,8 @@ create table THONGKEDIEMDANH
 (
    MALOAIDS             int not null,
    MASK                 int not null,
-   SOLUONG              int default 0,
+   SOLUONGSV            int default 0,
+   SOLUONGCB            int default 0,
    primary key (MALOAIDS, MASK)
 );
 
@@ -225,6 +229,16 @@ create table TO_BOMON
    primary key (TENBOMON)
 );
 
+/*==============================================================*/
+/* Table: TRANGTHAISK                                           */
+/*==============================================================*/
+create table TRANGTHAISK
+(
+   MATTHAI              int not null,
+   GHICHU               varchar(50),
+   primary key (MATTHAI)
+);
+
 alter table CANBO add constraint FK_BOMONCB foreign key (TENBOMON)
       references TO_BOMON (TENBOMON) on delete restrict on update restrict;
 
@@ -234,10 +248,10 @@ alter table CANBO add constraint FK_KHOACB foreign key (TENKHOA)
 alter table CHUYENNGANH add constraint FK_KHOACHNGANH foreign key (TENKHOA)
       references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
 
-alter table DANGKYTHECB add constraint FK_DANGKYTHECB foreign key (MSCB)
+alter table DANGKYTHECB add constraint FK_DANGKYTHECB foreign key (MSCB_THE)
       references CANBO (MSCB) on delete restrict on update restrict;
 
-alter table DANGKYTHESV add constraint FK_DANGKYTHESV foreign key (MSSV)
+alter table DANGKYTHESV add constraint FK_DANGKYTHESV foreign key (MSSV_THE)
       references SINHVIEN (MSSV) on delete restrict on update restrict;
 
 alter table DANGTHONGBAO add constraint FK_DANGTBAO foreign key (MATBAO)
@@ -272,6 +286,9 @@ alter table SINHVIEN add constraint FK_LOPSV foreign key (KYHIEULOP)
 
 alter table SINHVIEN add constraint FK_NGANHSV foreign key (TENCHNGANH)
       references CHUYENNGANH (TENCHNGANH) on delete restrict on update restrict;
+
+alter table SUKIEN add constraint FK_TTHAISK foreign key (MATTHAI)
+      references TRANGTHAISK (MATTHAI) on delete restrict on update restrict;
 
 alter table THONGBAO add constraint FK_LOAITB_TBAO foreign key (MALOAITBAO)
       references LOAITHONGBAO (MALOAITBAO) on delete restrict on update restrict;

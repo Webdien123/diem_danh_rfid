@@ -11,6 +11,6 @@ class DangKyTheCBSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert('insert into dangkythecb (MSCB, MATHE) values (?, ?)', ['00123464', '123']);   
+        DB::insert('insert into dangkythecb (MSCB_THE, MATHE) values (?, ?)', ['00123464', '123']);   
     }
 }
