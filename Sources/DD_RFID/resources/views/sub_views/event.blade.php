@@ -147,9 +147,46 @@
                         <td>{{ $sk->DIADIEM }}</td>
                         <td>{{ $sk->DDVAO }}</td>
                         <td>{{ $sk->DDRA }}</td>
-                        <td><center>
-                            <i>Chưa Thực hiện.</i>
-                        </center></td>                    
+
+                        {{--  Phần hiển thị chức năng tùy vào trạng thái sự kiện  --}}
+                        <td>
+                        @if ($sk->MATTHAI == '1')
+                            {{--  Modal đăng ký sự kiện  --}}
+                            <div class="modal fade" id="modal-dangkids">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Đăng ký sự kiện</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form enctype="multipart/form-data" id="f_import_canbo" action="{{ route('import_file') }}" method="POST" class="form" role="form">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="tenBang" id="tenBang" value="sukien">
+
+                                                <label>Chọn file danh sách đăng ký</label>
+                                                <input type="file" class="form-control" name="im_file" id="im_file">
+                                                <a class="btn btn-success" href="./download/canbo.xls">tải file đăng ký mẫu</a>
+                                                <br>
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    Thêm
+                                                </button>
+                                            </form>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <b class="text-danger">Chưa có danh sách đăng ký<b>                            
+                            
+                            <a class="btn btn-success" data-toggle="modal" href='#modal-dangkids'>
+                                <i class="fa fa-list-ol" aria-hidden="true"></i>
+                                thêm
+                            </a>                           
+
+                        @endif                           
+                        </td>                    
                         <td>
                             <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

@@ -81,8 +81,10 @@ class SuKien extends Model
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $today = date("Y-m-d");
         $time = date("H:i:s");
-        $sukiens = \DB::select(\DB::raw("SELECT * FROM sukien WHERE NGTHUCHIEN = :v1
-        AND DDVAO >= :v2"),
+        $sukiens = \DB::select(\DB::raw(
+        "SELECT * FROM sukien WHERE NGTHUCHIEN = :v1
+            AND DDVAO >= :v2
+            AND MATTHAI = 2"),
             array(
             'v1' => $today,
             'v2' => $time
