@@ -9,6 +9,8 @@ use App\CanBo;
 
 class ExcelController extends Controller
 {
+    public static $mask_dangki;
+
     // Hàm import file excel theo tên bảng vào file dữ liệu cho trước.
     // biến request dùng để nhận tên bảng khi post sang.
     public function ImportFile(Request $request)
@@ -20,7 +22,7 @@ class ExcelController extends Controller
             $path = Input::file('im_file')->getRealPath();
             
             // Lấy tên bảng.
-            $tenbang = $request->tenBang;
+            $tenbang = $request->tenBang;            
 
             if ($tenbang == "sinhvien") {
                 // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien'.
@@ -31,6 +33,8 @@ class ExcelController extends Controller
                 $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
             }
             if ($tenbang == "sukien") {
+                self::$mask_dangki = $request->mask_dangki;
+
                 // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien', 'dscanbo'.
                 $data = Excel::selectSheets('dssinhvien', 'dscanbo')->load($path, function($reader) {})->get();
             }
@@ -47,8 +51,6 @@ class ExcelController extends Controller
 
                     // Nếu dữ liệu cần insert được tạo thành công.
 					if(!empty($insert)){
-
-                        dd($insert);
 
                         // Với mỗi dòng dữ liệu cần insert.
                         foreach ($insert as $item) {
@@ -69,7 +71,8 @@ class ExcelController extends Controller
                                         1. Tên các cột so với file import mẫu<br>
                                         2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
                                         3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
-                                        3. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.'
+                                        4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.
+                                        5. Nếu đang đănh ký sự kiện, kiểm tra xem mã số người đăng ký đã có trong hệ thống hay chưa'
                                 ]);
                             }
                         }
@@ -129,6 +132,9 @@ class ExcelController extends Controller
         if ($tenbang == "sinhvien") {
             return $this->ImportSinhVien($item);
         }
+        if ($tenbang == "sukien") {
+            return $this->ImportSuKien($item);
+        }
     }
 
     // Hàm hiển thị lại trang chứa dữ liệu cần import tương ứng
@@ -140,6 +146,9 @@ class ExcelController extends Controller
         }
         if ($tenbang == "sinhvien") {
             return redirect()->route('student');
+        }
+        if ($tenbang == "sukien") {
+            return redirect()->route('event');
         }
     }
 
@@ -253,6 +262,47 @@ class ExcelController extends Controller
             }
             return true; //Trả kết quả import về cho hàm ImportDuLieu.
         } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    // Hàm import dữ liệu đăng ký sự kiện.
+    public function ImportSuKien($item)
+    {
+        try{
+            $columns = count(current($item));
+
+            // Nếu số cột là 7 thì tách dữ liệu thêm cho sinh viên đăng ký.
+            if ($columns == 7) {
+
+                // Chèn dữ liệu vào bảng diemdanhsv.
+                foreach ($item as $key => $value) {
+
+                    \DB::insert('insert into diemdanhsv (MSSV, MASK, MALOAIDS) values (?, ?, ?)', [
+                        $value['mssv'],
+                        self::$mask_dangki,
+                        '2'
+                    ]);
+                }
+            }
+
+            // Nếu số cột là 6 thì tách dữ liệu thêm cho cán bộ đăng ký.
+            if ($columns == 6) {
+
+                // Chèn dữ liệu vào bảng diemdanhcb.
+                foreach ($item as $key => $value) {
+                    // dd(var_dump($value['mscb']));
+                    \DB::insert('insert into diemdanhcb (MASK, MSCB, MALOAIDS) values (?, ?, ?)', [
+                        self::$mask_dangki,
+                        $value['mscb'],
+                        '2'
+                    ]);
+                }
+            }
+            
+            return true;
+        }
+        catch (\Exception $e){
             return false;
         }
     }
