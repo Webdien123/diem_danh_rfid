@@ -30,7 +30,11 @@ class ExcelController extends Controller
                 // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
                 $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
             }
-
+            if ($tenbang == "sukien") {
+                // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien', 'dscanbo'.
+                $data = Excel::selectSheets('dssinhvien', 'dscanbo')->load($path, function($reader) {})->get();
+            }
+            
 			try{
                 // Nếu có dữ liệu trong file cần import.
 				if(!empty($data) && $data->count()){
@@ -43,6 +47,8 @@ class ExcelController extends Controller
 
                     // Nếu dữ liệu cần insert được tạo thành công.
 					if(!empty($insert)){
+
+                        dd($insert);
 
                         // Với mỗi dòng dữ liệu cần insert.
                         foreach ($insert as $item) {
@@ -109,6 +115,9 @@ class ExcelController extends Controller
         if ($tenbang == "sinhvien") {
             return $this->TaoDuLieuSV($data);
         }
+        if ($tenbang == "sukien") {
+            return $this->TaoDuLieuSK($data);
+        }
     }
 
     // Hàm import dòng dữ liệu item vào tên bảng tương ứng.
@@ -161,6 +170,35 @@ class ExcelController extends Controller
                 'khoahoc' => $value->khoahoc,
                 'khoa' => $value->tenkhoa,
                 'hoten' => $value->hoten,
+                'mathe' => $value->mathe
+            ];
+        }
+        return $insert;
+    }
+
+    // Hàm tạo dữ liệu đăng ký sự kiện.
+    public function TaoDuLieuSK($data)
+    {
+        // Lấy phần dữ liệu 
+        foreach ($data[0] as $key => $value) {
+            $insert[0][] = [
+                'mssv' => $value->mssv,
+                'lop' => $value->kyhieulop,
+                'chnganh' => $value->tenchnganh,
+                'khoahoc' => $value->khoahoc,
+                'khoa' => $value->tenkhoa,
+                'hoten' => $value->hoten,
+                'mathe' => $value->mathe
+            ];
+        }
+
+        foreach ($data[1] as $key => $value) {
+            $insert[1][] = [
+                'mscb' => $value->mscb, 
+                'hoten' => $value->hoten,
+                'tenbomon' => $value->tenbomon,
+                'tenkhoa' => $value->tenkhoa,
+                'email' => $value->email,
                 'mathe' => $value->mathe
             ];
         }

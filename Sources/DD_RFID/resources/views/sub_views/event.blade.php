@@ -140,7 +140,7 @@
                                 <h4 class="modal-title">Đăng ký sự kiện</h4>
                             </div>
                             <div class="modal-body">                                         
-                                <form action="" method="POST" role="form">
+                                <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" role="form">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="tenBang" id="tenBang" value="sukien">
                                     <input type="hidden" name="mask_dangki" class="form-control mask_dangki">
