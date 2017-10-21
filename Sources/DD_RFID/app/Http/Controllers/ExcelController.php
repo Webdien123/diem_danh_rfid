@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Excel;
-use App\CanBo;
+use App\SuKien;
+
 
 class ExcelController extends Controller
 {
@@ -75,6 +76,16 @@ class ExcelController extends Controller
                                         5. Nếu đang đănh ký sự kiện, kiểm tra xem mã số người đăng ký đã có trong hệ thống hay chưa'
                                 ]);
                             }
+                            // Nếu thành công và đang đang ký sự kiện thì thay đổi trang thái sự kiện.
+                            else {
+                                if ($tenbang == "sukien") {
+                                    $ketqua = SuKien::ChuyenTrangThai(self::$mask_dangki, 2);
+                                    if (!$ketqua) {
+                                        return redirect()->route('Error', 
+                                        ['mes' => 'Import thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+                                    }
+                                }
+                            }
                         }
                     }
                     // Nếu lấy dữ liệu insert thất bại.
@@ -91,21 +102,6 @@ class ExcelController extends Controller
         }
         // Hiển thị về trang kết quả chứa dữ liệu cần import.
         return $this->HienThiKetQua($tenbang);
-    }
-
-    // Hàm download file đã lưu trữ.
-    // sử dụng để download file import mẫu.
-    public function DownLoadFile(Request $R)
-    {
-        // Lấy đường dẫn file, cấu hình header cho response và tên file đích.
-        $myFile = $R->down_file;
-        $headers = ['Content-Type: application/xls'];
-        if (strpos ($myFile, 'canbo'))
-            $newName = 'Mẫu import cán bộ'.'.xls';
-        if (strpos ($myFile, 'sinhvien'))
-            $newName = 'Mẫu import sinh viên'.'.xls';
-        // Trả về cửa sổ download tương ứng.
-    	return response()->download($myFile, $newName, $headers);
     }
 
     // Hàm tạo dạng dữ liệu có thể lưu trữ vào csdl dựa theo tên bảng và

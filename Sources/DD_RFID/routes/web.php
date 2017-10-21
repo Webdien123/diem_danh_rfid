@@ -98,9 +98,6 @@ Route::get('updateTrangThaiSK', "EventController@CapNhatSuKienDiemDanh")->name("
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
 
-// Download file mẫu import.
-Route::post('download_file', "ExcelController@DownLoadFile")->name("download_file");
-
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', "GetViewController@Card")->name('card');
 

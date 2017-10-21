@@ -75,6 +75,17 @@ class SuKien extends Model
         }
     }
 
+    public static function ChuyenTrangThai($mssk, $trangthaimoi)
+    {
+        try {
+            \DB::update('update sukien set MATTHAI = ? where MASK = ?', [$trangthaimoi, $mssk]);
+            return true;
+        }
+        catch (\Exception $e){
+            return false;
+        }
+    }
+
     // API Lấy danh sách sự kiện sẳn sàng điểm danh
     public static function GetSuKienSSang()
     {

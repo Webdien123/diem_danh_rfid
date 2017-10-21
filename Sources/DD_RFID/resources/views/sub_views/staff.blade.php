@@ -164,17 +164,10 @@
                     </button>
                 </form>
 
-                <form action="{{ route('download_file') }}" method="POST" class="pull-left form-inline" role="form">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label class="sr-only" for="">label</label>
-                        <input type="hidden" class="form-control" name="down_file" value="./download/canbo.xls">
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                        Tải file import mẫu
-                    </button>
-                </form>
+                <a class="btn btn-primary" href="./download/Mẫu import cán bộ.xls">
+                    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                    tải file đăng ký mẫu
+                </a>
             </div>
 
             {{--  Script xử lý ẩn hiện phần import cán bộ.  --}}

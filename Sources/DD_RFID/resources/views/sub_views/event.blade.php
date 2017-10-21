@@ -161,14 +161,14 @@
                                         <input type="file" class="form-control" name="im_file" id="im_file">
                                     </div>
 
-                                    <a class="btn btn-success" href="./download/canbo.xls">
+                                    <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
                                         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                                         tải file đăng ký mẫu
                                     </a>
                                 
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-upload" aria-hidden="true"></i>
-                                        Thêm
+                                        Thêm danh sách
                                     </button>
                                 </form>                                            
                             </div>
@@ -204,7 +204,24 @@
                                 <i class="fa fa-list-ol" aria-hidden="true"></i>
                                 thêm
                             </a>
-                        @endif                           
+                        @endif
+
+                        {{--  Nếu trạng thái là 2  --}}
+                        @if ($sk->MATTHAI == '2')
+                            <b class="text-success">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                Đã đăng ký
+                            <b>
+                        @endif
+
+                        {{--  Nếu trạng thái là 3  --}}
+                        @if ($sk->MATTHAI == '3')
+                            <b class="text-warning">
+                                <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                                Đang điểm danh
+                            <b>
+                        @endif
+
                         </td>                    
                         <td>
                             <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
