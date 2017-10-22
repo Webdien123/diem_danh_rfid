@@ -75,7 +75,7 @@ class DangKyTheCB extends Model
             // Xem như đã xóa thành công.
             return true;
         }
-        // Ngược lại thực hiện xóa thẻ. 
+        // Ngược lại thực hiện xóa thẻ.
         try {
             \DB::delete('DELETE FROM dangkythecb WHERE MSCB_THE = '.$machuthe);
             return true;

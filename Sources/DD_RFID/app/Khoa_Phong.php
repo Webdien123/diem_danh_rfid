@@ -6,25 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Khoa_Phong extends Model
 {
-    // Tên bảng tham chiếu.
-    protected $table = 'khoa_phong';
-
-    // Tên cột khóa chính.
-    protected $primaryKey = 'TENKHOA';
-
-    // Tên kiểu khóa chính
-    protected $keyType = 'string';
-
-    // Cho phép khóa chính tự tăng hay không.
-    public $incrementing = false;
-
-    // Danh sách các cột cố thể điền dữ liệu.
-    protected $fillable = ['tenkhoa'];
-
-    // Có tự động thêm 2 cột thời gian tạo và 
-    // cập nhật gần nhất cho mỗi mẫu tin hay không?
-    public $timestamps = false;
-
     // Lấy tất các tên khoa có trong hệ thống.
     public static function GetKhoa()
     {

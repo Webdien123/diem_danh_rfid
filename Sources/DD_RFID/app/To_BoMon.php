@@ -6,21 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class To_BoMon extends Model
 {
-    // Tên bảng tham chiếu.
-    protected $table = 'to_bomon';
-
-    // Tên cột khóa chính.
-    protected $primaryKey = 'TENBOMON';
-
-    // Tên kiểu khóa chính
-    protected $keyType = 'string';
-
-    // Cho phép khóa chính tự tăng hay không.
-    public $incrementing = false;
-
-    // Danh sách các cột cố thể điền dữ liệu.
-    protected $fillable = ['TENBOMON', 'TENKHOA'];
-
     // Có tự động thêm 2 cột thời gian tạo và 
     // cập nhật gần nhất cho mỗi mẫu tin hay không?
     public $timestamps = false;

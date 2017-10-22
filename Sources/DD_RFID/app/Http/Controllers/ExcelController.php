@@ -35,6 +35,8 @@ class ExcelController extends Controller
                     $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
                 }
                 if ($tenbang == "sukien") {
+
+                    // Lấy giá trị của mã sự kiện cần đăng ký.
                     self::$mask_dangki = $request->mask_dangki;
 
                     // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien', 'dscanbo'.
@@ -215,7 +217,7 @@ class ExcelController extends Controller
     public function TaoDuLieuSK($data)
     {
         if (\Session::has('uname')) {
-            // Lấy phần dữ liệu 
+            // Lấy phần dữ liệu sheet sinh viên
             foreach ($data[0] as $key => $value) {
                 $insert[0][] = [
                     'mssv' => $value->mssv,
@@ -228,6 +230,7 @@ class ExcelController extends Controller
                 ];
             }
 
+            // Lấy phần dữ liệu sheet cán bộ
             foreach ($data[1] as $key => $value) {
                 $insert[1][] = [
                     'mscb' => $value->mscb, 
@@ -341,7 +344,6 @@ class ExcelController extends Controller
                         ]);
                     }
                 }
-                
                 return true;
             }
             catch (\Exception $e){

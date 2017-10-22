@@ -37,19 +37,17 @@ class CardController extends Controller
             }
 
             // Ngược lại hiển thị giao diện sản sàng đăng ký thẻ.
-            else {
-                $khoas = Khoa_Phong::GetKhoa();
-                $lops = KyHieuLop::LayKyHieuLop();
-                $khoahocs = KhoaHoc::LayKhoaHoc();
-                return view('sub_views.sub_2.card_valid', [
-                    'loaithe' => null, 
-                    'chuthe' => null, 
-                    'mathe' => $mathe->id_the,
-                    'khoas' => $khoas,
-                    'lops' => $lops,
-                    'khoahocs' => $khoahocs
-                ]);
-            }
+            $khoas = Khoa_Phong::GetKhoa();
+            $lops = KyHieuLop::LayKyHieuLop();
+            $khoahocs = KhoaHoc::LayKhoaHoc();
+            return view('sub_views.sub_2.card_valid', [
+                'loaithe' => null,
+                'chuthe' => null,
+                'mathe' => $mathe->id_the,
+                'khoas' => $khoas,
+                'lops' => $lops,
+                'khoahocs' => $khoahocs
+            ]);
         }
         else{
             return view('login');
@@ -77,7 +75,7 @@ class CardController extends Controller
             // Nếu kết quả đều thành công hiện thị lại giao diện đăng ký thẻ
             // kèm theo thông báo thành công.
             \Session::put('ketqua_dangkythe', $ketqua);
-            return redirect('/card/'); 
+            return redirect('/card/');
         }
         else{
             return view('login');
@@ -298,7 +296,6 @@ class CardController extends Controller
                 if ($trang == "canbo") {
                     return redirect('/staff/');
                 }
-                
             }
             // Xử lý thất bại.
             else {

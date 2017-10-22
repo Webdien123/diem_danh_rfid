@@ -19,8 +19,8 @@ class DangKyTheSV extends Model
         if ($mssv) {
 
             // Lấy thông tin sinh viên rồi trả về giá trị tương ứng.
-            $canbo = SinhVien::GetSV($mssv[0]->MSSV_THE);
-            return $canbo;
+            $sv = SinhVien::GetSV($mssv[0]->MSSV_THE);
+            return $sv;
         }
         // Nếu mã số chưa có trả về giao diện thẻ hợp lệ để sẳn sàng đăng ký.
         return null;
