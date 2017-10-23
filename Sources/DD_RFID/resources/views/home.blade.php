@@ -96,11 +96,46 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
                         <h1 class="text-center">Quét thẻ để điểm danh</h1>
-                        <form action="" method="post" id="f_quet_the">
-                            {{ csrf_field() }}
-                            <input type="text" class="form-control" name="id_the" placeholder="Quét thẻ của bạn" required id="id_the">
-                            <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
-                        </form>
+
+                        @if (Session::get('trangthai_sukien') == 2)
+                            <form id="f_quet_the_vao">
+                                {{ csrf_field() }}
+                                <input type="text" class="form-control" name="id_the" id="id_the" placeholder="Quét thẻ của bạn" required>
+                                <input type="submit" id="sm_ddvao" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
+                            </form>
+
+                            <script>
+                                $(document).ready(function () {
+                                    $("#sm_ddvao").click(function (e) {
+                                    // $("#f_quet_the_vao").submit(function (e) {
+                                        var id_the = $("#id_the").val();
+                                        $.ajax({
+                                            url: 'users.php',
+                                            dataType: 'json',
+                                            type: 'post',
+                                            contentType: 'application/json',
+                                            data: JSON.stringify( { "first-name": $('#first-name').val(), "last-name": $('#last-name').val() } ),
+                                            processData: false,
+                                            success: function( data, textStatus, jQxhr ){
+                                                $('#response pre').html( JSON.stringify( data ) );
+                                            },
+                                            error: function( jqXhr, textStatus, errorThrown ){
+                                                console.log( errorThrown );
+                                            }
+                                        });
+                                    });
+                                    
+                                });
+                            </script>
+                        @endif
+
+                        @if (Session::get('trangthai_sukien') == 3)
+                            <form action="" method="post" id="f_quet_the_ra">
+                                {{ csrf_field() }}
+                                <input type="text" class="form-control" name="id_the" placeholder="Quét thẻ của bạn" required id="id_the">
+                                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
+                            </form>
+                        @endif
                         <hr>
                     </div>
                 </div>

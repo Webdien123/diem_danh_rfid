@@ -138,8 +138,6 @@ class EventController extends Controller
             // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
             $time2 = (strtotime($time2) - strtotime($time));
 
-            
-
             if ($time2 > 0) {
                 return $today." ".$sukien[0]->DDVAO;
             } else {

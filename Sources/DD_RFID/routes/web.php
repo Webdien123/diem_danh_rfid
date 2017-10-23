@@ -110,6 +110,9 @@ Route::post('dangkythemoi', 'CardController@DangKyTheMoi')->name('new_card');
 // Cập nhật thẻ cũ.
 Route::post('dangkythecu', 'CardController@DangKyTheCu')->name('old_card');
 
+// Xử lý điểm danh vào cho một lần quét thẻ.
+Route::post('diemdanhvao', "DiemDanhController@DiemDanhVao")->name('DD_Vao');
+
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 /*
