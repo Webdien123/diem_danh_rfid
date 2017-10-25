@@ -24,6 +24,15 @@ class EventController extends Controller
         }
     }
 
+    public static function TaoCookieSK($sukien)
+    {
+        $cookie = \Cookie::queue('sukien_diemdanh_ck', $sukien, 2);
+        
+        $response->withCookie(cookie('key', $value));
+        
+        return $cookie;
+    }
+
     // Chọn sự kiện để điểm danh
     public function ChonSuKien($mask)
     {
@@ -33,6 +42,8 @@ class EventController extends Controller
 
             // TẠO Session chứa sự kiện đang điểm danh.
             \Session::put('sukien_diemdanh', $sukien);
+
+            self::TaoCookieSK($sukien);
 
             // Tạo trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);

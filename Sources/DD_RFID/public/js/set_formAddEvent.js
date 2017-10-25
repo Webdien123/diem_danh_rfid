@@ -7,10 +7,11 @@ $(document).ready(function () {
     $('#ddra').val(time);
     $("#ddra").attr("min", $('#ddvao').val());
 
-    $('#modal-themsk').on('shown.bs.modal', function() {
+    function KhoiTaoModelSK() {
+        
         // Lấy ngày tự trường 'ngthuchien'.
         var ngth = $("#ngthuchien").val();
-    
+        
         // Nếu 'ngthhien' trùng ngày hiện hành.
         if (ngth == today){
     
@@ -29,9 +30,9 @@ $(document).ready(function () {
         else{
             $('#ddvao').removeAttr("min");
         }
-    })
+    }
 
-
-
-    
+    $('#modal-themsk').on('shown.bs.modal', function() {
+        KhoiTaoModelSK();
+    });
 });

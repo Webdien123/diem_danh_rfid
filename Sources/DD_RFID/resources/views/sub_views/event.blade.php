@@ -15,6 +15,9 @@
     {{--  Script import jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
+    {{--  script validate giá trị input file  --}}
+    <script src="{{ asset('js/additional-methods.min.js') }}"></script>
+
     {{--  Script xử lý validate dữ liệu sự kiện  --}}
     <script src="{{ asset('js/validate_sukien.js') }}"></script>
 
@@ -99,7 +102,7 @@
 									Hủy
 								</button>
 
-								<button type="submit" class="btn btn-success">
+								<button id="btn_add_sk" type="submit" class="btn btn-success">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 									Thêm sự kiện
 								</button>
@@ -130,7 +133,6 @@
                 </tr>
             </thead>
             <tbody>
-
                 {{--  Modal đăng ký sự kiện trạng thái 1  --}}
                 <div class="modal fade" id="modal-dangkids-1">
                     <div class="modal-dialog">
@@ -140,37 +142,7 @@
                                 <h4 class="modal-title">Đăng ký sự kiện</h4>
                             </div>
                             <div class="modal-body">                                         
-                                <form enctype="multipart/form-data" action="{{ route('import_file') }}" method="POST" role="form">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="tenBang" id="tenBang" value="sukien">
-                                    <input type="hidden" name="mask_dangki" class="form-control mask_dangki">
-                                    <input type="hidden" name="tensk_dangki" class="form-control tensk_dangki">
-                                
-                                    <div class="form-group">
-                                        <label>Mã sự kiện:</label>
-                                        <input type="text" disabled class="form-control mask_dangki">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Tên sự kiện:</label>
-                                        <input type="text" disabled class="form-control tensk_dangki">
-                                    </div>
-                                
-                                    <div class="form-group">
-                                        <label>Chọn danh sách đăng ký:</label>
-                                        <input type="file" class="form-control" name="im_file" id="im_file">
-                                    </div>
-
-                                    <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
-                                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                                        tải file đăng ký mẫu
-                                    </a>
-                                
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-upload" aria-hidden="true"></i>
-                                        Thêm danh sách
-                                    </button>
-                                </form>                                            
+                                                                           
                             </div>
                         </div>
                     </div>
@@ -230,7 +202,7 @@
                             </a>
 
                             <a class="btn btn-danger"
-                                onclick="if(window.confirm('Xóa sinh viên này?')){
+                                onclick="if(window.confirm('Xóa sự kiện này?')){
                                 window.location.replace('<?php echo route("DeleteSK", 
                                 ["mssk" => $sk->MASK]) ?>');}">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -239,14 +211,6 @@
                         </td>
                     </tr>
                     @endforeach
-
-                    <script>
-                        function HienSuKien(mask, tensk) {
-                            $(".mask_dangki").val(mask);
-                            $(".tensk_dangki").val(tensk);
-                        }
-                    </script>
-                    
                 @endif
             </tbody>
         </table>

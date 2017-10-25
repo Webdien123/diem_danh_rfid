@@ -18,6 +18,9 @@
     @else
         {!! '<div class="panel panel-default">' !!}
     @endif  --}}
+    @if (Cookie::get('sukien_diemdanh_ck') != null)
+        {{ Cookie::get('sukien_diemdanh_ck') }}
+    @endif
     <div class="panel panel-default">
         {{--  Phần chào mừng người quản trị theo tên tài khoản  --}}
         <div class="panel-heading" style="padding: 0px 15px 0px 15px">

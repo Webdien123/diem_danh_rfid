@@ -53,25 +53,41 @@ $(document).ready(function () {
 
     });
 
-    // $( "#f_import_sv" ).validate({
-    //     rules: {
-    //         im_file: {
-    //             required: true,
-    //             extension: "xls|xlsx|csv"
-    //         }
-    //     },
+    $("#f_import_sukien").validate({
+        rules: {
+            im_file: {
+                required: true,
+                extension: "xls|xlsx|csv"
+            },
+            thu: {
+                required: true
+            }
+        },
 
-    //     messages: {
-    //         im_file: {
-    //             required: "Chưa chọn file cần import",
-    //             extension: "file phải có định dạng xls, xlsx hoặc csv"
-    //         }
-    //     },
+        messages: {
+            im_file: {
+                required: "Chưa chọn file cần import",
+                extension: "file phải có định dạng xls, xlsx hoặc csv"
+            },
+            thu: {
+                required: "nhap thu di may"
+            }
+        },
 
-    //     errorPlacement: function (error, element) {
-    //         error.attr("color", "red");
-    //         error.addClass("help-block");
-    //         error.insertBefore(element);
-    //     }
-    // });
+        errorPlacement: function (error, element) {
+            error.attr("color", "red");
+            error.addClass("help-block");
+            error.insertAfter(element);
+        },
+
+        errorClass: "has-error",
+        validClass: "has-success",
+        highlight: function(element,errorClass,validClass){
+            $(element).parent(".form-group").addClass(errorClass).removeClass(validClass);   
+        },
+                    
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).parent(".form-group").removeClass(errorClass).addClass(validClass); 
+        }
+    });
 });

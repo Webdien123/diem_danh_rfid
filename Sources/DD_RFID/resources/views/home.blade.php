@@ -26,6 +26,7 @@
     <?php
         $sukien = \Session::get('sukien_diemdanh');
         $sukien = $sukien[0];
+        var_dump(Cookie::get('sukien_diemdanh_ck'));
     ?>
 
     {{--  Thẻ hiển thị ảnh nền  --}}
