@@ -117,6 +117,54 @@
         </div>
     </div>
 
+    {{--  Modal đang ký sự kiện. Hiển thị cho các sự kiện có trạng thái 1  --}}
+    <div class="modal fade" id="modal-dangky-sk">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Đăng ký sự kiện</h4>
+                </div>
+                <div class="modal-body">
+                    
+                    {{--  Form đăng ký sự kiện  --}}
+                    <form enctype="multipart/form-data" action="{{ route('import_file') }}" id="f-dangky-sk" method="POST" role="form">
+                        {{ csrf_field() }}
+
+                        <input type="hidden" name="mask_dangki" class="mask_dangki">
+                        <input type="hidden" name="tenBang" id="tenBang" value="sukien">
+
+                        <div class="form-group">
+                            <label for="">Mã sự kiện:</label>
+                            <input type="text" disabled class="form-control mask_dangki">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Tên sự kiện:</label>
+                            <input type="text" disabled class="form-control tensk_dangki">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">File danh sách:</label>
+                            <input type="file" class="form-control" name="im_file" id="im_file">
+                        </div>
+
+                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                            tải file đăng ký mẫu
+                        </a>
+                    
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Đăng ký
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
     {{--  Hiển thị danh sách sự kiện  --}}
     <div class="table-responsive">
         <table class="table table-hover table-bordered" style="background-color: white">
@@ -133,20 +181,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{--  Modal đăng ký sự kiện trạng thái 1  --}}
-                <div class="modal fade" id="modal-dangkids-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Đăng ký sự kiện</h4>
-                            </div>
-                            <div class="modal-body">                                         
-                                                                           
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
                 {{--  Nếu danh sách sự kiện rỗng  --}}
                 @if (count($sukiens) == 0)
@@ -172,7 +207,7 @@
                         @if ($sk->MATTHAI == '1')
                             <b class="text-danger">Chưa có danh sách đăng ký<b>                            
                             
-                            <a class="btn btn-success" onclick="HienSuKien('{{ $sk->MASK }}', '{{ $sk->TENSK }}')" id="btn_dangkisk" data-toggle="modal" href='#modal-dangkids-1'>
+                            <a class="btn btn-success" onclick="HienSuKien('{{ $sk->MASK }}', '{{ $sk->TENSK }}')" data-toggle="modal" href='#modal-dangky-sk'>
                                 <i class="fa fa-list-ol" aria-hidden="true"></i>
                                 thêm
                             </a>
@@ -215,6 +250,21 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        function HienSuKien(mask, tensk) {
+            $(".mask_dangki").val(mask);
+            $(".tensk_dangki").val(tensk);
+        }
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#btn_add_sk").click(function (e) { 
+                KhoiTaoModelSK();
+            });
+        });
+    </script>
 
     {{--  Hiển thị dãy nút phân trang.  --}}
     @if (count($sukiens) != 0)

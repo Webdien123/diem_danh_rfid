@@ -103,4 +103,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#btn_sukien_submit").click(function (e) {
+                KhoiTaoModelSK();
+            });
+        });
+    </script>
 @endsection

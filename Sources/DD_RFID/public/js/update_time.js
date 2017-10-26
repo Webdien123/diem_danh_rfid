@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     // Xử lý mỗi khi model thêm sự kiện hiển thị.
     $("#ngthuchien").change(function (e) { 
         var ngth = $("#ngthuchien").val();
@@ -18,7 +19,10 @@ $(document).ready(function () {
             $('#ddvao').removeAttr("min");
         }
     });
+
+    // Thay đổi giá trị ràng buột cho giờ điểm danh ra khi
+    // cập nhật giờ điểm danh vào.
     $("#ddvao").change(function (e) { 
         $("#ddra").attr("min", $('#ddvao').val());
-    });                 
+    });
 });
