@@ -248,6 +248,9 @@
         </table>
     </div>
 
+    {{--  Script cập nhật các giá trị tối thiểu cho các trường thời gian khi thay đổi các giá trị  --}}
+    <script src="{{ asset('js/update_time.js') }}"></script>
+
     <script>
         function HienSuKien(mask, tensk) {
             $(".mask_dangki").val(mask);

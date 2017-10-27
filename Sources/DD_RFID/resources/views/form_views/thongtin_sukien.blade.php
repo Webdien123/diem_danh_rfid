@@ -101,6 +101,9 @@
         </div>
     </div>
 
+    {{--  Script cập nhật các giá trị tối thiểu cho các trường thời gian khi thay đổi các giá trị  --}}
+    <script src="{{ asset('js/update_time.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $("#btn_sukien_submit").click(function (e) {

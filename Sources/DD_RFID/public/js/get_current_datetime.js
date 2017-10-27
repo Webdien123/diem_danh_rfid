@@ -23,7 +23,7 @@ function LayGio() {
     h = d.getHours();
     m1 = d.getMinutes() + 1;
     m2 = d.getMinutes() + 2;
-    if(h < 10) h = '0' + h; 
+    if(h < 10) h = '0' + h;
     if(m1 < 10) m1 = '0' + m1;
     if(m2 < 10) m2 = '0' + m2;
     time1 = h + ':' + m1;
@@ -48,14 +48,13 @@ function KhoiTaoModelSK() {
     // Nếu 'ngthhien' trùng ngày hiện hành.
     if (ngth == today){
 
-        // Tính giờ hiện tại gán vào id 'ddvao'
+        // Tính giờ hiện tại.
         LayGio();
 
         // Đặt giá trị cho 'ddvao' nhỏ nhất là giờ hiện tại.
         $("#ddvao").attr("min", time1);
-        $("#ddra").attr("min", time2);
     }
-    // Ngược lại không cần giới hạn giá trị cho 'ddvao'
+    // Ngược lại không cần giới hạn giá trị cho 'ddvao'.
     else{
         $('#ddvao').removeAttr("min");
     }

@@ -1,11 +1,12 @@
 $(document).ready(function () {
 
-    // Tính ngày hiện tại gán vào id 'ngthuchien'
+    // Tính ngày hiện tại gán vào id 'ngthuchien'.
     LayNgay();
     $('#ngthuchien').val(today);
 
-    // Tính giờ hiện tại gán vào id 'ddvao'
+    // Tính giờ hiện tại gán vào id 'ddvao'.
     LayGio();
+
     $('#ddvao').val(time1);
     $('#ddra').val(time2);
     $("#ddra").attr("min", time2);
