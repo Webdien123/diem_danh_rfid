@@ -24,14 +24,12 @@ class EventController extends Controller
         }
     }
 
-    public static function TaoCookieSK($sukien)
-    {
-        $cookie = \Cookie::queue('sukien_diemdanh_ck', $sukien, 2);
+    // public static function TaoCookieSK($sukien)
+    // {
+    //     $cookie = \Cookie::queue('sukien_diemdanh_ck', $sukien, 2);
         
-        $response->withCookie(cookie('key', $value));
-        
-        return $cookie;
-    }
+    //     return $cookie;
+    // }
 
     // Chọn sự kiện để điểm danh
     public function ChonSuKien($mask)
@@ -43,7 +41,7 @@ class EventController extends Controller
             // TẠO Session chứa sự kiện đang điểm danh.
             \Session::put('sukien_diemdanh', $sukien);
 
-            self::TaoCookieSK($sukien);
+            // self::TaoCookieSK($sukien);
 
             // Tạo trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
@@ -91,6 +89,7 @@ class EventController extends Controller
     public static function KiemTraTrangThai($sukien)
     {
         if (\Session::has('uname')) {
+
             // Chọn time zone.
             date_default_timezone_set("Asia/Ho_Chi_Minh");
 
@@ -103,20 +102,32 @@ class EventController extends Controller
             // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
             $kq = (strtotime($time2) - strtotime($time));
 
+            // Nếu chưa đến giờ điểm danh vào. Trạng thái là 1.
             if ($kq > 0) {
                 return 1;
             } else {
+
                 // Lấy thời điểm điểm danh ra.
                 $time2 = date($sukien[0]->DDRA);
 
                 // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
                 $kq = (strtotime($time2) - strtotime($time));
 
+                // Nếu chưa đến giờ điểm danh ra, đã qua giờ điểm danh vào,
+                // trạng thái là 2.
                 if ($kq > 0) {
                     return 2;
-                } else {
-                    $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' +1 minutes'));
+                } 
+
+                // Nếu đã qua giờ điểm danh ra.
+                else {
+                    $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . '2' . ' minutes'));
+                    // $endTime = strtotime($sukien[0]->DDRA) + 60;
+                    // $endtime = date("H:i:s", strtotime($sukien[0]->DDRA) + (3 * 60));
+                    
                     $kq = (strtotime($endtime) - strtotime($time));
+
+
                     if ($kq > 0) {
                         return 3;
                     } else {

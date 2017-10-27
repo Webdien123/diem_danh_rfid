@@ -1,16 +1,43 @@
-// Tính toán tạo biến today lưu ngày hiện tại.
-var now = new Date();
-var day = ("0" + now.getDate()).slice(-2);
-var month = ("0" + (now.getMonth() + 1)).slice(-2);
-var today = now.getFullYear()+"-"+(month)+"-"+(day);
+// Biển toàn cục lưu trữ ngày hiện tại.
+var today;
 
-// Tính toán tạo biến time lưu giờ hiện tại.
-var d = new Date();
-h = d.getHours();
-m = d.getMinutes() + 1;
-if(h < 10) h = '0' + h; 
-if(m < 10) m = '0' + m;
-var time = h + ':' + m;
+// Biến toàn cục lưu trữ thời gian tối thiếu để điểm danh vào.
+var time1;
+
+// Biến toàn cục lưu trữ thời gian tối thiếu để điểm danh ra.
+var time2;
+
+// Hàm cập nhật ngày hiện tại cho today.
+function LayNgay() {
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    today = now.getFullYear()+"-"+(month)+"-"+(day);
+
+    // console.log("today: " + today);
+}
+
+// Hàm cập nhật giờ tối thiếu cho time1 và time2.
+function LayGio() {
+    var d = new Date();
+    h = d.getHours();
+    m1 = d.getMinutes() + 1;
+    m2 = d.getMinutes() + 2;
+    if(h < 10) h = '0' + h; 
+    if(m1 < 10) m1 = '0' + m1;
+    if(m2 < 10) m2 = '0' + m2;
+    time1 = h + ':' + m1;
+    time2 = h + ':' + m2;
+
+    // console.log("time1: " + time1);
+    // console.log("time2: " + time2);
+}
+
+// Gọi hàm lấy ngày hiện tại một lần.
+LayNgay();
+
+// Gọi hàm lấy giờ hiện tại một lần.
+LayGio();
 
 // Hàm khởi tạo lại giá trị cho các trường thông tin của form sự kiện
 function KhoiTaoModelSK() {
@@ -22,15 +49,11 @@ function KhoiTaoModelSK() {
     if (ngth == today){
 
         // Tính giờ hiện tại gán vào id 'ddvao'
-        var d = new Date(),        
-        h = d.getHours(),
-        m = d.getMinutes();
-        if(h < 10) h = '0' + h; 
-        if(m < 10) m = '0' + m;
-        time = h + ':' + m;
+        LayGio();
 
         // Đặt giá trị cho 'ddvao' nhỏ nhất là giờ hiện tại.
-        $("#ddvao").attr("min", time);
+        $("#ddvao").attr("min", time1);
+        $("#ddra").attr("min", time2);
     }
     // Ngược lại không cần giới hạn giá trị cho 'ddvao'
     else{

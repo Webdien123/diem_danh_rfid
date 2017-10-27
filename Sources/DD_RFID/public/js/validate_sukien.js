@@ -28,7 +28,7 @@ $(document).ready(function () {
                 min: "Ngày tạo sự kiện phải từ ngày hiện tại trở đi"
             },
             ddvao:{
-                min: "Giờ điểm danh vào phải từ giờ hiện tại trở đi"
+                min: "Giờ điểm danh vào phải sau giờ hiện tại trở đi"
             },            
             ddra:{
                 min: "Giờ điểm danh ra phải sau giờ điểm danh vào"

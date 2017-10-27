@@ -1,13 +1,12 @@
 $(document).ready(function () {
+
     // Tính ngày hiện tại gán vào id 'ngthuchien'
+    LayNgay();
     $('#ngthuchien').val(today);
 
     // Tính giờ hiện tại gán vào id 'ddvao'
-    $('#ddvao').val(time);
-    $('#ddra').val(time);
-    $("#ddra").attr("min", $('#ddvao').val());
-
-    $('#modal-themsk').on('shown.bs.modal', function() {
-        KhoiTaoModelSK();
-    });
+    LayGio();
+    $('#ddvao').val(time1);
+    $('#ddra').val(time2);
+    $("#ddra").attr("min", time2);
 });

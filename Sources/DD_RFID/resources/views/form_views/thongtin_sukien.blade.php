@@ -97,9 +97,6 @@
                         Xóa
                     </button>
                 </form>
-                
-                {{--  Script cập nhật lại miền giá trị hợp lệ cho sự kiện  --}}
-                <script src="{{ asset('js/update_time.js') }}"></script> 
             </div>
         </div>
     </div>
