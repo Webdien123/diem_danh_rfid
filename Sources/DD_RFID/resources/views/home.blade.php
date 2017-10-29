@@ -125,6 +125,40 @@
                         <hr>
                     </div>
                 </div>
+
+                <div class="row thongbao" id="tb_1">
+                    <strong class="text-success">
+                        <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                        <span>Điểm danh thành công</span>
+                        <span class="loaichuthe"></span>
+                        <span class="hoten"></span>
+                    </strong>
+                </div>
+
+                <div class="row thongbao" id="tb_2">
+                    <strong class="text-danger">
+                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                        <span>Có lỗi khi xử lý. Vui lòng thử lại</span>
+                    </strong>
+                </div>
+
+                <div class="row thongbao" id="tb_3">
+                    <strong class="text-info">
+                        <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                        <span>Trùng kết quả</span>
+                        <span class="loaichuthe"></span>
+                        <span class="hoten"></span>
+                    </strong>
+                </div>
+                
+                <div class="row thongbao" id="tb_4">
+                    <strong class="text-warning">
+                        <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+                        <span class="hoten"></span>
+                        <span>chưa đăng ký sự kiện này</span>
+                    </strong>
+                </div>
+                
             </div>
         </div>
         @endif

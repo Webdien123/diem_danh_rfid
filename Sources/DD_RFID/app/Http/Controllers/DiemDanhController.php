@@ -7,6 +7,7 @@ use \Symfony\Component\HttpFoundation\Response;
 use App\DangKyTheCB;
 use App\DangKyTheSV;
 use App\DiemDanhCB;
+use App\DiemDanhSV;
 
 class DiemDanhController extends Controller
 {
@@ -46,56 +47,59 @@ class DiemDanhController extends Controller
         $machuthe = $R->machuthe;
         $mask = $R->masukien;
         $loaichuthe = $R->loaichuthe;
+        $hotenchuthe = $R->hotenchuthe;
 
         // Kiểm tra chủ thẻ đã đăng ký sự kiện hay chưa dựa vào loại chủ thẻ.
-        if ($loaichuthe == "canbo") {
+        if ($loaichuthe == "cán bộ") {
             $loaids = DiemDanhCB::KiemTraDangKy($machuthe, $mask);
         } 
-        if ($loaichuthe == "sv") {
-            // return DiemDanhSV::KiemTraDangKy($machuthe, $mask);
-            ;
+        if ($loaichuthe == "sinh viên") {
+            $loaids = DiemDanhSV::KiemTraDangKy($machuthe, $mask);
         }
 
         // Nếu chủ thẻ đã đăng ký sự kiện.
         if ($loaids != 0) {
             if ($loaids == 2) {
 
-                if ($loaichuthe == "canbo") {
+                if ($loaichuthe == "cán bộ") {
                     $update = DiemDanhCB::CapNhatDSachDDVao($machuthe, $mask, 3); 
                 }
-                if ($loaichuthe == "sv") {
-                    // return DiemDanhSV::CapNhatDSachDDVao($machuthe, $, 3);
-                    ;
+                if ($loaichuthe == "sinh viên") {
+                    $update = DiemDanhSV::CapNhatDSachDDVao($machuthe, $mask, 3);
                 }
                 if ($update == 1) {
                     $ketqua = array(
-                        'mã sự kiện' => $mask,
-                        'mã chủ thẻ' => "Cập nhật thành công",
-                        'loại chủ thẻ' => "Rỗng"
+                        'ms_ketqua' => 1,
+                        'thongdiep' => 'Điểm danh thành công',
+                        'loaichuthe' => $loaichuthe,
+                        'hoten' => $hotenchuthe
                     );
                 }   
                 else {
                     $ketqua = array(
-                        'mã sự kiện' => $mask,
-                        'mã chủ thẻ' => "Có lỗi trong xử lý",
-                        'loại chủ thẻ' => "Rỗng"
+                        'ms_ketqua' => 2,
+                        'thongdiep' => 'Có lỗi khi xử lý. Vui lòng thử lại',
+                        'loaichuthe' => $loaichuthe,
+                        'hoten' => $hotenchuthe
                     );
                 }
             }
             if ($loaids == 3) {
                 $ketqua = array(
-                    'mã sự kiện' => $mask,
-                    'mã chủ thẻ' => "Điểm danh bị trùng",
-                    'loại chủ thẻ' => "Rỗng"
+                    'ms_ketqua' => 3,
+                    'thongdiep' => 'Trùng kết quả',
+                    'loaichuthe' => $loaichuthe,
+                    'hoten' => $hotenchuthe
                 );
             }
         }
         // Chủ thẻ chưa đăng ký sự kiện.
         else {
             $ketqua = array(
-                'mã sự kiện' => $mask,
-                'mã chủ thẻ' => "Chủ thẻ chưa đăng ký sự kiện",
-                'loại chủ thẻ' => "Rỗng"
+                'ms_ketqua' => 4,
+                'thongdiep' => 'Thẻ chưa được đăng ký',
+                'loaichuthe' => $loaichuthe,
+                'hoten' => $hotenchuthe
             );
         }
 

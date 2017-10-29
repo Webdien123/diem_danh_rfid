@@ -1,9 +1,16 @@
+
+
 $(document).ready(function () {
+    // Ẩn tất cả thông báo điểm danh.
+    $(".thongbao").hide();
+
     $("#sm_ddvao").click(function (e) {
         e.preventDefault();
 
         // Lấy giá trị mã sự kiện.
         var mask = $("#mask").val();
+
+        var token = $('input[name=_token]').val();
 
         // =================================
         // Phần ajax lấy thông tin chủ thẻ.
@@ -25,17 +32,19 @@ $(document).ready(function () {
 
                     console.log(chuthe);
 
-                    // Khởi tạo các biến lưu trữ mã chủ thẻ và loại chủ thẻ.
+                    // Khởi tạo các biến lưu trữ mã chủ thẻ, loại chủ thẻ và họ tên chủ thẻ.
                     var machuthe;
                     var loaichuthe;
+                    var hotenchuthe;
 
                     if (chuthe['MSCB']) {
                         machuthe = chuthe['MSCB'];
-                        loaichuthe = "canbo";
+                        loaichuthe = "cán bộ";
                     } else {
                         machuthe = chuthe['MSSV'];
-                        loaichuthe = "sv";
+                        loaichuthe = "sinh viên";
                     }
+                    hotenchuthe = chuthe['HOTEN'];
 
                     // =================================
                     // Phần ajax cập nhật danh sách điểm
@@ -48,52 +57,45 @@ $(document).ready(function () {
                             machuthe: machuthe,
                             loaichuthe: loaichuthe,
                             masukien: mask,
-                            _token: 'xxhzqqdWntUw4jlRsPZ3KrWTHYU4HABVRrVKvCZl'
+                            hotenchuthe: hotenchuthe,
+                            _token: token
                         },
                         success: function (response) {
+                            $('#id_the').val("");
+                            $('#id_the').focus();
                             console.log(response);
+
+                            ms_ketqua = response['ms_ketqua'];
+                            thongdiep = response['thongdiep'];
+                            loaichuthe = response['loaichuthe'];
+                            hoten = response['hoten'];
+                            TaoThongBao(ms_ketqua, thongdiep, loaichuthe, hoten);
+
+                            responsiveVoice.speak(hoten,"Vietnamese Male");
                         },
                         error: function(xhr,err){
                             console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
                         }
                     });
                 }
-
             },
             error: function(xhr,err){
                 console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
             }
         });
-
-        
-
-        // // Phần ajax xử lý điểm danh vào.
-        // $.ajax({
-        //     type: 'post',
-        //     url: '/diemdanhvao',
-        //     data: $("#f_quet_the_vao").serialize(),
-        //     success: function (data) {
-        //         // var data = JSON.parse(data);
-        //         console.log(data);
-
-        //         // Nếu kết quả xử lý thành công.
-        //         // if (data['kq'] == 'thanhcong') {
-        //         //     console.log(data);
-        //         //     hoten = data['hoten'];
-        //         //     responsiveVoice.speak(hoten,"Vietnamese Male")
-        //         // }
-        //         // else {
-        //         //     console.log(data);
-        //         //     hoten = data['hoten'];
-        //         //     responsiveVoice.speak(hoten,"Vietnamese Male");
-        //         // }
-        //     },
-        //     // error: function( jqXhr, textStatus, errorThrown ){
-        //     //     console.log( errorThrown );
-        //     // },
-        //     error: function(xhr,err){
-        //         console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-        //     }
-        // });
     });
+
+    function TaoThongBao(ms_ketqua, thongdiep, loaichuthe, hoten) {
+        // Ẩn tất cả thông báo điểm danh.
+        $(".thongbao").hide();
+
+        // Tạo lớp chứa thông báo kết quả tương ứng
+        // và hiển thị lên.
+        var tb = "#tb_" + ms_ketqua;
+        $(tb).show();
+
+        // hiển thị loại chủ thẻ và họ tên chủ thẻ.
+        $(".loaichuthe").text(loaichuthe);
+        $(".hoten").text(hoten);
+    }
 });
