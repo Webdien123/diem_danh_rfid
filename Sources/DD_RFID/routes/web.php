@@ -110,6 +110,9 @@ Route::post('dangkythemoi', 'CardController@DangKyTheMoi')->name('new_card');
 // Cập nhật thẻ cũ.
 Route::post('dangkythecu', 'CardController@DangKyTheCu')->name('old_card');
 
+// Kiểm tra thông tin thẻ điểm danh.
+Route::post('kiemTraTheDD', "DiemDanhController@KiemTraTheDD");
+
 // Xử lý điểm danh vào cho một lần quét thẻ.
 Route::post('diemdanhvao', "DiemDanhController@DiemDanhVao")->name('DD_Vao');
 
@@ -125,6 +128,4 @@ Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 |
 */
 // Route thử nghiệm
-Route::get('abc', function () {
-    return view('orther_views.codelab');
-});
+Route::get('abc/{mscb}/{mask}/{loaids_moi}', "DiemDanhController@KiemTraDKySK");

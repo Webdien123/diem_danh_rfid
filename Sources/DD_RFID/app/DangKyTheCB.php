@@ -11,7 +11,11 @@ class DangKyTheCB extends Model
     public static function LayThongTinCanBo($mathe)
     {
         // Truy xuất mã số cán bộ.
-        $mscb = \DB::select('select MSCB_THE from dangkythecb where MATHE = ?', [$mathe]);
+        $mscb = \DB::select(\DB::raw("SELECT MSCB_THE FROM dangkythecb WHERE MATHE = :v1"), 
+            array(
+            'v1' => $mathe,
+        ));
+        
         if (!$mscb) {
             $mscb = null;
         }
@@ -23,8 +27,6 @@ class DangKyTheCB extends Model
             $canbo = CanBo::GetCB($mscb[0]->MSCB_THE);
             return $canbo;
         }
-        // Nếu mã số chưa có trả về giao diện thẻ hợp lệ để sẳn sàng đăng ký.
-        return null;
     }
 
     // Lấy thông tin thẻ từ mã số chủ thẻ

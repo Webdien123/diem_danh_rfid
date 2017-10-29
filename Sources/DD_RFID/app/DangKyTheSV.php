@@ -10,7 +10,11 @@ class DangKyTheSV extends Model
     public static function LayThongTinSinhVien($mathe)
     {
         // Truy xuất mã số sinh viên.
-        $mssv = \DB::select('select MSSV_THE from dangkythesv where MATHE = ?', [$mathe]);
+        $mssv = \DB::select(\DB::raw("SELECT MSSV_THE FROM dangkythesv WHERE MATHE = :v1"), 
+            array(
+            'v1' => $mathe,
+        ));
+        
         if (!$mssv) {
             $mssv = null;
         }
@@ -22,8 +26,6 @@ class DangKyTheSV extends Model
             $sv = SinhVien::GetSV($mssv[0]->MSSV_THE);
             return $sv;
         }
-        // Nếu mã số chưa có trả về giao diện thẻ hợp lệ để sẳn sàng đăng ký.
-        return null;
     }
 
     // Lấy thông tin thẻ từ mã số chủ thẻ

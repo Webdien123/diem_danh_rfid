@@ -55,7 +55,10 @@ class CanBo extends Model
     // Lấy thông tin của một cán bộ theo mã cán bộ.
     public static function GetCB($mscb)
     {
-        $canbo = \DB::select('select * from canbo where MSCB = ?', [$mscb]);
+        $canbo = \DB::select(\DB::raw("SELECT * FROM canbo WHERE MSCB = :v1"), 
+            array(
+            'v1' => $mscb,
+        ));
         if ($canbo) {
             return $canbo;
         } else {

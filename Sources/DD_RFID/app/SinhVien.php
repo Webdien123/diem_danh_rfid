@@ -57,7 +57,10 @@ class SinhVien extends Model
     // Lấy thông tin của một sinh viên theo mã sinh viên.
     public static function GetSV($mssv)
     {
-        $sinhvien = \DB::select('select * from sinhvien where MSSV = ?', [$mssv]);
+        $sinhvien = \DB::select(\DB::raw("SELECT * FROM sinhvien WHERE MSSV = :v1"), 
+            array(
+            'v1' => $mssv,
+        ));
         if ($sinhvien) {
             return $sinhvien;
         } else {

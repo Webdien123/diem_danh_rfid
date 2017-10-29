@@ -86,6 +86,11 @@
         <hr>
 
         @if (Session::get('trangthai_sukien') == 2 || Session::get('trangthai_sukien') == 3)
+
+        {{--  Api text to speech  --}}
+        <script src="{{ asset('js/responsivevoice.js') }}"></script>
+
+
         {{--  Phần quét thẻ điểm danh  --}}
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -100,33 +105,14 @@
                         @if (Session::get('trangthai_sukien') == 2)
                             <form id="f_quet_the_vao">
                                 {{ csrf_field() }}
+                                <input type="hidden" name="mask" id="mask" value="{{ $sukien->MASK }}">
                                 <input type="text" class="form-control" name="id_the" id="id_the" placeholder="Quét thẻ của bạn" required>
                                 <input type="submit" id="sm_ddvao" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
                             </form>
 
-                            <script>
-                                $(document).ready(function () {
-                                    $("#sm_ddvao").click(function (e) {
-                                    // $("#f_quet_the_vao").submit(function (e) {
-                                        var id_the = $("#id_the").val();
-                                        $.ajax({
-                                            url: 'users.php',
-                                            dataType: 'json',
-                                            type: 'post',
-                                            contentType: 'application/json',
-                                            data: JSON.stringify( { "first-name": $('#first-name').val(), "last-name": $('#last-name').val() } ),
-                                            processData: false,
-                                            success: function( data, textStatus, jQxhr ){
-                                                $('#response pre').html( JSON.stringify( data ) );
-                                            },
-                                            error: function( jqXhr, textStatus, errorThrown ){
-                                                console.log( errorThrown );
-                                            }
-                                        });
-                                    });
-                                    
-                                });
-                            </script>
+                            {{--  Jquery xử lý quá trình điểm danh vào  --}}
+                            <script src="{{ asset('js/diemDanhVao.js') }}"></script>
+
                         @endif
 
                         @if (Session::get('trangthai_sukien') == 3)

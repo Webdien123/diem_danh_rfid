@@ -30,7 +30,6 @@ $( document ).ready(function() {
 
             /* Xử lý biến data chưa dữ liệu khi xử lý thành công */
             success: function (data) {
-
                 // Xóa danh sách lựa chọn cũ.
                 $("#chonbomon option").remove();
 
