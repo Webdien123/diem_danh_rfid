@@ -70,7 +70,6 @@ class DiemDanhController extends Controller
                 if ($update == 1) {
                     $ketqua = array(
                         'ms_ketqua' => 1,
-                        'thongdiep' => 'Điểm danh thành công',
                         'loaichuthe' => $loaichuthe,
                         'hoten' => $hotenchuthe
                     );
@@ -78,7 +77,6 @@ class DiemDanhController extends Controller
                 else {
                     $ketqua = array(
                         'ms_ketqua' => 2,
-                        'thongdiep' => 'Có lỗi khi xử lý. Vui lòng thử lại',
                         'loaichuthe' => $loaichuthe,
                         'hoten' => $hotenchuthe
                     );
@@ -87,7 +85,6 @@ class DiemDanhController extends Controller
             if ($loaids == 3) {
                 $ketqua = array(
                     'ms_ketqua' => 3,
-                    'thongdiep' => 'Trùng kết quả',
                     'loaichuthe' => $loaichuthe,
                     'hoten' => $hotenchuthe
                 );
@@ -97,7 +94,6 @@ class DiemDanhController extends Controller
         else {
             $ketqua = array(
                 'ms_ketqua' => 4,
-                'thongdiep' => 'Thẻ chưa được đăng ký',
                 'loaichuthe' => $loaichuthe,
                 'hoten' => $hotenchuthe
             );

@@ -66,10 +66,9 @@ $(document).ready(function () {
                             console.log(response);
 
                             ms_ketqua = response['ms_ketqua'];
-                            thongdiep = response['thongdiep'];
                             loaichuthe = response['loaichuthe'];
                             hoten = response['hoten'];
-                            TaoThongBao(ms_ketqua, thongdiep, loaichuthe, hoten);
+                            TaoThongBao(ms_ketqua, loaichuthe, hoten);
 
                             responsiveVoice.speak(hoten,"Vietnamese Male");
                         },
@@ -85,7 +84,7 @@ $(document).ready(function () {
         });
     });
 
-    function TaoThongBao(ms_ketqua, thongdiep, loaichuthe, hoten) {
+    function TaoThongBao(ms_ketqua, loaichuthe, hoten) {
         // Ẩn tất cả thông báo điểm danh.
         $(".thongbao").hide();
 
