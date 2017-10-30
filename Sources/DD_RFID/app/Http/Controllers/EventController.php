@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SuKien;
+use App\Khoa_Phong;
+use App\KyHieuLop;
+use App\KhoaHoc;
 
 class EventController extends Controller
 {
@@ -50,7 +53,16 @@ class EventController extends Controller
             // Tính lại thời gian còn lại của sự kiện.
             $thoigian = EventController::ThoiGianConLai($sukien);
 
-            return view('home', ['thoigian' => $thoigian]);
+            $khoas = Khoa_Phong::GetKhoa();
+            $lops = KyHieuLop::LayKyHieuLop();
+            $khoahocs = KhoaHoc::LayKhoaHoc();
+
+            return view('home', [
+                'thoigian' => $thoigian, 
+                'khoas' => $khoas,
+                'lops' => $lops,
+                'khoahocs' => $khoahocs
+            ]);
         }
         else{
             return view('login');
@@ -74,7 +86,16 @@ class EventController extends Controller
             // Tính lại thời gian còn lại của sự kiện.
             $thoigian = EventController::ThoiGianConLai($sukien);
 
-            return view('home', ['thoigian' => $thoigian]);
+            $khoas = Khoa_Phong::GetKhoa();
+            $lops = KyHieuLop::LayKyHieuLop();
+            $khoahocs = KhoaHoc::LayKhoaHoc();
+
+            return view('home', [
+                'thoigian' => $thoigian, 
+                'khoas' => $khoas,
+                'lops' => $lops,
+                'khoahocs' => $khoahocs
+            ]);
         }
         else{
             return view('login');

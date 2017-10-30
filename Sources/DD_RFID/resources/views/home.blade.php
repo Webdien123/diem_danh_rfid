@@ -21,6 +21,19 @@
 
     {{--  Jquery điều khiển phần quét thẻ  --}}
     <script src="{{ asset('js/card.js') }}"></script>
+
+    {{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
+    <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
+
+    {{--  Script xử lý khi select danh sách chuyên ngành, danh sách khoa.
+    Và các danh sách nằm trên form thêm sinh viên  --}}
+    <script src="{{ asset('js/select_khoa_chnganh.js') }}"></script>
+
+    {{--  Script import jquery validate  --}}
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+    {{--  Script xử lý validate dữ liệu cán bộ  --}}
+    <script src="{{ asset('js/validate_dangkythe.js') }}"></script>
 </head>
 <body>
     <?php
@@ -61,11 +74,11 @@
             <div class="col-xs-12 col-sm-6 col-sm-offset-3">
                 {{--  Hiển thị điểm danh theo trạng thái sự kiện  --}}
                 @if (Session::get('trangthai_sukien') == 1)
-                    <h1>sẽ điểm danh sau:</h1>
+                    <h3>sẽ điểm danh sau:</h3>
                 @endif
         
-                @if (Session::get('trangthai_sukien') == 3)
-                    <h1>Thời gian còn lại: </h1>
+                @if (Session::get('trangthai_sukien') == 2 || Session::get('trangthai_sukien') == 3)
+                    <h3>Thời gian còn lại: </h3>
                 @endif
                 <h1 id="getting-started" style="background-color: while; color: red;"></h1>
                 <script type="text/javascript">
@@ -126,6 +139,7 @@
                     </div>
                 </div>
 
+                <!-- Phần thông báo loại 1: Điểm danh thành công -->
                 <div class="row thongbao" id="tb_1">
                     <strong class="text-success">
                         <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
@@ -135,6 +149,7 @@
                     </strong>
                 </div>
 
+                <!-- Phần thông báo loại 2: Có lỗi trong xử lý -->
                 <div class="row thongbao" id="tb_2">
                     <strong class="text-danger">
                         <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
@@ -142,6 +157,7 @@
                     </strong>
                 </div>
 
+                <!-- Phần thông báo loại 3: Trùng kết quả điểm danh trước đó -->
                 <div class="row thongbao" id="tb_3">
                     <strong class="text-info">
                         <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
@@ -151,6 +167,7 @@
                     </strong>
                 </div>
                 
+                <!-- Phần thông báo loại 4: Chưa đăng ký tham gia sự kiện -->
                 <div class="row thongbao" id="tb_4">
                     <strong class="text-warning">
                         <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
@@ -159,28 +176,207 @@
                     </strong>
                 </div>
 
+                <!-- Phần thông báo loại 5: Thẻ chưa có thông tin trong hệ thống -->
                 <div class="row thongbao" id="tb_5">
-                    <strong class="text-danger">
-                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
-                        <span>Thẻ chưa được đăng ký, click vào</span>
+                    {{--  Script import jquery validate  --}}
+                    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+                    <div>
+                        <strong><i class="text-danger fa fa-times-circle fa-2x" aria-hidden="true"></i></strong>
+                        <strong><span class="text-danger">Thẻ chưa được đăng ký, click vào</span></strong>
                         
-                        <a data-toggle="modal" href='#modal-id'>đây</a>
-                        <div class="modal fade" id="modal-id">
+                        <strong><a data-toggle="modal" href='#modal-ddanh'>đây</a></strong>
+
+                        {{-- Modal điểm danh khi chưa đăng ký --}}
+                        <div class="modal fade text-left" id="modal-ddanh">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Modal title</h4>
+                                        <h4 class="modal-title">Điểm danh chưa đăng ký</h4>
                                     </div>
                                     <div class="modal-body">
+                                        <form id="f_dd_kgdgki" action="" method="POST" role="form">
+
+                                            {{--  Phần chọn đối tượng đăng ký thẻ  --}}
+                                            <input type="hidden" name="chon_cb_sv" id="chon_cb_sv">
+                                            <div class="form-group">
+                                                <label for="">Người điểm danh là:</label><br>
+                                                <div class="radio-inline">
+                                                    <label><input type="radio" name="rd_sv_cb" id="rd_sv" checked value="sinh viên">
+                                                        <span class="text-danger">
+                                                            <span class="fa fa-graduation-cap fa-2x"></span>
+                                                            Sinh viên
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="radio-inline">
+                                                    <label><input type="radio" name="rd_sv_cb" id="rd_cb" value="cán bộ">
+                                                        <span class="text-primary">
+                                                            <span class="fa fa-users fa-2x"></span>
+                                                            Cán bộ
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">Mã thẻ</label>
+                                                <input type="hidden" class="the" id="the" name="mathe">
+                                                <input type="text" class="form-control the" disabled>
+                                            </div>
+
+                                            {{--  Phần mã số chủ thẻ cần điểm danh  --}}                                            
+                                            <div class="form-group">
+                                                <label for="">Nhập mã số chủ thẻ rồi chọn "Điểm danh"</label>
+                                                <input type="text" class="form-control" id="" placeholder="Mã số cán bộ hoặc sinh viên">
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-address-book" aria-hidden="true"></i>
+                                                Điểm danh
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                        </form>
                                         
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <span>Nếu vẩn muốn điểm danh</span>
-                    </strong>
+
+                        {{-- Modal thêm thông tin ngay khi điểm danh --}}
+                        <div class="modal fade text-left" id="modal-dkithemoi">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Đăng ký thông tin thẻ</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{--  Form nhập thông tin đăng ký  --}}
+                                        <form action="{{ route('new_card') }}" id="f_new_card" method="POST" role="form">  
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="chon_cb_sv" id="chon_cb_sv">
+
+                                            {{--  Phần chọn đối tượng đăng ký thẻ  --}}
+                                            <div class="form-group">
+                                                <label for="">Đăng ký cho:</label>
+                                                <div class="radio-inline">
+                                                    <label><input type="radio" name="rd_sv_cb" id="rd_sv" checked value="sinh viên">
+                                                        <span class="text-danger">
+                                                            <span class="fa fa-graduation-cap fa-2x"></span>
+                                                            Sinh viên
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="radio-inline">
+                                                    <label><input type="radio" name="rd_sv_cb" id="rd_cb" value="cán bộ">
+                                                        <span class="text-primary">
+                                                            <span class="fa fa-users fa-2x"></span>
+                                                            Cán bộ
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            {{--  script thay đổi giá trị giao diện theo chủ thẻ được chọn.  --}}
+                                            <script src="{{ asset('js/chuyen_chu_the.js') }}"></script>
+
+                                            <div class="form-group">
+                                                <label for="">Mã thẻ</label>
+                                                <input type="hidden" class="the" id="the" name="mathe">
+                                                <input type="text" class="form-control the" disabled>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">Mã số</label>
+                                                <label id="ten_doi_tuong">sinh viên</label>
+                                                <input type="text" class="form-control" name="maso" placeholder="Mã số chủ thẻ">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">Họ tên</label>
+                                                <input type="text" class="form-control" name="hoten" placeholder="Họ tên chủ thẻ">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">Khoa:</label>
+                                                <input type="hidden" name="khoa" id="khoa">
+                                                <select class="form-control" id="chonkhoa" name="chonkhoa">
+                                                    @foreach ($khoas as $khoa)
+                                                        <?php
+                                                            echo "<option value='". $khoa->TENKHOA ."'>". $khoa->TENKHOA ."</option>";
+                                                        ?>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            {{--  Phần nội dung đăng ký riêng cho cán bộ  --}}
+                                            <div id="dky_cb">
+                                                <div class="form-group">
+                                                    <label for="">Bộ môn:</label>
+                                                    <input type="hidden" name="bomon" id="bomon">
+                                                    <select class="form-control" id="chonbomon" name="chonbomon">
+                                                    </select>
+                                                </div>
+                                    
+                                                <div class="form-group">
+                                                    <label for="">Email:</label>
+                                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
+                                                </div>
+                                            </div>
+
+                                            {{--  Phần nội dung đăng ký riêng cho sinh viên  --}}
+                                            <div id="dky_sv">
+                                                <div class="form-group">
+                                                    <label for="">Chuyên ngành:</label>
+                                                    <input type="hidden" name="chnganh" id="chnganh">
+                                                    <select class="form-control" id="chonchnganh" name="chonchnganh">
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="">Lớp:</label>
+                                                    <input type="hidden" name="lop" id="lop">
+                                                    <select class="form-control" id="chonlop" name="chonlop">
+                                                        @foreach ($lops as $lop)
+                                                            <?php
+                                                                echo "<option value='". $lop->KYHIEULOP ."'>". $lop->KYHIEULOP ."</option>";
+                                                            ?>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="">Khóa học:</label>
+                                                    <input type="hidden" name="khoahoc" id="khoahoc">
+                                                    <select class="form-control" id="chonkhoahoc" name="chonkhoahoc">
+                                                        @foreach ($khoahocs as $khoahoc)
+                                                            <?php
+                                                                echo "<option value='". $khoahoc->KHOAHOC ."'>". $khoahoc->KHOAHOC ."</option>";
+                                                            ?>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        
+                                            <button type="submit" class="btn btn-primary">
+                                                Đăng ký
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <strong><span class="text-danger">nếu vẩn muốn điểm danh, hoặc chọn nút đăng ký thẻ để đăng ký ngay</span></strong>
+                    </div>
+
+                    <a data-toggle="modal" class="btn btn-primary" href='#modal-dkithemoi'>
+                        <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                        Đăng ký thẻ
+                    </a>
                 </div>
                 
             </div>

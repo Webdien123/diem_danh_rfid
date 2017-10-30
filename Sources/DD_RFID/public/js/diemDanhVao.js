@@ -1,15 +1,21 @@
 
-
+// Script xử lý điểm danh vào.
 $(document).ready(function () {
+
     // Ẩn tất cả thông báo điểm danh.
     $(".thongbao").hide();
 
+    // Khi quét thẻ cần điểm danh
     $("#sm_ddvao").click(function (e) {
         e.preventDefault();
 
         // Lấy giá trị mã sự kiện.
         var mask = $("#mask").val();
 
+        // Mã thẻ đã quét.
+        var mathe = $("#id_the").val();
+
+        // Lấy giá trị token để xác thực.
         var token = $('input[name=_token]').val();
 
         // =================================
@@ -24,15 +30,27 @@ $(document).ready(function () {
 
                 // Nếu thẻ chưa có thông tin trong hệ thống.
                 if (data == null) {
+
+                    // Tạo thông báo số 5
                     TaoThongBao(5, "", "");
+
+                    // Reset giá trị khung quét thẻ
                     $('#id_the').val("");
                     $('#id_the').focus();
-                } else {
+
+                    // Hiển thị mã thẻ vừa quét
+                    $('.the').val(mathe);
+
+                    // Đặt giá trị cho phần chọn loại chủ thẻ.
+                    $( "#chon_cb_sv" ).val("sinh viên");
+                    $('#f_dd_kgdgki input[type=radio]').change(function(){
+                        $( "#chon_cb_sv" ).val( $( this ).val() );
+                    });
+                } 
+                else {
 
                     // Lấy giá trị chủ thẻ
                     chuthe = data[0];
-
-                    console.log(chuthe);
 
                     // Khởi tạo các biến lưu trữ mã chủ thẻ, loại chủ thẻ và họ tên chủ thẻ.
                     var machuthe;
@@ -65,7 +83,6 @@ $(document).ready(function () {
                         success: function (response) {
                             $('#id_the').val("");
                             $('#id_the').focus();
-                            console.log(response);
 
                             ms_ketqua = response['ms_ketqua'];
                             loaichuthe = response['loaichuthe'];
@@ -85,10 +102,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    function DiemDanhVao(params) {
-        
-    }
 
     function TaoThongBao(ms_ketqua, loaichuthe, hoten) {
 
