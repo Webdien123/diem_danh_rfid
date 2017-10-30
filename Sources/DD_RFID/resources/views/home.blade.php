@@ -158,6 +158,30 @@
                         <span>chưa đăng ký sự kiện này</span>
                     </strong>
                 </div>
+
+                <div class="row thongbao" id="tb_5">
+                    <strong class="text-danger">
+                        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                        <span>Thẻ chưa được đăng ký, click vào</span>
+                        
+                        <a data-toggle="modal" href='#modal-id'>đây</a>
+                        <div class="modal fade" id="modal-id">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Modal title</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span>Nếu vẩn muốn điểm danh</span>
+                    </strong>
+                </div>
                 
             </div>
         </div>

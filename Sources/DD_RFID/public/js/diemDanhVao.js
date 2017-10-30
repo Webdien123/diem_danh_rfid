@@ -24,7 +24,9 @@ $(document).ready(function () {
 
                 // Nếu thẻ chưa có thông tin trong hệ thống.
                 if (data == null) {
-                    console.log("Thẻ chưa có thông tin trong hệ thống");
+                    TaoThongBao(5, "", "");
+                    $('#id_the').val("");
+                    $('#id_the').focus();
                 } else {
 
                     // Lấy giá trị chủ thẻ
@@ -84,7 +86,12 @@ $(document).ready(function () {
         });
     });
 
+    function DiemDanhVao(params) {
+        
+    }
+
     function TaoThongBao(ms_ketqua, loaichuthe, hoten) {
+
         // Ẩn tất cả thông báo điểm danh.
         $(".thongbao").hide();
 

@@ -230,7 +230,7 @@ class CardController extends Controller
             // Nếu thẻ không thể dùng được vì có sinh viên sở hữu.
             if ($kiemtra == 2) {
                 // Lấy thông tin sinh viên có mã thẻ tương ứng.
-                $sv = DangKyTheCB::LayThongTinCanBo($R->mathe);
+                $sv = DangKyTheSV::LayThongTinSinhVien($R->mathe);
                 return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Sinh viên', 'chuthe' => $sv]);
             }
             // ==================================================
