@@ -226,10 +226,15 @@
                                         <h4 class="modal-title">Điểm danh chưa đăng ký</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="f_dd_kgdgki" action="" method="POST" role="form">
+                                        <form id="f_dd_kgdgki">
+                                            {{ csrf_field() }}
+
+                                            {{--  Mã sự kiện  --}}
+                                            <input type="hidden" name="mask" id="mask" value="{{ $sukien->MASK }}">
 
                                             {{--  Phần chọn đối tượng đăng ký thẻ  --}}
                                             <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">
+
                                             <div class="form-group">
                                                 <label for="">Người điểm danh là:</label><br>
                                                 <div class="radio-inline">
@@ -259,7 +264,7 @@
                                             {{--  Phần mã số chủ thẻ cần điểm danh  --}}                                            
                                             <div class="form-group">
                                                 <label for="">Nhập mã số chủ thẻ rồi chọn "Điểm danh"</label>
-                                                <input type="text" class="form-control" id="" placeholder="Mã số cán bộ hoặc sinh viên">
+                                                <input type="text" class="form-control" name="machuthe" placeholder="Mã số cán bộ hoặc sinh viên">
                                             </div>
                                             
                                             <button type="submit" class="btn btn-primary">
@@ -269,6 +274,12 @@
 
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                                         </form>
+                                        
+                                        {{--  script thay đổi giá trị giao diện theo chủ thẻ được chọn.  --}}
+                                        <script src="{{ asset('js/chuyen_chu_the.js') }}"></script>
+
+                                        {{--  Script xử lý 2 thông báo thành công hoặc thất bại khi cập nhật  --}}
+                                        <script src="{{ asset('js/diemdanh_khongdangki.js') }}"></script>
                                         
                                     </div>
                                 </div>
@@ -289,7 +300,7 @@
                                             {{ csrf_field() }}
 
                                             {{--  Mã sự kiện  --}}
-                                            <input type="hidden" name="mask" id="mask" value="{{ $sukien->MASK }}">                 
+                                            <input type="hidden" name="mask" id="mask" value="{{ $sukien->MASK }}">
 
                                             {{--  Phần chọn đối tượng đăng ký thẻ  --}}
                                             <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">

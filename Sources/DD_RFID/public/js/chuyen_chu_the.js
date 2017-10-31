@@ -4,6 +4,9 @@ $(document).ready(function() {
     $("#dky_cb").fadeOut(0);
     $( "#chon_cb_sv" ).val("sinh viên");
     $( ".chon_cb_sv" ).val("sinh viên");
+
+    // Chuyển giá trị loại chủ thẻ khi chọn trên giao diện
+    // đăng ký thẻ mới
     $('#f_new_card input[type=radio]').change(function(){
         
         $( "#chon_cb_sv" ).val( $( this ).val() );
@@ -16,5 +19,11 @@ $(document).ready(function() {
             $("#dky_sv").fadeIn(0);
             $("#dky_cb").fadeOut(0);
         }
+    });
+
+    // Chuyển giá trị loại chủ thẻ khi chọn trên giao diện
+    // điểm danh không đăng ký.
+    $('#f_dd_kgdgki input[type=radio]').change(function(){
+        $( ".chon_cb_sv" ).val( $( this ).val() );
     });
 });

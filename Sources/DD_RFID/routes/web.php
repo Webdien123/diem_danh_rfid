@@ -119,6 +119,9 @@ Route::post('kiemTraTheDD', "DiemDanhController@KiemTraTheDD");
 // Xử lý điểm danh vào cho một lần quét thẻ.
 Route::post('diemdanhvao', "DiemDanhController@DiemDanhVao")->name('DD_Vao');
 
+// Xử lý điểm danh không đăng ký.
+Route::post('diemdanh_kgdangki', "DiemDanhController@KiemTraNguoiDD");
+
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 /*

@@ -43,6 +43,47 @@ class DiemDanhController extends Controller
         }
     }
 
+    // Kiểm tra mã số của người điểm danh không đăng ký
+    // đã có trong hệ thống hay chưa.
+    public function KiemTraNguoiDD(Request $R)
+    {
+        // Lấy các giá trị trong request.
+        $mask = $R->mask;
+        $machuthe = $R->machuthe;
+        $loaichuthe = $R->chon_cb_sv;
+
+        // Kiểm tra mã chủ thẻ có bị trùng hay chưa dựa vào loại chủ thẻ.
+        if ($loaichuthe == "cán bộ") {
+            $chuthe = CanBo::GetCB($machuthe);
+        } 
+        if ($loaichuthe == "sinh viên") {
+            $chuthe = SinhVien::GetSV($machuthe);
+        }
+
+        // Nếu chủ thẻ đã tồn tại.
+        if ($chuthe) {
+            $ketqua = array(
+                'mask' => $mask,
+                'machuthe' => $machuthe,
+                'loaichuthe' => $loaichuthe,
+                'ketqua' => "Đã tồn tại"
+            );
+        } else {
+            $ketqua = array(
+                'mask' => $mask,
+                'machuthe' => $machuthe,
+                'loaichuthe' => $loaichuthe,
+                'ketqua' => "Sẳn sàng đăng ký"
+            );
+        }
+        return $ketqua;
+    }
+
+    public function DDanhKhongDangKy()
+    {
+        
+    }
+
     // Xử lý điểm danh vào cho một lần quét thẻ.
     public function DiemDanhVao(Request $R)
     {
