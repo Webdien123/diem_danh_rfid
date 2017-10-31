@@ -11,6 +11,7 @@ class KhoaSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert('insert into khoa_phong (TENKHOA) values (?)', ['Công nghệ thông tin và truyền thông']);        
+        DB::insert('insert into khoa_phong (TENKHOA) values (?)', ['--']);
+        DB::insert('insert into khoa_phong (TENKHOA) values (?)', ['Công nghệ thông tin và truyền thông']);      
     }
 }

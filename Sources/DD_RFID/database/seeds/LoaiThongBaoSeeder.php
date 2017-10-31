@@ -13,5 +13,6 @@ class LoaiThongBaoSeeder extends Seeder
     {
         DB::insert('insert into loaithongbao (TENLOAITBAO) values (?)', ['Bo sung SV']);
         DB::insert('insert into loaithongbao (TENLOAITBAO) values (?)', ['Bo sung CB']);
+        DB::insert('insert into loaithongbao (TENLOAITBAO) values (?)', ['--']);
     }
 }

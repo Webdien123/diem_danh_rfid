@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     19-10-17 11:24:47 AM                         */
+/* Created on:     31-10-17 9:18:08 PM                          */
 /*==============================================================*/
 
 
@@ -11,8 +11,6 @@ drop table if exists CHUYENNGANH;
 drop table if exists DANGKYTHECB;
 
 drop table if exists DANGKYTHESV;
-
-drop table if exists DANGTHONGBAO;
 
 drop table if exists DIEMDANHCB;
 
@@ -26,13 +24,9 @@ drop table if exists KYHIEULOP;
 
 drop table if exists LOAIDS;
 
-drop table if exists LOAITHONGBAO;
-
 drop table if exists SINHVIEN;
 
 drop table if exists SUKIEN;
-
-drop table if exists THONGBAO;
 
 drop table if exists THONGKEDIEMDANH;
 
@@ -46,10 +40,10 @@ drop table if exists TRANGTHAISK;
 create table CANBO
 (
    MSCB                 char(8) not null,
-   TENBOMON             varchar(50) not null,
-   TENKHOA              varchar(50) not null,
-   EMAIL                varchar(50) not null,
-   HOTEN                varchar(50) not null,
+   TENBOMON             varchar(50) not null default '--',
+   TENKHOA              varchar(50) not null default '--',
+   EMAIL                varchar(50) not null default '--',
+   HOTEN                varchar(50) not null default '--',
    primary key (MSCB)
 );
 
@@ -81,19 +75,6 @@ create table DANGKYTHESV
    MSSV_THE             char(8) not null,
    MATHE                varchar(10) not null,
    primary key (MSSV_THE)
-);
-
-/*==============================================================*/
-/* Table: DANGTHONGBAO                                          */
-/*==============================================================*/
-create table DANGTHONGBAO
-(
-   MATBAO               int not null,
-   THOIGIANDANG         datetime not null default CURRENT_TIMESTAMP,
-   HOTEN                varchar(50) not null,
-   SDT                  varchar(11) not null,
-   EMAIL                varchar(50) not null,
-   primary key (MATBAO)
 );
 
 /*==============================================================*/
@@ -156,26 +137,16 @@ create table LOAIDS
 );
 
 /*==============================================================*/
-/* Table: LOAITHONGBAO                                          */
-/*==============================================================*/
-create table LOAITHONGBAO
-(
-   MALOAITBAO           int not null auto_increment,
-   TENLOAITBAO          varchar(50) not null,
-   primary key (MALOAITBAO)
-);
-
-/*==============================================================*/
 /* Table: SINHVIEN                                              */
 /*==============================================================*/
 create table SINHVIEN
 (
    MSSV                 char(8) not null,
-   KYHIEULOP            char(2) not null,
-   TENCHNGANH           varchar(50) not null,
-   KHOAHOC              char(3) not null,
-   TENKHOA              varchar(50) not null,
-   HOTEN                varchar(50) not null,
+   KYHIEULOP            char(2) not null default '--',
+   TENCHNGANH           varchar(50) not null default '--',
+   KHOAHOC              char(3) not null default '--',
+   TENKHOA              varchar(50) not null default '--',
+   HOTEN                varchar(50) not null default '--',
    primary key (MSSV)
 );
 
@@ -192,19 +163,6 @@ create table SUKIEN
    DDVAO                time not null,
    DDRA                 time not null,
    primary key (MASK)
-);
-
-/*==============================================================*/
-/* Table: THONGBAO                                              */
-/*==============================================================*/
-create table THONGBAO
-(
-   MATBAO               int not null auto_increment,
-   MALOAITBAO           int not null,
-   TIEUDE               varchar(50) not null,
-   NOIDUNG              varchar(1000),
-   DAXULY               bool default false,
-   primary key (MATBAO)
 );
 
 /*==============================================================*/
@@ -235,7 +193,7 @@ create table TO_BOMON
 create table TRANGTHAISK
 (
    MATTHAI              int not null,
-   GHICHU               varchar(50),
+   GHICHU               varchar(50) not null,
    primary key (MATTHAI)
 );
 
@@ -253,9 +211,6 @@ alter table DANGKYTHECB add constraint FK_DANGKYTHECB foreign key (MSCB_THE)
 
 alter table DANGKYTHESV add constraint FK_DANGKYTHESV foreign key (MSSV_THE)
       references SINHVIEN (MSSV) on delete restrict on update restrict;
-
-alter table DANGTHONGBAO add constraint FK_DANGTBAO foreign key (MATBAO)
-      references THONGBAO (MATBAO) on delete restrict on update restrict;
 
 alter table DIEMDANHCB add constraint FK_DIEMDANHCB foreign key (MSCB)
       references CANBO (MSCB) on delete restrict on update restrict;
@@ -289,9 +244,6 @@ alter table SINHVIEN add constraint FK_NGANHSV foreign key (TENCHNGANH)
 
 alter table SUKIEN add constraint FK_TTHAISK foreign key (MATTHAI)
       references TRANGTHAISK (MATTHAI) on delete restrict on update restrict;
-
-alter table THONGBAO add constraint FK_LOAITB_TBAO foreign key (MALOAITBAO)
-      references LOAITHONGBAO (MALOAITBAO) on delete restrict on update restrict;
 
 alter table THONGKEDIEMDANH add constraint FK_THONGKELOAIDS foreign key (MALOAIDS)
       references LOAIDS (MALOAIDS) on delete restrict on update restrict;

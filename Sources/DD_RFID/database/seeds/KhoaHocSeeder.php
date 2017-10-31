@@ -11,6 +11,7 @@ class KhoaHocSeeder extends Seeder
      */
     public function run()
     {
+        DB::insert('insert into khoahoc (KHOAHOC) values (?)', ['--']);
         DB::insert('insert into khoahoc (KHOAHOC) values (?)', ['K35']);
         DB::insert('insert into khoahoc (KHOAHOC) values (?)', ['K36']);
         DB::insert('insert into khoahoc (KHOAHOC) values (?)', ['K37']);

@@ -2,10 +2,6 @@
 
 <div class="col-xs-12">
 
-    <link rel="stylesheet" href="{{ asset('css/noti_menu.css') }}">
-
-    <script src="{{ asset('js/noti_menu.js') }}"></script>
-
     {{--  Chuyển đổi màu thanh menu theo trang con.  --}}
     {{--  @if (strpos ($_SERVER['REQUEST_URI'], 'chart'))
         {!! '<div class="panel panel-info">' !!}
@@ -36,40 +32,6 @@
                     <div class="pull-right">
                         <ul id="nav">
                             <li>{!! 'Xin chào: <b>'.Session::get('uname').'</b>' !!}</li>
-                            <li id="notification_li">
-                            <a href="#" id="notificationLink">
-                                <span class="fa fa-comment-o fa-2x" style="color: black">
-                            </a>
-                                <span id="notification_count">3</span>
-                                <div id="notificationContainer">
-                                    <div id="notificationTitle">Thông báo</div>
-                                    <div id="notificationsBody" class="notifications pre-scrollable">
-                                        <div class="text-primary notificationData">
-                                            <span class="fa fa-users fa-2x"></span>
-                                            Bổ sung thông tin cán bộ 002233
-                                            <button class="btn btn-link">
-                                                Xem nội dung
-                                            </button>
-                                        </div>                              
-                                        <div class="text-danger notificationData">
-                                            <span class="fa fa-graduation-cap fa-2x"></span>
-                                            Bổ sung thông tin sinh viên 00223344
-                                            <button class="btn btn-link">
-                                                Xem nội dung
-                                            </button>
-                                        </div>
-                                        <div class="text-danger notificationData">
-                                            <span class="fa fa-graduation-cap fa-2x"></span>
-                                            Bổ sung thông tin sinh viên B1305056
-                                            <button class="btn btn-link">
-                                                Xem nội dung
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div id="notificationFooter"><a href="#">Xem tất cả</a></div>
-                                </div>
-                    
-                            </li>
                         </ul>                        
                     </div>
                 </div>  

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 19, 2017 lúc 11:38 AM
+-- Thời gian đã tạo: Th10 31, 2017 lúc 03:41 PM
 -- Phiên bản máy phục vụ: 10.1.24-MariaDB
 -- Phiên bản PHP: 7.0.20
 
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `canbo` (
   `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `EMAIL` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
+  `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `EMAIL` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -52,6 +52,7 @@ CREATE TABLE `chuyennganh` (
 --
 
 INSERT INTO `chuyennganh` (`TENCHNGANH`, `TENKHOA`) VALUES
+('--', '--'),
 ('Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông'),
 ('Công nghệ thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Hệ thống thông tin', 'Công nghệ thông tin và truyền thông'),
@@ -81,19 +82,14 @@ CREATE TABLE `dangkythesv` (
   `MATHE` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `dangthongbao`
+-- Đang đổ dữ liệu cho bảng `dangkythesv`
 --
 
-CREATE TABLE `dangthongbao` (
-  `MATBAO` int(11) NOT NULL,
-  `THOIGIANDANG` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `SDT` varchar(11) COLLATE utf8_vietnamese_ci NOT NULL,
-  `EMAIL` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+INSERT INTO `dangkythesv` (`MSSV_THE`, `MATHE`) VALUES
+('B1500003', '0001352398'),
+('B1700001', '0000958866'),
+('B1700002', '0000958819');
 
 -- --------------------------------------------------------
 
@@ -134,6 +130,7 @@ CREATE TABLE `khoahoc` (
 --
 
 INSERT INTO `khoahoc` (`KHOAHOC`) VALUES
+('--'),
 ('K35'),
 ('K36'),
 ('K37'),
@@ -159,6 +156,7 @@ CREATE TABLE `khoa_phong` (
 --
 
 INSERT INTO `khoa_phong` (`TENKHOA`) VALUES
+('--'),
 ('Công nghệ thông tin và truyền thông');
 
 -- --------------------------------------------------------
@@ -176,6 +174,7 @@ CREATE TABLE `kyhieulop` (
 --
 
 INSERT INTO `kyhieulop` (`KYHIEULOP`) VALUES
+('--'),
 ('A1'),
 ('A2'),
 ('A3'),
@@ -205,26 +204,8 @@ INSERT INTO `loaids` (`MALOAIDS`, `TENLOAIDS`) VALUES
 (1, 'Có mặt'),
 (2, 'Vắng mặt'),
 (3, 'Có vào không ra'),
-(4, 'Có ra không vào');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `loaithongbao`
---
-
-CREATE TABLE `loaithongbao` (
-  `MALOAITBAO` int(11) NOT NULL,
-  `TENLOAITBAO` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `loaithongbao`
---
-
-INSERT INTO `loaithongbao` (`MALOAITBAO`, `TENLOAITBAO`) VALUES
-(1, 'Bo sung SV'),
-(2, 'Bo sung CB');
+(4, 'Có ra không vào'),
+(5, '--');
 
 -- --------------------------------------------------------
 
@@ -266,12 +247,21 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `sinhvien` (
   `MSSV` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `KYHIEULOP` char(2) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `KHOAHOC` char(3) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
+  `KYHIEULOP` char(2) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `KHOAHOC` char(3) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sinhvien`
+--
+
+INSERT INTO `sinhvien` (`MSSV`, `KYHIEULOP`, `TENCHNGANH`, `KHOAHOC`, `TENKHOA`, `HOTEN`) VALUES
+('B1500003', 'A3', 'Hệ thống thông tin', 'K41', 'Công nghệ thông tin và truyền thông', 'Phạm Đình Thiên'),
+('B1700001', 'A1', 'Mạng máy tính và TT', 'K43', 'Công nghệ thông tin và truyền thông', 'Nguyễn Thị Linh'),
+('B1700002', 'A1', 'Khoa học máy tính', 'K43', 'Công nghệ thông tin và truyền thông', 'Phạm Tiễn');
 
 -- --------------------------------------------------------
 
@@ -281,26 +271,12 @@ CREATE TABLE `sinhvien` (
 
 CREATE TABLE `sukien` (
   `MASK` int(11) NOT NULL,
-  `MATTHAI` int(11) NOT NULL DEFAULT '1',
+  `MATTHAI` int(11) NOT NULL,
   `TENSK` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `NGTHUCHIEN` date NOT NULL,
   `DIADIEM` varchar(150) COLLATE utf8_vietnamese_ci NOT NULL,
   `DDVAO` time NOT NULL,
   `DDRA` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `thongbao`
---
-
-CREATE TABLE `thongbao` (
-  `MATBAO` int(11) NOT NULL,
-  `MALOAITBAO` int(11) NOT NULL,
-  `TIEUDE` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `NOIDUNG` varchar(1000) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `DAXULY` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -332,8 +308,8 @@ CREATE TABLE `to_bomon` (
 --
 
 INSERT INTO `to_bomon` (`TENBOMON`, `TENKHOA`) VALUES
+('--', '--'),
 ('Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông'),
-('Công nghệ thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Hệ thống thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Khoa học máy tính', 'Công nghệ thông tin và truyền thông'),
 ('Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông'),
@@ -347,18 +323,8 @@ INSERT INTO `to_bomon` (`TENBOMON`, `TENKHOA`) VALUES
 
 CREATE TABLE `trangthaisk` (
   `MATTHAI` int(11) NOT NULL,
-  `GHICHU` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `GHICHU` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `trangthaisk`
---
-
-INSERT INTO `trangthaisk` (`MATTHAI`, `GHICHU`) VALUES
-(1, 'Đã tạo, chưa đăng ký'),
-(2, 'Đang chờ điểm danh'),
-(3, 'Đang điểm danh'),
-(4, 'Hoàn thành điểm danh');
 
 -- --------------------------------------------------------
 
@@ -381,7 +347,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$og7Lfo64ktnN8H4s.mVV5Or6TQRXrFgNf13FX1mkgTE9c.wA0e8zK', NULL, NULL, NULL);
+(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$34ioVkN2cydwyg8sO1MVFupq9FLcTb/RgPC7lhdLs9XxbpA1itjZu', NULL, NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -413,12 +379,6 @@ ALTER TABLE `dangkythecb`
 --
 ALTER TABLE `dangkythesv`
   ADD PRIMARY KEY (`MSSV_THE`);
-
---
--- Chỉ mục cho bảng `dangthongbao`
---
-ALTER TABLE `dangthongbao`
-  ADD PRIMARY KEY (`MATBAO`);
 
 --
 -- Chỉ mục cho bảng `diemdanhcb`
@@ -461,12 +421,6 @@ ALTER TABLE `loaids`
   ADD PRIMARY KEY (`MALOAIDS`);
 
 --
--- Chỉ mục cho bảng `loaithongbao`
---
-ALTER TABLE `loaithongbao`
-  ADD PRIMARY KEY (`MALOAITBAO`);
-
---
 -- Chỉ mục cho bảng `migrations`
 --
 ALTER TABLE `migrations`
@@ -494,13 +448,6 @@ ALTER TABLE `sinhvien`
 ALTER TABLE `sukien`
   ADD PRIMARY KEY (`MASK`),
   ADD KEY `FK_TTHAISK` (`MATTHAI`);
-
---
--- Chỉ mục cho bảng `thongbao`
---
-ALTER TABLE `thongbao`
-  ADD PRIMARY KEY (`MATBAO`),
-  ADD KEY `FK_LOAITB_TBAO` (`MALOAITBAO`);
 
 --
 -- Chỉ mục cho bảng `thongkediemdanh`
@@ -537,12 +484,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `loaids`
 --
 ALTER TABLE `loaids`
-  MODIFY `MALOAIDS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT cho bảng `loaithongbao`
---
-ALTER TABLE `loaithongbao`
-  MODIFY `MALOAITBAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MALOAIDS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
@@ -552,12 +494,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `sukien`
 --
 ALTER TABLE `sukien`
-  MODIFY `MASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT cho bảng `thongbao`
---
-ALTER TABLE `thongbao`
-  MODIFY `MATBAO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MASK` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
@@ -593,12 +530,6 @@ ALTER TABLE `dangkythesv`
   ADD CONSTRAINT `FK_DANGKYTHESV` FOREIGN KEY (`MSSV_THE`) REFERENCES `sinhvien` (`MSSV`);
 
 --
--- Các ràng buộc cho bảng `dangthongbao`
---
-ALTER TABLE `dangthongbao`
-  ADD CONSTRAINT `FK_DANGTBAO` FOREIGN KEY (`MATBAO`) REFERENCES `thongbao` (`MATBAO`);
-
---
 -- Các ràng buộc cho bảng `diemdanhcb`
 --
 ALTER TABLE `diemdanhcb`
@@ -628,12 +559,6 @@ ALTER TABLE `sinhvien`
 --
 ALTER TABLE `sukien`
   ADD CONSTRAINT `FK_TTHAISK` FOREIGN KEY (`MATTHAI`) REFERENCES `trangthaisk` (`MATTHAI`);
-
---
--- Các ràng buộc cho bảng `thongbao`
---
-ALTER TABLE `thongbao`
-  ADD CONSTRAINT `FK_LOAITB_TBAO` FOREIGN KEY (`MALOAITBAO`) REFERENCES `loaithongbao` (`MALOAITBAO`);
 
 --
 -- Các ràng buộc cho bảng `thongkediemdanh`

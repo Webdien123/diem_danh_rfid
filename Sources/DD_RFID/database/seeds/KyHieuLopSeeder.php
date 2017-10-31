@@ -11,6 +11,7 @@ class KyHieuLopSeeder extends Seeder
      */
     public function run()
     {
+        DB::insert('insert into kyhieulop (KYHIEULOP) values (?)', ['--']);
         DB::insert('insert into kyhieulop (KYHIEULOP) values (?)', ['A1']);
         DB::insert('insert into kyhieulop (KYHIEULOP) values (?)', ['A2']);
         DB::insert('insert into kyhieulop (KYHIEULOP) values (?)', ['A3']);

@@ -11,6 +11,7 @@ class ChuyenNganhSeeder extends Seeder
      */
     public function run()
     {
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['--', '--']);
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Công nghệ thông tin', 'Công nghệ thông tin và truyền thông']);
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông']);
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Hệ thống thông tin', 'Công nghệ thông tin và truyền thông']);

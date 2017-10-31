@@ -11,10 +11,10 @@ class LoaiDSachSeeder extends Seeder
      */
     public function run()
     {
-        
         DB::insert('insert into loaids (TENLOAIDS) values (?)', ['Có mặt']);
         DB::insert('insert into loaids (TENLOAIDS) values (?)', ['Vắng mặt']);
         DB::insert('insert into loaids (TENLOAIDS) values (?)', ['Có vào không ra']);
         DB::insert('insert into loaids (TENLOAIDS) values (?)', ['Có ra không vào']);
+        DB::insert('insert into loaids (TENLOAIDS) values (?)', ['--']);
     }
 }
