@@ -84,10 +84,11 @@ class SinhVien extends Model
     public static function DeleteSV($mssv)
     {
         try {
-            \DB::delete('DELETE FROM sinhvien WHERE MSSV = ?',[$mssv]);
+            \DB::delete('DELETE FROM sinhvien WHERE MSSV = "'.$mssv.'"');
             return true;
         } catch (\Exception $e) {
             return false;
+            // dd($e->getMessage());
         }
     }
 }

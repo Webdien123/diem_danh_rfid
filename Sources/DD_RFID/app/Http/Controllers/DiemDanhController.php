@@ -119,8 +119,16 @@ class DiemDanhController extends Controller
             $ketqua_the = DangKyTheSV::LuuTheMoi($R->maso, $R->mathe);
         }
 
+        // Đăng ký sự kiện cho người vừa tạo thẻ.
+        if ($R->chon_cb_sv == "cán bộ") {
+            $ketqua_dky = DiemDanhCB::DangKySuKien($R->maso, $R->mask);
+        }
+        if ($R->chon_cb_sv == "sinh viên") {
+            $ketqua_dky = DiemDanhSV::DangKySuKien($R->maso, $R->mask);
+        }
+
         // Tính kết quả tổng hợp
-        $ketqua = ($ketqua_chuthe && $ketqua_the) ? 0 : 1 ;
+        $ketqua = ($ketqua_chuthe && $ketqua_the && $ketqua_dky) ? 0 : 1 ;
 
         // Nếu kết quả đều thành công hiện thị lại giao diện đăng ký thẻ
         // kèm theo thông báo thành công.

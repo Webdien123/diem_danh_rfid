@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CanBo;
 use App\Khoa_Phong;
 use App\DangKyTheCB;
+use App\DiemDanhCB;
 
 class CanBoController extends Controller
 {
@@ -129,10 +130,11 @@ class CanBoController extends Controller
     {
         if (\Session::has('uname')) {
             $ketqua_the = DangKyTheCB::DeleteThe($mscb);
+            $ketqua_dangky = DiemDanhCB::DeleteDangky_CB($mscb);
             $ketqua_cb = CanBo::DeleteCB($mscb);
 
             // Tính kết quả tổng hợp
-            $ketqua = ($ketqua_cb && $ketqua_the) ? true : false;
+            $ketqua = ($ketqua_cb && $ketqua_the && $ketqua_dangky) ? true : false;
 
             if ($ketqua)
                 return redirect()->route('staff');

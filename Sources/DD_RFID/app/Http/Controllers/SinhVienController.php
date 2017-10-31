@@ -8,6 +8,7 @@ use App\Khoa_Phong;
 use App\KyHieuLop;
 use App\KhoaHoc;
 use App\DangKyTheSV;
+use App\DiemDanhSV;
 
 class SinhVienController extends Controller
 {
@@ -129,10 +130,13 @@ class SinhVienController extends Controller
     {
         if (\Session::has('uname')) {
             $ketqua_the = DangKyTheSV::DeleteThe($mssv);
+            $ketqua_dangky = DiemDanhSV::DeleteDangky_SV($mssv);
             $ketqua_sv = SinhVien::DeleteSV($mssv);
+            
+            // dd($ketqua_the . " - ". $ketqua_sv . " - " . $ketqua_dangky);
 
             // Tính kết quả tổng hợp
-            $ketqua = ($ketqua_sv && $ketqua_the) ? true : false;
+            $ketqua = ($ketqua_sv && $ketqua_the && $ketqua_dangky) ? true : false;
 
             if ($ketqua)
                 return redirect()->route('student');

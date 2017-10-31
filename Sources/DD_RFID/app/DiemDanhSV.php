@@ -40,4 +40,68 @@ class DiemDanhSV extends Model
             return 0;
         }
     }
+
+    public static function DangKySuKien($ma_ng_dky, $mask)
+    {
+        try {
+            \DB::insert('insert into diemdanhsv (MSSV, MASK, MALOAIDS) values (?, ?, ?)', [
+                $ma_ng_dky,
+                $mask,
+                2
+            ]);
+            return true; //Trả kết quả thêm để controller Thẻ tiếp tục thực thi.
+        } catch (\Exception $e) {
+            return false;
+            // dd($e->getMessage());
+        }
+    }
+
+    // Xóa kết quả điểm danh hoặc đăng ký theo mã số sinh viên
+    public static function DeleteDangky_SV($ma_ng_dky)
+    {
+        // lấy loại danh sách điểm danh từ mã người đăng ký và mã sự kiện.
+        $loaids = \DB::select('SELECT MALOAIDS FROM diemdanhsv WHERE MSSV = ?', [
+            $ma_ng_dky
+        ]);
+
+        // Nếu loại danh sách không tồn tại
+        if (!$loaids) {
+            // Xem như đã xóa thành công.
+            return true;
+        }
+
+        // Ngược lại thực hiện xóa kết quả điểm danh.
+        try {
+            \DB::delete('DELETE FROM diemdanhsv WHERE MSSV = "'.$ma_ng_dky.'"');
+            return true;
+        } catch (\Exception $e) {
+            return false;
+            // dd($e->getMessage());
+        }
+    }
+
+    // Xóa kết quả điểm danh hoặc đăng ký theo mã số sự kiện
+    public static function DeleteDangky_SK($mask)
+    {
+        // lấy loại danh sách điểm danh từ mã sự kiện.
+        $loaids = \DB::select('SELECT MALOAIDS FROM diemdanhsv WHERE MASK = ?', [
+            $mask
+        ]);
+        
+        // Nếu loại danh sách không tồn tại
+        if (!$loaids) {
+
+            // Xem như đã xóa thành công.
+            return true;
+        }
+
+        // Ngược lại thực hiện xóa kết quả điểm danh.
+        try {
+            \DB::delete('DELETE FROM diemdanhsv WHERE MASK = "'.$mask.'"');
+            return true;
+        } catch (\Exception $e) {
+            // return false;
+            dd($e->getMessage());
+        }
+    }
 }

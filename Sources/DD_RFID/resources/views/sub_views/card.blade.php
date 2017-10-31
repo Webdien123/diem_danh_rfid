@@ -46,7 +46,7 @@
                 {{--  Thông báo thất bại  --}}
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Cập nhật thẻ thất bại vui lòng thử lại</strong>
+                    <strong>Cập nhật thẻ thất bại, kiểm tra lại mã số chủ thẻ hoặc email và thử lại.</strong>
                 </div>
             @endif
         </div>

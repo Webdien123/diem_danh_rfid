@@ -65,13 +65,14 @@ class SuKien extends Model
     }
 
     // Xóa sự kiện.
-    public static function DeleteSV($mssk)
+    public static function DeleteSK($mssk)
     {
         try {
-            \DB::delete('DELETE FROM sukien WHERE MASK = ?',[$mssk]);
+            \DB::delete('DELETE FROM sukien WHERE MASK = "'.$mssk.'"');
             return true;
         } catch (\Exception $e) {
-            return false;
+            // return false;
+            dd($e->getMessage());
         }
     }
 

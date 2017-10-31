@@ -92,7 +92,7 @@ class CanBo extends Model
     public static function DeleteCB($mscb)
     {
         try {
-            \DB::delete('DELETE FROM canbo WHERE MSCB = '.$mscb);
+            \DB::delete('DELETE FROM canbo WHERE MSCB = "'.$mscb.'"');
             return true;
         } catch (\Exception $e) {
             return false;

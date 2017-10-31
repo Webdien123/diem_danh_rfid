@@ -115,7 +115,7 @@
                         {{--  Thông báo thất bại  --}}
                         <div class="alert alert-danger alert-dismissable" id="error-alert">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Đăng ký thất bại vui lòng thử lại</strong>
+                            <strong>Cập nhật thẻ thất bại, kiểm tra lại mã số chủ thẻ hoặc email và thử lại</strong>
                         </div>
                     @endif
                 </div>
@@ -287,9 +287,12 @@
                                         {{--  Form nhập thông tin đăng ký  --}}
                                         <form action="{{ route('new_card_dd') }}" id="f_new_card" method="POST" role="form">  
                                             {{ csrf_field() }}
-                                            <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">
+
+                                            {{--  Mã sự kiện  --}}
+                                            <input type="hidden" name="mask" id="mask" value="{{ $sukien->MASK }}">                 
 
                                             {{--  Phần chọn đối tượng đăng ký thẻ  --}}
+                                            <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">
                                             <div class="form-group">
                                                 <label for="">Đăng ký cho:</label>
                                                 <div class="radio-inline">
