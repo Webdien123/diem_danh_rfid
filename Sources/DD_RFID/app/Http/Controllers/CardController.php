@@ -349,4 +349,10 @@ class CardController extends Controller
             return view('login');
         }
     }
+
+    // Đăng ký tham gia sự kiện.
+    public function DangKyTheDDanh(Type $var = null)
+    {
+        
+    }
 }

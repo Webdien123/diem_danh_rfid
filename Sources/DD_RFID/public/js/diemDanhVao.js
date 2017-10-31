@@ -38,15 +38,8 @@ $(document).ready(function () {
                     $('#id_the').val("");
                     $('#id_the').focus();
 
-                    // Hiển thị mã thẻ vừa quét
                     $('.the').val(mathe);
-
-                    // Đặt giá trị cho phần chọn loại chủ thẻ.
-                    $( "#chon_cb_sv" ).val("sinh viên");
-                    $('#f_dd_kgdgki input[type=radio]').change(function(){
-                        $( "#chon_cb_sv" ).val( $( this ).val() );
-                    });
-                } 
+                }
                 else {
 
                     // Lấy giá trị chủ thẻ

@@ -22,18 +22,7 @@
     {{--  Jquery điều khiển phần quét thẻ  --}}
     <script src="{{ asset('js/card.js') }}"></script>
 
-    {{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
-    <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
-
-    {{--  Script xử lý khi select danh sách chuyên ngành, danh sách khoa.
-    Và các danh sách nằm trên form thêm sinh viên  --}}
-    <script src="{{ asset('js/select_khoa_chnganh.js') }}"></script>
-
-    {{--  Script import jquery validate  --}}
-    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-
-    {{--  Script xử lý validate dữ liệu cán bộ  --}}
-    <script src="{{ asset('js/validate_dangkythe.js') }}"></script>
+    
 </head>
 <body>
     <?php
@@ -103,6 +92,8 @@
         {{--  Api text to speech  --}}
         <script src="{{ asset('js/responsivevoice.js') }}"></script>
 
+        
+
 
         {{--  Phần quét thẻ điểm danh  --}}
         <div class="panel panel-primary">
@@ -110,6 +101,30 @@
                 <h3 class="panel-title">KHUNG ĐIỂM DANH</h3>
             </div>
             <div class="panel-body">
+
+                {{--  Phần hiển thị thông báo xử lý đăng ký thẻ  --}}
+                <div class="row">
+                    @if (Session::get('ketqua_dangkythe_dd') == 0)
+                        {{--  Thông báo thành công  --}}
+                        <div class="alert alert-success alert-dismissable" id="success-alert">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Đăng ký thẻ thành công, thẻ đã có thể điểm danh</strong>
+                        </div>
+
+                    @elseif (Session::get('ketqua_dangkythe_dd') == 1)
+                        {{--  Thông báo thất bại  --}}
+                        <div class="alert alert-danger alert-dismissable" id="error-alert">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Đăng ký thất bại vui lòng thử lại</strong>
+                        </div>
+                    @endif
+                </div>
+
+                {{--  Reset giá trị session để ẩn thông báo đi sau khi đã hiển thi  --}}
+                <?php
+                    \Session::put('ketqua_dangkythe_dd', 2);
+                ?>
+
                 <!-- Phần quét thẻ -->
                 <div class="row">
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
@@ -178,9 +193,24 @@
 
                 <!-- Phần thông báo loại 5: Thẻ chưa có thông tin trong hệ thống -->
                 <div class="row thongbao" id="tb_5">
+
+                    {{--  Script xử lý khi select danh sách bộ môn hoặc danh sách khoa.  --}}
+                    <script src="{{ asset('js/select_khoa_bomon.js') }}"></script>
+
+                    {{--  Script xử lý khi select danh sách chuyên ngành, danh sách khoa.
+                    Và các danh sách nằm trên form thêm sinh viên  --}}
+                    <script src="{{ asset('js/select_khoa_chnganh.js') }}"></script>
+
                     {{--  Script import jquery validate  --}}
                     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
+                    {{--  Script xử lý validate dữ liệu cán bộ  --}}
+                    <script src="{{ asset('js/validate_dangkythe.js') }}"></script>
+
+                    {{--  Script xử lý 2 thông báo thành công hoặc thất bại khi cập nhật  --}}
+                    <script src="{{ asset('js/thong_bao.js') }}"></script>
+
+                    {{--  Hai modal điểm danh và đăng ký thẻ  --}}
                     <div>
                         <strong><i class="text-danger fa fa-times-circle fa-2x" aria-hidden="true"></i></strong>
                         <strong><span class="text-danger">Thẻ chưa được đăng ký, click vào</span></strong>
@@ -199,7 +229,7 @@
                                         <form id="f_dd_kgdgki" action="" method="POST" role="form">
 
                                             {{--  Phần chọn đối tượng đăng ký thẻ  --}}
-                                            <input type="hidden" name="chon_cb_sv" id="chon_cb_sv">
+                                            <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">
                                             <div class="form-group">
                                                 <label for="">Người điểm danh là:</label><br>
                                                 <div class="radio-inline">
@@ -222,7 +252,7 @@
 
                                             <div class="form-group">
                                                 <label for="">Mã thẻ</label>
-                                                <input type="hidden" class="the" id="the" name="mathe">
+                                                <input type="hidden" class="the" name="mathe">
                                                 <input type="text" class="form-control the" disabled>
                                             </div>
 
@@ -245,7 +275,7 @@
                             </div>
                         </div>
 
-                        {{-- Modal thêm thông tin ngay khi điểm danh --}}
+                        {{-- Modal đăng ký thẻ ngay khi điểm danh --}}
                         <div class="modal fade text-left" id="modal-dkithemoi">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -255,9 +285,9 @@
                                     </div>
                                     <div class="modal-body">
                                         {{--  Form nhập thông tin đăng ký  --}}
-                                        <form action="{{ route('new_card') }}" id="f_new_card" method="POST" role="form">  
+                                        <form action="{{ route('new_card_dd') }}" id="f_new_card" method="POST" role="form">  
                                             {{ csrf_field() }}
-                                            <input type="hidden" name="chon_cb_sv" id="chon_cb_sv">
+                                            <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">
 
                                             {{--  Phần chọn đối tượng đăng ký thẻ  --}}
                                             <div class="form-group">
@@ -285,7 +315,7 @@
 
                                             <div class="form-group">
                                                 <label for="">Mã thẻ</label>
-                                                <input type="hidden" class="the" id="the" name="mathe">
+                                                <input type="hidden" class="the" name="mathe">
                                                 <input type="text" class="form-control the" disabled>
                                             </div>
 

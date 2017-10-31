@@ -27,13 +27,6 @@ class EventController extends Controller
         }
     }
 
-    // public static function TaoCookieSK($sukien)
-    // {
-    //     $cookie = \Cookie::queue('sukien_diemdanh_ck', $sukien, 2);
-        
-    //     return $cookie;
-    // }
-
     // Chọn sự kiện để điểm danh
     public function ChonSuKien($mask)
     {
@@ -69,6 +62,7 @@ class EventController extends Controller
         }
     }
 
+    // Cập nhật trạng thái sự kiện để hiển thị lên giao diện điểm danh và giao diện sự kiện.
     public static function CapNhatSuKienDiemDanh()
     {
         if (\Session::has('uname')) {

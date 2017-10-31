@@ -35,7 +35,8 @@ Và các danh sách nằm trên form thêm sinh viên  --}}
     </div>
 
     {{--  Phần đăng ký thông tin mới.  --}}
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="themoi_div">    
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="themoi_div">
+
         {{--  Form nhập thông tin đăng ký  --}}
         <form action="{{ route('new_card') }}" id="f_new_card" method="POST" role="form">
             <legend>Thông tin đăng ký</legend>    

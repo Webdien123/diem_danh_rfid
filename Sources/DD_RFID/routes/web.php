@@ -107,6 +107,9 @@ Route::post('test_card', 'CardController@KiemTraDangKy')->name('test_card');
 // Lấy trang đăng ký thẻ mới.
 Route::post('dangkythemoi', 'CardController@DangKyTheMoi')->name('new_card');
 
+// Xử lý đăng ký thẻ mới trên trang điểm danh.
+Route::post('dangkythemoi_dd', 'DiemDanhController@DangKyTheMoi_DDanh')->name('new_card_dd');
+
 // Cập nhật thẻ cũ.
 Route::post('dangkythecu', 'CardController@DangKyTheCu')->name('old_card');
 
