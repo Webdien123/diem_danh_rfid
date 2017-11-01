@@ -55,6 +55,8 @@ class ExcelController extends Controller
 
                         // Nếu dữ liệu cần insert được tạo thành công.
                         if(!empty($insert)){
+                            
+                            // dd($insert);
 
                             // Với mỗi dòng dữ liệu cần insert.
                             foreach ($insert as $item) {
@@ -75,7 +77,7 @@ class ExcelController extends Controller
                                             1. Tên các cột so với file import mẫu<br>
                                             2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
                                             3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
-                                            4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.
+                                            4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.<br>
                                             5. Nếu đang đănh ký sự kiện, kiểm tra xem mã số người đăng ký đã có trong hệ thống hay chưa'
                                     ]);
                                 }
@@ -262,7 +264,7 @@ class ExcelController extends Controller
                     $item['hoten']
                 ]);
 
-                if ($item['mathe']) {
+                if ($item['mathe'] != null) {
                     // Insert dòng dữ liệu vào bảng đăng ký thẻ cán bộ theo giá trị trong mảng item.
                     \DB::insert('insert into dangkythecb (MSCB_THE, MATHE) values (?, ?)', [
                         $item['mscb'],
@@ -272,6 +274,7 @@ class ExcelController extends Controller
                 return true; //Trả kết quả import về cho hàm ImportDuLieu.
             } catch (\Exception $e) {
                 return false;
+                // dd($e->getMessage());
             }
         }
         else{

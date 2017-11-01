@@ -99,14 +99,14 @@
                     {{--  Phần nội dung khi có cán bộ  --}}
                     @foreach ($canbos as $canbo)
                         <tr>
-                            <td>{{ $canbo->MSCB }}</td>
-                            <td>{{ $canbo->HOTEN }}</td>
-                            <td>{{ $canbo->TENKHOA }}</td>
-                            <td>{{ $canbo->TENBOMON }}</td>
-                            <td>{{ $canbo->EMAIL }}</td>
+                            <td>{!! ToMau($canbo->MSCB, $tukhoa) !!}</td>
+                            <td>{!! ToMau($canbo->HOTEN, $tukhoa) !!}</td>
+                            <td>{!! ToMau($canbo->TENKHOA, $tukhoa) !!}</td>
+                            <td>{!! ToMau($canbo->TENBOMON, $tukhoa) !!}</td>
+                            <td>{!! ToMau($canbo->EMAIL, $tukhoa) !!}</td>
                             <td>
                                 @if ($canbo->MATHE)
-                                    {{ $canbo->MATHE }}
+                                    {!! ToMau($canbo->MATHE, $tukhoa) !!}
                                     {{--  Nút cập nhật mã thẻ cũ  --}}
                                     <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
