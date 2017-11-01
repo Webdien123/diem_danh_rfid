@@ -132,8 +132,6 @@ class SinhVienController extends Controller
             $ketqua_the = DangKyTheSV::DeleteThe($mssv);
             $ketqua_dangky = DiemDanhSV::DeleteDangky_SV($mssv);
             $ketqua_sv = SinhVien::DeleteSV($mssv);
-            
-            // dd($ketqua_the . " - ". $ketqua_sv . " - " . $ketqua_dangky);
 
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_sv && $ketqua_the && $ketqua_dangky) ? true : false;

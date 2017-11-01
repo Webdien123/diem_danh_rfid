@@ -9,7 +9,7 @@ class KhoaHoc extends Model
     // API lấy tất cả khóa học trong hệ thống.
     public static function LayKhoaHoc()
     {
-        $khoahocs = \DB::select(\DB::raw("SELECT * FROM khoahoc"));
+        $khoahocs = \DB::select(\DB::raw("SELECT * FROM khoahoc WHERE khoahoc != '--'"));
         return $khoahocs;
     }
 }

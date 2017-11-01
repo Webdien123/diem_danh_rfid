@@ -10,7 +10,7 @@ class Khoa_Phong extends Model
     public static function GetKhoa()
     {
         // $khoas = \DB::select('select * from khoa_phong');
-        $khoas = \DB::select(\DB::raw("SELECT * FROM khoa_phong"));
+        $khoas = \DB::select(\DB::raw("SELECT * FROM khoa_phong WHERE TENKHOA != '--'"));
         return $khoas;
     }
 

@@ -74,7 +74,7 @@
 
                                 <div class="form-group">
 									<label>Tên sự kiện:</label>
-									<input type="text" name="tensk" id="tensk" class="form-control" placeholder="mã số sinh viên">
+									<input type="text" name="tensk" id="tensk" class="form-control" placeholder="Tên sự kiện">
 								</div>
 
 								<div class="form-group">
