@@ -120,7 +120,7 @@ Route::post('kiemTraTheDD', "DiemDanhController@KiemTraTheDD");
 Route::post('diemdanhvao', "DiemDanhController@DiemDanhVao")->name('DD_Vao');
 
 // Xử lý điểm danh không đăng ký.
-Route::post('diemdanh_kgdangki', "DiemDanhController@KiemTraNguoiDD");
+Route::post('diemdanh_kgdangki', "DiemDanhController@DDanhKhongDangKy");
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');

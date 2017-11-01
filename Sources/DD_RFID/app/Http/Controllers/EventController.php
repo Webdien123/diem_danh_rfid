@@ -98,7 +98,7 @@ class EventController extends Controller
         }
     }
 
-    // Tính trạng thái của sự kiện so với thời điểm hiện tại.
+    // Tính trạng thái điểm danh của sự kiện so với thời điểm hiện tại.
     // 1: nếu chưa đến giờ điểm danh.
     // 2: nếu đang điểm danh vào.
     // 3: nếu đang điểm danh ra.

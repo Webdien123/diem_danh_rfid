@@ -79,10 +79,23 @@ $(document).ready(function () {
 
                             ms_ketqua = response['ms_ketqua'];
                             loaichuthe = response['loaichuthe'];
-                            hoten = response['hoten'];
+
+                            // Nếu họ tên chủ thẻ đã có thì giữ lại
+                            // ngược lại tạo rỗng để bộ độc không đọc
+                            // 2 dấu gạch nối làm tên.
+                            if (response['hoten'] != "--") {
+                                hoten = response['hoten'];    
+                            } else {
+                                hoten = "";
+                            }
+
+                            // Hiển thị thông báo tương ứng kết quả xử lý
                             TaoThongBao(ms_ketqua, loaichuthe, hoten);
 
-                            responsiveVoice.speak(hoten,"Vietnamese Male");
+                            if (hoten != "") {
+                                // Đọc tên chủ thẻ
+                                responsiveVoice.speak(hoten,"Vietnamese Male");
+                            }
                         },
                         error: function(xhr,err){
                             console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
@@ -108,6 +121,12 @@ $(document).ready(function () {
 
         // hiển thị loại chủ thẻ và họ tên chủ thẻ.
         $(".loaichuthe").text(loaichuthe);
-        $(".hoten").text(hoten);
+        
+        if (hoten != "") {
+            $(".hoten").text(hoten);
+        } else {
+            $(".hoten").html("<i><u>Chưa rõ tên</u></i>");
+        }
+        
     }
 });

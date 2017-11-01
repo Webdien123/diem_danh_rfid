@@ -54,7 +54,7 @@ class DiemDanhCB extends Model
         } catch (\Exception $e) {
             return false;
         }
-    }
+    }    
 
     // Xóa kết quả điểm danh hoặc đăng ký theo mã số cán bộ
     public static function DeleteDangky_CB($ma_ng_dky)

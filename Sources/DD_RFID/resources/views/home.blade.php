@@ -264,8 +264,20 @@
                                             {{--  Phần mã số chủ thẻ cần điểm danh  --}}                                            
                                             <div class="form-group">
                                                 <label for="">Nhập mã số chủ thẻ rồi chọn "Điểm danh"</label>
-                                                <input type="text" class="form-control" name="machuthe" placeholder="Mã số cán bộ hoặc sinh viên">
+                                                <input type="text" class="form-control" name="machuthe" id="machuthe" placeholder="Mã số cán bộ hoặc sinh viên">
                                             </div>
+
+                                            <strong class="text-warning thongbao_kdgki_loi">
+                                                <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+                                                <span id="trung_chu_the"></span>
+                                                <br>
+                                            </strong>
+
+                                            <strong class="text-success thongbao_kdgki_thcong">
+                                                <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                                                <span id="bao_thcong"></span>
+                                                <br>
+                                            </strong>
                                             
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="fa fa-address-book" aria-hidden="true"></i>
@@ -431,6 +443,7 @@
             <h1>Hết giờ điểm danh</h1>
             <?php
                 \Session::forget('sukien_diemdanh');
+                \Session::forget('trangthai_sukien');
             ?>
         @endif
     </div>

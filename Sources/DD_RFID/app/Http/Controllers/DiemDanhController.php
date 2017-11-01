@@ -44,13 +44,14 @@ class DiemDanhController extends Controller
     }
 
     // Kiểm tra mã số của người điểm danh không đăng ký
-    // đã có trong hệ thống hay chưa.
-    public function KiemTraNguoiDD(Request $R)
+    // đã có trong hệ thống hay chưa và điểm danh nếu các mã số hợp lệ.
+    public function DDanhKhongDangKy(Request $R)
     {
         // Lấy các giá trị trong request.
         $mask = $R->mask;
         $machuthe = $R->machuthe;
         $loaichuthe = $R->chon_cb_sv;
+        $mathe = $R->mathe;
 
         // Kiểm tra mã chủ thẻ có bị trùng hay chưa dựa vào loại chủ thẻ.
         if ($loaichuthe == "cán bộ") {
@@ -66,22 +67,64 @@ class DiemDanhController extends Controller
                 'mask' => $mask,
                 'machuthe' => $machuthe,
                 'loaichuthe' => $loaichuthe,
-                'ketqua' => "Đã tồn tại"
+                'ketqua' => "0",
+                'noidung' => "Mã số chủ thẻ đã tồn tại"
             );
         } else {
-            $ketqua = array(
-                'mask' => $mask,
-                'machuthe' => $machuthe,
-                'loaichuthe' => $loaichuthe,
-                'ketqua' => "Sẳn sàng đăng ký"
-            );
+
+            // Thêm thông tin chủ thẻ vào hệ thống ghi nhận kết quả xử lý.
+            if ($loaichuthe == "cán bộ") {
+                $ketqua_chuthe = CanBo::AddCB_Para($machuthe, "--", "--", "--", "--");
+            }
+            if ($loaichuthe == "sinh viên") {
+                $ketqua_chuthe = SinhVien::AddSV_Para($machuthe, "--", "--", "--", "--", "--");
+            }
+
+            // Thêm thông tin thẻ vào hệ thống, ghi nhận kết quả xử lý.
+            if ($R->chon_cb_sv == "cán bộ") {
+                $ketqua_the = DangKyTheCB::LuuTheMoi($machuthe, $mathe);
+            }
+            if ($R->chon_cb_sv == "sinh viên") {
+                $ketqua_the = DangKyTheSV::LuuTheMoi($machuthe, $mathe);
+            }
+
+            // Đăng ký sự kiện cho người vừa tạo thẻ.
+            if ($R->chon_cb_sv == "cán bộ") {
+                $ketqua_dky = DiemDanhCB::DangKySuKien($machuthe, $mask);
+            }
+            if ($R->chon_cb_sv == "sinh viên") {
+                $ketqua_dky = DiemDanhSV::DangKySuKien($machuthe, $mask);
+            }
+
+            if ($loaichuthe == "cán bộ") {
+                $ketqua_ddanh = DiemDanhCB::CapNhatDSachDDVao($machuthe, $mask, 3); 
+            }
+            if ($loaichuthe == "sinh viên") {
+                $ketqua_ddanh = DiemDanhSV::CapNhatDSachDDVao($machuthe, $mask, 3);
+            }
+
+            // Tính kết quả tổng hợp
+            $kq = ($ketqua_chuthe && $ketqua_the && $ketqua_dky && $ketqua_ddanh && $ketqua_ddanh) ? 1 : 0 ;
+
+            if ($kq == 1) {
+                $ketqua = array(
+                    '$ketqua_chuthe' => $ketqua_chuthe,
+                    '$ketqua_the' => $ketqua_the,
+                    '$ketqua_dky' => $ketqua_dky,
+                    '$ketqua_ddanh' => $ketqua_ddanh,
+                    'ketqua' => $kq,
+                    'noidung' => "Điểm danh thành công"
+                );
+            } else {
+                $ketqua = array(
+                    '$ketqua_chuthe' => $ketqua_chuthe,
+                    '$ketqua_the' => $ketqua_the,
+                    'ketqua' => $kq,
+                    'noidung' => "Có lỗi trong quá trình xử lý, Vui lòng"
+                );
+            }            
         }
         return $ketqua;
-    }
-
-    public function DDanhKhongDangKy()
-    {
-        
     }
 
     // Xử lý điểm danh vào cho một lần quét thẻ.
@@ -180,7 +223,6 @@ class DiemDanhController extends Controller
     public function ThemChuTheDD(Request $R)
     {
         if ($R->chon_cb_sv == "cán bộ") {
-            
             // Nhận kết quả xử lý thêm thông tin chủ thẻ và thêm thông tin thẻ.
             return $this->ThemChuTheCB_DD($R->maso, $R->bomon, $R->khoa, $R->email, $R->hoten);
         }
