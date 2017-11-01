@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 31, 2017 lúc 03:41 PM
+-- Thời gian đã tạo: Th10 01, 2017 lúc 09:32 AM
 -- Phiên bản máy phục vụ: 10.1.24-MariaDB
 -- Phiên bản PHP: 7.0.20
 
@@ -81,15 +81,6 @@ CREATE TABLE `dangkythesv` (
   `MSSV_THE` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
   `MATHE` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `dangkythesv`
---
-
-INSERT INTO `dangkythesv` (`MSSV_THE`, `MATHE`) VALUES
-('B1500003', '0001352398'),
-('B1700001', '0000958866'),
-('B1700002', '0000958819');
 
 -- --------------------------------------------------------
 
@@ -254,15 +245,6 @@ CREATE TABLE `sinhvien` (
   `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
---
--- Đang đổ dữ liệu cho bảng `sinhvien`
---
-
-INSERT INTO `sinhvien` (`MSSV`, `KYHIEULOP`, `TENCHNGANH`, `KHOAHOC`, `TENKHOA`, `HOTEN`) VALUES
-('B1500003', 'A3', 'Hệ thống thông tin', 'K41', 'Công nghệ thông tin và truyền thông', 'Phạm Đình Thiên'),
-('B1700001', 'A1', 'Mạng máy tính và TT', 'K43', 'Công nghệ thông tin và truyền thông', 'Nguyễn Thị Linh'),
-('B1700002', 'A1', 'Khoa học máy tính', 'K43', 'Công nghệ thông tin và truyền thông', 'Phạm Tiễn');
-
 -- --------------------------------------------------------
 
 --
@@ -271,7 +253,7 @@ INSERT INTO `sinhvien` (`MSSV`, `KYHIEULOP`, `TENCHNGANH`, `KHOAHOC`, `TENKHOA`,
 
 CREATE TABLE `sukien` (
   `MASK` int(11) NOT NULL,
-  `MATTHAI` int(11) NOT NULL,
+  `MATTHAI` int(11) NOT NULL DEFAULT '1',
   `TENSK` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `NGTHUCHIEN` date NOT NULL,
   `DIADIEM` varchar(150) COLLATE utf8_vietnamese_ci NOT NULL,
@@ -310,6 +292,7 @@ CREATE TABLE `to_bomon` (
 INSERT INTO `to_bomon` (`TENBOMON`, `TENKHOA`) VALUES
 ('--', '--'),
 ('Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông'),
+('Công nghệ thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Hệ thống thông tin', 'Công nghệ thông tin và truyền thông'),
 ('Khoa học máy tính', 'Công nghệ thông tin và truyền thông'),
 ('Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông'),
@@ -325,6 +308,16 @@ CREATE TABLE `trangthaisk` (
   `MATTHAI` int(11) NOT NULL,
   `GHICHU` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `trangthaisk`
+--
+
+INSERT INTO `trangthaisk` (`MATTHAI`, `GHICHU`) VALUES
+(1, 'Đã tạo, chưa đăng ký'),
+(2, 'Đang chờ điểm danh'),
+(3, 'Đang điểm danh'),
+(4, 'Hoàn thành điểm danh');
 
 -- --------------------------------------------------------
 
@@ -347,7 +340,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$34ioVkN2cydwyg8sO1MVFupq9FLcTb/RgPC7lhdLs9XxbpA1itjZu', NULL, NULL, NULL);
+(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$D/HYh6sDr9RC5r37YrWo.eb1apxhWcJNPIDIXSKOiByRrl7k3WmOS', NULL, NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ

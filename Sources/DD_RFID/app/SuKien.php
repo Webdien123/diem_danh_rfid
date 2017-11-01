@@ -31,6 +31,7 @@ class SuKien extends Model
             return true; //Trả kết quả thêm để controller sự kiện tiếp tục thực thi.
         } catch (\Exception $e) {
             return false;
+            // dd($e->getMessage());
         }
     }
 

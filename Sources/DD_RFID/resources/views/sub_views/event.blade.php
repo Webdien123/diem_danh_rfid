@@ -21,9 +21,6 @@
     {{--  Script xử lý validate dữ liệu sự kiện  --}}
     <script src="{{ asset('js/validate_sukien.js') }}"></script>
 
-    {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
-    @include('link_views.rotation_icon')
-
     {{--  Tìm kiếm sự kiện  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
         <form action="{{ route('FindSK') }}" method="get" class="form-inline pull-right hidden-xs" role="search">
@@ -151,9 +148,9 @@
                             tải file đăng ký mẫu
                         </a>
                     
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-upload" aria-hidden="true"></i>
-                            Đăng ký
+                            Thêm danh sách
                         </button>
                     </form>
                     
@@ -179,7 +176,6 @@
             </thead>
             <tbody>
                 
-
                 {{--  Nếu danh sách sự kiện rỗng  --}}
                 @if (count($sukiens) == 0)
                     {{--  Phần nội dung không có sự kiện  --}}
@@ -200,33 +196,38 @@
                         {{--  Phần hiển thị chức năng tùy vào trạng thái sự kiện  --}}
                         <td>
 
-                        {{--  Nếu trạng thái là 1  --}}
-                        @if ($sk->MATTHAI == '1')
-                            <b class="text-danger">Chưa có danh sách đăng ký<b>                            
-                            
-                            <a class="btn btn-success" onclick="HienSuKien('{{ $sk->MASK }}', '{{ $sk->TENSK }}')" data-toggle="modal" href='#modal-dangky-sk'>
-                                <i class="fa fa-list-ol" aria-hidden="true"></i>
-                                thêm
-                            </a>
-                        @endif
+                            {{--  Nếu trạng thái là 1  --}}
+                            @if ($sk->MATTHAI == '1')
+                                <b class="text-danger">Chưa có danh sách đăng ký<b>                            
+                                
+                                <a class="btn btn-success" onclick="HienSuKien('{{ $sk->MASK }}', '{{ $sk->TENSK }}')" data-toggle="modal" href='#modal-dangky-sk'>
+                                    <i class="fa fa-list-ol" aria-hidden="true"></i>
+                                    thêm
+                                </a>
+                            @endif
 
-                        {{--  Nếu trạng thái là 2  --}}
-                        @if ($sk->MATTHAI == '2')
-                            <b class="text-success">
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                Đã đăng ký
-                            <b>
-                        @endif
+                            {{--  Nếu trạng thái là 2  --}}
+                            @if ($sk->MATTHAI == '2')
+                                <b class="text-success">
+                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                    Đã đăng ký
+                                <b>
+                            @endif
 
-                        {{--  Nếu trạng thái là 3  --}}
-                        @if ($sk->MATTHAI == '3')
-                            <b class="text-warning">
-                                <span class="glyphicon glyphicon-refresh gly-spin"></span>
-                                Đang điểm danh
-                            <b>
-                        @endif
+                            {{--  Nếu trạng thái là 3  --}}
+                            @if ($sk->MATTHAI == '3')
 
-                        </td>                    
+                                {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
+                                @include('link_views.rotation_icon')
+
+                                <b class="text-warning">
+                                    <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                                    Đang điểm danh
+                                <b>
+                            @endif
+
+                        </td>
+                                           
                         <td>
                             <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

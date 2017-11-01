@@ -55,8 +55,6 @@ class ExcelController extends Controller
 
                         // Nếu dữ liệu cần insert được tạo thành công.
                         if(!empty($insert)){
-                            
-                            // dd($insert);
 
                             // Với mỗi dòng dữ liệu cần insert.
                             foreach ($insert as $item) {
@@ -325,12 +323,12 @@ class ExcelController extends Controller
 
                     // Chèn dữ liệu vào bảng diemdanhsv.
                     foreach ($item as $key => $value) {
-
                         \DB::insert('insert into diemdanhsv (MSSV, MASK, MALOAIDS) values (?, ?, ?)', [
                             $value['mssv'],
                             self::$mask_dangki,
                             '2'
                         ]);
+                        
                     }
                 }
 
@@ -339,7 +337,6 @@ class ExcelController extends Controller
 
                     // Chèn dữ liệu vào bảng diemdanhcb.
                     foreach ($item as $key => $value) {
-                        // dd(var_dump($value['mscb']));
                         \DB::insert('insert into diemdanhcb (MASK, MSCB, MALOAIDS) values (?, ?, ?)', [
                             self::$mask_dangki,
                             $value['mscb'],

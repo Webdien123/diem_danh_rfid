@@ -156,7 +156,7 @@ create table SINHVIEN
 create table SUKIEN
 (
    MASK                 int not null auto_increment,
-   MATTHAI              int not null,
+   MATTHAI              int not null default '1',
    TENSK                varchar(50) not null,
    NGTHUCHIEN           date not null,
    DIADIEM              varchar(150) not null,
