@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     31-10-17 9:18:08 PM                          */
+/* Created on:     02-11-17 4:40:10 PM                          */
 /*==============================================================*/
 
 
@@ -156,12 +156,13 @@ create table SINHVIEN
 create table SUKIEN
 (
    MASK                 int not null auto_increment,
-   MATTHAI              int not null default '1',
+   MATTHAI              int not null default 1,
    TENSK                varchar(50) not null,
    NGTHUCHIEN           date not null,
    DIADIEM              varchar(150) not null,
    DDVAO                time not null,
    DDRA                 time not null,
+   TGIANDDRA            int not null default 10,
    primary key (MASK)
 );
 
