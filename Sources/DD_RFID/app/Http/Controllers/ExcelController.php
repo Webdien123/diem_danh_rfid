@@ -318,8 +318,12 @@ class ExcelController extends Controller
             try{
                 $columns = count(current($item));
 
-                // Nếu số cột là 7 thì tách dữ liệu thêm cho sinh viên đăng ký.
-                if ($columns == 7) {
+                $key = array_keys($item[0]);
+
+                // dd($key[0]);
+
+                // Nếu số cột đầu tiên tên là mssv thì thêm cho sinh viên đăng ký.
+                if ($key[0] == "mssv") {
 
                     // Chèn dữ liệu vào bảng diemdanhsv.
                     foreach ($item as $key => $value) {
@@ -332,8 +336,8 @@ class ExcelController extends Controller
                     }
                 }
 
-                // Nếu số cột là 6 thì tách dữ liệu thêm cho cán bộ đăng ký.
-                if ($columns == 6) {
+                // Nếu số cột đầu tiên tên là mscb thì thêm cho sinh viên đăng ký.
+                if ($key[0] == "mscb") {
 
                     // Chèn dữ liệu vào bảng diemdanhcb.
                     foreach ($item as $key => $value) {
@@ -348,6 +352,7 @@ class ExcelController extends Controller
             }
             catch (\Exception $e){
                 return false;
+                // dd($e->getMessage());
             }
         }
         else{

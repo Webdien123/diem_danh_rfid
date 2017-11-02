@@ -138,7 +138,7 @@ class EventController extends Controller
 
                 // Nếu đã qua giờ điểm danh ra.
                 else {
-                    $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . '1' . ' minutes'));
+                    $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . '2' . ' minutes'));
                     
                     $kq = (strtotime($endtime) - strtotime($time));
                     
@@ -186,7 +186,7 @@ class EventController extends Controller
                 if ($time2 > 0) {
                     return $today." ".$sukien[0]->DDRA;
                 } else {
-                    return $today." ".date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . '1' . ' minutes'));
+                    return $today." ".date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . '2' . ' minutes'));
                 }
             }
         }

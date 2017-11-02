@@ -144,11 +144,15 @@
                         @endif
 
                         @if (Session::get('trangthai_sukien') == 3)
-                            <form action="" method="post" id="f_quet_the_ra">
+                            <form id="f_quet_the_ra">
                                 {{ csrf_field() }}
-                                <input type="text" class="form-control" name="id_the" placeholder="Quét thẻ của bạn" required id="id_the">
-                                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
+                                <input type="hidden" name="mask" id="mask" value="{{ $sukien->MASK }}">
+                                <input type="text" class="form-control" name="id_the" id="id_the" placeholder="Quét thẻ của bạn" required>
+                                <input type="submit" id="sm_ddra" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
                             </form>
+
+                            {{--  Jquery xử lý quá trình điểm danh ra  --}}
+                            <script src="{{ asset('js/diemDanhRa.js') }}"></script>
                         @endif
                         <hr>
                     </div>
@@ -186,6 +190,7 @@
                 <div class="row thongbao" id="tb_4">
                     <strong class="text-warning">
                         <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+                        <span class="loaichuthe"></span>
                         <span class="hoten"></span>
                         <span>chưa đăng ký sự kiện này</span>
                     </strong>

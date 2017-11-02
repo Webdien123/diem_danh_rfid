@@ -5,6 +5,9 @@ $(document).ready(function () {
     // Ẩn tất cả thông báo điểm danh.
     $(".thongbao").hide();
 
+    // Lấy mã số chủ thẻ.
+    var machuthe = "";
+
     // Khi quét thẻ cần điểm danh
     $("#sm_ddvao").click(function (e) {
         e.preventDefault();
@@ -46,7 +49,6 @@ $(document).ready(function () {
                     chuthe = data[0];
 
                     // Khởi tạo các biến lưu trữ mã chủ thẻ, loại chủ thẻ và họ tên chủ thẻ.
-                    var machuthe;
                     var loaichuthe;
                     var hotenchuthe;
 
@@ -125,7 +127,7 @@ $(document).ready(function () {
         if (hoten != "") {
             $(".hoten").text(hoten);
         } else {
-            $(".hoten").html("<i><u>Chưa rõ tên</u></i>");
+            $(".hoten").html("<i><u>" + machuthe + "</u></i>");
         }
         
     }

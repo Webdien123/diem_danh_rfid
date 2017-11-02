@@ -27,7 +27,7 @@ class DiemDanhSV extends Model
 
     // Hàm cập nhật kết quả điểm danh cán bộ sang loại danh sách mới
     //  trong quá trình điểm danh.
-    public static function CapNhatDSachDDVao($mssv, $mask, $loaids_moi)
+    public static function CapNhatDSachDD($mssv, $mask, $loaids_moi)
     {
         try{
             \DB::update('UPDATE diemdanhsv SET MALOAIDS = ? WHERE MASK = ? AND MSSV = ?', 

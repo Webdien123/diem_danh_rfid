@@ -117,7 +117,10 @@ Route::post('dangkythecu', 'CardController@DangKyTheCu')->name('old_card');
 Route::post('kiemTraTheDD', "DiemDanhController@KiemTraTheDD");
 
 // Xử lý điểm danh vào cho một lần quét thẻ.
-Route::post('diemdanhvao', "DiemDanhController@DiemDanhVao")->name('DD_Vao');
+Route::post('diemdanhvao', "DiemDanhController@DiemDanhVao");
+
+// Xử lý điểm danh ra cho một lần quét thẻ.
+Route::post('diemdanhra', "DiemDanhController@DiemDanhRa");
 
 // Xử lý điểm danh không đăng ký.
 Route::post('diemdanh_kgdangki', "DiemDanhController@DDanhKhongDangKy");
