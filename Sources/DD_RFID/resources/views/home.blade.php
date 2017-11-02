@@ -269,7 +269,10 @@
                                             {{--  Phần mã số chủ thẻ cần điểm danh  --}}                                            
                                             <div class="form-group">
                                                 <label for="">Nhập mã số chủ thẻ rồi chọn "Điểm danh"</label>
-                                                <input type="text" class="form-control" name="machuthe" id="machuthe" placeholder="Mã số cán bộ hoặc sinh viên">
+                                                <input type="text" class="form-control" name="machuthe" 
+                                                    id="machuthe" placeholder="Chưa nhập mã số chủ thẻ"
+                                                    oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
+                                                    oninput="setCustomValidity('')">
                                             </div>
 
                                             <strong class="text-warning thongbao_kdgki_loi">

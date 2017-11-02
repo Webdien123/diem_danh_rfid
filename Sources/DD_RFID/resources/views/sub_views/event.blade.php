@@ -143,7 +143,7 @@
                             <input type="file" class="form-control" name="im_file" id="im_file">
                         </div>
 
-                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.csv">
+                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
                             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                             tải file đăng ký mẫu
                         </a>
