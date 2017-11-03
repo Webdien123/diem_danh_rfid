@@ -23,7 +23,7 @@
     {{--  Thẻ hiển thị ảnh nền  --}}
     <div id="home_bg"></div>
 
-    {{--  Thẻ chứa nội dung trang home  --}}
+    {{--  Thẻ chứa nội dung trang chọn sự kiện  --}}
     <div class="container">
 
         <div class="text-center">

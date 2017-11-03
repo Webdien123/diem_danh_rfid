@@ -94,6 +94,11 @@
                                     <input type="time" name="ddra" min="document.getElementById('ddvao').value" id="ddra" class="form-control">
                                 </div>
 
+                                <div class="form-group">
+									<label>Thời gian điểm danh ra:</label>                                    
+                                    <input type="number" name="tgian_ddra" class="form-control" value="10" min="1" step="1">
+                                </div>
+
 								<button type="button" class="btn btn-success" data-dismiss="modal">
 									<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
 									Hủy
@@ -143,7 +148,7 @@
                             <input type="file" class="form-control" name="im_file" id="im_file">
                         </div>
 
-                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
+                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.csv">
                             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                             tải file đăng ký mẫu
                         </a>
@@ -191,7 +196,7 @@
                         <td>{{ $sk->NGTHUCHIEN }}</td>
                         <td>{{ $sk->DIADIEM }}</td>
                         <td>{{ $sk->DDVAO }}</td>
-                        <td>{{ $sk->DDRA }}</td>
+                        <td>{{ $sk->DDRA }} - {{ $sk->TGIANDDRA }} phút</td>
 
                         {{--  Phần hiển thị chức năng tùy vào trạng thái sự kiện  --}}
                         <td>
@@ -229,8 +234,7 @@
                             {{--  Nếu trạng thái là 4  --}}
                             @if ($sk->MATTHAI == '4')
 
-                                <b class="text-warning">
-                                    <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                                <b class="text-success">
                                     Xem kết quả
                                 <b>
                             @endif

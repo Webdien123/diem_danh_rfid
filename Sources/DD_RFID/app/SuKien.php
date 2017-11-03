@@ -21,12 +21,13 @@ class SuKien extends Model
     public static function AddSK(Request $sukien)
     {
         try {
-            \DB::insert('insert into sukien (TENSK, NGTHUCHIEN, DIADIEM, DDVAO, DDRA) values (?, ?, ?, ?, ?)', [
+            \DB::insert('insert into sukien (TENSK, NGTHUCHIEN, DIADIEM, DDVAO, DDRA, TGIANDDRA) values (?, ?, ?, ?, ?, ?)', [
                 $sukien->tensk,
                 $sukien->ngthuchien,
                 $sukien->diadiem,
                 $sukien->ddvao,
-                $sukien->ddra
+                $sukien->ddra,
+                $sukien->tgian_ddra
             ]);
             return true; //Trả kết quả thêm để controller sự kiện tiếp tục thực thi.
         } catch (\Exception $e) {
@@ -52,7 +53,7 @@ class SuKien extends Model
         // Trả về kết quả của việc thực thi lệnh sql. 
         //(true hoạc false - thành công hoặc thất bại)
         return \DB::statement(
-            'UPDATE sukien SET TENSK = ?, NGTHUCHIEN = ?, DIADIEM = ?, DDVAO = ?, DDRA = ?
+            'UPDATE sukien SET TENSK = ?, NGTHUCHIEN = ?, DIADIEM = ?, DDVAO = ?, DDRA = ?, TGIANDDRA = ?
             WHERE MASK = ?',
             [
                 $sukien->tensk,
@@ -60,6 +61,7 @@ class SuKien extends Model
                 $sukien->diadiem,
                 $sukien->ddvao,
                 $sukien->ddra,
+                $sukien->tgian_ddra,
                 $sukien->mask                
             ]
         );

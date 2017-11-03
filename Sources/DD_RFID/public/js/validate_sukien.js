@@ -32,6 +32,9 @@ $(document).ready(function () {
             },            
             ddra:{
                 min: "Giờ điểm danh ra phải sau giờ điểm danh vào"
+            },
+            tgian_ddra: {
+                min: "Thời gian tối thiếu là 1 phút"
             }
         },
 

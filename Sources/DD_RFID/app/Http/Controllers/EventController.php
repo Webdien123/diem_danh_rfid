@@ -206,6 +206,7 @@ class EventController extends Controller
     public function ThemSuKien(Request $sukien)
     {
         if (\Session::has('uname')) {
+            
             // Thêm sự kiện vào hệ thống
             $ketqua =  SuKien::AddSK($sukien);
             
@@ -215,7 +216,8 @@ class EventController extends Controller
                 return redirect()->route('event');
             else
                 return redirect()->route('Error',
-                ['mes' => 'Thêm sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+                ['mes' => 'Thêm sự kiện thất bại', 
+                'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
         }
         else{
             return view('login');

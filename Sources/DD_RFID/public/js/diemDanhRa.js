@@ -33,7 +33,7 @@ $(document).ready(function () {
                 url: "/kiemTraTheDD",
                 data: $("#f_quet_the_ra").serialize(),
                 success: function (response) {
-                    var data = JSON.parse(response);
+                    var data = JSON.parse(response);                    
     
                     // Nếu thẻ chưa có thông tin trong hệ thống.
                     if (data == null) {
@@ -65,6 +65,8 @@ $(document).ready(function () {
                         }
                         hotenchuthe = chuthe['HOTEN'];
     
+                        // console.log(machuthe+"\n"+loaichuthe+"\n"+mask+"\n"+hotenchuthe+"\n"+token);
+
                         // =================================
                         // Phần ajax cập nhật danh sách điểm
                         // danh cho chủ thẻ.
@@ -104,12 +106,16 @@ $(document).ready(function () {
                                 }
                             },
                             error: function(xhr,err){
+                                $('#id_the').val("");
+                                $('#id_the').focus();
                                 console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
                             }
                         });
                     }
                 },
                 error: function(xhr,err){
+                    $('#id_the').val("");
+                    $('#id_the').focus();
                     console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
                 }
             });

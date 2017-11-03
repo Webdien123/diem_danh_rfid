@@ -82,6 +82,11 @@
                         <input type="time" name="ddra" id="ddra" value="{{ $sukien[0]->DDRA }}" class="form-control" required="required" title="Ngày diễn ra sự kiện">
                     </div>
 
+                    <div class="form-group">
+                        <label>Thời gian điểm danh ra:</label>                                    
+                        <input type="number" name="tgian_ddra" class="form-control" value="{{ $sukien[0]->TGIANDDRA }}" min="1" step="1">
+                    </div>
+
                     <a href="{{ route('event') }}" class="btn btn-default">
                         <span class="fa fa-arrow-left" aria-hidden="true"></span>
                         Về trang sự kiện

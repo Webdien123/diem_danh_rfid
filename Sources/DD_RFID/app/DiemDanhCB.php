@@ -104,4 +104,11 @@ class DiemDanhCB extends Model
             dd($e->getMessage());
         }
     }
+
+    // Truy xuất danh sách điểm danh cán bộ theo mã sự kiện.
+    public static function LayDSDiemDanh($mask)
+    {
+        $ds_ddanh_cb = \DB::select('select * from diemdanhcb where MASK = ?', [$mask]);
+        return $ds_ddanh_cb;
+    }
 }

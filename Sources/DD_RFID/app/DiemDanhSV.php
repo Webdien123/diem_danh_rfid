@@ -104,4 +104,11 @@ class DiemDanhSV extends Model
             dd($e->getMessage());
         }
     }
+
+    // Truy xuất danh sách điểm danh sinh viên theo mã sự kiện.
+    public static function LayDSDiemDanh($mask)
+    {
+        $ds_ddanh_sv = \DB::select('select * from diemdanhsv where MASK = ?', [$mask]);
+        return $ds_ddanh_sv;
+    }
 }

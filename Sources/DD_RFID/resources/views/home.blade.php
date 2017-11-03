@@ -13,9 +13,6 @@
     {{--  Gọi css căn chỉnh ảnh nền và giao diện home  --}}
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
-    {{--  Gọi script autosize của text tên sự kiện trên trang home  --}}
-    <script src="{{ asset('js/jquery.fittext.js') }}"></script>
-
     {{--  Script tạo đồng hồ đếm ngược  --}}
     <script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
 
@@ -56,9 +53,11 @@
                 <h2>Thời gian: <b>{{ $sukien->DDVAO }}</b> - Địa điểm: <b>{{ $sukien->DIADIEM }}</b></h2>
             </div>
         </div>
+        @if (Session::get('trangthai_sukien') != 4)
+            <h4 class="text-danger"><b>Vui lòng đừng đóng tab này cho đến khi sự kiện kết thúc.<b></h4>
+        @endif
 
         {{--  Đồng hồ đếm thời gian còn lại  --}}
-        
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3">
                 {{--  Hiển thị điểm danh theo trạng thái sự kiện  --}}
@@ -70,11 +69,27 @@
                     <h3>Thời gian còn lại: </h3>
                 @endif
                 <h1 id="getting-started" style="background-color: while; color: red;"></h1>
+                {{--  Script kiểm tra và cập nhật thời gian.  --}}
                 <script type="text/javascript">
                     var tg = "{{ $thoigian }}";
+                    var v_mask = "{{ $sukien->MASK }}";
                     $('#getting-started').countdown(tg, function(event) {
                         $(this).html(event.strftime('%H:%M:%S'));
                     }).on('finish.countdown', function() {
+                        var trangthai = "{{ Session::get('trangthai_sukien') }}";
+                        if (trangthai == 3) {
+                            $.ajax({
+                                type: "GET",
+                                url: "/thongkesolieu/" + v_mask,
+                                success: function (response) {
+                                    console.log(response);
+                                },
+                                error: function(xhr,err){
+                                    alert("Xảy ra lỗi khi thống kê kết quả");
+                                    console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+                                }
+                            });
+                        }
                         window.location.replace("/updateTrangThaiSK/");
                     });
                 </script>
@@ -455,11 +470,6 @@
             ?>
         @endif
     </div>
-
-    {{--  Script auto size text tiêu đề theo kích thước màn hình  --}}
-    <script>
-        jQuery("#event_name").fitText(1.5);
-    </script>
 </body>
 
 </html>

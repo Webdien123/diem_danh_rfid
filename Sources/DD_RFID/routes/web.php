@@ -125,6 +125,10 @@ Route::post('diemdanhra', "DiemDanhController@DiemDanhRa");
 // Xử lý điểm danh không đăng ký.
 Route::post('diemdanh_kgdangki', "DiemDanhController@DDanhKhongDangKy");
 
+// Xử lý thống kê số liệu.
+Route::get('thongkesolieu/{mask}', "ThongKeController@ThongKeSoLieu");
+
+
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 /*

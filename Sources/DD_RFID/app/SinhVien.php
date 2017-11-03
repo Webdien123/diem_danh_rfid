@@ -51,6 +51,7 @@ class SinhVien extends Model
             return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
         } catch (\Exception $e) {
             return false;
+            // dd($e->getMessage());
         }
     }
 

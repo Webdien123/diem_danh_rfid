@@ -36,6 +36,7 @@ $(document).ready(function () {
                     // Đặt nội dung thông báo lỗi
                     $('#bao_thcong').text(response['noidung']);
                 }
+                location.reload();                
             },
             error: function(xhr,err){
                 console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
