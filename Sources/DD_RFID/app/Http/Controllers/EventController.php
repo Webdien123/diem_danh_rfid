@@ -79,6 +79,13 @@ class EventController extends Controller
             $trangthai = self::KiemTraTrangThai($sukien);
             \Session::put('trangthai_sukien', $trangthai);
 
+            if ($trangthai < 4) {
+                SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
+            }
+            else {
+                SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
+            }
+
             // Tính lại thời gian còn lại của sự kiện.
             $thoigian = EventController::ThoiGianConLai($sukien);
 

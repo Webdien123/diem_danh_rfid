@@ -226,6 +226,16 @@
                                 <b>
                             @endif
 
+                            {{--  Nếu trạng thái là 4  --}}
+                            @if ($sk->MATTHAI == '4')
+
+                                <b class="text-warning">
+                                    <span class="glyphicon glyphicon-refresh gly-spin"></span>
+                                    Xem kết quả
+                                <b>
+                            @endif
+
+
                         </td>
                                            
                         <td>
