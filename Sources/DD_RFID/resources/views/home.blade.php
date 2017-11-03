@@ -92,9 +92,6 @@
         {{--  Api text to speech  --}}
         <script src="{{ asset('js/responsivevoice.js') }}"></script>
 
-        
-
-
         {{--  Phần quét thẻ điểm danh  --}}
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -239,6 +236,9 @@
 
                                             {{--  Phần chọn đối tượng đăng ký thẻ  --}}
                                             <input type="hidden" name="chon_cb_sv" class="chon_cb_sv">
+
+                                            {{--  Trạng thái điểm danh hiện tại (đang điểm vào hay điểm ra)  --}}
+                                            <input type="hidden" name="tthai_dd" value="{{ Session::get('trangthai_sukien') }}">
 
                                             <div class="form-group">
                                                 <label for="">Người điểm danh là:</label><br>

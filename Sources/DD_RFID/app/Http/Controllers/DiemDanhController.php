@@ -52,6 +52,7 @@ class DiemDanhController extends Controller
         $machuthe = $R->machuthe;
         $loaichuthe = $R->chon_cb_sv;
         $mathe = $R->mathe;
+        $tthai_dd = $R->tthai_dd;
 
         // Kiểm tra mã chủ thẻ có bị trùng hay chưa dựa vào loại chủ thẻ.
         if ($loaichuthe == "cán bộ") {
@@ -96,11 +97,22 @@ class DiemDanhController extends Controller
                 $ketqua_dky = DiemDanhSV::DangKySuKien($machuthe, $mask);
             }
 
+            // Điểm danh cho chủ thẻ
             if ($loaichuthe == "cán bộ") {
-                $ketqua_ddanh = DiemDanhCB::CapNhatDSachDD($machuthe, $mask, 5); 
+                if ($tthai_dd == 2) {
+                    $ketqua_ddanh = DiemDanhCB::CapNhatDSachDD($machuthe, $mask, 3); 
+                }
+                if ($tthai_dd == 3) {
+                    $ketqua_ddanh = DiemDanhCB::CapNhatDSachDD($machuthe, $mask, 4); 
+                }
             }
             if ($loaichuthe == "sinh viên") {
-                $ketqua_ddanh = DiemDanhSV::CapNhatDSachDD($machuthe, $mask, 5);
+                if ($tthai_dd == 2) {
+                    $ketqua_ddanh = DiemDanhSV::CapNhatDSachDD($machuthe, $mask, 3);
+                }
+                if ($tthai_dd == 3) {
+                    $ketqua_ddanh = DiemDanhSV::CapNhatDSachDD($machuthe, $mask, 4);
+                }
             }
 
             // Tính kết quả tổng hợp
@@ -169,7 +181,7 @@ class DiemDanhController extends Controller
                     );
                 }
             }
-            if ($loaids == 3 || $loaids == 5) {
+            if ($loaids == 3) {
                 $ketqua = array(
                     'ms_ketqua' => 3,
                     'loaichuthe' => $loaichuthe,
@@ -179,11 +191,45 @@ class DiemDanhController extends Controller
         }
         // Chủ thẻ chưa đăng ký sự kiện.
         else {
-            $ketqua = array(
-                'ms_ketqua' => 4,
-                'loaichuthe' => $loaichuthe,
-                'hoten' => $hotenchuthe
-            );
+            // Đăng ký sự kiện cho người vừa tạo thẻ.
+            if ($loaichuthe == "cán bộ") {
+                $ketqua_dky = DiemDanhCB::DangKySuKien($machuthe, $mask);
+            }
+            if ($loaichuthe == "sinh viên") {
+                $ketqua_dky = DiemDanhSV::DangKySuKien($machuthe, $mask);
+            }
+
+            // Điểm danh cho chủ thẻ
+            if ($loaichuthe == "cán bộ") {
+                $ketqua_ddanh = DiemDanhCB::CapNhatDSachDD($machuthe, $mask, 3); 
+            }
+            if ($loaichuthe == "sinh viên") {
+                $ketqua_ddanh = DiemDanhSV::CapNhatDSachDD($machuthe, $mask, 3);
+            }
+
+            // Tính kết quả tổng hợp
+            $kq = ($ketqua_dky && $ketqua_ddanh) ? 1 : 0 ;
+
+            if ($kq == 1) {
+                $ketqua = array(
+                    'ms_ketqua' => 1,
+                    'loaichuthe' => $loaichuthe,
+                    'hoten' => $hotenchuthe
+                );
+            }   
+            else {
+                $ketqua = array(
+                    'ms_ketqua' => 2,
+                    'loaichuthe' => $loaichuthe,
+                    'hoten' => $hotenchuthe
+                );
+            }
+
+            // $ketqua = array(
+            //     'ms_ketqua' => 4,
+            //     'loaichuthe' => $loaichuthe,
+            //     'hoten' => $hotenchuthe
+            // );
         }
 
         return $ketqua;

@@ -7,6 +7,7 @@ $(document).ready(function () {
     $("#f_dd_kgdgki").submit(function (e) { 
         e.preventDefault();
 
+        // console.log($("#f_dd_kgdgki").serialize());
         $.ajax({
             type: "POST",
             url: "/diemdanh_kgdangki",

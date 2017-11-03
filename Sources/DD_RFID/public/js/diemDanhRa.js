@@ -11,6 +11,10 @@ $(document).ready(function () {
         // Khi quét thẻ cần điểm danh
         $("#sm_ddra").click(function (e) {
             e.preventDefault();
+
+            // Ẩn thông báo lỗi và thông báo thành công của chức năng điểm danh không đăng ký.
+            $(".thongbao_kdgki_loi").hide();
+            $(".thongbao_kdgki_thcong").hide();
     
             // Lấy giá trị mã sự kiện.
             var mask = $("#mask").val();

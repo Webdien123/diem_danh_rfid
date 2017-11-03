@@ -12,6 +12,10 @@ $(document).ready(function () {
     $("#sm_ddvao").click(function (e) {
         e.preventDefault();
 
+        // Ẩn thông báo lỗi và thông báo thành công của chức năng điểm danh không đăng ký.
+        $(".thongbao_kdgki_loi").hide();
+        $(".thongbao_kdgki_thcong").hide();
+
         // Lấy giá trị mã sự kiện.
         var mask = $("#mask").val();
 
@@ -100,12 +104,17 @@ $(document).ready(function () {
                             }
                         },
                         error: function(xhr,err){
+                            $('#id_the').val("");
+                            $('#id_the').focus();
+
                             console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
                         }
                     });
                 }
             },
             error: function(xhr,err){
+                $('#id_the').val("");
+                $('#id_the').focus();
                 console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
             }
         });
