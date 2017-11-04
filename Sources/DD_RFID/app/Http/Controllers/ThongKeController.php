@@ -135,6 +135,21 @@ class ThongKeController extends Controller
         // Lấy danh sách sinh viên chưa bổ sung thông tin.
         $ds_sv_chua_co_ttin = ThongKeDiemDanh::LayDS_SV($mask, "chuattin");
 
+        // Lấy danh sách cán bộ vắng mặt. 
+        $ds_cb_vang_mat = ThongKeDiemDanh::LayDS_CB($mask, "vangmat");
+
+        // Lấy danh sách cán bộ có mặt. 
+        $ds_cb_co_mat = ThongKeDiemDanh::LayDS_CB($mask, "comat");
+
+        // Lấy danh sách cán bộ có vào không ra. 
+        $ds_cb_co_vao_k_ra = ThongKeDiemDanh::LayDS_CB($mask, "covaokra");
+        
+        // Lấy danh sách cán bộ có ra không vào. 
+        $ds_cb_co_ra_k_vao = ThongKeDiemDanh::LayDS_CB($mask, "corakvao");
+
+        // Lấy danh sách cán bộ chưa bổ sung thông tin.
+        $ds_cb_chua_co_ttin = ThongKeDiemDanh::LayDS_CB($mask, "chuattin");
+
         return view("sub_views.chart", [
             'sukien' => $sukien_gannhat,
             'kq_thke' => $ketqua_thke,
@@ -143,6 +158,11 @@ class ThongKeController extends Controller
             'ds_sv_co_vao_k_ra' => $ds_sv_co_vao_k_ra,
             'ds_sv_co_ra_k_vao' => $ds_sv_co_ra_k_vao,
             'ds_sv_chua_co_ttin' => $ds_sv_chua_co_ttin,
+            'ds_cb_vang_mat' => $ds_cb_vang_mat,
+            'ds_cb_co_mat' => $ds_cb_co_mat,
+            'ds_cb_co_vao_k_ra' => $ds_cb_co_vao_k_ra,
+            'ds_cb_co_ra_k_vao' => $ds_cb_co_ra_k_vao,
+            'ds_cb_chua_co_ttin' => $ds_cb_chua_co_ttin
         ]);
     }
 
