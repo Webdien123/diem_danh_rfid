@@ -3,9 +3,9 @@ google.charts.setOnLoadCallback(drawChart4);
 function drawChart4() {
     data = google.visualization.arrayToDataTable([
         ['So_bat_thuong', 'So_luong'],
-        ['Có vào không ra', 38],
-        ['Có ra không vào', 12],
-        ['Chưa có thông tin hệ thống', 2]
+        ['Có vào không ra', parseInt(cb_co_vao_k_ra)],
+        ['Có ra không vào', parseInt(cb_co_ra_k_vao)],
+        ['Chưa có thông tin hệ thống', parseInt(cb_k_co_ttin)]
     ]);
 
     var options = {

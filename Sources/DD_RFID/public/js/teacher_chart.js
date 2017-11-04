@@ -3,8 +3,8 @@ google.charts.setOnLoadCallback(drawChart3);
 function drawChart3() {
     data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
-        ['Có mặt', 38],
-        ['Vắng mặt', 12]
+        ['Có mặt', parseInt(cb_co_mat)],
+        ['Vắng mặt', parseInt(cb_vang_mat)]
     ]);
 
     var options = {

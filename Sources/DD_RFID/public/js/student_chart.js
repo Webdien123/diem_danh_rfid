@@ -2,12 +2,11 @@ google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(drawChart1);
 
 var data;
-
 function drawChart1() {
     data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
-        ['Có mặt', 22],
-        ['Vắng mặt', 4],
+        ['Có mặt', parseInt(sv_co_mat)],
+        ['Vắng mặt', parseInt(sv_vang_mat)],
     ]);
 
     var options = {

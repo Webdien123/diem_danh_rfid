@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\CanBo;
 use App\SuKien;
-use Excel;
 
 class GetViewController extends Controller
 {
@@ -28,29 +26,7 @@ class GetViewController extends Controller
     public function Login()
     {
         if (\Session::has('uname')) {
-            return view('admin');
-        }
-        else{
-            return view('login');
-        }
-    }
-
-    // Hiện trang quản trị.
-    public function Admin()
-    {
-        if (\Session::has('uname')) {
-            return view('admin');
-        }
-        else{
-            return view('login');
-        }
-    }
-
-    // Hiện trang thống kê.
-    public function ThongKe()
-    {
-        if (\Session::has('uname')) {
-            return view('sub_views.chart');
+            return redirect()->route('chart');
         }
         else{
             return view('login');

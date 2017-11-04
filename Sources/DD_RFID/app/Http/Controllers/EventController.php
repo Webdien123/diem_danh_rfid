@@ -13,7 +13,7 @@ use App\DiemDanhSV;
 class EventController extends Controller
 {
     // Lưu số dòng phân trang cho trang sinh viên.
-    public static $so_dong = 5;
+    public static $so_dong = 20;
     
     // Hiện trang sự kiện.
     public function GetPageSK()

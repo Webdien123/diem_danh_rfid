@@ -9,6 +9,7 @@ use App\ThongKeDiemDanh;
 
 class ThongKeController extends Controller
 {
+    // Hàm tổng hợp số liệu điểm danh khi sự kiện kết thúc.
     public function ThongKeSoLieu($mask)
     {
         // Truy xuất danh sách điểm danh của cán bộ và sinh viên.
@@ -85,33 +86,65 @@ class ThongKeController extends Controller
             }
         }
 
-        // $ketqua = array(
-        //     "sv_co_mat" => $sv_co_mat,
-        //     "sv_vang_mat" => $sv_vang_mat,
-        //     "sv_co_vao_k_ra" => $sv_co_vao_k_ra,
-        //     "sv_co_ra_k_vao" => $sv_co_ra_k_vao,
-        //     "sv_k_co_ttin" => $sv_k_co_ttin,
-        //     "cb_co_mat" => $cb_co_mat,
-        //     "cb_vang_mat" => $cb_vang_mat,
-        //     "cb_co_vao_k_ra" => $cb_co_vao_k_ra,
-        //     "cb_co_ra_k_vao" => $cb_co_ra_k_vao,
-        //     "cb_k_co_ttin" => $cb_k_co_ttin
-        // );
-
+        // Thêm kết quả thống kê cho mỗi loại danh sách và số liệu tương ứng,
+        // lưu kết quả xử lý sau mỗi lần hoàn thành.
         $insert1 = ThongKeDiemDanh::NhapDS(1, $mask, $sv_co_mat, $cb_co_mat);
         $insert2 = ThongKeDiemDanh::NhapDS(2, $mask, $sv_vang_mat, $cb_vang_mat);
         $insert3 = ThongKeDiemDanh::NhapDS(3, $mask, $sv_co_vao_k_ra, $cb_co_vao_k_ra);
         $insert4 = ThongKeDiemDanh::NhapDS(4, $mask, $sv_co_ra_k_vao, $cb_co_ra_k_vao);
         $insert7 = ThongKeDiemDanh::NhapDS(7, $mask, $sv_k_co_ttin, $cb_k_co_ttin);
 
+        // Nếu tất cả kết quả đều thành công, tính kết quả tổng hợp.
         $ketqua_insert = $insert1 * $insert2 * $insert3 * $insert4 * $insert7;
 
+        // Nếu mọi thứ đều hoàn thành chính xác, trả về 'thanhcong'
         if ($ketqua_insert == 1) {
-            return "ok";
+            return "thanhcong";
             // return dd($ketqua_insert);
         } else {
-            return "huhu";
+            return "thatbai";
             // return dd($ketqua_insert);
         }
     }
+
+    // Hàm lấy trang thống kê theo sự kiện điểm danh gần nhất.
+    public function GetPageThongKe()
+    {
+        // Lấy sự kiện đã điểm danh gần nhất.
+        $sukien_gannhat = ThongKeDiemDanh::LaySK_GanNhat();
+        $sukien_gannhat = $sukien_gannhat[0];
+
+        // Lấy kết quả điểm danh của sự kiện.
+        $ketqua_thke = ThongKeDiemDanh::LayKetQuaThKe($sukien_gannhat->MASK);
+        
+        // Lấy mã sự kiện.
+        $mask = $sukien_gannhat->MASK;
+
+        // Lấy danh sách sinh viên vắng mặt. 
+        $ds_sv_vang_mat = ThongKeDiemDanh::LayDS_SV($mask, "vangmat");
+
+        // Lấy danh sách sinh viên có mặt. 
+        $ds_sv_co_mat = ThongKeDiemDanh::LayDS_SV($mask, "comat");
+
+        // Lấy danh sách sinh viên có vào không ra. 
+        $ds_sv_co_vao_k_ra = ThongKeDiemDanh::LayDS_SV($mask, "covaokra");
+
+        // Lấy danh sách sinh viên có ra không vào. 
+        $ds_sv_co_ra_k_vao = ThongKeDiemDanh::LayDS_SV($mask, "corakvao");
+
+        // Lấy danh sách sinh viên chưa bổ sung thông tin.
+        $ds_sv_chua_co_ttin = ThongKeDiemDanh::LayDS_SV($mask, "chuattin");
+
+        return view("sub_views.chart", [
+            'sukien' => $sukien_gannhat,
+            'kq_thke' => $ketqua_thke,
+            'ds_sv_vang_mat' => $ds_sv_vang_mat,
+            'ds_sv_co_mat' => $ds_sv_co_mat,
+            'ds_sv_co_vao_k_ra' => $ds_sv_co_vao_k_ra,
+            'ds_sv_co_ra_k_vao' => $ds_sv_co_ra_k_vao,
+            'ds_sv_chua_co_ttin' => $ds_sv_chua_co_ttin,
+        ]);
+    }
+
+    
 }
