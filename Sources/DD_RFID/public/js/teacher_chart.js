@@ -1,7 +1,7 @@
 google.charts.setOnLoadCallback(drawChart3);
 
 function drawChart3() {
-    data = google.visualization.arrayToDataTable([
+    var data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
         ['Có mặt', parseInt(cb_co_mat)],
         ['Vắng mặt', parseInt(cb_vang_mat)]
@@ -37,13 +37,18 @@ function drawChart3() {
 
     chart.draw(data, options);
 
-    function selectHandler() {
+    function selectHandler3() {
         var selectedItem = chart.getSelection()[0];
         if (selectedItem) {
-        var topping = data.getValue(selectedItem.row, 0);
-        alert('The user selected: cán bộ ' + topping);
+            var topping = data.getValue(selectedItem.row, 0);
+            if(topping == "Có mặt"){
+                HienDanhSach("cb_co_mat");
+            }
+            if(topping == "Vắng mặt"){
+                HienDanhSach("cb_vang_mat");
+            }
         }
     }
     
-    google.visualization.events.addListener(chart, 'select', selectHandler);      
+    google.visualization.events.addListener(chart, 'select', selectHandler3);
 }

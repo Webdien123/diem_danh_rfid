@@ -1,11 +1,11 @@
 google.charts.setOnLoadCallback(drawChart2);
 
 function drawChart2() {
-    data = google.visualization.arrayToDataTable([
+    var data = google.visualization.arrayToDataTable([
         ['So_bat_thuong', 'So_luong'],
         ['Có vào không ra', parseInt(sv_co_vao_k_ra)],
         ['Có ra không vào', parseInt(sv_co_ra_k_vao)],
-        ['Chưa có thông tin hệ thống', parseInt(sv_k_co_ttin)]
+        ['Chưa bổ sung thông tin', parseInt(sv_k_co_ttin)]
     ]);
 
     var options = {
@@ -38,15 +38,23 @@ function drawChart2() {
 
     chart.draw(data, options);
 
-    function selectHandler() {
+    function selectHandler2() {
         var selectedItem = chart.getSelection()[0];
         if (selectedItem) {
-        var topping = data.getValue(selectedItem.row, 0);
-        alert('The user selected: sinh viên' + topping);
+            var topping = data.getValue(selectedItem.row, 0);
+            if(topping == "Có vào không ra"){
+                HienDanhSach("sv_co_v_k_ra");
+            }
+            if(topping == "Có ra không vào"){
+                HienDanhSach("sv_co_ra_k_v");
+            }
+            if(topping == "Chưa bổ sung thông tin"){
+                HienDanhSach("sv_chua_co_ttin");
+            }
         }
     }
     
-    google.visualization.events.addListener(chart, 'select', selectHandler);      
+    google.visualization.events.addListener(chart, 'select', selectHandler2);      
 }
 
   

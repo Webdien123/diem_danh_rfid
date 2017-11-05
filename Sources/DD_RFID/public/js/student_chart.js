@@ -1,9 +1,8 @@
 google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(drawChart1);
 
-var data;
 function drawChart1() {
-    data = google.visualization.arrayToDataTable([
+    var data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
         ['Có mặt', parseInt(sv_co_mat)],
         ['Vắng mặt', parseInt(sv_vang_mat)],
@@ -38,13 +37,18 @@ function drawChart1() {
 
     chart.draw(data, options);
 
-    function selectHandler() {
+    function selectHandler1() {
         var selectedItem = chart.getSelection()[0];
         if (selectedItem) {
-        var topping = data.getValue(selectedItem.row, 0);
-        alert('The user selected: sinh viên ' + topping);
+            var topping = data.getValue(selectedItem.row, 0);
+            if(topping == "Có mặt"){
+                HienDanhSach("sv_co_mat");
+            }
+            if(topping == "Vắng mặt"){
+                HienDanhSach("sv_vang_mat");
+            }
         }
     }
     
-    google.visualization.events.addListener(chart, 'select', selectHandler);      
+    google.visualization.events.addListener(chart, 'select', selectHandler1);      
 }

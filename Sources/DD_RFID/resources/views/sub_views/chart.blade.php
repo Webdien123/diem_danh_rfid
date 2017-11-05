@@ -59,6 +59,28 @@
         var cb_k_co_ttin = "{{ $cb_k_co_ttin }}";
     </script>
 
+    {{--  Script lấy phần danh sách cần hiển thị theo danh sách đã click hoặc đã chọn  --}}
+    <script>
+        // H
+        function HienDanhSach(ten_ds) {
+            $(".danhsach").hide(0);
+            $("#"+ten_ds).show(0);
+        }
+
+        $(document).ready(function () {
+
+            $( "#sel1" ).change(function () {
+                var str = "";
+                $( "#sel1 option:selected" ).each(function() {
+                    str += $( this ).val() + " ";
+                });
+                $(".danhsach").hide(0);
+                $("#"+str).show(0);
+            })
+            .change();
+        });
+    </script>
+
     <!--Load the GOOGLE CHART API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -255,43 +277,43 @@
                             <label for="sel1">Danh sách:</label>
                             <select class="form-control" id="sel1">
                                 @if (count($ds_sv_vang_mat) != 0)
-                                <option>Sinh viên vắng mặt</option>
+                                <option value="sv_vang_mat" selected>Sinh viên vắng mặt</option>
                                 @endif
 
                                 @if (count($ds_sv_co_mat) != 0)
-                                <option>Sinh viên có mặt</option>
+                                <option value="sv_co_mat" >Sinh viên có mặt</option>
                                 @endif
 
                                 @if (count($ds_sv_co_vao_k_ra) != 0)
-                                <option>Sinh viên có vào không ra</option>
+                                <option value="sv_co_v_k_ra" >Sinh viên có vào không ra</option>
                                 @endif
 
                                 @if (count($ds_sv_co_ra_k_vao) != 0)
-                                <option>Sinh viên có ra không vào</option>
+                                <option value="sv_co_ra_k_v" >Sinh viên có ra không vào</option>
                                 @endif
 
                                 @if (count($ds_sv_chua_co_ttin) != 0)
-                                <option>Sinh viên chưa có thông tin</option>
+                                <option value="sv_chua_co_ttin" >Sinh viên chưa có thông tin</option>
                                 @endif
 
                                 @if (count($ds_cb_vang_mat) != 0)
-                                <option>Cán bộ vắng mặt</option>
+                                <option value="cb_vang_mat" >Cán bộ vắng mặt</option>
                                 @endif
 
                                 @if (count($ds_cb_co_mat) != 0)
-                                <option>Cán bộ có mặt</option>
+                                <option value="cb_co_mat" >Cán bộ có mặt</option>
                                 @endif
 
                                 @if (count($ds_cb_co_vao_k_ra) != 0)
-                                <option>Cán bộ có vào không ra</option>
+                                <option value="cb_co_v_k_ra" >Cán bộ có vào không ra</option>
                                 @endif
 
                                 @if (count($ds_cb_co_ra_k_vao) != 0)
-                                <option>Cán bộ có ra không vào</option>
+                                <option value="cb_co_ra_k_v" >Cán bộ có ra không vào</option>
                                 @endif
 
                                 @if (count($ds_cb_chua_co_ttin) != 0)
-                                <option>Cán bộ chưa có thông tin</option>
+                                <option value="cb_chua_co_ttin" >Cán bộ chưa có thông tin</option>
                                 @endif
                             </select>
                         </div>
@@ -562,7 +584,7 @@
 
                 <!-- Danh sách cán bộ vắng mặt -->
                 @if (count($ds_cb_vang_mat) != 0)
-                <div class="table-responsive danhsach" id="cb_co_mat">
+                <div class="table-responsive danhsach" id="cb_vang_mat">
                     <table class="table table-hover table-bordered" style="background-color: white">
                         <thead>
                             <tr>
@@ -648,7 +670,7 @@
 
                 <!-- Danh sách cán bộ có vào không ra -->
                 @if (count($ds_cb_co_vao_k_ra) != 0)
-                <div class="table-responsive danhsach" id="cb_co_mat">
+                <div class="table-responsive danhsach" id="cb_co_v_k_ra">
                     <table class="table table-hover table-bordered" style="background-color: white">
                         <thead>
                             <tr>
@@ -691,7 +713,7 @@
 
                 <!-- Danh sách cán bộ có ra không vào -->
                 @if (count($ds_cb_co_ra_k_vao) != 0)
-                <div class="table-responsive danhsach" id="cb_co_mat">
+                <div class="table-responsive danhsach" id="cb_co_ra_k_v">
                     <table class="table table-hover table-bordered" style="background-color: white">
                         <thead>
                             <tr>
@@ -734,7 +756,7 @@
 
                 <!-- Danh sách cán bộ chưa bổ sung thông tin -->
                 @if (count($ds_cb_chua_co_ttin) != 0)
-                <div class="table-responsive danhsach" id="cb_co_mat">
+                <div class="table-responsive danhsach" id="cb_chua_co_ttin">
                     <table class="table table-hover table-bordered" style="background-color: white">
                         <thead>
                             <tr>

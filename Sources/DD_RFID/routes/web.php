@@ -24,7 +24,8 @@ Route::post('login_processing', "LoginController@LoginProcess")->name('login');
 Route::get('logout', "LoginController@LogOut")->name('logout');
 
 // Dẫn vào trang điều khiển của admin.
-// Route::get('admin', "ThongKeController@GetPageThongKe")->name('admin');
+Route::get('admin', "ThongKeController@GetPageThongKe")->name('admin');
+
 // Dẫn vào trang thống kê điểm danh.
 Route::get('chart', "ThongKeController@GetPageThongKe")->name('chart');
 
@@ -128,6 +129,7 @@ Route::post('diemdanh_kgdangki', "DiemDanhController@DDanhKhongDangKy");
 Route::get('thongkesolieu/{mask}', "ThongKeController@ThongKeSoLieu");
 
 // Lấy danh sách điểm danh sinh viên theo mã sự kiện và loại danh sách.
+Route::get('danhsachcb/{mask}/{ten_loaids}', "ThongKeController@LayDS_CB");
 Route::get('danhsachsv/{mask}/{ten_loaids}', "ThongKeController@LayDS_SV");
 
 // Trang thông báo lỗi.
