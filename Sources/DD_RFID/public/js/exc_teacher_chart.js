@@ -31,7 +31,7 @@ function drawChart4() {
                 fontSize: 14,
             }
         },
-        pieSliceText : 'percentage'
+        pieSliceText : 'value-and-percentage'
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
@@ -42,14 +42,21 @@ function drawChart4() {
         var selectedItem = chart.getSelection()[0];
         if (selectedItem) {
             var topping = data.getValue(selectedItem.row, 0);
+
             if(topping == "Có vào không ra"){
-                HienDanhSach("cb_co_v_k_ra");
+                $("#sel1").val("cb_co_v_k_ra");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("cb_co_v_k_ra", ten_ds);
             }
             if(topping == "Có ra không vào"){
-                HienDanhSach("cb_co_ra_k_v");
+                $("#sel1").val("cb_co_ra_k_v");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("cb_co_ra_k_v", ten_ds);
             }
             if(topping == "Chưa bổ sung thông tin"){
-                HienDanhSach("cb_chua_co_ttin");
+                $("#sel1").val("cb_chua_co_ttin");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("cb_chua_co_ttin", ten_ds);
             }
         }
     }

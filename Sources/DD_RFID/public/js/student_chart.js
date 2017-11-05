@@ -42,10 +42,14 @@ function drawChart1() {
         if (selectedItem) {
             var topping = data.getValue(selectedItem.row, 0);
             if(topping == "Có mặt"){
-                HienDanhSach("sv_co_mat");
+                $("#sel1").val("sv_co_mat");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_co_mat", ten_ds, sv_co_mat);
             }
             if(topping == "Vắng mặt"){
-                HienDanhSach("sv_vang_mat");
+                $("#sel1").val("sv_vang_mat");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_vang_mat", ten_ds, sv_vang_mat);
             }
         }
     }

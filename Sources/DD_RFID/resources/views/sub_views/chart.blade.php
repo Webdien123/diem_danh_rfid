@@ -60,26 +60,7 @@
     </script>
 
     {{--  Script lấy phần danh sách cần hiển thị theo danh sách đã click hoặc đã chọn  --}}
-    <script>
-        // H
-        function HienDanhSach(ten_ds) {
-            $(".danhsach").hide(0);
-            $("#"+ten_ds).show(0);
-        }
-
-        $(document).ready(function () {
-
-            $( "#sel1" ).change(function () {
-                var str = "";
-                $( "#sel1 option:selected" ).each(function() {
-                    str += $( this ).val() + " ";
-                });
-                $(".danhsach").hide(0);
-                $("#"+str).show(0);
-            })
-            .change();
-        });
-    </script>
+    <script src="{{ asset('js/hien_danh_sach_ddanh.js') }}"></script>
 
     <!--Load the GOOGLE CHART API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -135,9 +116,10 @@
         {{--  <div class="row">  --}}
             
         {{--  </div>  --}}
-        
+
+        <!-- Phần nội dung khi không có kết quả thống kê -->
         @if ($sukien == null)
-            <!-- Phần nội dung khi không có kết quả thống kê -->
+            
             <div class="container-fluid">
                 <div class="panel panel-info">
                     <div class="panel-body">
@@ -258,216 +240,181 @@
                 
 
                 {{--  Phần hiển thị thông cán bộ hoặc sinh viên thuộc danh sách đang chọn  --}}
-                <center style="margin-top: 5%;"><h2>Danh sách sinh viên vắng mặt (7 sinh viên [15.4%])</h2></center>
+                <center style="margin-top: 5%;"><h2>
+                    Danh sách 
+                    <span id="ten_ds">sinh viên vắng mặt</span>(
+                    <span id="so_luong_ds">7</span>
+                    <span id="loai_ds">sinh viên</span> )
+                </h2></center>
 
                 {{--  Phần xuất danh sách, chọn danh sách thống kê khác và tìm kiếm thông tin  --}}
                 <div class="row">
 
-                {{--  Phần xuất file excel  --}}
-                <div class="col-xs-12 col-md-4">
-                    <a href="#" class="btn btn-success">
-                        <span class="fa fa-file-excel-o fa-2x" aria-hidden="true"></span>
-                        Xuất danh sách ra excel
-                    </a>
-                </div>
-
-                {{--  Phần chọn danh sách thống kê  --}}
-                <div class="col-xs-12 col-md-4">
-                        <div class="form-group has-warning form-inline">
-                            <label for="sel1">Danh sách:</label>
-                            <select class="form-control" id="sel1">
-                                @if (count($ds_sv_vang_mat) != 0)
-                                <option value="sv_vang_mat" selected>Sinh viên vắng mặt</option>
-                                @endif
-
-                                @if (count($ds_sv_co_mat) != 0)
-                                <option value="sv_co_mat" >Sinh viên có mặt</option>
-                                @endif
-
-                                @if (count($ds_sv_co_vao_k_ra) != 0)
-                                <option value="sv_co_v_k_ra" >Sinh viên có vào không ra</option>
-                                @endif
-
-                                @if (count($ds_sv_co_ra_k_vao) != 0)
-                                <option value="sv_co_ra_k_v" >Sinh viên có ra không vào</option>
-                                @endif
-
-                                @if (count($ds_sv_chua_co_ttin) != 0)
-                                <option value="sv_chua_co_ttin" >Sinh viên chưa có thông tin</option>
-                                @endif
-
-                                @if (count($ds_cb_vang_mat) != 0)
-                                <option value="cb_vang_mat" >Cán bộ vắng mặt</option>
-                                @endif
-
-                                @if (count($ds_cb_co_mat) != 0)
-                                <option value="cb_co_mat" >Cán bộ có mặt</option>
-                                @endif
-
-                                @if (count($ds_cb_co_vao_k_ra) != 0)
-                                <option value="cb_co_v_k_ra" >Cán bộ có vào không ra</option>
-                                @endif
-
-                                @if (count($ds_cb_co_ra_k_vao) != 0)
-                                <option value="cb_co_ra_k_v" >Cán bộ có ra không vào</option>
-                                @endif
-
-                                @if (count($ds_cb_chua_co_ttin) != 0)
-                                <option value="cb_chua_co_ttin" >Cán bộ chưa có thông tin</option>
-                                @endif
-                            </select>
-                        </div>
+                    {{--  Phần xuất file excel  --}}
+                    <div class="col-xs-12 col-md-4">
+                        <a href="#" class="btn btn-success">
+                            <span class="fa fa-file-excel-o fa-2x" aria-hidden="true"></span>
+                            Xuất danh sách ra excel
+                        </a>
                     </div>
-                </div>
-                
-                {{--  Modal chuyển danh sách  --}}
-                <div class="modal fade" id="modal-id-ds">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">
-                                    Sửa kết quả
-                                    <span>sinh viên</span>
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/" id="form_id_ds">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio" checked>Có mặt</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio">Vắng mặt</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio">Có vào không ra</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio">Có ra không vào</label>
-                                    </div>                                                        
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    <i class="fa fa-window-close" aria-hidden="true"></i>
-                                    Đóng
-                                </button>
-                                <button type="submit" class="btn btn-primary" form="form_id_ds">
-                                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                                    Sửa kết quả
-                                </button>
+
+                    {{--  Phần chọn danh sách thống kê  --}}
+                    <div class="col-xs-12 col-md-4">
+                            <div class="form-group has-warning form-inline">
+                                <label for="sel1">Danh sách:</label>
+                                <select class="form-control" id="sel1">
+                                    @if (count($ds_sv_vang_mat) != 0)
+                                    <option value="sv_vang_mat" selected>sinh viên vắng mặt</option>
+                                    @endif
+
+                                    @if (count($ds_sv_co_mat) != 0)
+                                    <option value="sv_co_mat" >sinh viên có mặt</option>
+                                    @endif
+
+                                    @if (count($ds_sv_co_vao_k_ra) != 0)
+                                    <option value="sv_co_v_k_ra" >sinh viên có vào không ra</option>
+                                    @endif
+
+                                    @if (count($ds_sv_co_ra_k_vao) != 0)
+                                    <option value="sv_co_ra_k_v" >sinh viên có ra không vào</option>
+                                    @endif
+
+                                    @if (count($ds_sv_chua_co_ttin) != 0)
+                                    <option value="sv_chua_co_ttin" >sinh viên chưa có thông tin</option>
+                                    @endif
+
+                                    @if (count($ds_cb_vang_mat) != 0)
+                                    <option value="cb_vang_mat" >cán bộ vắng mặt</option>
+                                    @endif
+
+                                    @if (count($ds_cb_co_mat) != 0)
+                                    <option value="cb_co_mat" >cán bộ có mặt</option>
+                                    @endif
+
+                                    @if (count($ds_cb_co_vao_k_ra) != 0)
+                                    <option value="cb_co_v_k_ra" >cán bộ có vào không ra</option>
+                                    @endif
+
+                                    @if (count($ds_cb_co_ra_k_vao) != 0)
+                                    <option value="cb_co_ra_k_v" >cán bộ có ra không vào</option>
+                                    @endif
+
+                                    @if (count($ds_cb_chua_co_ttin) != 0)
+                                    <option value="cb_chua_co_ttin" >cán bộ chưa có thông tin</option>
+                                    @endif
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Danh sách sinh viên văng mặt -->
-                @if (count($ds_sv_vang_mat) != 0)
-                <div class="table-responsive danhsach" id="sv_vang_mat">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSSV</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Ngành</th>
-                                <th>Lớp</th>
-                                <th>Niên khóa</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
+                {{--  Phần hiển thị các danh sách thống kê --}}
+                <div class="container-fluid">
+                <div class="row">
 
-                        <tbody>              
-                                @foreach ($ds_sv_vang_mat as $sv)
-                                    <tr>
-                                        <td>{{ $sv->MSSV }}</td>
-                                        <td>{{ $sv->HOTEN }}</td>
-                                        <td>{{ $sv->TENKHOA }}</td>
-                                        <td>{{ $sv->TENCHNGANH }}</td>
-                                        <td>{{ $sv->KYHIEULOP }}</td>
-                                        <td>{{ $sv->KHOAHOC }}</td>                        
-                                        {{--  Phần thao tác thông tin sinh viên  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>                                            
-                                            
-                                            <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
+                    {{--  Modal chuyển danh sách  --}}
+                    <div class="modal fade" id="modal-id-ds">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        Sửa kết quả
+                                        <span>sinh viên</span>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/" id="form_id_ds">
+                                        <div class="radio">
+                                            <label><input type="radio" name="optradio" checked>Có mặt</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optradio">Vắng mặt</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optradio">Có vào không ra</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optradio">Có ra không vào</label>
+                                        </div>                                                        
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        <i class="fa fa-window-close" aria-hidden="true"></i>
+                                        Đóng
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" form="form_id_ds">
+                                        <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                        Sửa kết quả
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Danh sách sinh viên có mặt -->
-                @if (count($ds_sv_co_mat) != 0)
-                <div class="table-responsive danhsach" id="sv_co_mat">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSSV</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Ngành</th>
-                                <th>Lớp</th>
-                                <th>Niên khóa</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                            @foreach ($ds_sv_co_mat as $sv)
+                    <!-- Danh sách sinh viên văng mặt -->
+                    @if (count($ds_sv_vang_mat) != 0)
+                    <div class="table-responsive danhsach" id="sv_vang_mat">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
                                 <tr>
-                                    <td>{{ $sv->MSSV }}</td>
-                                    <td>{{ $sv->HOTEN }}</td>
-                                    <td>{{ $sv->TENKHOA }}</td>
-                                    <td>{{ $sv->TENCHNGANH }}</td>
-                                    <td>{{ $sv->KYHIEULOP }}</td>
-                                    <td>{{ $sv->KHOAHOC }}</td>                        
-                                    {{--  Phần thao tác thông tin sinh viên  --}}
-                                    <td>      
-                                        <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                            Sửa kết quả
-                                        </a>                                            
-                                        
-                                        <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
-                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                            Sửa thông tin
-                                        </a>
-                                    </td> 
+                                    <th>MSSV</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Ngành</th>
+                                    <th>Lớp</th>
+                                    <th>Niên khóa</th>
+                                    <th>Thao tác</th>
                                 </tr>
-                            @endforeach
-                            
-                        </tbody>
-                    </table>
-                </div>
-                @endif
+                            </thead>
 
-                <!-- Danh sách sinh viên có vào không ra -->
-                @if (count($ds_sv_co_vao_k_ra) != 0)
-                <div class="table-responsive danhsach" id="sv_co_v_k_ra">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSSV</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Ngành</th>
-                                <th>Lớp</th>
-                                <th>Niên khóa</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
+                            <tbody>              
+                                    @foreach ($ds_sv_vang_mat as $sv)
+                                        <tr>
+                                            <td>{{ $sv->MSSV }}</td>
+                                            <td>{{ $sv->HOTEN }}</td>
+                                            <td>{{ $sv->TENKHOA }}</td>
+                                            <td>{{ $sv->TENCHNGANH }}</td>
+                                            <td>{{ $sv->KYHIEULOP }}</td>
+                                            <td>{{ $sv->KHOAHOC }}</td>                        
+                                            {{--  Phần thao tác thông tin sinh viên  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>                                            
+                                                
+                                                <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
 
-                        <tbody>              
-                                @foreach ($ds_sv_co_vao_k_ra as $sv)
+                    <!-- Danh sách sinh viên có mặt -->
+                    @if (count($ds_sv_co_mat) != 0)
+                    <div class="table-responsive danhsach" id="sv_co_mat">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSSV</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Ngành</th>
+                                    <th>Lớp</th>
+                                    <th>Niên khóa</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                @foreach ($ds_sv_co_mat as $sv)
                                     <tr>
                                         <td>{{ $sv->MSSV }}</td>
                                         <td>{{ $sv->HOTEN }}</td>
@@ -489,313 +436,360 @@
                                         </td> 
                                     </tr>
                                 @endforeach
-                        </tbody>
-                    </table>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách sinh viên có vào không ra -->
+                    @if (count($ds_sv_co_vao_k_ra) != 0)
+                    <div class="table-responsive danhsach" id="sv_co_v_k_ra">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSSV</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Ngành</th>
+                                    <th>Lớp</th>
+                                    <th>Niên khóa</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_sv_co_vao_k_ra as $sv)
+                                        <tr>
+                                            <td>{{ $sv->MSSV }}</td>
+                                            <td>{{ $sv->HOTEN }}</td>
+                                            <td>{{ $sv->TENKHOA }}</td>
+                                            <td>{{ $sv->TENCHNGANH }}</td>
+                                            <td>{{ $sv->KYHIEULOP }}</td>
+                                            <td>{{ $sv->KHOAHOC }}</td>                        
+                                            {{--  Phần thao tác thông tin sinh viên  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>                                            
+                                                
+                                                <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách sinh viên có ra không vào -->
+                    @if (count($ds_sv_co_ra_k_vao) != 0)
+                    <div class="table-responsive danhsach" id="sv_co_ra_k_v">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSSV</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Ngành</th>
+                                    <th>Lớp</th>
+                                    <th>Niên khóa</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_sv_co_ra_k_vao as $sv)
+                                        <tr>
+                                            <td>{{ $sv->MSSV }}</td>
+                                            <td>{{ $sv->HOTEN }}</td>
+                                            <td>{{ $sv->TENKHOA }}</td>
+                                            <td>{{ $sv->TENCHNGANH }}</td>
+                                            <td>{{ $sv->KYHIEULOP }}</td>
+                                            <td>{{ $sv->KHOAHOC }}</td>                        
+                                            {{--  Phần thao tác thông tin sinh viên  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>                                            
+                                                
+                                                <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách sinh viên chưa bổ sung thông tin -->
+                    @if (count($ds_sv_chua_co_ttin) != 0)
+                    <div class="table-responsive danhsach" id="sv_chua_co_ttin">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSSV</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Ngành</th>
+                                    <th>Lớp</th>
+                                    <th>Niên khóa</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_sv_chua_co_ttin as $sv)
+                                        <tr>
+                                            <td>{{ $sv->MSSV }}</td>
+                                            <td>{{ $sv->HOTEN }}</td>
+                                            <td>{{ $sv->TENKHOA }}</td>
+                                            <td>{{ $sv->TENCHNGANH }}</td>
+                                            <td>{{ $sv->KYHIEULOP }}</td>
+                                            <td>{{ $sv->KHOAHOC }}</td>                        
+                                            {{--  Phần thao tác thông tin sinh viên  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>                                            
+                                                
+                                                <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách cán bộ vắng mặt -->
+                    @if (count($ds_cb_vang_mat) != 0)
+                    <div class="table-responsive danhsach" id="cb_vang_mat">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSCB</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Bộ môn</th>
+                                    <th>Email</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_cb_vang_mat as $canbo)
+                                        <tr>
+                                            <td>{{ $canbo->MSCB }}</td>
+                                            <td>{{ $canbo->HOTEN }}</td>
+                                            <td>{{ $canbo->TENKHOA }}</td>
+                                            <td>{{ $canbo->TENBOMON }}</td>
+                                            <td>{{ $canbo->EMAIL }}</td>
+                                                            
+                                            {{--  Phần thao tác thông tin cán bộ  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>
+
+                                                <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách cán bộ có mặt -->
+                    @if (count($ds_cb_co_mat) != 0)
+                    <div class="table-responsive danhsach" id="cb_co_mat">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSCB</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Bộ môn</th>
+                                    <th>Email</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_cb_co_mat as $canbo)
+                                        <tr>
+                                            <td>{{ $canbo->MSCB }}</td>
+                                            <td>{{ $canbo->HOTEN }}</td>
+                                            <td>{{ $canbo->TENKHOA }}</td>
+                                            <td>{{ $canbo->TENBOMON }}</td>
+                                            <td>{{ $canbo->EMAIL }}</td>
+
+                                            {{--  Phần thao tác thông tin cán bộ  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>
+
+                                                <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách cán bộ có vào không ra -->
+                    @if (count($ds_cb_co_vao_k_ra) != 0)
+                    <div class="table-responsive danhsach" id="cb_co_v_k_ra">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSCB</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Bộ môn</th>
+                                    <th>Email</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_cb_co_vao_k_ra as $canbo)
+                                        <tr>
+                                            <td>{{ $canbo->MSCB }}</td>
+                                            <td>{{ $canbo->HOTEN }}</td>
+                                            <td>{{ $canbo->TENKHOA }}</td>
+                                            <td>{{ $canbo->TENBOMON }}</td>
+                                            <td>{{ $canbo->EMAIL }}</td>
+
+                                            {{--  Phần thao tác thông tin cán bộ  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>
+
+                                                <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách cán bộ có ra không vào -->
+                    @if (count($ds_cb_co_ra_k_vao) != 0)
+                    <div class="table-responsive danhsach" id="cb_co_ra_k_v">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSCB</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Bộ môn</th>
+                                    <th>Email</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_cb_co_ra_k_vao as $canbo)
+                                        <tr>
+                                            <td>{{ $canbo->MSCB }}</td>
+                                            <td>{{ $canbo->HOTEN }}</td>
+                                            <td>{{ $canbo->TENKHOA }}</td>
+                                            <td>{{ $canbo->TENBOMON }}</td>
+                                            <td>{{ $canbo->EMAIL }}</td>
+
+                                            {{--  Phần thao tác thông tin cán bộ  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>
+
+                                                <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+
+                    <!-- Danh sách cán bộ chưa bổ sung thông tin -->
+                    @if (count($ds_cb_chua_co_ttin) != 0)
+                    <div class="table-responsive danhsach" id="cb_chua_co_ttin">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>MSCB</th>
+                                    <th>Họ tên</th>
+                                    <th>Khoa</th>
+                                    <th>Bộ môn</th>
+                                    <th>Email</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>              
+                                    @foreach ($ds_cb_chua_co_ttin as $canbo)
+                                        <tr>
+                                            <td>{{ $canbo->MSCB }}</td>
+                                            <td>{{ $canbo->HOTEN }}</td>
+                                            <td>{{ $canbo->TENKHOA }}</td>
+                                            <td>{{ $canbo->TENBOMON }}</td>
+                                            <td>{{ $canbo->EMAIL }}</td>
+
+                                            {{--  Phần thao tác thông tin cán bộ  --}}
+                                            <td>      
+                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                    Sửa kết quả
+                                                </a>
+
+                                                <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                    Sửa thông tin
+                                                </a>
+                                            </td> 
+                                        </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
                 </div>
-                @endif
-
-                <!-- Danh sách sinh viên có ra không vào -->
-                @if (count($ds_sv_co_ra_k_vao) != 0)
-                <div class="table-responsive danhsach" id="sv_co_ra_k_v">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSSV</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Ngành</th>
-                                <th>Lớp</th>
-                                <th>Niên khóa</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_sv_co_ra_k_vao as $sv)
-                                    <tr>
-                                        <td>{{ $sv->MSSV }}</td>
-                                        <td>{{ $sv->HOTEN }}</td>
-                                        <td>{{ $sv->TENKHOA }}</td>
-                                        <td>{{ $sv->TENCHNGANH }}</td>
-                                        <td>{{ $sv->KYHIEULOP }}</td>
-                                        <td>{{ $sv->KHOAHOC }}</td>                        
-                                        {{--  Phần thao tác thông tin sinh viên  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>                                            
-                                            
-                                            <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
                 </div>
-                @endif
-
-                <!-- Danh sách sinh viên chưa bổ sung thông tin -->
-                @if (count($ds_sv_chua_co_ttin) != 0)
-                <div class="table-responsive danhsach" id="sv_chua_co_ttin">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSSV</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Ngành</th>
-                                <th>Lớp</th>
-                                <th>Niên khóa</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_sv_chua_co_ttin as $sv)
-                                    <tr>
-                                        <td>{{ $sv->MSSV }}</td>
-                                        <td>{{ $sv->HOTEN }}</td>
-                                        <td>{{ $sv->TENKHOA }}</td>
-                                        <td>{{ $sv->TENCHNGANH }}</td>
-                                        <td>{{ $sv->KYHIEULOP }}</td>
-                                        <td>{{ $sv->KHOAHOC }}</td>                        
-                                        {{--  Phần thao tác thông tin sinh viên  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>                                            
-                                            
-                                            <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
-
-                <!-- Danh sách cán bộ vắng mặt -->
-                @if (count($ds_cb_vang_mat) != 0)
-                <div class="table-responsive danhsach" id="cb_vang_mat">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSCB</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Bộ môn</th>
-                                <th>Email</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_cb_vang_mat as $canbo)
-                                    <tr>
-                                        <td>{{ $canbo->MSCB }}</td>
-                                        <td>{{ $canbo->HOTEN }}</td>
-                                        <td>{{ $canbo->TENKHOA }}</td>
-                                        <td>{{ $canbo->TENBOMON }}</td>
-                                        <td>{{ $canbo->EMAIL }}</td>
-                                                          
-                                        {{--  Phần thao tác thông tin cán bộ  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>
-
-                                            <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
-
-                <!-- Danh sách cán bộ có mặt -->
-                @if (count($ds_cb_co_mat) != 0)
-                <div class="table-responsive danhsach" id="cb_co_mat">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSCB</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Bộ môn</th>
-                                <th>Email</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_cb_co_mat as $canbo)
-                                    <tr>
-                                        <td>{{ $canbo->MSCB }}</td>
-                                        <td>{{ $canbo->HOTEN }}</td>
-                                        <td>{{ $canbo->TENKHOA }}</td>
-                                        <td>{{ $canbo->TENBOMON }}</td>
-                                        <td>{{ $canbo->EMAIL }}</td>
-
-                                        {{--  Phần thao tác thông tin cán bộ  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>
-
-                                            <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
-
-                <!-- Danh sách cán bộ có vào không ra -->
-                @if (count($ds_cb_co_vao_k_ra) != 0)
-                <div class="table-responsive danhsach" id="cb_co_v_k_ra">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSCB</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Bộ môn</th>
-                                <th>Email</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_cb_co_vao_k_ra as $canbo)
-                                    <tr>
-                                        <td>{{ $canbo->MSCB }}</td>
-                                        <td>{{ $canbo->HOTEN }}</td>
-                                        <td>{{ $canbo->TENKHOA }}</td>
-                                        <td>{{ $canbo->TENBOMON }}</td>
-                                        <td>{{ $canbo->EMAIL }}</td>
-
-                                        {{--  Phần thao tác thông tin cán bộ  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>
-
-                                            <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
-
-                <!-- Danh sách cán bộ có ra không vào -->
-                @if (count($ds_cb_co_ra_k_vao) != 0)
-                <div class="table-responsive danhsach" id="cb_co_ra_k_v">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSCB</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Bộ môn</th>
-                                <th>Email</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_cb_co_ra_k_vao as $canbo)
-                                    <tr>
-                                        <td>{{ $canbo->MSCB }}</td>
-                                        <td>{{ $canbo->HOTEN }}</td>
-                                        <td>{{ $canbo->TENKHOA }}</td>
-                                        <td>{{ $canbo->TENBOMON }}</td>
-                                        <td>{{ $canbo->EMAIL }}</td>
-
-                                        {{--  Phần thao tác thông tin cán bộ  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>
-
-                                            <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
-
-                <!-- Danh sách cán bộ chưa bổ sung thông tin -->
-                @if (count($ds_cb_chua_co_ttin) != 0)
-                <div class="table-responsive danhsach" id="cb_chua_co_ttin">
-                    <table class="table table-hover table-bordered" style="background-color: white">
-                        <thead>
-                            <tr>
-                                <th>MSCB</th>
-                                <th>Họ tên</th>
-                                <th>Khoa</th>
-                                <th>Bộ môn</th>
-                                <th>Email</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>              
-                                @foreach ($ds_cb_chua_co_ttin as $canbo)
-                                    <tr>
-                                        <td>{{ $canbo->MSCB }}</td>
-                                        <td>{{ $canbo->HOTEN }}</td>
-                                        <td>{{ $canbo->TENKHOA }}</td>
-                                        <td>{{ $canbo->TENBOMON }}</td>
-                                        <td>{{ $canbo->EMAIL }}</td>
-
-                                        {{--  Phần thao tác thông tin cán bộ  --}}
-                                        <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                Sửa kết quả
-                                            </a>
-
-                                            <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                                Sửa thông tin
-                                            </a>
-                                        </td> 
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                @endif
             </div>
         @endif
     </div>

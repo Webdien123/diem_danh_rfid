@@ -43,13 +43,19 @@ function drawChart2() {
         if (selectedItem) {
             var topping = data.getValue(selectedItem.row, 0);
             if(topping == "Có vào không ra"){
-                HienDanhSach("sv_co_v_k_ra");
+                $("#sel1").val("sv_co_v_k_ra");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_co_v_k_ra", ten_ds);
             }
             if(topping == "Có ra không vào"){
-                HienDanhSach("sv_co_ra_k_v");
+                $("#sel1").val("sv_co_ra_k_v");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_co_ra_k_v", ten_ds);
             }
             if(topping == "Chưa bổ sung thông tin"){
-                HienDanhSach("sv_chua_co_ttin");
+                $("#sel1").val("sv_chua_co_ttin");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_chua_co_ttin", ten_ds);
             }
         }
     }
