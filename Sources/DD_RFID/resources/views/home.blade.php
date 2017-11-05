@@ -85,7 +85,6 @@
                                     console.log(response);
                                 },
                                 error: function(xhr,err){
-                                    alert("Xảy ra lỗi khi thống kê kết quả");
                                     console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
                                 }
                             });

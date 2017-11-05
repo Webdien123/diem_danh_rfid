@@ -6,6 +6,8 @@ function drawChart1() {
         ['Loai_diem_danh', 'So_luong'],
         ['Có mặt', parseInt(sv_co_mat)],
         ['Vắng mặt', parseInt(sv_vang_mat)],
+        ['Có vào không ra', parseInt(sv_co_vao_k_ra)],
+        ['Có ra không vào', parseInt(sv_co_ra_k_vao)]
     ]);
 
     var options = {
@@ -50,6 +52,16 @@ function drawChart1() {
                 $("#sel1").val("sv_vang_mat");
                 var ten_ds = $('#sel1').find(":selected").text();
                 HienDanhSach("sv_vang_mat", ten_ds, sv_vang_mat);
+            }
+            if(topping == "Có vào không ra"){
+                $("#sel1").val("sv_co_v_k_ra");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_co_v_k_ra", ten_ds);
+            }
+            if(topping == "Có ra không vào"){
+                $("#sel1").val("sv_co_ra_k_v");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("sv_co_ra_k_v", ten_ds);
             }
         }
     }

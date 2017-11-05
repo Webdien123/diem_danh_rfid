@@ -6,110 +6,6 @@
 
 @section('chart')
 
-    {{--  Nhận giá trị các số liệu thống kê  --}}
-    <?php    
-
-        $sv_co_mat;
-        $sv_vang_mat;
-        $sv_co_vao_k_ra;
-        $sv_co_ra_k_vao;
-        $sv_k_co_ttin;
-
-        $cb_co_mat;
-        $cb_vang_mat;
-        $cb_co_vao_k_ra;
-        $cb_co_ra_k_vao;
-        $cb_k_co_ttin;
-
-        foreach ($kq_thke as $key => $value) {
-            if($value->MALOAIDS == 1){
-                $sv_co_mat = $value->SOLUONGSV;
-                $cb_co_mat = $value->SOLUONGCB;
-            }
-            if($value->MALOAIDS == 2){
-                $sv_vang_mat = $value->SOLUONGSV;
-                $cb_vang_mat = $value->SOLUONGCB;
-            }
-            if($value->MALOAIDS == 3){
-                $sv_co_vao_k_ra = $value->SOLUONGSV;
-                $cb_co_vao_k_ra = $value->SOLUONGCB;
-            }
-            if($value->MALOAIDS == 4){
-                $sv_co_ra_k_vao = $value->SOLUONGSV;
-                $cb_co_ra_k_vao = $value->SOLUONGCB;
-            }
-            if($value->MALOAIDS == 7){
-                $sv_k_co_ttin = $value->SOLUONGSV;
-                $cb_k_co_ttin = $value->SOLUONGCB;
-            }
-        }
-    ?>
-
-    {{--  Chuuyển các giá trị sang js  --}}
-    <script type="text/javascript">
-        var sv_co_mat = "{{ $sv_co_mat }}";
-        var sv_vang_mat = "{{ $sv_vang_mat }}";
-        var sv_co_vao_k_ra = "{{ $sv_co_vao_k_ra }}";
-        var sv_co_ra_k_vao = "{{ $sv_co_ra_k_vao }}";
-        var sv_k_co_ttin = "{{ $sv_k_co_ttin }}";
-        var cb_co_mat = "{{ $cb_co_mat }}";
-        var cb_vang_mat = "{{ $cb_vang_mat }}";
-        var cb_co_vao_k_ra = "{{ $cb_co_vao_k_ra }}";
-        var cb_co_ra_k_vao = "{{ $cb_co_ra_k_vao }}";
-        var cb_k_co_ttin = "{{ $cb_k_co_ttin }}";
-    </script>
-
-    {{--  Script lấy phần danh sách cần hiển thị theo danh sách đã click hoặc đã chọn  --}}
-    <script src="{{ asset('js/hien_danh_sach_ddanh.js') }}"></script>
-
-    <!--Load the GOOGLE CHART API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <!-- Tạo biểu đồ điểm danh sinh viên lên id piechart1-->
-    <script type="text/javascript" src="{{ asset('js/student_chart.js') }}"></script>
-
-    <!-- Tạo biểu đồ số liệu bất thường sinh viên lên id piechart2-->
-    <script type="text/javascript" src="{{ asset('js/exc_student_chart.js') }}"></script>
-
-    <!-- Tạo biểu đồ điểm danh cán bộ lên id piechart3-->
-    <script type="text/javascript" src="{{ asset('js/teacher_chart.js') }}"></script>
-
-    <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
-    <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
-
-    <!-- Auto resize các biểu độ -->
-    <script>
-        $(window).resize(function(){
-            drawChart1();
-            drawChart2();
-            drawChart3();
-            drawChart4();            
-        });
-    </script>
-
-    {{--  Tìm kiếm thông tin --}}
-    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-        <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
-            {{ csrf_field() }}
-            <b>Tìm kiếm:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-            <button type="submit" class="btn btn-info">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                Tìm
-            </button>
-        </form>
-
-        <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
-            {{ csrf_field() }}
-            <b>Tìm kiếm:</b>
-            <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-            <button type="submit" class="btn btn-info">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                Tìm
-            </button>
-        </form>
-    </div>
-
     {{--  Nội dung trang thống kê  --}}
     <div class="col-xs-12">
         {{--  Tìm kiếm thông tin tổng hợp  --}}
@@ -128,6 +24,109 @@
                 </div>
             </div>
         @else
+            {{--  Nhận giá trị các số liệu thống kê  --}}
+            <?php
+                $sv_co_mat;
+                $sv_vang_mat;
+                $sv_co_vao_k_ra;
+                $sv_co_ra_k_vao;
+                $sv_k_co_ttin;
+
+                $cb_co_mat;
+                $cb_vang_mat;
+                $cb_co_vao_k_ra;
+                $cb_co_ra_k_vao;
+                $cb_k_co_ttin;
+
+                foreach ($kq_thke as $key => $value) {
+                    if($value->MALOAIDS == 1){
+                        $sv_co_mat = $value->SOLUONGSV;
+                        $cb_co_mat = $value->SOLUONGCB;
+                    }
+                    if($value->MALOAIDS == 2){
+                        $sv_vang_mat = $value->SOLUONGSV;
+                        $cb_vang_mat = $value->SOLUONGCB;
+                    }
+                    if($value->MALOAIDS == 3){
+                        $sv_co_vao_k_ra = $value->SOLUONGSV;
+                        $cb_co_vao_k_ra = $value->SOLUONGCB;
+                    }
+                    if($value->MALOAIDS == 4){
+                        $sv_co_ra_k_vao = $value->SOLUONGSV;
+                        $cb_co_ra_k_vao = $value->SOLUONGCB;
+                    }
+                    if($value->MALOAIDS == 7){
+                        $sv_k_co_ttin = $value->SOLUONGSV;
+                        $cb_k_co_ttin = $value->SOLUONGCB;
+                    }
+                }
+            ?>
+
+            {{--  Chuuyển các giá trị sang js  --}}
+            <script type="text/javascript">
+                var sv_co_mat = "{{ $sv_co_mat }}";
+                var sv_vang_mat = "{{ $sv_vang_mat }}";
+                var sv_co_vao_k_ra = "{{ $sv_co_vao_k_ra }}";
+                var sv_co_ra_k_vao = "{{ $sv_co_ra_k_vao }}";
+                var sv_k_co_ttin = "{{ $sv_k_co_ttin }}";
+                var cb_co_mat = "{{ $cb_co_mat }}";
+                var cb_vang_mat = "{{ $cb_vang_mat }}";
+                var cb_co_vao_k_ra = "{{ $cb_co_vao_k_ra }}";
+                var cb_co_ra_k_vao = "{{ $cb_co_ra_k_vao }}";
+                var cb_k_co_ttin = "{{ $cb_k_co_ttin }}";
+            </script>
+
+            {{--  Script lấy phần danh sách cần hiển thị theo danh sách đã click hoặc đã chọn  --}}
+            <script src="{{ asset('js/hien_danh_sach_ddanh.js') }}"></script>
+
+            <!--Load the GOOGLE CHART API-->
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+            <!-- Tạo biểu đồ điểm danh sinh viên lên id piechart1-->
+            <script type="text/javascript" src="{{ asset('js/student_chart.js') }}"></script>
+
+            <!-- Tạo biểu đồ số liệu bất thường sinh viên lên id piechart2-->
+            <script type="text/javascript" src="{{ asset('js/exc_student_chart.js') }}"></script>
+
+            <!-- Tạo biểu đồ điểm danh cán bộ lên id piechart3-->
+            <script type="text/javascript" src="{{ asset('js/teacher_chart.js') }}"></script>
+
+            <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
+            <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
+
+            <!-- Auto resize các biểu độ -->
+            <script>
+                $(window).resize(function(){
+                    drawChart1();
+                    drawChart2();
+                    drawChart3();
+                    drawChart4();            
+                });
+            </script>
+
+            {{--  Tìm kiếm thông tin --}}
+            <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+                <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
+                    {{ csrf_field() }}
+                    <b>Tìm kiếm:</b>
+                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Tìm
+                    </button>
+                </form>
+
+                <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
+                    {{ csrf_field() }}
+                    <b>Tìm kiếm:</b>
+                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Tìm
+                    </button>
+                </form>
+            </div>
+
             <!-- Phần nội dung khi có kết quả thống kế -->
             <div class="container-fluid">
                 
@@ -152,7 +151,7 @@
                                             </tr>
                                             <tr>
                                                 {{--  Nút chuyển sự kiện hiển thị  --}}
-                                                <td colspan="2">                                                
+                                                <td colspan="2">
                                                     <a class="btn btn-primary btn-block" data-toggle="modal" href='#modal-id-sk'>
                                                         <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                                                         Đổi sự kiện
@@ -162,54 +161,39 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    <h4 class="modal-title">Đổi sự kiện (10 sự kiện gần nhất)</h4>
+                                                                    <h4 class="modal-title">Đổi sự kiện</h4>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     
-                                                                    <form action="#" id="form_id_sk">
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio" checked>Ngày hội việc làm 1</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 2</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 3</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 4</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 5</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 6</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 7</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 8</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 9</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="optradio">Ngày hội việc làm 10</label>
-                                                                        </div>
-                                                                        
+                                                                    {{--  Form đổi sự kiện hiển thị  --}}
+                                                                    <form action="{{ route('chart_old') }}" method="POST" id="form_id_sk">
+                                                                        {{ csrf_field() }}
+                                                                        @foreach ($sukien_old as $key=>$value)                                                                            
+                                                                            @if ($key == 0)
+                                                                                <div class="radio">
+                                                                                    <label><input type="radio" name="op_sk" checked value="{{ $value->MASK }}">
+                                                                                        {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
+                                                                                    </label>
+                                                                                </div>
+                                                                            @else
+                                                                                <div class="radio">
+                                                                                    <label><input type="radio" name="op_sk" value="{{ $value->MASK }}">
+                                                                                        {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
+                                                                                    </label>
+                                                                                </div>
+                                                                            @endif                                                                            
+                                                                        @endforeach
+
+                                                                        <button type="submit" class="btn btn-primary">
+                                                                            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                                                            Chuyển sự kiện
+                                                                        </button>
+
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                                            <i class="fa fa-window-close" aria-hidden="true"></i>
+                                                                            Đóng
+                                                                        </button>                                                                  
                                                                     </form>
-                                                                    
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                                        <i class="fa fa-window-close" aria-hidden="true"></i>
-                                                                        Đóng
-                                                                    </button>
-                                                                    <button type="submit" class="btn btn-primary" form="form_id_sk">
-                                                                        <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                                                                        Chuyển sự kiện
-                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -29,7 +29,9 @@ class ThongKeDiemDanh extends Model
     {
         try{
             $sukien_gannhat = \DB::select(
-                'SELECT * FROM sukien 
+                'SELECT MASK, MATTHAI, TENSK, DATE_FORMAT(NGTHUCHIEN, "%m/%d/%Y") AS NGTHUCHIEN
+                , DIADIEM, DDVAO, DDRA, TGIANDDRA
+                FROM sukien 
                 WHERE MATTHAI = 4 
                 ORDER BY NGTHUCHIEN DESC, 
                 DDRA DESC, 
@@ -182,5 +184,17 @@ class ThongKeDiemDanh extends Model
         
         return $dsach;
         
+    }
+
+    // Lấy danh sách 10 sự kiện đã điểm danh gần đây.
+    public static function LaySuKienDaDD()
+    {   
+        try{
+            $ds_sukien = \DB::select('SELECT MASK, TENSK, DATE_FORMAT(NGTHUCHIEN, "%m/%d/%Y") AS NGTHUCHIEN , DIADIEM FROM sukien WHERE MATTHAI = 4 LIMIT 10');
+            return $ds_sukien;
+        }
+        catch(\Exception $e){
+            return null;
+        }
     }
 }

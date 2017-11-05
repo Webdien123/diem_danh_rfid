@@ -4,7 +4,9 @@ function drawChart3() {
     var data = google.visualization.arrayToDataTable([
         ['Loai_diem_danh', 'So_luong'],
         ['Có mặt', parseInt(cb_co_mat)],
-        ['Vắng mặt', parseInt(cb_vang_mat)]
+        ['Vắng mặt', parseInt(cb_vang_mat)],
+        ['Có vào không ra', parseInt(cb_co_vao_k_ra)],
+        ['Có ra không vào', parseInt(cb_co_ra_k_vao)]
     ]);
 
     var options = {
@@ -50,6 +52,16 @@ function drawChart3() {
                 $("#sel1").val("cb_vang_mat");
                 var ten_ds = $('#sel1').find(":selected").text();
                 HienDanhSach("cb_vang_mat", ten_ds);
+            }
+            if(topping == "Có vào không ra"){
+                $("#sel1").val("cb_co_v_k_ra");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("cb_co_v_k_ra", ten_ds);
+            }
+            if(topping == "Có ra không vào"){
+                $("#sel1").val("cb_co_ra_k_v");
+                var ten_ds = $('#sel1').find(":selected").text();
+                HienDanhSach("cb_co_ra_k_v", ten_ds);
             }
         }
     }

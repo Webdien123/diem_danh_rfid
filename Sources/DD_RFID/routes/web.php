@@ -128,9 +128,8 @@ Route::post('diemdanh_kgdangki', "DiemDanhController@DDanhKhongDangKy");
 // Xử lý thống kê số liệu.
 Route::get('thongkesolieu/{mask}', "ThongKeController@ThongKeSoLieu");
 
-// Lấy danh sách điểm danh sinh viên theo mã sự kiện và loại danh sách.
-Route::get('danhsachcb/{mask}/{ten_loaids}', "ThongKeController@LayDS_CB");
-Route::get('danhsachsv/{mask}/{ten_loaids}', "ThongKeController@LayDS_SV");
+// Lấy trang thống kê của các sự kiện cũ.
+Route::post('chart_old', "ThongKeController@GetPageThongKe_Old")->name("chart_old");
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
@@ -144,4 +143,4 @@ Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 |
 */
 // Route thử nghiệm
-Route::get('abc/{mscb}/{mask}/{loaids_moi}', "DiemDanhController@KiemTraDKySK");
+Route::get('ketquask', "ThongKeController@LaySuKienDaDD");

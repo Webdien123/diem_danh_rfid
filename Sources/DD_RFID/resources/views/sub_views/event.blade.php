@@ -193,7 +193,7 @@
                     <tr>
                         <td>{{ $sk->MASK }}</td>            
                         <td>{{ $sk->TENSK }}</td>
-                        <td>{{ $sk->NGTHUCHIEN }}</td>
+                        <td>{{ date("d-m-Y", strtotime($sk->NGTHUCHIEN)) }}</td>
                         <td>{{ $sk->DIADIEM }}</td>
                         <td>{{ $sk->DDVAO }}</td>
                         <td>{{ $sk->DDRA }} - {{ $sk->TGIANDDRA }} phút</td>
