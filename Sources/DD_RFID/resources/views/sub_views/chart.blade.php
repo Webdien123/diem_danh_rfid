@@ -540,12 +540,7 @@
                                             <td>{{ $sv->KYHIEULOP }}</td>
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
-                                            <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                    Sửa kết quả
-                                                </a>                                            
-                                                
+                                            <td>                                                
                                                 <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
@@ -755,12 +750,7 @@
                                             <td>{{ $canbo->EMAIL }}</td>
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
-                                            <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
-                                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                                    Sửa kết quả
-                                                </a>
-
+                                            <td>
                                                 <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin

@@ -148,7 +148,7 @@
                             <input type="file" class="form-control" name="im_file" id="im_file">
                         </div>
 
-                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.csv">
+                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
                             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                             tải file đăng ký mẫu
                         </a>
@@ -200,7 +200,6 @@
 
                         {{--  Phần hiển thị chức năng tùy vào trạng thái sự kiện  --}}
                         <td>
-
                             {{--  Nếu trạng thái là 1  --}}
                             @if ($sk->MATTHAI == '1')
                                 <b class="text-danger">Chưa có danh sách đăng ký<b>                            
@@ -233,10 +232,11 @@
 
                             {{--  Nếu trạng thái là 4  --}}
                             @if ($sk->MATTHAI == '4')
-
-                                <b class="text-success">
+                                <p class="text-success"><b>Hoàn thành điểm danh</b></p>
+                                <a class="btn btn-success" href="/chart_old/{{ $sk->MASK }}" role="button">
+                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                     Xem kết quả
-                                <b>
+                                </a>
                             @endif
 
 

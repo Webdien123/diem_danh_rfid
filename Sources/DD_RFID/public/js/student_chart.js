@@ -56,12 +56,12 @@ function drawChart1() {
             if(topping == "Có vào không ra"){
                 $("#sel1").val("sv_co_v_k_ra");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("sv_co_v_k_ra", ten_ds);
+                HienDanhSach("sv_co_v_k_ra", ten_ds, sv_co_vao_k_ra);
             }
             if(topping == "Có ra không vào"){
                 $("#sel1").val("sv_co_ra_k_v");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("sv_co_ra_k_v", ten_ds);
+                HienDanhSach("sv_co_ra_k_v", ten_ds, sv_co_ra_k_vao);
             }
         }
     }

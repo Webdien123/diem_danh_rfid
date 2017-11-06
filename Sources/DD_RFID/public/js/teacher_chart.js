@@ -46,22 +46,22 @@ function drawChart3() {
             if(topping == "Có mặt"){
                 $("#sel1").val("cb_co_mat");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("cb_co_mat", ten_ds);
+                HienDanhSach("cb_co_mat", ten_ds, cb_co_mat);
             }
             if(topping == "Vắng mặt"){
                 $("#sel1").val("cb_vang_mat");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("cb_vang_mat", ten_ds);
+                HienDanhSach("cb_vang_mat", ten_ds, cb_vang_mat);
             }
             if(topping == "Có vào không ra"){
                 $("#sel1").val("cb_co_v_k_ra");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("cb_co_v_k_ra", ten_ds);
+                HienDanhSach("cb_co_v_k_ra", ten_ds, cb_co_vao_k_ra);
             }
             if(topping == "Có ra không vào"){
                 $("#sel1").val("cb_co_ra_k_v");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("cb_co_ra_k_v", ten_ds);
+                HienDanhSach("cb_co_ra_k_v", ten_ds, cb_co_ra_k_vao);
             }
         }
     }

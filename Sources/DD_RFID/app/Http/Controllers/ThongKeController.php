@@ -188,7 +188,7 @@ class ThongKeController extends Controller
         $mask = $R->op_sk;
 
         // Lấy sự kiện đã điểm danh gần nhất.
-        $sukien_gannhat = ThongKeDiemDanh::LaySK_GanNhat();
+        $sukien_gannhat = SuKien::GetSK($mask);
         
         if ($sukien_gannhat != null) {
             
@@ -254,8 +254,77 @@ class ThongKeController extends Controller
                 'sukien' => null
             ]);
         }
+    }
 
-        var_dump($ketqua_thke);
+    public function GetPageThongKe_Old_GET($mask)
+    {
+        // Lấy sự kiện đã điểm danh gần nhất.
+        $sukien_gannhat = SuKien::GetSK($mask);
+        
+        if ($sukien_gannhat != null) {
+            
+            $sukien_gannhat = $sukien_gannhat[0];
+
+            // Lấy danh sách 10 sự kiện cũ đã điểm danh gần đây.
+            $sukien_old = ThongKeDiemDanh::LaySuKienDaDD();
+
+            // Lấy kết quả điểm danh của sự kiện.
+            $ketqua_thke = ThongKeDiemDanh::LayKetQuaThKe($sukien_gannhat->MASK);
+            
+            // Lấy mã sự kiện.
+            $mask = $sukien_gannhat->MASK;
+
+            // Lấy danh sách sinh viên vắng mặt. 
+            $ds_sv_vang_mat = ThongKeDiemDanh::LayDS_SV($mask, "vangmat");
+
+            // Lấy danh sách sinh viên có mặt. 
+            $ds_sv_co_mat = ThongKeDiemDanh::LayDS_SV($mask, "comat");
+
+            // Lấy danh sách sinh viên có vào không ra. 
+            $ds_sv_co_vao_k_ra = ThongKeDiemDanh::LayDS_SV($mask, "covaokra");
+
+            // Lấy danh sách sinh viên có ra không vào. 
+            $ds_sv_co_ra_k_vao = ThongKeDiemDanh::LayDS_SV($mask, "corakvao");
+
+            // Lấy danh sách sinh viên chưa bổ sung thông tin.
+            $ds_sv_chua_co_ttin = ThongKeDiemDanh::LayDS_SV($mask, "chuattin");
+
+            // Lấy danh sách cán bộ vắng mặt. 
+            $ds_cb_vang_mat = ThongKeDiemDanh::LayDS_CB($mask, "vangmat");
+
+            // Lấy danh sách cán bộ có mặt. 
+            $ds_cb_co_mat = ThongKeDiemDanh::LayDS_CB($mask, "comat");
+
+            // Lấy danh sách cán bộ có vào không ra. 
+            $ds_cb_co_vao_k_ra = ThongKeDiemDanh::LayDS_CB($mask, "covaokra");
+            
+            // Lấy danh sách cán bộ có ra không vào. 
+            $ds_cb_co_ra_k_vao = ThongKeDiemDanh::LayDS_CB($mask, "corakvao");
+
+            // Lấy danh sách cán bộ chưa bổ sung thông tin.
+            $ds_cb_chua_co_ttin = ThongKeDiemDanh::LayDS_CB($mask, "chuattin");
+
+            return view("sub_views.chart", [
+                'sukien' => $sukien_gannhat,
+                'sukien_old' => $sukien_old,
+                'kq_thke' => $ketqua_thke,
+                'ds_sv_vang_mat' => $ds_sv_vang_mat,
+                'ds_sv_co_mat' => $ds_sv_co_mat,
+                'ds_sv_co_vao_k_ra' => $ds_sv_co_vao_k_ra,
+                'ds_sv_co_ra_k_vao' => $ds_sv_co_ra_k_vao,
+                'ds_sv_chua_co_ttin' => $ds_sv_chua_co_ttin,
+                'ds_cb_vang_mat' => $ds_cb_vang_mat,
+                'ds_cb_co_mat' => $ds_cb_co_mat,
+                'ds_cb_co_vao_k_ra' => $ds_cb_co_vao_k_ra,
+                'ds_cb_co_ra_k_vao' => $ds_cb_co_ra_k_vao,
+                'ds_cb_chua_co_ttin' => $ds_cb_chua_co_ttin
+            ]);
+        }
+        else {
+            return view("sub_views.chart", [
+                'sukien' => null
+            ]);
+        }
     }
 
     // Lấy danh sách sinh viên theo loại danh sách điểm danh và mã sự kiện.
