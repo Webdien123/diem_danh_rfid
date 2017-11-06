@@ -7,10 +7,12 @@ function HienDanhSach(id_ds, ten_ds, so_luong_ds) {
     $("#so_luong_ds").text(so_luong_ds);
     var ki_tu = id_ds.substring(0, 2);
     if (ki_tu == "sv") {
-        $("#loai_ds").text("sinh viên");
+        $(".loai_ds").text("sinh viên");
+        $("#loai_ng_chuyen").val("sv");
     }
     if (ki_tu == "cb") {
-        $("#loai_ds").text("cán bộ");
+        $(".loai_ds").text("cán bộ");
+        $("#loai_ng_chuyen").val("cb");
     }
 }
 

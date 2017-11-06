@@ -9,6 +9,7 @@ use App\KyHieuLop;
 use App\KhoaHoc;
 use App\DiemDanhCB;
 use App\DiemDanhSV;
+use App\ThongKeDiemDanh;
 
 class EventController extends Controller
 {
@@ -265,12 +266,13 @@ class EventController extends Controller
             // Xóa kết quả điểm danh của sự kiện từ sinh viên và cán bộ
             $ketqua_dd_cb = DiemDanhCB::DeleteDangky_SK($mssk);
             $ketqua_dd_sv = DiemDanhSV::DeleteDangky_SK($mssk);
+            $ketqua_thke = ThongKeDiemDanh::DeleteThKe($mssk);
 
             // Xóa thông tin sự kiện.
             $ketqua_sk = SuKien::DeleteSK($mssk);
 
             // Tính kết quả tổng hợp.
-            $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv) ? true : false;
+            $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv && $ketqua_thke) ? true : false;
 
             if ($ketqua)
                 return redirect()->route('event');

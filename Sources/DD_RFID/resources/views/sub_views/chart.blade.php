@@ -142,12 +142,16 @@
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <th>Sự kiện</th>
+                                                <th>Mã sự kiện</th>
+                                                <td class="lead">{{ $sukien->MASK }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tên sự kiện</th>
                                                 <td class="lead">{{ $sukien->TENSK }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Ngày thực hiện</th>
-                                                <td>{{ $sukien->NGTHUCHIEN }}</td>
+                                                <td class="lead">{{ date("d-m-Y", strtotime($sukien->NGTHUCHIEN)) }}</td>
                                             </tr>
                                             <tr>
                                                 {{--  Nút chuyển sự kiện hiển thị  --}}
@@ -228,7 +232,7 @@
                     Danh sách 
                     <span id="ten_ds">sinh viên vắng mặt</span>(
                     <span id="so_luong_ds">7</span>
-                    <span id="loai_ds">sinh viên</span> )
+                    <span class="loai_ds">sinh viên</span> )
                 </h2></center>
 
                 {{--  Phần xuất danh sách, chọn danh sách thống kê khác và tìm kiếm thông tin  --}}
@@ -304,23 +308,33 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">
                                         Sửa kết quả
-                                        <span>sinh viên</span>
+                                        <span class="loai_ds">sinh viên</span>
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/" id="form_id_ds">
+                                    {{--  Form chuyển danh sách  --}}
+                                    <form action="{{ route('chuyenDS') }}" method="POST" id="form_id_ds">
+                                        {{ csrf_field() }}
+
+                                        {{--  Phần radio chọn loại danh sách cần chuyển  --}}
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio" checked>Có mặt</label>
+                                            <label><input type="radio" name="optradio" value="co_mat" checked>Có mặt</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio">Vắng mặt</label>
+                                            <label><input type="radio" name="optradio" value="vang_mat">Vắng mặt</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio">Có vào không ra</label>
+                                            <label><input type="radio" name="optradio" value="co_v_k_r">Có vào không ra</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio">Có ra không vào</label>
-                                        </div>                                                        
+                                            <label><input type="radio" name="optradio" value="co_r_k_v">Có ra không vào</label>
+                                        </div>
+                                        
+                                        {{--  Phần input ẩn chứa mã sự kiện và mã người cần chuyển danh sách  --}}   
+                                        <input type="hidden" name="mask" value="{{ $sukien->MASK }}">
+                                        <input type="hidden" name="ma_ng_chuyen" id="ma_ng_chuyen">
+                                        <input type="hidden" name="ds_hien_tai" id="ds_hien_tai">
+                                        <input type="hidden" name="loai_ng_chuyen" id="loai_ng_chuyen">
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -364,7 +378,7 @@
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>                                            
@@ -408,7 +422,7 @@
                                         <td>{{ $sv->KHOAHOC }}</td>                        
                                         {{--  Phần thao tác thông tin sinh viên  --}}
                                         <td>      
-                                            <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                            <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                 Sửa kết quả
                                             </a>                                            
@@ -453,7 +467,7 @@
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>                                            
@@ -497,7 +511,7 @@
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>                                            
@@ -579,7 +593,7 @@
                                                             
                                             {{--  Phần thao tác thông tin cán bộ  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>
@@ -622,7 +636,7 @@
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>
@@ -665,7 +679,7 @@
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>
@@ -708,7 +722,7 @@
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
                                             <td>      
-                                                <a class="btn btn-info" data-toggle="modal" href='#modal-id-ds'>
+                                                <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
                                                 </a>
@@ -762,6 +776,13 @@
                         </table>
                     </div>
                     @endif
+
+                    <script>
+                        function HienTTinNguoiChuyen(ma_so, ds) {
+                            $("#ma_ng_chuyen").val(ma_so);
+                            $("#ds_hien_tai").val(ds);
+                        }
+                    </script>
                 </div>
                 </div>
             </div>

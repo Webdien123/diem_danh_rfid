@@ -130,7 +130,11 @@ Route::get('thongkesolieu/{mask}', "ThongKeController@ThongKeSoLieu");
 
 // Lấy trang thống kê của các sự kiện cũ.
 Route::post('chart_old', "ThongKeController@GetPageThongKe_Old")->name("chart_old");
-Route::get('chart_old/{mask}', "ThongKeController@GetPageThongKe_Old_GET");
+Route::get('chart_old/{mask}', "ThongKeController@GetPageThongKe_Old_GET")->name("chart_old_get");
+
+// Thay đổi kết quả điểm danh.
+Route::post('chuyendanhsach', "ThongKeController@ChuyenDanhSach")->name("chuyenDS");
+
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');

@@ -29,7 +29,7 @@ class ThongKeDiemDanh extends Model
     {
         try{
             $sukien_gannhat = \DB::select(
-                'SELECT MASK, MATTHAI, TENSK, DATE_FORMAT(NGTHUCHIEN, "%m/%d/%Y") AS NGTHUCHIEN
+                'SELECT MASK, MATTHAI, TENSK, NGTHUCHIEN
                 , DIADIEM, DDVAO, DDRA, TGIANDDRA
                 FROM sukien 
                 WHERE MATTHAI = 4 
@@ -195,6 +195,121 @@ class ThongKeDiemDanh extends Model
         }
         catch(\Exception $e){
             return null;
+        }
+    }
+
+    // Đổi danh sách điểm danh sang danh sách cần thiết.
+    public static function DoiDS($mask, $ma_ng_chuyen, $ds_can_chuyen, $ds_hien_tai, $loai_ng_chuyen)
+    {        
+        if ($loai_ng_chuyen == "sv") {
+            $kq = DiemDanhSV::CapNhatDSachDD($ma_ng_chuyen, $mask, $ds_can_chuyen);
+        }
+        if ($loai_ng_chuyen == "cb") {
+            $kq = DiemDanhCB::CapNhatDSachDD($ma_ng_chuyen, $mask, $ds_can_chuyen);
+        }
+        return $kq;
+    }
+
+    public static function CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai)
+    {
+        if ($loai_ng_chuyen == "sv") {
+            try {
+                \DB::update(
+                    'UPDATE thongkediemdanh SET SOLUONGSV = SOLUONGSV - 1 
+                    WHERE MASK = ? AND MALOAIDS = ?', [$mask, $ds_hien_tai]);
+            
+                \DB::update(
+                    'UPDATE thongkediemdanh SET SOLUONGSV = SOLUONGSV + 1 
+                    WHERE MASK = ? AND MALOAIDS = ?', [$mask, $ds_can_chuyen]);
+                
+                return 1;
+            }
+            catch (\Exception $e){
+                return 0;
+            }
+        }
+        if ($loai_ng_chuyen == "cb") {
+            try {
+                \DB::update(
+                    'UPDATE thongkediemdanh SET SOLUONGCB = SOLUONGCB - 1 
+                    WHERE MASK = ? AND MALOAIDS = ?', [$mask, $ds_hien_tai]);
+            
+                \DB::update(
+                    'UPDATE thongkediemdanh SET SOLUONGCB = SOLUONGCB + 1 
+                    WHERE MASK = ? AND MALOAIDS = ?', [$mask, $ds_can_chuyen]);
+                
+                return 1;
+            }
+            catch (\Exception $e){
+                return 0;
+            }
+        }
+    }
+
+    // Tính mã số cụ thể cho danh sách cần chuyển từ
+    // ds cần chuyển và ds hiện tại
+    public static function TinhDS_Can_Chuyen($ds_chuyen, $ds_hien_tai)
+    {
+        if ($ds_chuyen == "co_mat") {
+            if ($ds_hien_tai <= 4) {
+                return 1;
+            } else {
+                return 7;
+            }
+        }
+        if ($ds_chuyen == "vang_mat") {
+            if ($ds_hien_tai <= 4) {
+                return 2;
+            } else {
+                return 8;
+            }
+        }
+        if ($ds_chuyen == "co_v_k_r") {
+            if ($ds_hien_tai <= 4) {
+                return 3;
+            } else {
+                return 5;
+            }
+        }
+        if ($ds_chuyen == "co_r_k_v") {
+            if ($ds_hien_tai <= 4) {
+                return 4;
+            } else {
+                return 6;
+            }
+        }
+    }
+
+    // Tính mã số cụ thể cho danh sách thống kê tương ứng với
+    // ds cần tính ở bảng điểm danh
+    public static function TinhDS_TKe_Can_Chuyen($ds_can_tinh)
+    {
+        if ($ds_can_tinh == 1 || $ds_can_tinh == 7) {
+            return 1;
+        }
+        if ($ds_can_tinh == 2 || $ds_can_tinh == 8) {
+            return 2;
+        }
+        if ($ds_can_tinh == 3 || $ds_can_tinh == 5) {
+            return 3;
+        }
+        if ($ds_can_tinh == 4 || $ds_can_tinh == 6) {
+            return 4;
+        }
+        if ($ds_can_tinh == 5 || $ds_can_tinh == 6 || $ds_can_tinh == 7 || $ds_can_tinh == 8) {
+            return 7;
+        }
+    }
+
+    // Xóa kết quả thống kê sự kiện.
+    public static function DeleteThKe($mssk)
+    {
+        try {
+            \DB::delete('DELETE FROM thongkediemdanh WHERE MASK = "'.$mssk.'"');
+            return true;
+        } catch (\Exception $e) {
+            return false;
+            // dd($e->getMessage());
         }
     }
 }

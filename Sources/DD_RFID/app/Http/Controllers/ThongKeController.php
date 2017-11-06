@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\DiemDanhCB;
 use App\DiemDanhSV;
 use App\ThongKeDiemDanh;
@@ -34,7 +35,7 @@ class ThongKeController extends Controller
                     $cb_co_mat++;
                 }
                 // Đếm số lượng cán bộ vắng mặt.
-                if ($value->MALOAIDS == 2) {
+                if ($value->MALOAIDS == 2 || $value->MALOAIDS == 8) {
                     $cb_vang_mat++;
                 }
                 // Đếm số lượng cán bộ có vào không ra.
@@ -46,7 +47,8 @@ class ThongKeController extends Controller
                     $cb_co_ra_k_vao++;
                 }
                 // Đếm số lượng cán bộ điểm danh nhưng chưa bổ sung thông tin.
-                if ($value->MALOAIDS == 5 || $value->MALOAIDS == 6 || $value->MALOAIDS == 7) {
+                if ($value->MALOAIDS == 5 || $value->MALOAIDS == 6 
+                    || $value->MALOAIDS == 7 || $value->MALOAIDS == 8) {
                     $cb_k_co_ttin++;
                 }
             }
@@ -107,8 +109,6 @@ class ThongKeController extends Controller
             // return dd($ketqua_insert);
         }
     }
-
-    
 
     // Hàm lấy trang thống kê theo sự kiện điểm danh gần nhất.
     public function GetPageThongKe()
@@ -327,130 +327,6 @@ class ThongKeController extends Controller
         }
     }
 
-    // Lấy danh sách sinh viên theo loại danh sách điểm danh và mã sự kiện.
-    public static function LayDS_SV($mask, $ten_loaids)
-    {
-        // Lấy danh sách sinh viên vắng mặt. 
-        if ($ten_loaids == "comat") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhsv, sinhvien 
-                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
-                AND MASK = ?
-                AND (MALOAIDS = 1 OR MALOAIDS = 7)',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách sinh viên có mặt. 
-        if ($ten_loaids == "vangmat") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhsv, sinhvien 
-                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
-                AND MASK = ?
-                AND MALOAIDS = 2',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách sinh viên có vào không ra. 
-        if ($ten_loaids == "covaokra") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhsv, sinhvien 
-                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
-                AND MASK = ?
-                AND (MALOAIDS = 3 OR MALOAIDS = 5)',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách sinh viên có ra không vào. 
-        if ($ten_loaids == "corakvao") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhsv, sinhvien 
-                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
-                AND MASK = ?
-                AND (MALOAIDS = 4 OR MALOAIDS = 6)',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách sinh viên chưa bổ sung thông tin.
-        if ($ten_loaids == "chuattin") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhsv, sinhvien 
-                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
-                AND MASK = ?
-                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7)',
-                [$mask]
-            );
-        }
-        
-        return dd($dsach);
-        
-    }
-
-    // Lấy danh sách cán bộ theo loại danh sách điểm danh và mã sự kiện.
-    public static function LayDS_CB($mask, $ten_loaids)
-    {
-        // Lấy danh sách cán bộ vắng mặt. 
-        if ($ten_loaids == "comat") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhcb, canbo 
-                WHERE diemdanhcb.MSCB = canbo.MSCB 
-                AND MASK = ?
-                AND (MALOAIDS = 1 OR MALOAIDS = 7)',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách cán bộ có mặt. 
-        if ($ten_loaids == "vangmat") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhcb, canbo 
-                WHERE diemdanhcb.MSCB = canbo.MSCB 
-                AND MASK = ?
-                AND MALOAIDS = 2',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách cán bộ có vào không ra. 
-        if ($ten_loaids == "covaokra") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhcb, canbo 
-                WHERE diemdanhcb.MSCB = canbo.MSCB 
-                AND MASK = ?
-                AND (MALOAIDS = 3 OR MALOAIDS = 5)',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách cán bộ có ra không vào. 
-        if ($ten_loaids == "corakvao") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhcb, canbo 
-                WHERE diemdanhcb.MSCB = canbo.MSCB 
-                AND MASK = ?
-                AND (MALOAIDS = 4 OR MALOAIDS = 6)',
-                [$mask]
-            );
-        }
-
-        // Lấy danh sách cán bộ chưa bổ sung thông tin.
-        if ($ten_loaids == "chuattin") {
-            $dsach = \DB::select(
-                'SELECT * FROM diemdanhcb, canbo 
-                WHERE diemdanhcb.MSCB = canbo.MSCB 
-                AND MASK = ?
-                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7)',
-                [$mask]
-            );
-        }
-        
-        return dd($dsach);
-        
-    }
-
     // Lấy danh sách 10 sự kiện đã điểm danh gần đây.
     public static function LaySuKienDaDD()
     {   
@@ -461,6 +337,40 @@ class ThongKeController extends Controller
         catch(\Exception $e){
             return null;
         }
+    }
+
+    // Đổi danh sách điểm danh sang danh sách cần thiết.
+    public function ChuyenDanhSach(Request $R)
+    {
+        // Nhận các giá trị trong request
+        $ds_chuyen = Input::get("optradio");
+        $mask = $R->mask;
+        $ma_ng_chuyen = $R->ma_ng_chuyen;
+        $ds_hien_tai = $R->ds_hien_tai;
+        $loai_ng_chuyen = $R->loai_ng_chuyen;
+        
+        // Tính danh sách điểm danh cần chuyển.
+        $ds_can_chuyen = ThongKeDiemDanh::TinhDS_Can_Chuyen($ds_chuyen, $ds_hien_tai);
+
+        // Xử lý chuyển danh sách và lưu kết quả xử lý.
+        $ketqua_ds = ThongKeDiemDanh::DoiDS($mask, $ma_ng_chuyen, $ds_can_chuyen, $ds_hien_tai, $loai_ng_chuyen);
+
+        // Tính danh sách thống kê cần chuyển
+        $ds_can_chuyen = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_can_chuyen);
+        $ds_hien_tai = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_hien_tai);    
+
+        // Xử lý cập nhật số liệu thống kê và lưu kết quả xử lý.
+        $ketqua_solieu = ThongKeDiemDanh::CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai);
+
+        $ketqua = $ketqua_ds * $ketqua_solieu;
+
+        if ($ketqua == 1) {
+            return \Redirect::route('chart_old_get', $mask);
+        } else {
+            return redirect()->route('Error',
+            ['mes' => 'Sửa kết quả điểm danh thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+        }
+        
     }
     
 }
