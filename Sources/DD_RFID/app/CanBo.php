@@ -66,6 +66,20 @@ class CanBo extends Model
         }
     }
 
+    // Lấy thông tin của tất cả cán bộ kèm mã thẻ.
+    public static function GetAllCB_RFID()
+    {
+        $canbo = \DB::select(\DB::raw(
+            "SELECT MSCB, HOTEN, TENKHOA, TENBOMON, EMAIL, MATHE 
+                FROM canbo LEFT JOIN dangkythecb 
+                ON canbo.MSCB = dangkythecb.MSCB_THE"));
+        if ($canbo) {
+            return $canbo;
+        } else {
+            return null;
+        }
+    }
+
     // Lấy thông tin của một cán bộ theo email.
     public static function GetCB_Email($email)
     {

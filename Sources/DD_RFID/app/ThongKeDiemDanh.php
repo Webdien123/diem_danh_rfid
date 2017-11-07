@@ -82,7 +82,7 @@ class ThongKeDiemDanh extends Model
                 'SELECT * FROM diemdanhsv, sinhvien 
                 WHERE diemdanhsv.MSSV = sinhvien.MSSV 
                 AND MASK = ?
-                AND MALOAIDS = 2',
+                AND (MALOAIDS = 2 OR MALOAIDS = 8)',
                 [$mask]
             );
         }
@@ -115,7 +115,7 @@ class ThongKeDiemDanh extends Model
                 'SELECT * FROM diemdanhsv, sinhvien 
                 WHERE diemdanhsv.MSSV = sinhvien.MSSV 
                 AND MASK = ?
-                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7)',
+                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7 OR MALOAIDS = 8)',
                 [$mask]
             );
         }
@@ -144,7 +144,7 @@ class ThongKeDiemDanh extends Model
                 'SELECT * FROM diemdanhcb, canbo 
                 WHERE diemdanhcb.MSCB = canbo.MSCB 
                 AND MASK = ?
-                AND MALOAIDS = 2',
+                AND (MALOAIDS = 2 OR MALOAIDS = 8)',
                 [$mask]
             );
         }
@@ -177,7 +177,7 @@ class ThongKeDiemDanh extends Model
                 'SELECT * FROM diemdanhcb, canbo 
                 WHERE diemdanhcb.MSCB = canbo.MSCB 
                 AND MASK = ?
-                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7)',
+                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7 OR MALOAIDS = 8)',
                 [$mask]
             );
         }

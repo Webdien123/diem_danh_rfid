@@ -6,12 +6,30 @@
 
 @section('chart')
 
+    <script type="text/javascript">
+        function highlight_words(keywords, element) {
+            if(keywords) {
+                var textNodes;
+                keywords = keywords.replace(/\W/g, '');
+                var str = keywords.split(" ");
+                $(str).each(function() {
+                    var term = this;
+                    var textNodes = $(element).contents().filter(function() { return this.nodeType === 3 });
+                    textNodes.each(function() {
+                    var content = $(this).text();
+                    var regex = new RegExp(term, "gi");
+                    content = content.replace(regex, '<span class="bg-success">' + term + '</span>');
+                    $(this).replaceWith(content);
+                    });
+                });
+
+                $(window).scrollTop(element.offset().top);
+            }
+        }
+    </script>
+
     {{--  Nội dung trang thống kê  --}}
-    <div class="col-xs-12">
-        {{--  Tìm kiếm thông tin tổng hợp  --}}
-        {{--  <div class="row">  --}}
-            
-        {{--  </div>  --}}
+    <div class="col-xs-12">            
 
         <!-- Phần nội dung khi không có kết quả thống kê -->
         @if ($sukien == null)
@@ -26,6 +44,8 @@
         @else
             {{--  Nhận giá trị các số liệu thống kê  --}}
             <?php
+                $ma_so_su_kien = $sukien->MASK;
+
                 $sv_co_mat;
                 $sv_vang_mat;
                 $sv_co_vao_k_ra;
@@ -64,6 +84,8 @@
 
             {{--  Chuuyển các giá trị sang js  --}}
             <script type="text/javascript">
+                var ma_so_su_kien = "{{ $ma_so_su_kien }}";
+                console.log(ma_so_su_kien);
                 var sv_co_mat = "{{ $sv_co_mat }}";
                 var sv_vang_mat = "{{ $sv_vang_mat }}";
                 var sv_co_vao_k_ra = "{{ $sv_co_vao_k_ra }}";
@@ -104,29 +126,6 @@
                 });
             </script>
 
-            {{--  Tìm kiếm thông tin --}}
-            <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-                <form action="" method="get" class="form-inline pull-right hidden-xs" role="search">
-                    {{ csrf_field() }}
-                    <b>Tìm kiếm:</b>
-                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        Tìm
-                    </button>
-                </form>
-
-                <form action="" method="get" class="form-inline hidden-sm hidden-md hidden-lg" role="search">
-                    {{ csrf_field() }}
-                    <b>Tìm kiếm:</b>
-                    <input type="text" class="form-control" name="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required>
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        Tìm
-                    </button>
-                </form>
-            </div>
-
             <!-- Phần nội dung khi có kết quả thống kế -->
             <div class="container-fluid">
                 
@@ -134,80 +133,80 @@
                 <div class="row">    
                     <div class="col-xs-12 col-md-8 col-md-offset-2">
                         <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Thông tin sự kiện</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <th>Mã sự kiện</th>
-                                                <td class="lead">{{ $sukien->MASK }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Tên sự kiện</th>
-                                                <td class="lead">{{ $sukien->TENSK }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Ngày thực hiện</th>
-                                                <td class="lead">{{ date("d-m-Y", strtotime($sukien->NGTHUCHIEN)) }}</td>
-                                            </tr>
-                                            <tr>
-                                                {{--  Nút chuyển sự kiện hiển thị  --}}
-                                                <td colspan="2">
-                                                    <a class="btn btn-primary btn-block" data-toggle="modal" href='#modal-id-sk'>
-                                                        <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-                                                        Đổi sự kiện
-                                                    </a>
-                                                    <div class="modal fade" id="modal-id-sk">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    <h4 class="modal-title">Đổi sự kiện</h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    
-                                                                    {{--  Form đổi sự kiện hiển thị  --}}
-                                                                    <form action="{{ route('chart_old') }}" method="POST" id="form_id_sk">
-                                                                        {{ csrf_field() }}
-                                                                        @foreach ($sukien_old as $key=>$value)                                                                            
-                                                                            @if ($key == 0)
-                                                                                <div class="radio">
-                                                                                    <label><input type="radio" name="op_sk" checked value="{{ $value->MASK }}">
-                                                                                        {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
-                                                                                    </label>
-                                                                                </div>
-                                                                            @else
-                                                                                <div class="radio">
-                                                                                    <label><input type="radio" name="op_sk" value="{{ $value->MASK }}">
-                                                                                        {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
-                                                                                    </label>
-                                                                                </div>
-                                                                            @endif                                                                            
-                                                                        @endforeach
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Thông tin sự kiện</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Mã sự kiện</th>
+                                            <td class="lead">{{ $sukien->MASK }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tên sự kiện</th>
+                                            <td class="lead">{{ $sukien->TENSK }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ngày thực hiện</th>
+                                            <td class="lead">{{ date("d-m-Y", strtotime($sukien->NGTHUCHIEN)) }}</td>
+                                        </tr>
+                                        <tr>
+                                            {{--  Nút chuyển sự kiện hiển thị  --}}
+                                            <td colspan="2">
+                                                <a class="btn btn-primary btn-block" data-toggle="modal" href='#modal-id-sk'>
+                                                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                                    Đổi sự kiện
+                                                </a>
+                                                <div class="modal fade" id="modal-id-sk">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Đổi sự kiện</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                
+                                                                {{--  Form đổi sự kiện hiển thị  --}}
+                                                                <form action="{{ route('chart_old') }}" method="POST" id="form_id_sk">
+                                                                    {{ csrf_field() }}
+                                                                    @foreach ($sukien_old as $key=>$value)                                                                            
+                                                                        @if ($key == 0)
+                                                                            <div class="radio">
+                                                                                <label><input type="radio" name="op_sk" checked value="{{ $value->MASK }}">
+                                                                                    {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
+                                                                                </label>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="radio">
+                                                                                <label><input type="radio" name="op_sk" value="{{ $value->MASK }}">
+                                                                                    {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
+                                                                                </label>
+                                                                            </div>
+                                                                        @endif                                                                            
+                                                                    @endforeach
 
-                                                                        <button type="submit" class="btn btn-primary">
-                                                                            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                                                                            Chuyển sự kiện
-                                                                        </button>
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                                                        Chuyển sự kiện
+                                                                    </button>
 
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                                            <i class="fa fa-window-close" aria-hidden="true"></i>
-                                                                            Đóng
-                                                                        </button>                                                                  
-                                                                    </form>
-                                                                </div>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                                        <i class="fa fa-window-close" aria-hidden="true"></i>
+                                                                        Đóng
+                                                                    </button>                                                                  
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,64 +235,75 @@
                 </h2></center>
 
                 {{--  Phần xuất danh sách, chọn danh sách thống kê khác và tìm kiếm thông tin  --}}
-                <div class="row">
 
-                    {{--  Phần xuất file excel  --}}
-                    <div class="col-xs-12 col-md-4">
-                        <a href="#" class="btn btn-success">
-                            <span class="fa fa-file-excel-o fa-2x" aria-hidden="true"></span>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <a href="/export_dsach/1/comat/xls" id="btn_export_ds" class="btn btn-success">
+                            <span class="fa fa-file-excel-o" aria-hidden="true"></span>
                             Xuất danh sách ra excel
                         </a>
                     </div>
 
-                    {{--  Phần chọn danh sách thống kê  --}}
-                    <div class="col-xs-12 col-md-4">
-                            <div class="form-group has-warning form-inline">
-                                <label for="sel1">Danh sách:</label>
-                                <select class="form-control" id="sel1">
-                                    @if (count($ds_sv_vang_mat) != 0)
-                                    <option value="sv_vang_mat" selected>sinh viên vắng mặt</option>
-                                    @endif
+                    <div class="col-xs-12 col-sm-4 form-inline">
+                            <label for="sel1">Danh sách:</label>
+                            <select class="form-control" id="sel1">
+                                @if (count($ds_sv_vang_mat) != 0)
+                                <option value="sv_vang_mat" selected>sinh viên vắng mặt</option>
+                                @endif
 
-                                    @if (count($ds_sv_co_mat) != 0)
-                                    <option value="sv_co_mat" >sinh viên có mặt</option>
-                                    @endif
+                                @if (count($ds_sv_co_mat) != 0)
+                                <option value="sv_co_mat" >sinh viên có mặt</option>
+                                @endif
 
-                                    @if (count($ds_sv_co_vao_k_ra) != 0)
-                                    <option value="sv_co_v_k_ra" >sinh viên có vào không ra</option>
-                                    @endif
+                                @if (count($ds_sv_co_vao_k_ra) != 0)
+                                <option value="sv_co_v_k_ra" >sinh viên có vào không ra</option>
+                                @endif
 
-                                    @if (count($ds_sv_co_ra_k_vao) != 0)
-                                    <option value="sv_co_ra_k_v" >sinh viên có ra không vào</option>
-                                    @endif
+                                @if (count($ds_sv_co_ra_k_vao) != 0)
+                                <option value="sv_co_ra_k_v" >sinh viên có ra không vào</option>
+                                @endif
 
-                                    @if (count($ds_sv_chua_co_ttin) != 0)
-                                    <option value="sv_chua_co_ttin" >sinh viên chưa có thông tin</option>
-                                    @endif
+                                @if (count($ds_sv_chua_co_ttin) != 0)
+                                <option value="sv_chua_co_ttin" >sinh viên chưa có thông tin</option>
+                                @endif
 
-                                    @if (count($ds_cb_vang_mat) != 0)
-                                    <option value="cb_vang_mat" >cán bộ vắng mặt</option>
-                                    @endif
+                                @if (count($ds_cb_vang_mat) != 0)
+                                <option value="cb_vang_mat" >cán bộ vắng mặt</option>
+                                @endif
 
-                                    @if (count($ds_cb_co_mat) != 0)
-                                    <option value="cb_co_mat" >cán bộ có mặt</option>
-                                    @endif
+                                @if (count($ds_cb_co_mat) != 0)
+                                <option value="cb_co_mat" >cán bộ có mặt</option>
+                                @endif
 
-                                    @if (count($ds_cb_co_vao_k_ra) != 0)
-                                    <option value="cb_co_v_k_ra" >cán bộ có vào không ra</option>
-                                    @endif
+                                @if (count($ds_cb_co_vao_k_ra) != 0)
+                                <option value="cb_co_v_k_ra" >cán bộ có vào không ra</option>
+                                @endif
 
-                                    @if (count($ds_cb_co_ra_k_vao) != 0)
-                                    <option value="cb_co_ra_k_v" >cán bộ có ra không vào</option>
-                                    @endif
+                                @if (count($ds_cb_co_ra_k_vao) != 0)
+                                <option value="cb_co_ra_k_v" >cán bộ có ra không vào</option>
+                                @endif
 
-                                    @if (count($ds_cb_chua_co_ttin) != 0)
-                                    <option value="cb_chua_co_ttin" >cán bộ chưa có thông tin</option>
-                                    @endif
-                                </select>
-                            </div>
-                        </div>
+                                @if (count($ds_cb_chua_co_ttin) != 0)
+                                <option value="cb_chua_co_ttin" >cán bộ chưa có thông tin</option>
+                                @endif
+                            </select>
                     </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        <form action="#" id="f_tim_ds" class="form-inline" role="search">                            
+                            <b>Tìm kiếm:</b>
+                            <input type="text" class="form-control" name="TuKhoa" id="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required
+                            oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
+                            oninput="setCustomValidity('')">
+                            <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
+                            <button type="button" id="btn_timkiem" class="btn btn-info">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                Tìm
+                            </button>
+                        </form> 
+                    </div>
+                            
                 </div>
 
                 {{--  Phần hiển thị các danh sách thống kê --}}
@@ -776,15 +786,15 @@
                         </table>
                     </div>
                     @endif
+                </div>
+                </div>
 
-                    <script>
-                        function HienTTinNguoiChuyen(ma_so, ds) {
-                            $("#ma_ng_chuyen").val(ma_so);
-                            $("#ds_hien_tai").val(ds);
-                        }
-                    </script>
-                </div>
-                </div>
+                <script>
+                    function HienTTinNguoiChuyen(ma_so, ds) {
+                        $("#ma_ng_chuyen").val(ma_so);
+                        $("#ds_hien_tai").val(ds);
+                    }
+                </script>
             </div>
         @endif
     </div>

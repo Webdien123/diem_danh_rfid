@@ -98,6 +98,12 @@ Route::get('updateTrangThaiSK', "EventController@CapNhatSuKienDiemDanh")->name("
 // Import file excel vào CSDL.
 Route::post('import_file', "ExcelController@ImportFile")->name("import_file");
 
+// Export dữ liệu bảng.
+Route::get('export_data/{tenbang}/{type}', "ExcelController@ExportTable")->name("export_data");
+
+// Export danh sách điểm danh.
+Route::get('export_dsach/{mask}/{tends}/{type}', "ExcelController@ExportDSach")->name("export_dsach");
+
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', "GetViewController@Card")->name('card');
 
@@ -148,4 +154,5 @@ Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 |
 */
 // Route thử nghiệm
-Route::get('ketquask', "ThongKeController@LaySuKienDaDD");
+Route::get('layds_sv/{mask}/{ten_loaids}', "ThongKeController@LayDS_SV");
+Route::get('layds_cb/{mask}/{ten_loaids}', "ThongKeController@LayDS_CB");

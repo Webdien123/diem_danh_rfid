@@ -1,5 +1,14 @@
 
-// Hiển thị danh sách thống kê theo tên id tương ứng.
+// Hàm đổi yêu cầu export danh sách điểm danh tương ứng theo mã sự kiện và
+// tên danh sách.
+function DoiNDung_Export(mask, ten_ds) {
+    $("#btn_export_ds").attr("href", "/export_dsach/" + mask + "/" + ten_ds + "/xls");
+}
+
+
+// Hiển thị danh sách thống kê theo tên id tương ứng,
+// đồng thời đổi yêu cầu tới nút export theo danh sách
+// đang hiển thị.
 function HienDanhSach(id_ds, ten_ds, so_luong_ds) {
     $(".danhsach").hide(0);
     $("#"+id_ds).show(0);
@@ -14,6 +23,7 @@ function HienDanhSach(id_ds, ten_ds, so_luong_ds) {
         $(".loai_ds").text("cán bộ");
         $("#loai_ng_chuyen").val("cb");
     }
+    DoiNDung_Export(ma_so_su_kien, id_ds);
 }
 
 // Hàm lấy số lượng danh sách theo id danh sách tương ứng.

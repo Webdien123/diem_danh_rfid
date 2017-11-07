@@ -25,8 +25,7 @@
         <form action="{{ route('FindCB') }}" method="get" class="form-inline pull-right hidden-xs" role="search">
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
-            <input
-                type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
+            <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
                 oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
                 oninput="setCustomValidity('')">
             <button type="submit" class="btn btn-primary">
@@ -146,6 +145,11 @@
                     </div>
                 </div>
             </div>
+
+            <a href="/export_data/cb/xls" id="btn_export_ds" class="btn btn-primary">
+                <span class="fa fa-file-excel-o" aria-hidden="true"></span>
+                Xuất danh sách ra excel
+            </a>
 
             {{--  Nút ấn hiện chức năng import cán bộ từ excel.  --}}
             <button id="import_toggle" class="btn btn-default">

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     02-11-17 4:40:10 PM                          */
+/* Created on:     07-11-17 2:50:23 PM                          */
 /*==============================================================*/
 
 
@@ -40,10 +40,10 @@ drop table if exists TRANGTHAISK;
 create table CANBO
 (
    MSCB                 char(8) not null,
-   TENBOMON             varchar(50) not null default '--',
-   TENKHOA              varchar(50) not null default '--',
-   EMAIL                varchar(50) not null default '--',
    HOTEN                varchar(50) not null default '--',
+   TENKHOA              varchar(50) not null default '--',
+   TENBOMON             varchar(50) not null default '--',
+   EMAIL                varchar(50) not null default '--',
    primary key (MSCB)
 );
 
@@ -132,7 +132,7 @@ create table KYHIEULOP
 create table LOAIDS
 (
    MALOAIDS             int not null auto_increment,
-   TENLOAIDS            varchar(30) not null,
+   TENLOAIDS            varchar(50) not null,
    primary key (MALOAIDS)
 );
 
@@ -142,11 +142,11 @@ create table LOAIDS
 create table SINHVIEN
 (
    MSSV                 char(8) not null,
-   KYHIEULOP            char(2) not null default '--',
-   TENCHNGANH           varchar(50) not null default '--',
-   KHOAHOC              char(3) not null default '--',
-   TENKHOA              varchar(50) not null default '--',
    HOTEN                varchar(50) not null default '--',
+   TENKHOA              varchar(50) not null default '--',
+   TENCHNGANH           varchar(50) not null default '--',
+   KYHIEULOP            char(2) not null default '--',
+   KHOAHOC              char(3) not null default '--',
    primary key (MSSV)
 );
 

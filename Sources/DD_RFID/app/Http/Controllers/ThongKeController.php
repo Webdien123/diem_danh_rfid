@@ -373,4 +373,128 @@ class ThongKeController extends Controller
         
     }
     
+
+    // Lấy danh sách sinh viên theo loại danh sách điểm danh và mã sự kiện.
+    public static function LayDS_SV($mask, $ten_loaids)
+    {
+        // Lấy danh sách sinh viên vắng mặt. 
+        if ($ten_loaids == "comat") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhsv, sinhvien 
+                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
+                AND MASK = ?
+                AND (MALOAIDS = 1 OR MALOAIDS = 7)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách sinh viên có mặt. 
+        if ($ten_loaids == "vangmat") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhsv, sinhvien 
+                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
+                AND MASK = ?
+                AND (MALOAIDS = 2 OR MALOAIDS = 8)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách sinh viên có vào không ra. 
+        if ($ten_loaids == "covaokra") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhsv, sinhvien 
+                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
+                AND MASK = ?
+                AND (MALOAIDS = 3 OR MALOAIDS = 5)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách sinh viên có ra không vào. 
+        if ($ten_loaids == "corakvao") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhsv, sinhvien 
+                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
+                AND MASK = ?
+                AND (MALOAIDS = 4 OR MALOAIDS = 6)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách sinh viên chưa bổ sung thông tin.
+        if ($ten_loaids == "chuattin") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhsv, sinhvien 
+                WHERE diemdanhsv.MSSV = sinhvien.MSSV 
+                AND MASK = ?
+                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7 OR MALOAIDS = 8)',
+                [$mask]
+            );
+        }
+        
+        return $dsach;
+        
+    }
+
+    // Lấy danh sách cán bộ theo loại danh sách điểm danh và mã sự kiện.
+    public static function LayDS_CB($mask, $ten_loaids)
+    {
+        // Lấy danh sách cán bộ vắng mặt. 
+        if ($ten_loaids == "comat") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhcb, canbo 
+                WHERE diemdanhcb.MSCB = canbo.MSCB 
+                AND MASK = ?
+                AND (MALOAIDS = 1 OR MALOAIDS = 7)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách cán bộ có mặt. 
+        if ($ten_loaids == "vangmat") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhcb, canbo 
+                WHERE diemdanhcb.MSCB = canbo.MSCB 
+                AND MASK = ?
+                AND (MALOAIDS = 2 OR MALOAIDS = 8)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách cán bộ có vào không ra. 
+        if ($ten_loaids == "covaokra") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhcb, canbo 
+                WHERE diemdanhcb.MSCB = canbo.MSCB 
+                AND MASK = ?
+                AND (MALOAIDS = 3 OR MALOAIDS = 5)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách cán bộ có ra không vào. 
+        if ($ten_loaids == "corakvao") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhcb, canbo 
+                WHERE diemdanhcb.MSCB = canbo.MSCB 
+                AND MASK = ?
+                AND (MALOAIDS = 4 OR MALOAIDS = 6)',
+                [$mask]
+            );
+        }
+
+        // Lấy danh sách cán bộ chưa bổ sung thông tin.
+        if ($ten_loaids == "chuattin") {
+            $dsach = \DB::select(
+                'SELECT * FROM diemdanhcb, canbo 
+                WHERE diemdanhcb.MSCB = canbo.MSCB 
+                AND MASK = ?
+                AND (MALOAIDS = 5 OR MALOAIDS = 6 OR MALOAIDS = 7 OR MALOAIDS = 8)',
+                [$mask]
+            );
+        }
+        
+        return $dsach;
+        
+    }
 }

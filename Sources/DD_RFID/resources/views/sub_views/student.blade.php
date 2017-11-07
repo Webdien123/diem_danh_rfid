@@ -165,6 +165,11 @@
                 </div>
             </div>
 
+            <a href="/export_data/sv/xls" id="btn_export_ds" class="btn btn-danger">
+                <span class="fa fa-file-excel-o" aria-hidden="true"></span>
+                Xuất danh sách ra excel
+            </a>
+
             {{--  Nút ấn hiện chức năng import sinh viên từ excel.  --}}
             <button id="import_toggle" class="btn btn-default">
                 Thêm sinh viên từ excel
@@ -186,7 +191,7 @@
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                     tải file đăng ký mẫu
                 </a>
-            </div>
+            </div>            
 
             {{--  Script xử lý ẩn hiện phần import sinh viên.  --}}
             <script src="{{ asset('js/toggle_import.js') }}"></script>  

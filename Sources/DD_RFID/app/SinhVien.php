@@ -69,6 +69,20 @@ class SinhVien extends Model
         }
     }
 
+    // Lấy thông tin của tất cả sinh viên kèm theo mã thẻ.
+    public static function GetAllSV_RFID()
+    {
+        $sinhvien = \DB::select(\DB::raw(
+            "SELECT MSSV, HOTEN, TENKHOA, TENCHNGANH, KYHIEULOP, KHOAHOC, MATHE 
+                FROM sinhvien, dangkythesv 
+                WHERE sinhvien.MSSV = dangkythesv.MSSV_THE"));
+        if ($sinhvien) {
+            return $sinhvien;
+        } else {
+            return null;
+        }
+    }
+
     // Cập nhật thông tin sinh viên.
     public static function UpdateSV(Request $sinhvien)
     {
