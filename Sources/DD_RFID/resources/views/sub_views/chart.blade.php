@@ -235,8 +235,6 @@
                 </h2></center>
 
                 {{--  Phần xuất danh sách, chọn danh sách thống kê khác và tìm kiếm thông tin  --}}
-
-                
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
                         <a href="/export_dsach/1/comat/xls" id="btn_export_ds" class="btn btn-success">
@@ -307,7 +305,6 @@
                 </div>
 
                 {{--  Phần hiển thị các danh sách thống kê --}}
-                <div class="container-fluid">
                 <div class="row">
 
                     {{--  Modal chuyển danh sách  --}}
@@ -786,7 +783,6 @@
                         </table>
                     </div>
                     @endif
-                </div>
                 </div>
 
                 <script>
