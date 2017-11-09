@@ -56,21 +56,10 @@
 										@include('link_views.rotation_icon')
 
 										<b class="text-success">
-											<span class="glyphicon glyphicon-refresh gly-spin gi-2x">
-												Đang kiểm tra email, vui lòng chờ trong giây lát
-											</span>
+											<span class="glyphicon glyphicon-refresh gly-spin gi-2x"></span>
+											Đang kiểm tra email, vui lòng chờ trong giây lát
 										<b>
 									</div>
-
-									<script>
-										$(document).ready(function () {
-											$("#check_email").hide(0);
-										});
-										$("#btn_xac_thuc").click(function (e) { 
-											$("#check_email").show(0);
-											
-										});
-									</script>
 								@endif
 								
 							</div>
@@ -93,7 +82,15 @@
 							</button>
 						</form>
 
-						
+						<script>
+							$(document).ready(function () {
+								$("#check_email").hide(0);
+							});
+							$("#btn_xac_thuc").click(function (e) { 
+								$("#check_email").show(0);
+								
+							});
+						</script>
 
                     </div>
                 </div>

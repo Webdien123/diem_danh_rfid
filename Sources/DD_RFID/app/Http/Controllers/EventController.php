@@ -66,9 +66,7 @@ class EventController extends Controller
         //         return view('xac_thuc', ['mask' => $mask, 'ma_so_xac_thuc' => $ma_so_xac_thuc]);
         //     } else {
         //         return view('xac_thuc', ['mask' => $mask, 'ma_so_xac_thuc' => null]);
-        //     }
-            
-            
+        //     }            
         // }
     }
 
