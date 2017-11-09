@@ -12,6 +12,7 @@
 */
 
 // Dẫn vào trang chủ.
+// Route::get('/', "GetViewController@Root")->name('root');
 Route::get('/', "GetViewController@Home")->name('home');
 
 // Dẫn vào trang đăng nhập.
