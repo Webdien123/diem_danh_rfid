@@ -466,6 +466,8 @@
             <?php
                 \Session::forget('sukien_diemdanh');
                 \Session::forget('trangthai_sukien');
+                \Session::forget('xac_thuc_sk');    
+                \Session::forget('ma_so_xac_thuc');   
             ?>
         @endif
     </div>

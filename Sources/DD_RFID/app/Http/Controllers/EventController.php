@@ -33,7 +33,7 @@ class EventController extends Controller
     // Chọn sự kiện để điểm danh
     public function ChonSuKien($mask)
     {
-        if (\Session::has('uname')) {
+        // if (\Session::has('xac_thuc_sk')) {
             // Lấy thông tin sự kiện từ mã sự kiện.
             $sukien = SuKien::GetSK($mask);
 
@@ -59,51 +59,53 @@ class EventController extends Controller
                 'lops' => $lops,
                 'khoahocs' => $khoahocs
             ]);
-        }
-        else{
-            return view('login');
-        }
+        // }
+        // else{
+        //     if (\Session::has('ma_so_xac_thuc')) {
+        //         $ma_so_xac_thuc = \Session::get('ma_so_xac_thuc');
+        //         return view('xac_thuc', ['mask' => $mask, 'ma_so_xac_thuc' => $ma_so_xac_thuc]);
+        //     } else {
+        //         return view('xac_thuc', ['mask' => $mask, 'ma_so_xac_thuc' => null]);
+        //     }
+            
+            
+        // }
     }
 
     // Cập nhật trạng thái sự kiện để hiển thị lên giao diện điểm danh và giao diện sự kiện.
     public static function CapNhatSuKienDiemDanh()
     {
-        if (\Session::has('uname')) {
-            if (\Session::get('sukien_diemdanh') == null){
-                $sukiens = SuKien::GetSuKienSSang();
-                return view('chon_sukien', ['sukiens' => $sukiens]);
-            }
-            // Lấy giá trị sự kiện đang cần điểm danh.
-            $sukien = \Session::get('sukien_diemdanh');
-
-            // Tính lại trạng thái sự kiện.
-            $trangthai = self::KiemTraTrangThai($sukien);
-            \Session::put('trangthai_sukien', $trangthai);
-
-            if ($trangthai < 4) {
-                SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
-            }
-            else {
-                SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
-            }
-
-            // Tính lại thời gian còn lại của sự kiện.
-            $thoigian = EventController::ThoiGianConLai($sukien);
-
-            $khoas = Khoa_Phong::GetKhoa();
-            $lops = KyHieuLop::LayKyHieuLop();
-            $khoahocs = KhoaHoc::LayKhoaHoc();
-
-            return view('home', [
-                'thoigian' => $thoigian, 
-                'khoas' => $khoas,
-                'lops' => $lops,
-                'khoahocs' => $khoahocs
-            ]);
+        if (\Session::get('sukien_diemdanh') == null){
+            $sukiens = SuKien::GetSuKienSSang();
+            return view('chon_sukien', ['sukiens' => $sukiens]);
         }
-        else{
-            return view('login');
+        // Lấy giá trị sự kiện đang cần điểm danh.
+        $sukien = \Session::get('sukien_diemdanh');
+
+        // Tính lại trạng thái sự kiện.
+        $trangthai = self::KiemTraTrangThai($sukien);
+        \Session::put('trangthai_sukien', $trangthai);
+
+        if ($trangthai < 4) {
+            SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
         }
+        else {
+            SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
+        }
+
+        // Tính lại thời gian còn lại của sự kiện.
+        $thoigian = EventController::ThoiGianConLai($sukien);
+
+        $khoas = Khoa_Phong::GetKhoa();
+        $lops = KyHieuLop::LayKyHieuLop();
+        $khoahocs = KhoaHoc::LayKhoaHoc();
+
+        return view('home', [
+            'thoigian' => $thoigian, 
+            'khoas' => $khoas,
+            'lops' => $lops,
+            'khoahocs' => $khoahocs
+        ]);
     }
 
     // Tính trạng thái điểm danh của sự kiện so với thời điểm hiện tại.
@@ -113,93 +115,82 @@ class EventController extends Controller
     // 4: kết thúc điểm danh.
     public static function KiemTraTrangThai($sukien)
     {
-        if (\Session::has('uname')) {
+        // Chọn time zone.
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
 
-            // Chọn time zone.
-            date_default_timezone_set("Asia/Ho_Chi_Minh");
+        // Lấy giá trị thời gian hiện tại.
+        $time = date("H:i:s");
 
-            // Lấy giá trị thời gian hiện tại.
-            $time = date("H:i:s");
+        // Lấy thời điểm điểm danh vào.
+        $time2 = date($sukien[0]->DDVAO);
 
-            // Lấy thời điểm điểm danh vào.
-            $time2 = date($sukien[0]->DDVAO);
+        // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
+        $kq = (strtotime($time2) - strtotime($time));
 
-            // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
+        // Nếu chưa đến giờ điểm danh vào. Trạng thái là 1.
+        if ($kq > 0) {
+            return 1;
+        } else {
+
+            // Lấy thời điểm điểm danh ra.
+            $time2 = date($sukien[0]->DDRA);
+
+            // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
             $kq = (strtotime($time2) - strtotime($time));
 
-            // Nếu chưa đến giờ điểm danh vào. Trạng thái là 1.
+            // Nếu chưa đến giờ điểm danh ra, đã qua giờ điểm danh vào,
+            // trạng thái là 2.
             if ($kq > 0) {
-                return 1;
-            } else {
+                return 2;
+            } 
 
-                // Lấy thời điểm điểm danh ra.
-                $time2 = date($sukien[0]->DDRA);
-
-                // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
-                $kq = (strtotime($time2) - strtotime($time));
-
-                // Nếu chưa đến giờ điểm danh ra, đã qua giờ điểm danh vào,
-                // trạng thái là 2.
+            // Nếu đã qua giờ điểm danh ra.
+            else {
+                $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
+                
+                $kq = (strtotime($endtime) - strtotime($time));
+                
                 if ($kq > 0) {
-                    return 2;
-                } 
-
-                // Nếu đã qua giờ điểm danh ra.
-                else {
-                    $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
-                    
-                    $kq = (strtotime($endtime) - strtotime($time));
-                    
-                    if ($kq > 0) {
-                        return 3;
-                    } else {
-                        return 4;
-                    }
+                    return 3;
+                } else {
+                    return 4;
                 }
             }
-        }
-        else{
-            return view('login');
         }
     }
 
     // Tính thời gian còn lại của sự kiện tùy vào trạng thái đang có.
     public static function ThoiGianConLai($sukien)
     {
-        if (\Session::has('uname')) {
-            // Chọn time zone.
-            date_default_timezone_set("Asia/Ho_Chi_Minh");
+        // Chọn time zone.
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
 
-            // Lấy ngày hiện tại.
-            $today = date("Y-m-d");
+        // Lấy ngày hiện tại.
+        $today = date("Y-m-d");
 
-            // Lấy giá trị thời gian hiện tại.
-            $time = date("H:i:s");
+        // Lấy giá trị thời gian hiện tại.
+        $time = date("H:i:s");
 
-            // Lấy thời điểm điểm danh vào.
-            $time2 = date($sukien[0]->DDVAO);
+        // Lấy thời điểm điểm danh vào.
+        $time2 = date($sukien[0]->DDVAO);
 
-            // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
+        // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
+        $time2 = (strtotime($time2) - strtotime($time));
+
+        if ($time2 > 0) {
+            return $today." ".$sukien[0]->DDVAO;
+        } else {
+            // Lấy thời điểm điểm danh ra.
+            $time2 = date($sukien[0]->DDRA);
+
+            // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
             $time2 = (strtotime($time2) - strtotime($time));
 
             if ($time2 > 0) {
-                return $today." ".$sukien[0]->DDVAO;
+                return $today." ".$sukien[0]->DDRA;
             } else {
-                // Lấy thời điểm điểm danh ra.
-                $time2 = date($sukien[0]->DDRA);
-
-                // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
-                $time2 = (strtotime($time2) - strtotime($time));
-
-                if ($time2 > 0) {
-                    return $today." ".$sukien[0]->DDRA;
-                } else {
-                    return $today." ".date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
-                }
+                return $today." ".date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
             }
-        }
-        else{
-            return view('login');
         }
     }
 

@@ -12,14 +12,20 @@
 */
 
 // Dẫn vào trang chủ.
-// Route::get('/', "GetViewController@Root")->name('root');
+// Route::get('/', "GetViewController@XacThucMayTram")->name('root');
 Route::get('/', "GetViewController@Home")->name('home');
+
+// Xử lý gửi email
+// Route::get('guiMail', 'MailController@GuiMail');
 
 // Dẫn vào trang đăng nhập.
 Route::get('login', "GetViewController@Login");
 
 // Xử lý đăng nhập.
 Route::post('login_processing', "LoginController@LoginProcess")->name('login');
+
+// Kiểm tra mail quản trị
+Route::post('check_admin_mail', "MailController@CheckAdminMail")->name('check_admin_mail');
 
 // Đăng xuất.
 Route::get('logout', "LoginController@LogOut")->name('logout');
@@ -91,7 +97,7 @@ Route::get('xoaSuKien/{mssk}', "EventController@XoaSuKien")->name("DeleteSK");
 Route::get('timkiemSuKien', "EventController@TimSuKien")->name("FindSK");
 
 // Chọn sự kiện để điểm danh.
-Route::get('chonSuKien/{mask}', "EventController@ChonSuKien");
+Route::get('chonSuKien/{mask}', "EventController@ChonSuKien")->name("chonsukien");
 
 // Kiểm tra trạng thái sự kiện.
 Route::get('updateTrangThaiSK', "EventController@CapNhatSuKienDiemDanh")->name("updateTTSK");

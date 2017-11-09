@@ -7,6 +7,11 @@ use App\SuKien;
 
 class GetViewController extends Controller
 {
+    public function XacThucMayTram()
+    {
+        return view("xac_thuc");
+    }
+
     // Hiện trang chủ.
     public function Home()
     {

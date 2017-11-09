@@ -57,7 +57,7 @@ class LoginController extends Controller
         \Session::forget('ketqua_up_sv');        
         \Session::forget('ketqua_up_sk');        
         \Session::forget('ketqua_dangkythe');
-        \Session::forget('ketqua_dangkythe_dd');        
+        \Session::forget('ketqua_dangkythe_dd'); 
         
         // Về trang chủ.
         return redirect()->route('home');

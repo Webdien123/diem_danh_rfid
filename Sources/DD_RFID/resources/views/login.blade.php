@@ -41,7 +41,7 @@
 							<?php 
 								if (Session::get('err') == "1") {
 									echo "
-										<h4><i class='text-danger'>Tên đăng nhập hoặc mật khẩu không đúng</i></h4>
+										<h4><i class='text-danger'>Tên đăng nhập hoặc mật khẩu không đúng</i></h4>										
 									";
 									Session::forget('err');
 								}
