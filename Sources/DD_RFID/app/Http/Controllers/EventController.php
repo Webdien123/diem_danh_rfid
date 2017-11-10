@@ -205,17 +205,21 @@ class EventController extends Controller
             
             // Thêm sự kiện vào hệ thống
             $ketqua =  SuKien::AddSK($sukien);
-            
+            $name = \Session::get('uname');
             // Nếu xử lý thành công thì về trang sự kiện
             // ngược lại báo lỗi do xử lý.
-            if ($ketqua)
+            if ($ketqua){
+                WriteLogController::Write_Debug($name." thêm sự kiện ".$sukien->tensk);
                 return redirect()->route('event');
+            }
+                
             else
                 return redirect()->route('Error',
                 ['mes' => 'Thêm sự kiện thất bại', 
                 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để thêm sự kiện");
             return view('login');
         }
     }
@@ -224,8 +228,10 @@ class EventController extends Controller
     public function CapNhatSuKien($mssk)
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
             $sukien = SuKien::GetSK($mssk);
             if ($sukien != null) {
+                WriteLogController::Write_Debug($name." xem thông tin sự kiện ".$mssk);
                 return view('form_views.thongtin_sukien', [
                     'sukien' => $sukien
                 ]);
@@ -235,6 +241,7 @@ class EventController extends Controller
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xem thông tin sự kiện");
             return view('login');
         }
     }
@@ -244,11 +251,18 @@ class EventController extends Controller
     {
         if (\Session::has('uname')) {
             $ketqua = SuKien::UpdateSK($sukien);
+            $name = \Session::get('uname');
             $ketqua = ($ketqua) ? 0 : 1 ;
+            if ($ketqua == 0) {
+                WriteLogController::Write_Debug($name." cập nhật sự kiện ".$sukien->mask);
+            } else {
+                WriteLogController::Write_Debug($name." cập nhật sự kiện thất bại. Có lỗi khi xử lý");
+            }
             \Session::put('ketqua_up_sk', $ketqua);
             return redirect('/event_info/' . $sukien->mask);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật sự kiện");
             return view('login');
         }
     }
@@ -262,20 +276,23 @@ class EventController extends Controller
             $ketqua_dd_cb = DiemDanhCB::DeleteDangky_SK($mssk);
             $ketqua_dd_sv = DiemDanhSV::DeleteDangky_SK($mssk);
             $ketqua_thke = ThongKeDiemDanh::DeleteThKe($mssk);
-
+            $name = \Session::get('uname');
             // Xóa thông tin sự kiện.
             $ketqua_sk = SuKien::DeleteSK($mssk);
 
             // Tính kết quả tổng hợp.
             $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv && $ketqua_thke) ? true : false;
 
-            if ($ketqua)
+            if ($ketqua){
+                WriteLogController::Write_Debug($name." xóa sự kiện ".$mssk);
                 return redirect()->route('event');
+            }
             else
                 return redirect()->route('Error', 
                 ['mes' => 'Xóa sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóá sự kiện");
             return view('login');
         }
     }
@@ -284,10 +301,13 @@ class EventController extends Controller
     public function TimSuKien(Request $tukhoa)
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
             try{
                 // Lấy từ khóa cần tìm ra khỏi request.
                 $TK = $tukhoa->tukhoa;
             
+                WriteLogController::Write_Debug($name." tìm sự kiện theo từ khóa '".$TK."'");
+
                 // Tìm kiếm sự kiện đồng thời phân trang kết quả.
                 $sukiens = \DB::table('sukien')
                     ->where('MASK', 'like', "%$TK%")
@@ -300,11 +320,13 @@ class EventController extends Controller
                 return view('sub_views.timsukien', ['sukiens' => $sukiens, 'tukhoa' => $TK]);
             }
             catch (\Exception $e) {
+                WriteLogController::Write_Debug($name." tìm sinh viên thất bại. Mã lỗi:".PHP_EOL.$e->getMessage());
                 return redirect()->route('Error', 
                 ['mes' => 'Tìm sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để tìm sự kiện");
             return view('login');
         }
     }

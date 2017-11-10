@@ -30,9 +30,23 @@
 
                     {{--  Phần tên quản trị và nút thông báo  --}}
                     <div class="pull-right">
-                        <ul id="nav">
-                            <li>{!! 'Xin chào: <b>'.Session::get('uname').'</b>' !!}</li>
-                        </ul>                        
+                        <span>{!! 'Xin chào: <b>'.Session::get('uname').'</b>' !!}</span>
+                        <?php
+                            // Chọn time zone.
+                            date_default_timezone_set("Asia/Ho_Chi_Minh");
+
+                            // Khởi tạo ngày hiện tại.
+                            $date = date("d-m-Y");
+
+                            $file_path = "./logs/";
+
+                            $file_name = "Admin_".$date.".log";
+                            
+                        ?>     
+                        <a href="{{ $file_path.$file_name }}" class="btn btn-default"
+                            data-toggle="tooltip" data-placement="bottom" title="Xem file log">
+                            <i class="fa fa-history fa-2x" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>  
         </div>

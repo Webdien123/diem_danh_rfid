@@ -15,9 +15,6 @@
 // Route::get('/', "GetViewController@XacThucMayTram")->name('root');
 Route::get('/', "GetViewController@Home")->name('home');
 
-// Xử lý gửi email
-// Route::get('guiMail', 'MailController@GuiMail');
-
 // Dẫn vào trang đăng nhập.
 Route::get('login', "GetViewController@Login");
 
@@ -110,6 +107,10 @@ Route::get('export_data/{tenbang}/{type}', "ExcelController@ExportTable")->name(
 
 // Export danh sách điểm danh.
 Route::get('export_dsach/{mask}/{tends}/{type}', "ExcelController@ExportDSach")->name("export_dsach");
+
+
+// Route::get('download_file/{file_path}/{file_name}', "WriteLogController@getDownload");
+
 
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', "GetViewController@Card")->name('card');

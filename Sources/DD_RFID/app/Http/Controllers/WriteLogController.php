@@ -23,19 +23,21 @@ class WriteLogController extends Controller
     // Ghi log thông tin
     public static function Write_InFo($content, $log_type = "Admin")
     {        
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
 
-        Log::useFiles(base_path() . '/logs/'.$log_type.'_'. $date .'.log', 'info');
+        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'info');
         
         Log::info($content.PHP_EOL);
     }
 
     // Ghi log cảnh báo
     public static function Write_Alert($content, $log_type = "Admin")
-    {        
+    {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
 
-        Log::useFiles(base_path() . '/logs/'.$log_type.'_'. $date .'.log', 'alert');
+        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'alert');
         
         Log::alert($content.PHP_EOL);        
     }
@@ -43,9 +45,10 @@ class WriteLogController extends Controller
     // Ghi log Debug
     public static function Write_Debug($content, $log_type = "Admin")
     {        
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
 
-        Log::useFiles(base_path() . '/logs/'.$log_type.'_'. $date .'.log', 'debug');
+        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'debug');
         
         Log::debug($content.PHP_EOL);        
     }
@@ -53,10 +56,24 @@ class WriteLogController extends Controller
     // Ghi log báo lỗi
     public static function Write_Error($content, $log_type = "Admin")
     {        
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
 
-        Log::useFiles(base_path() . '/logs/'.$log_type.'_'. $date .'.log', 'error');
+        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'error');
         
         Log::error($content.PHP_EOL);
     }
+
+    // public function getDownload($file_path, $file_name)
+    // {
+    //     //PDF file is stored under project/public/download/info.pdf
+    //     //$file= public_path(). "/download/info.pdf";
+    //     $file = $file_path.$file_name;
+
+    //     $headers = array(
+    //             'Content-Type: application/log',
+    //             );
+
+    //     return Response::download($file, $tenfile, $headers);
+    // }
 }

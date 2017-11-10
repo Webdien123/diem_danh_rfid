@@ -97,10 +97,13 @@
                         Lưu
                     </button>
 
-                    <button type="button" class="btn btn-danger">
+                    <a class="btn btn-danger"
+                        onclick="if(window.confirm('Xóa sự kiện này?')){
+                        window.location.replace('<?php echo route("DeleteSK", 
+                        ["mssk" => $sukien[0]->MASK]) ?>');}">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         Xóa
-                    </button>
+                    </a>
                 </form>
             </div>
         </div>
