@@ -64,7 +64,7 @@ class SinhVienController extends Controller
         if (\Session::has('uname')) {
             // Tìm xem có sinh viên nào đã có mã số này chưa.
             $maso = SinhVien::GetSV($sinhvien->mssv);
-
+            $name = \Session::get('uname');
             // Nếu mã số chưa có.
             if ($maso == null) {
 
@@ -73,22 +73,27 @@ class SinhVienController extends Controller
 
                 // Nếu xử lý thành công thì về trang sinh viên
                 // ngược lại báo lỗi do xử lý.
-                if ($ketqua)
+                if ($ketqua){
+                    WriteLogController::Write_Debug($name." thêm sinh viên ".$sinhvien->mssv);
                     return redirect()->route('student');
-                else
+                }
+                else{
                     return redirect()->route('Error',
                     ['mes' => 'Thêm sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+                }
             }
             // Nếu mã số hoặc email đã bị trùng.
             else {
                 // Báo lỗi trùng cả email và mã số.
                 if ($maso != null) {
+                    WriteLogController::Write_Debug($name." thêm sinh viên thất bại. Trùng mã số sinh viên đã có");
                     return redirect()->route('Error',
                     ['mes' => 'Thêm sinh viên thất bại', 'reason' => 'Mã số sinh viên đã tồn tại']);
                 }
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để thêm sinh viên");
             return view('login');
         }
     }
@@ -98,7 +103,10 @@ class SinhVienController extends Controller
     {
         if (\Session::has('uname')) {
             $sv = SinhVien::GetSV($mssv);
+            $name = \Session::get('uname');
             if ($sv != null) {
+                WriteLogController::Write_Debug($name." xem thông tin sinh viên ".$mssv);
+
                 return view('form_views.thongtin_sv', [
                     'sv' => $sv, 
                     'khoas' => self::$khoas,
@@ -106,11 +114,13 @@ class SinhVienController extends Controller
                     'khoahocs' => self::$khoahocs
                 ]);
             } else {
+                WriteLogController::Write_Debug($name." xem thông tin sinh viên thất bại. Có lỗi khi xử lý");
                 return redirect()->route('Error',
                 ['mes' => 'Lấy thông tin sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xem thông tin sinh viên");
             return view('login');
         }
     }
@@ -121,10 +131,18 @@ class SinhVienController extends Controller
         if (\Session::has('uname')) {
             $ketqua = SinhVien::UpdateSV($sinhvien);
             $ketqua = ($ketqua) ? 0 : 1 ;
+            $name = \Session::get('uname');
+            if ($ketqua == 0) {
+                WriteLogController::Write_Debug($name." cập nhật sinh viên ".$sinhvien->mssv);
+            } else {
+                WriteLogController::Write_Debug($name." cập nhật sinh viên thất bại. Có lỗi khi xử lý");
+            }
+
             \Session::put('ketqua_up_sv', $ketqua);
             return redirect('/student_info/' . $sinhvien->mssv);       
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật sinh viên");
             return view('login');
         }
     }
@@ -136,17 +154,22 @@ class SinhVienController extends Controller
             $ketqua_the = DangKyTheSV::DeleteThe($mssv);
             $ketqua_dangky = DiemDanhSV::DeleteDangky_SV($mssv);
             $ketqua_sv = SinhVien::DeleteSV($mssv);
+            $name = \Session::get('uname');
 
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_sv && $ketqua_the && $ketqua_dangky) ? true : false;
 
-            if ($ketqua)
+            if ($ketqua){
+                WriteLogController::Write_Debug($name." xóa sinh viên ".$mssv);
                 return redirect()->route('student');
-            else
+            }
+            else{
                 return redirect()->route('Error', 
                 ['mes' => 'Xóa sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+            }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa sinh viên");
             return view('login');
         }
     }
@@ -155,6 +178,7 @@ class SinhVienController extends Controller
     public function TimSinhVien(Request $tukhoa)
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
             try{
                 // Lấy từ khóa cần tìm ra khỏi request.
                 $TK = $tukhoa->tukhoa;
@@ -170,14 +194,19 @@ class SinhVienController extends Controller
                     ->orWhere('HOTEN', 'like', "%$TK%")
                     ->orWhere('MATHE', 'like', "%$TK%")
                     ->paginate(self::$so_dong)->appends(['tukhoa' => $TK]);
+
+                WriteLogController::Write_Debug($name." tìm sinh viên theo từ khóa '".$TK."'");
+
                 return view('sub_views.timsinhvien', ['sinhviens' => $sinhviens, 'tukhoa' => $TK]);
             }
             catch (\Exception $e) {
+                WriteLogController::Write_Debug($name." tìm sinh viên thất bại. Mã lỗi:".PHP_EOL.$e->getMessage());
                 return redirect()->route('Error', 
                 ['mes' => 'Tìm sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa sinh viên");
             return view('login');
         }
     }

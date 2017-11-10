@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use \App\Http\Controllers\CanBoController;
+use \App\Http\Controllers\WriteLogController;
 
 class CanBo extends Model
 {

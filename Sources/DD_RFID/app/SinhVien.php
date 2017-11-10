@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use \App\Http\Controllers\SinhVienController;
+use \App\Http\Controllers\WriteLogController;
 
 class SinhVien extends Model
 {
@@ -12,10 +13,10 @@ class SinhVien extends Model
     public static function GetSinhVien()
     {
         // Lấy dữ liệu kết hợp phân trang.
-        $canbos = \DB::table('sinhvien')
+        $sinhviens = \DB::table('sinhvien')
             ->leftJoin('dangkythesv', 'dangkythesv.mssv_the', '=', 'sinhvien.mssv')
             ->Paginate(SinhVienController::$so_dong);
-        return $canbos;
+        return $sinhviens;
     }
 
     // Thêm thông tin sinh viên mới.
@@ -32,7 +33,7 @@ class SinhVien extends Model
             ]);
             return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
         } catch (\Exception $e) {
-            return false;
+            return false;            
         }
     }
 
@@ -51,7 +52,6 @@ class SinhVien extends Model
             return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
         } catch (\Exception $e) {
             return false;
-            // dd($e->getMessage());
         }
     }
 

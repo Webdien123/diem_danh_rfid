@@ -21,9 +21,13 @@ class CardController extends Controller
             // Lấy thông tin cán bộ có mã thẻ tương ứng.
             $canbo = DangKyTheCB::LayThongTinCanBo($mathe->id_the);
             
+            $name = \Session::get('uname');
+            WriteLogController::Write_Info($name." kiểm tra thẻ ".$mathe->id_the);
+
             // Nếu tồn tại cán bộ đã đăng ký thẻ này
             // thì chuyển sang giao diện hiển thị thông tin chủ thẻ
             if ($canbo) {
+                WriteLogController::Write_Debug("Thẻ ".$mathe->id_the." đã có cán bộ ". $canbo[0]->MSCB ." sở hữu");
                 return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Cán bộ', 'chuthe' => $canbo]);
             }
 
@@ -33,6 +37,7 @@ class CardController extends Controller
             // Nếu tồn tại sinh viên đã đăng ký thẻ này
             // thì chuyển sang giao diện hiển thị thông tin chủ thẻ
             if ($sv) {
+                WriteLogController::Write_Debug("Thẻ ".$mathe->id_the." đã có sinh viên ".$sv[0]->MSSV." sở hữu");
                 return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Sinh viên', 'chuthe' => $sv]);
             }
 
@@ -40,6 +45,8 @@ class CardController extends Controller
             $khoas = Khoa_Phong::GetKhoa();
             $lops = KyHieuLop::LayKyHieuLop();
             $khoahocs = KhoaHoc::LayKhoaHoc();
+
+            WriteLogController::Write_Debug("Thẻ ".$mathe->id_the." hợp lệ để đăng ký");
             return view('sub_views.sub_2.card_valid', [
                 'loaithe' => null,
                 'chuthe' => null,
@@ -59,6 +66,14 @@ class CardController extends Controller
     public function DangKyTheMoi(Request $R)
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            if ($R->chon_cb_sv == "cán bộ") {
+                WriteLogController::Write_Debug($name." chọn thêm thẻ ".$R->mathe." cùng thông tin mới cho cán bộ ".$R->maso);
+            }
+            if ($R->chon_cb_sv == "sinh viên") {
+                WriteLogController::Write_Debug($name." chọn thêm thẻ ".$R->mathe." cùng thông tin mới cho sinh viên ".$R->maso);
+            }
+            
             // Thêm thông tin chủ thẻ vào hệ thống ghi nhận kết quả xử lý.
             $ketqua_chuthe = $this->ThemChuThe($R);
 
@@ -68,7 +83,7 @@ class CardController extends Controller
             }
             if ($R->chon_cb_sv == "sinh viên") {
                 $ketqua_the = DangKyTheSV::LuuTheMoi($R->maso, $R->mathe);
-            }
+            }            
 
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_chuthe && $ketqua_the) ? 0 : 1 ;
@@ -79,15 +94,16 @@ class CardController extends Controller
             return redirect('/card/');
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang đăng ký thẻ");
             return view('login');
-        }  
+        }
     }
 
     public function ThemChuThe(Request $R)
     {
         if (\Session::has('uname')) {
             if ($R->chon_cb_sv == "cán bộ") {
-                
+
                 // Nhận kết quả xử lý thêm thông tin chủ thẻ và thêm thông tin thẻ.
                 return $this->ThemChuTheCB($R->maso, $R->bomon, $R->khoa, $R->email, $R->hoten);
             }
@@ -114,32 +130,34 @@ class CardController extends Controller
             if ($maso_tim == null && $email_tim == null) {
 
                 // Thêm cán bộ vào hệ thống
-                $ketqua =  CanBo::AddCB_Para($maso, $bomon, $khoa, $email, $hoten);                
+                $ketqua =  CanBo::AddCB_Para($maso, $bomon, $khoa, $email, $hoten);             
 
                 // Nếu xử lý thành công thì trả về true để xử lý tiếp.
                 // ngược lại báo lỗi do xử lý.
                 if ($ketqua)
                     return true;
-                else
+                else{
+                    WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, có lỗi khi kết nối mạng");    
                     return false;
+                }
             }
             // Nếu mã số hoặc email đã bị trùng.
             else {
                 // Báo lỗi trùng cả email và mã số.
                 if ($maso != null && $email != null) {
-                    return redirect()->route('Error',
-                    ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số cán bộ và email đã tồn tại']);
+                    WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số và email cán bộ");
+                    return false;
                 }
                 else
                     // Báo lỗi trùng email
                     if ($maso == null) {
-                        return redirect()->route('Error',
-                        ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Email đã tồn tại']);
+                        WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng email cán bộ");
+                        return false;
                     }
                     // Báo lỗi trùng mã số.
                     else {
-                        return redirect()->route('Error',
-                        ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
+                        WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số cán bộ");
+                        return false;
                     }
             }
         }
@@ -165,14 +183,17 @@ class CardController extends Controller
                 // ngược lại báo lỗi do xử lý.
                 if ($ketqua)
                     return true;
-                else
+                else{
+                    WriteLogController::Write_Debug("Thêm chủ thẻ sinh viên ".$maso." thất bại, có lỗi khi kết nối mạng");    
                     return false;
+                }
+                    
             }
             // Nếu mã số đã bị trùng.
             else {
                 // Báo lỗi trùng mã số
-                return redirect()->route('Error',
-                ['mes' => 'Đang ký thẻ thất bại', 'reason' => 'Mã số sinh viên đã tồn tại']);
+                WriteLogController::Write_Debug("Thêm chủ thẻ sinh viên ".$maso." thất bại, vì trùng mã số sinh viên");
+                return false;
             }
         }
         else{
@@ -217,12 +238,15 @@ class CardController extends Controller
             // ===============================================
             // PHẦN KIỂM TRA MÃ THẺ
             // ===============================================
+            $name = \Session::get('uname');
+            WriteLogController::Write_Debug($name." chọn cập nhật thẻ ".$R->mathe." cho chủ thẻ ".$R->machuthe);
 
             // Kiểm tra mã thẻ có thể sử dụng hay không.
             $kiemtra = self::CheckThe($R->mathe);
             
             // Nếu thẻ không thể dùng được vì có cán bộ sở hữu.
             if ($kiemtra == 1) {
+                WriteLogController::Write_Debug("Thẻ ".$mathe->id_the." đã có cán bộ sở hữu");
                 // Lấy thông tin cán bộ có mã thẻ tương ứng.
                 $canbo = DangKyTheCB::LayThongTinCanBo($R->mathe);
                 return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Cán bộ', 'chuthe' => $canbo]);
@@ -230,6 +254,7 @@ class CardController extends Controller
 
             // Nếu thẻ không thể dùng được vì có sinh viên sở hữu.
             if ($kiemtra == 2) {
+                WriteLogController::Write_Debug("Thẻ ".$mathe->id_the." đã có sinh viên sở hữu");
                 // Lấy thông tin sinh viên có mã thẻ tương ứng.
                 $sv = DangKyTheSV::LayThongTinSinhVien($R->mathe);
                 return view('sub_views.sub_2.card_invalid', ['loaithe' => 'Sinh viên', 'chuthe' => $sv]);
@@ -349,11 +374,5 @@ class CardController extends Controller
         else{
             return view('login');
         }
-    }
-
-    // Đăng ký tham gia sự kiện.
-    public function DangKyTheDDanh(Type $var = null)
-    {
-        
     }
 }
