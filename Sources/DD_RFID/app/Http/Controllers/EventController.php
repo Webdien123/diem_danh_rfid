@@ -20,13 +20,18 @@ class EventController extends Controller
     public function GetPageSK()
     {
         if (\Session::has('uname')) {
-            $sukiens = SuKien::GetSuKien();
             
+            $name = \Session::get('uname');
+            WriteLogController::Write_InFo($name." vào trang sự kiện");
+            
+            $sukiens = SuKien::GetSuKien();
+
             return view('sub_views.event', [
                 'sukiens' => $sukiens
             ]);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang sự kiện");
             return view('login');
         }
     }

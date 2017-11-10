@@ -50,6 +50,7 @@ class CardController extends Controller
             ]);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang đăng ký thẻ");
             return view('login');
         }
     }

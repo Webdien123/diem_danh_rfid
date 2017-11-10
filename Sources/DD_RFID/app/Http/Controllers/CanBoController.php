@@ -24,13 +24,18 @@ class CanBoController extends Controller
     public function GetPageCB()
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            WriteLogController::Write_InFo($name." vào trang cán bộ");
+
             $canbos = CanBo::GetCanBo();
             return view('sub_views.staff', [
                 'canbos' => $canbos, 
                 'khoas' => self::$khoas
-            ]);
+            ]);            
         }
         else{
+
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang cán bộ");
             return view('login');
         }
     }
@@ -46,6 +51,7 @@ class CanBoController extends Controller
     public function ThemCanBo(Request $canbo)
     {
         if (\Session::has('uname')) {
+
             // Tìm xem có cán bộ nào đã có mã số này chưa.
             $maso = CanBo::GetCB($canbo->mscb);
 
@@ -60,33 +66,42 @@ class CanBoController extends Controller
 
                 // Nếu xử lý thành công thì về trang cán bộ
                 // ngược lại báo lỗi do xử lý.
-                if ($ketqua)
+                if ($ketqua){
+                    $name = \Session::get('uname');
+                    WriteLogController::Write_Debug($name." thêm cán bộ ".$canbo->mscb);
                     return redirect()->route('staff');
-                else
+                }                    
+                else{
+                    WriteLogController::Write_Debug("Thêm cán bộ thất bại. Có lỗi khi xử lý");
                     return redirect()->route('Error',
                     ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+                }
             }
             // Nếu mã số hoặc email đã bị trùng.
             else {
                 // Báo lỗi trùng cả email và mã số.
                 if ($maso != null && $email != null) {
+                    WriteLogController::Write_Debug("Thêm cán bộ thất bại. Trùng mã số cán bộ và email đã có");
                     return redirect()->route('Error',
                     ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ và email đã tồn tại']);
                 }
                 else
                     // Báo lỗi trùng email
                     if ($maso == null) {
+                        WriteLogController::Write_Debug("Thêm cán bộ thất bại. Trùng email đã có");
                         return redirect()->route('Error',
                         ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Email đã tồn tại']);
                     }
                     // Báo lỗi trùng mã số.
                     else {
+                        WriteLogController::Write_Debug("Thêm cán bộ thất bại. Trùng mã số cán bộ đã có");
                         return redirect()->route('Error',
                         ['mes' => 'Thêm cán bộ thất bại', 'reason' => 'Mã số cán bộ đã tồn tại']);
                     }
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để thêm cán bộ");
             return view('login');
         }
     }
@@ -97,16 +112,21 @@ class CanBoController extends Controller
         if (\Session::has('uname')) {
             $canbo = CanBo::GetCB($mscb);
             if ($canbo != null) {
+                $name = \Session::get('uname');
+                WriteLogController::Write_Debug($name." xem thông tin cán bộ ".$mscb);
+
                 return view('form_views.thongtin_canbo', [
                     'canbo' => $canbo, 
                     'khoas' => self::$khoas
                 ]);
             } else {
+                WriteLogController::Write_Debug("Xem thông tin cán bộ thất bại. Có lỗi khi xử lý");
                 return redirect()->route('Error',
                 ['mes' => 'Lấy thông tin cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật cán bộ");
             return view('login');
         }
     }
@@ -117,10 +137,19 @@ class CanBoController extends Controller
         if (\Session::has('uname')) {
             $ketqua = CanBo::UpdateCB($canbo);
             $ketqua = ($ketqua) ? 0 : 1 ;
+
+            if ($ketqua == 0) {
+                $name = \Session::get('uname');
+                WriteLogController::Write_Debug($name." cập nhật cán bộ ".$canbo->mscb);
+            } else {
+                WriteLogController::Write_Debug("Cập nhật cán bộ thất bại. Có lỗi khi xử lý");
+            }
+            
             \Session::put('ketqua_up_cb', $ketqua);
-            return redirect('/staff_info/' . $canbo->mscb);       
+            return redirect('/staff_info/' . $canbo->mscb);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật cán bộ");
             return view('login');
         }            
     }
@@ -136,13 +165,19 @@ class CanBoController extends Controller
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_cb && $ketqua_the && $ketqua_dangky) ? true : false;
 
-            if ($ketqua)
+            if ($ketqua){
+                $name = \Session::get('uname');
+                WriteLogController::Write_Debug($name." xóa cán bộ ".$mscb);
                 return redirect()->route('staff');
-            else
+            }   
+            else{
+                WriteLogController::Write_Debug("Xóa cán bộ thất bại. Có lỗi khi xử lý");
                 return redirect()->route('Error', 
                 ['mes' => 'Xóa cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+            }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa cán bộ");
             return view('login');
         }
     }
@@ -165,15 +200,20 @@ class CanBoController extends Controller
                     ->orWhere('HOTEN', 'like', "%$TK%")
                     ->orWhere('MATHE', 'like', "%$TK%")
                     ->paginate(self::$so_dong)->appends(['tukhoa' => $TK]);
+
+                $name = \Session::get('uname');
+                WriteLogController::Write_Debug($name." tìm cán bộ theo '".$TK."'");
         
                 return view('sub_views.timcanbo', ['canbos' => $canbos, 'tukhoa' => $TK]);
             }
             catch (\Exception $e) {
+                WriteLogController::Write_Debug("Tìm cán bộ thất bại. Có lỗi khi xử lý");
                 return redirect()->route('Error', 
                 ['mes' => 'Tìm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa cán bộ");
             return view('login');
         }
     }

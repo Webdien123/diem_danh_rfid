@@ -31,9 +31,14 @@ class GetViewController extends Controller
     public function Login()
     {
         if (\Session::has('uname')) {
+
+            $name = \Session::get('uname');
+            WriteLogController::Write_InFo($name." vào trang thống kê");
+
             return redirect()->route('chart');
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang thống kê");
             return view('login');
         }
     }
@@ -42,6 +47,9 @@ class GetViewController extends Controller
     public function Card()
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            WriteLogController::Write_InFo($name." vào trang đăng ký thẻ");
+
             return view('sub_views.card', ['loaithe' => null, 'chuthe' => null]);
         }
         else{

@@ -158,6 +158,8 @@ class ThongKeController extends Controller
             // Lấy danh sách cán bộ chưa bổ sung thông tin.
             $ds_cb_chua_co_ttin = ThongKeDiemDanh::LayDS_CB($mask, "chuattin");
 
+            WriteLogController::Write_InFo("Hiển thị kết quả thống kê sự kiện ".$mask);
+
             return view("sub_views.chart", [
                 'sukien' => $sukien_gannhat,
                 'sukien_old' => $sukien_old,
@@ -175,6 +177,8 @@ class ThongKeController extends Controller
             ]);
         }
         else {
+            WriteLogController::Write_InFo("Hiển thị trang thống kê rỗng");
+
             return view("sub_views.chart", [
                 'sukien' => null
             ]);

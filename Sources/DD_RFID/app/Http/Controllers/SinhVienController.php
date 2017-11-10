@@ -34,6 +34,9 @@ class SinhVienController extends Controller
     public function GetPageSV()
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            WriteLogController::Write_InFo($name." vào trang sinh viên");
+
             $sinhviens = SinhVien::GetSinhVien();
             return view('sub_views.student', [
                 'sinhviens' => $sinhviens, 
@@ -43,6 +46,7 @@ class SinhVienController extends Controller
             ]);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang sinh viên");
             return view('login');
         }
     }

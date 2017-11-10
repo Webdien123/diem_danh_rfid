@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\MessageBag;
 use App\User;
-use Log;
 
 class LoginController extends Controller
 {
@@ -33,22 +32,16 @@ class LoginController extends Controller
             \Session::put('ketqua_dangkythe_dd', 2);
             \Session::put('ketqua_capnhatthe', 2);
 
-            // Chọn time zone.
-            date_default_timezone_set("Asia/Ho_Chi_Minh");
-
-            $date = date("d-m-Y");
-
-            Log::useFiles(base_path() . '/logs/amin_'. $date .'.log', 'info');
+            WriteLogController::Write_InFo("Quản trị viên ".$name." đăng nhập vào hệ thống", "Admin");
             
-            Log::info('Quản trị viên '.$name." đăng nhập vào hệ thống".PHP_EOL);
-            
-
             // Chuyển về trang quản trị.
             return redirect()->route('admin');
         } 
         // Ngược lại lưu giá trị lỗi vào session để quay về trang đăng nhập
         // hiển thị cảnh báo cho người dùng.
         else {
+
+            WriteLogController::Write_Alert("Đăng nhập sai thông tin", "Admin");
             \Session::put('err', '1');
             $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
             return redirect()->back()->withInput()->withErrors($errors);
