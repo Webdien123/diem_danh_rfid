@@ -21,6 +21,7 @@ class EventController extends Controller
     {
         if (\Session::has('uname')) {
             $sukiens = SuKien::GetSuKien();
+            
             return view('sub_views.event', [
                 'sukiens' => $sukiens
             ]);

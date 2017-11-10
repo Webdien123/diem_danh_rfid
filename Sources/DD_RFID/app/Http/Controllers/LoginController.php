@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\MessageBag;
 use App\User;
+use Log;
 
 class LoginController extends Controller
 {
@@ -31,6 +32,16 @@ class LoginController extends Controller
             \Session::put('ketqua_dangkythe', 2);
             \Session::put('ketqua_dangkythe_dd', 2);
             \Session::put('ketqua_capnhatthe', 2);
+
+            // Chọn time zone.
+            date_default_timezone_set("Asia/Ho_Chi_Minh");
+
+            $date = date("d-m-Y");
+
+            Log::useFiles(base_path() . '/logs/amin_'. $date .'.log', 'info');
+            
+            Log::info('Quản trị viên '.$name." đăng nhập vào hệ thống".PHP_EOL);
+            
 
             // Chuyển về trang quản trị.
             return redirect()->route('admin');
