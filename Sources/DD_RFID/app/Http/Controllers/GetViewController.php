@@ -16,7 +16,7 @@ class GetViewController extends Controller
     public function Home()
     {
         // Nếu có session tên sự kiện được chọn.
-        if (\Session::get('sukien_diemdanh') !== null){
+        if (\Session::get('sukien_diemdanh') != null){
             return EventController::CapNhatSuKienDiemDanh();
         }
         // Nếu không có sự kiện nào được lưu vào cookie

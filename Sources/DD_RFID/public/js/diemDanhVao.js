@@ -73,6 +73,7 @@ $(document).ready(function () {
                         type: "POST",
                         url: "/diemdanhvao",
                         data: {
+                            mathe: mathe,
                             machuthe: machuthe,
                             loaichuthe: loaichuthe,
                             masukien: mask,

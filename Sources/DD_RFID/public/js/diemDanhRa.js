@@ -75,6 +75,7 @@ $(document).ready(function () {
                             type: "POST",
                             url: "/diemdanhra",
                             data: {
+                                mathe: mathe,
                                 machuthe: machuthe,
                                 loaichuthe: loaichuthe,
                                 masukien: mask,

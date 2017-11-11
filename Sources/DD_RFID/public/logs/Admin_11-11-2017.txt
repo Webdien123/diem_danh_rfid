@@ -1,6 +1,0 @@
-[2017-11-11 01:28:09] local.INFO: Trần Quản Trị vào trang sự kiện
-  
-[2017-11-11 01:28:18] local.INFO: Trần Quản Trị vào trang sự kiện
-  
-[2017-11-11 01:28:28] local.INFO: Trần Quản Trị vào trang sự kiện
-  
