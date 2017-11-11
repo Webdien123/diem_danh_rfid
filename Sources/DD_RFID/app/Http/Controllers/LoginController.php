@@ -51,6 +51,9 @@ class LoginController extends Controller
     // Xử lý đăng xuất.
     public function LogOut(Request $request)
     {
+        $name = \Session::get('uname');
+        WriteLogController::Write_InFo($name." đăng xuất khỏi hệ thống");
+
         // Thoát phiên làm việc.
         Auth::logout();
 

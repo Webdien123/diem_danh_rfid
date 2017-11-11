@@ -53,6 +53,7 @@ class GetViewController extends Controller
             return view('sub_views.card', ['loaithe' => null, 'chuthe' => null]);
         }
         else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang đăng ký thẻ");
             return view('login');
         }
     }

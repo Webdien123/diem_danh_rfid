@@ -278,6 +278,7 @@ class ThongKeDiemDanh extends Model
                 return 6;
             }
         }
+        return 0;
     }
 
     // Tính mã số cụ thể cho danh sách thống kê tương ứng với

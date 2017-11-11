@@ -159,6 +159,22 @@
                                                     <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                                                     Đổi sự kiện
                                                 </a>
+                                                <?php
+                                                    // Chọn time zone.
+                                                    date_default_timezone_set("Asia/Ho_Chi_Minh");
+
+                                                    // Khởi tạo ngày hiện tại.
+                                                    $date = date("d-m-Y");
+
+                                                    $file_path = "./logs/";
+
+                                                    $file_name = "suKien[".$sukien->MASK."]_".$date.".log";
+                                                    
+                                                ?>     
+                                                <a href="{{ $file_path.$file_name }}" class="btn btn-primary btn-block">
+                                                    <i class="fa fa-history" aria-hidden="true"></i>
+                                                    Xem nhật kí điểm danh
+                                                </a>
                                                 <div class="modal fade" id="modal-id-sk">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">

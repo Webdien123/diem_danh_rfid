@@ -40,6 +40,8 @@ class EventController extends Controller
     public function ChonSuKien($mask)
     {
         // if (\Session::has('xac_thuc_sk')) {
+            // \Session::forget('ma_so_xac_thuc');
+
             // Lấy thông tin sự kiện từ mã sự kiện.
             $sukien = SuKien::GetSK($mask);
 

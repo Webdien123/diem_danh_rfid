@@ -97,6 +97,37 @@ class ThongKeController extends Controller
         $insert4 = ThongKeDiemDanh::NhapDS(4, $mask, $sv_co_ra_k_vao, $cb_co_ra_k_vao);
         $insert7 = ThongKeDiemDanh::NhapDS(7, $mask, $sv_k_co_ttin, $cb_k_co_ttin);
 
+        if ($insert1) {
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 1 của sự kiên ".$mask);
+        } else {
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 1 của sự kiên ".$mask." thất bại");
+        }
+
+        if ($insert2) {
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 2 của sự kiên ".$mask);
+        } else {
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 2 của sự kiên ".$mask." thất bại");
+        }
+
+        if ($insert3) {
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 3 của sự kiên ".$mask);
+        } else {
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 3 của sự kiên ".$mask." thất bại");
+        }
+
+        if ($insert4) {
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 4 của sự kiên ".$mask);
+        } else {
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 4 của sự kiên ".$mask." thất bại");
+        }
+
+        if ($insert7) {
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 7 của sự kiên ".$mask);
+        } else {
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 7 của sự kiên ".$mask." thất bại");
+        }
+        
+
         // Nếu tất cả kết quả đều thành công, tính kết quả tổng hợp.
         $ketqua_insert = $insert1 * $insert2 * $insert3 * $insert4 * $insert7;
 
@@ -336,9 +367,11 @@ class ThongKeController extends Controller
     {   
         try{
             $ds_sukien = \DB::select('SELECT MASK, TENSK, NGTHUCHIEN, DIADIEM FROM sukien WHERE MATTHAI = 4 LIMIT 10');
+            WriteLogController::Write_Debug("Lấy danh sách sự kiện đã điểm danh thành công.");
             return dd($ds_sukien);
         }
         catch(\Exception $e){
+            WriteLogController::Write_Debug("Lấy danh sách sự kiện đã điểm danh thất bại.");
             return null;
         }
     }
@@ -346,34 +379,65 @@ class ThongKeController extends Controller
     // Đổi danh sách điểm danh sang danh sách cần thiết.
     public function ChuyenDanhSach(Request $R)
     {
-        // Nhận các giá trị trong request
-        $ds_chuyen = Input::get("optradio");
-        $mask = $R->mask;
-        $ma_ng_chuyen = $R->ma_ng_chuyen;
-        $ds_hien_tai = $R->ds_hien_tai;
-        $loai_ng_chuyen = $R->loai_ng_chuyen;
+        if (\Session::has('uname')) {
+            // Nhận các giá trị trong request
+            $ds_chuyen = Input::get("optradio");
+            $mask = $R->mask;
+            $ma_ng_chuyen = $R->ma_ng_chuyen;
+            $ds_hien_tai = $R->ds_hien_tai;
+            $loai_ng_chuyen = $R->loai_ng_chuyen;
+            
+            // Tính danh sách điểm danh cần chuyển.
+            $ds_can_chuyen = ThongKeDiemDanh::TinhDS_Can_Chuyen($ds_chuyen, $ds_hien_tai);
+
+            if ($ds_can_chuyen == 0) {
+                WriteLogController::Write_Debug("Tính loại ds cần chuyển thất bại");
+            }
+            else {
+                WriteLogController::Write_Debug("Tính loại ds cần chuyển thành công");
+            }
+
+            // Xử lý chuyển danh sách và lưu kết quả xử lý.
+            $ketqua_ds = ThongKeDiemDanh::DoiDS($mask, $ma_ng_chuyen, $ds_can_chuyen, $ds_hien_tai, $loai_ng_chuyen);
+
+            if ($ketqua_ds == 0) {
+                WriteLogController::Write_Debug("Chuyển danh sách điểm danh thất bại");
+            }
+            else {
+                WriteLogController::Write_Debug("Chuyển danh sách điểm danh thành công");
+            }
+
+            // Tính danh sách thống kê cần chuyển
+            $ds_can_chuyen = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_can_chuyen);
+            $ds_hien_tai = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_hien_tai);
+
+            // Xử lý cập nhật số liệu thống kê và lưu kết quả xử lý.
+            $ketqua_solieu = ThongKeDiemDanh::CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai);
+
+            if ($ketqua_solieu == 0) {
+                WriteLogController::Write_Debug("Cập nhật số liệu thống kê thất bại");
+            }
+            else {
+                WriteLogController::Write_Debug("Cập nhật số liệu thống kê thành công");
+            }
+
+            $ketqua = $ketqua_ds * $ketqua_solieu;
+
+            if ($ketqua == 1) {
+                WriteLogController::Write_InFo("Chuyển danh sách cho "
+                    .$loai_ng_chuyen." ".$ma_ng_chuyen." từ ".$ds_hien_tai." sang ".$ds_can_chuyen." thành công");
+                return \Redirect::route('chart_old_get', $mask);
+            } else {
+                WriteLogController::Write_InFo("Chuyển danh sách cho "
+                .$loai_ng_chuyen." ".$ma_ng_chuyen." từ ".$ds_hien_tai." sang ".$ds_can_chuyen." thất bại");
+                return redirect()->route('Error',
+                ['mes' => 'Sửa kết quả điểm danh thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+            }
         
-        // Tính danh sách điểm danh cần chuyển.
-        $ds_can_chuyen = ThongKeDiemDanh::TinhDS_Can_Chuyen($ds_chuyen, $ds_hien_tai);
-
-        // Xử lý chuyển danh sách và lưu kết quả xử lý.
-        $ketqua_ds = ThongKeDiemDanh::DoiDS($mask, $ma_ng_chuyen, $ds_can_chuyen, $ds_hien_tai, $loai_ng_chuyen);
-
-        // Tính danh sách thống kê cần chuyển
-        $ds_can_chuyen = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_can_chuyen);
-        $ds_hien_tai = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_hien_tai);    
-
-        // Xử lý cập nhật số liệu thống kê và lưu kết quả xử lý.
-        $ketqua_solieu = ThongKeDiemDanh::CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai);
-
-        $ketqua = $ketqua_ds * $ketqua_solieu;
-
-        if ($ketqua == 1) {
-            return \Redirect::route('chart_old_get', $mask);
-        } else {
-            return redirect()->route('Error',
-            ['mes' => 'Sửa kết quả điểm danh thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
         }
-        
+        else{
+            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để chuyển danh sách điểm danh");
+            return view('login');
+        }
     }
 }

@@ -19,6 +19,9 @@ class ExcelController extends Controller
     public function ImportFile(Request $request)
     {
         if (\Session::has('uname')) {
+
+            $name = \Session::get('uname');
+
             // Nếu phần file đã được chọn.
             if(Input::hasFile('im_file')){
                 
@@ -29,10 +32,14 @@ class ExcelController extends Controller
                 $tenbang = $request->tenBang;            
 
                 if ($tenbang == "sinhvien") {
+                    
+                    WriteLogController::Write_InFo($name." chọn import sinh viên vào hệ thống");
                     // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien'.
                     $data = Excel::selectSheets('dssinhvien')->load($path, function($reader) {})->get();
                 }
                 if ($tenbang == "canbo") {
+
+                    WriteLogController::Write_InFo($name." chọn import cán bộ vào hệ thống");
                     // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
                     $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
                 }
@@ -40,6 +47,8 @@ class ExcelController extends Controller
 
                     // Lấy giá trị của mã sự kiện cần đăng ký.
                     self::$mask_dangki = $request->mask_dangki;
+
+                    WriteLogController::Write_InFo($name." chọn import danh sách đăng ký sự kiện".self::$mask_dangki." vào hệ thống");
 
                     // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien', 'dscanbo'.
                     $data = Excel::selectSheets('dssinhvien', 'dscanbo')->load($path, function($reader) {})->get();
@@ -70,6 +79,20 @@ class ExcelController extends Controller
                                 // Nếu thực thi không thành công thì hiển thị trang báo lỗi
                                 // để người dùng xem lại dữ liệu trong file.
                                 if (!$ketqua) {
+                                    if ($tenbang == "sukien") {
+                                        WriteLogController::Write_Debug("Có lỗi khi import sự kiện ".self::$mask_dangki." ở sheet thứ ".$sodong);
+                                        return redirect()->route('Error',[
+                                            'mes' => 'Import thất bại tại sheet thứ '.$sodong, 
+                                            'reason' => 
+                                                'Vui lòng kiếm tra lại các thông tin sau:<br>
+                                                1. Tên các cột so với file import mẫu<br>
+                                                2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
+                                                3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
+                                                4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.<br>
+                                                5. Kiểm tra xem mã số người đăng ký đã có trong hệ thống hay chưa'
+                                        ]);
+                                    }
+                                    WriteLogController::Write_Debug("Có lỗi khi import sự kiện ".self::$mask_dangki." ở dòng thứ ".$sodong);
                                     return redirect()->route('Error',[
                                         'mes' => 'Import thất bại tại dòng dữ liệu thứ '.$sodong, 
                                         'reason' => 
@@ -77,8 +100,7 @@ class ExcelController extends Controller
                                             1. Tên các cột so với file import mẫu<br>
                                             2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
                                             3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
-                                            4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.<br>
-                                            5. Nếu đang đănh ký sự kiện, kiểm tra xem mã số người đăng ký đã có trong hệ thống hay chưa'
+                                            4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.<br>'                                            
                                     ]);
                                 }
                                 // Nếu thành công và đang đang ký sự kiện thì thay đổi trang thái sự kiện.
@@ -86,6 +108,7 @@ class ExcelController extends Controller
                                     if ($tenbang == "sukien") {
                                         $ketqua = SuKien::ChuyenTrangThai(self::$mask_dangki, 2);
                                         if (!$ketqua) {
+                                            WriteLogController::Write_Debug("Có lỗi khi chuyển trạng thái sự kiện ".self::$mask_dangki." sau khi đăng ký");
                                             return redirect()->route('Error', 
                                             ['mes' => 'Import thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
                                         }
@@ -95,12 +118,14 @@ class ExcelController extends Controller
                         }
                         // Nếu lấy dữ liệu insert thất bại.
                         else {
+                            WriteLogController::Write_Debug("Có lỗi khi đang tạo dữ liệu insert");
                             return redirect()->route('Error', 
                             ['mes' => 'Import thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
                         }
                     }
                 }
                 catch (\Exception $e) {
+                    WriteLogController::Write_Debug("Có lỗi khi đang thực hiện chức năng import");
                     return redirect()->route('Error', 
                     ['mes' => 'Import cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
                 }

@@ -27,7 +27,7 @@ class MailController extends Controller
         }
         catch(\Exception $e){
             return false;
-            echo $e->getMessage();
+            // echo $e->getMessage();
         }
     }
 
@@ -62,8 +62,14 @@ class MailController extends Controller
             $ma_so_xac_thuc = mt_rand(100000, 999999);
             \Session()->put('ma_so_xac_thuc', $ma_so_xac_thuc);
 
-            self::GuiMail($name, $email, $ma_so_xac_thuc);
+            $kq = self::GuiMail($name, $email, $ma_so_xac_thuc);
             
+            if ($kq == true) {
+                WriteLogController::Write_Debug("Gửi mail thành công đến ".$email);
+            } else {
+                WriteLogController::Write_Debug("Gửi mail đến ".$email." thất bại");
+            }
+
             return redirect()->route('chonsukien', [
                 'mask' => $mask,
                 'ma_so_xac_thuc' => $ma_so_xac_thuc
