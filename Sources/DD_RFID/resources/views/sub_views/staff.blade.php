@@ -256,6 +256,13 @@
                                     <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </button>
+
+                                    <button class="btn btn-danger"
+                                        onclick="if(window.confirm('Hủy thẻ cán bộ này?')){
+                                        window.location.replace('<?php echo route("DeleteTheCB", 
+                                        ["mscb" => $canbo->MSCB]) ?>');}">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
                                 @else
                                     {!! "<b><i>Chưa đăng ký<i><b>" !!}
                                     {{--  Nút cập nhật mã thẻ mới  --}}

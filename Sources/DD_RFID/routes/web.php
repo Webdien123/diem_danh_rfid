@@ -60,6 +60,9 @@ Route::post('capnhatCanBo', "CanBoController@XuLyCapNhat")->name("UpdateCB");
 // Xóa cán bộ.
 Route::get('xoaCanbo/{mscb}', "CanBoController@XoaCanBo")->name("DeleteCB");
 
+// Hủy thẻ cán bộ
+Route::get('xoaTheCanbo/{mscb}', "CardController@HuyTheCB")->name("DeleteTheCB");
+
 // Tìm kiếm cán bộ.
 Route::get('timkiemCanBo', "CanBoController@TimCanBo")->name("FindCB");
 
@@ -74,6 +77,9 @@ Route::post('capnhatSinhVien', "SinhVienController@XuLyCapNhat")->name("UpdateSV
 
 // Xóa sinh viên.
 Route::get('xoaSinhVien/{mssv}', "SinhVienController@XoaSinhVien")->name("DeleteSV");
+
+// Hủy thẻ sinh viên
+Route::get('xoaTheSinhVien/{mssv}', "CardController@HuyTheSV")->name("DeleteTheSV");
 
 // Tìm kiếm sinh viên.
 Route::get('timkiemSinhVien', "SinhVienController@TimSinhVien")->name("FindSV");
@@ -108,10 +114,6 @@ Route::get('export_data/{tenbang}/{type}', "ExcelController@ExportTable")->name(
 
 // Export danh sách điểm danh.
 Route::get('export_dsach/{mask}/{tends}/{type}', "ExcelController@ExportDSach")->name("export_dsach");
-
-
-// Route::get('download_file/{file_path}/{file_name}', "WriteLogController@getDownload");
-
 
 // Dẫn vào trang đang ký thẻ.
 Route::get('card', "GetViewController@Card")->name('card');
@@ -149,7 +151,6 @@ Route::get('chart_old/{mask}', "ThongKeController@GetPageThongKe_Old_GET")->name
 
 // Thay đổi kết quả điểm danh.
 Route::post('chuyendanhsach', "ThongKeController@ChuyenDanhSach")->name("chuyenDS");
-
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');

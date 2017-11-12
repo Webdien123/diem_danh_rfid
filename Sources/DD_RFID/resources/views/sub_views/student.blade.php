@@ -275,6 +275,13 @@
                                     <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </button>
+
+                                    <button class="btn btn-danger"
+                                        onclick="if(window.confirm('Hủy thẻ sinh viên này?')){
+                                        window.location.replace('<?php echo route("DeleteTheSV", 
+                                        ["mssv" => $sv->MSSV]) ?>');}">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
                                 @else
                                     {!! "<b><i>Chưa đăng ký<i><b>" !!}
                                     {{--  Nút cập nhật mã thẻ mới  --}}

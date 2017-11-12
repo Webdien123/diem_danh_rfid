@@ -396,4 +396,42 @@ class CardController extends Controller
             return view('login');
         }
     }
+
+    public function HuyTheCB($mscb)
+    {
+        if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            $ketqua_the = DangKyTheCB::DeleteThe($mscb);
+            if ($ketqua_the){
+                WriteLogController::Write_Debug($name." hủy thẻ cán bộ ".$mscb);
+                return redirect()->route('staff');
+            }
+            else{
+                return redirect()->route('Error', 
+                ['mes' => 'Hủy thẻ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+            }
+        }
+        else{
+            return view('login');
+        }
+    }
+
+    public function HuyTheSV($mssv)
+    {
+        if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            $ketqua_the = DangKyTheSV::DeleteThe($mssv);
+            if ($ketqua_the){
+                WriteLogController::Write_Debug($name." hủy thẻ sinh viên ".$mssv);
+                return redirect()->route('student');
+            }
+            else{
+                return redirect()->route('Error', 
+                ['mes' => 'Hủy thẻ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+            }
+        }
+        else{
+            return view('login');
+        }
+    }
 }
