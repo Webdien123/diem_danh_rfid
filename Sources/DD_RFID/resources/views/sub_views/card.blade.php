@@ -28,7 +28,7 @@
                 {{--  Thông báo thất bại  --}}
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Đăng ký thất bại vui lòng kiểm tra mã chủ thẻ đã tồn tại chưa</strong>
+                    <strong>Đăng ký thất bại vui lòng kiểm tra mã chủ thẻ hoặc email đã tồn tại chưa</strong>
                 </div>
             @endif
         </div>

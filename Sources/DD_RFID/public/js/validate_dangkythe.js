@@ -66,7 +66,7 @@ $(document).ready(function () {
 
         messages: {
             machuthe: {
-                required: "Chưa nhập mã số cán bộ",
+                required: "Chưa nhập mã số cán bộ hoặc sinh viên",
                 maxlength: "Mã số tối đa là 8 kí tự",
                 minlength: "Mã số phải đủ 8 kí tự"
             }

@@ -39,7 +39,7 @@ class WriteLogController extends Controller
 
         Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'alert');
         
-        Log::alert($content.PHP_EOL);        
+        Log::alert($content.PHP_EOL); 
     }
 
     // Ghi log Debug
