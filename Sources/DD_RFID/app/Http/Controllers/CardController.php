@@ -57,7 +57,6 @@ class CardController extends Controller
             ]);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang đăng ký thẻ");
             return view('login');
         }
     }
@@ -112,7 +111,6 @@ class CardController extends Controller
             return redirect('/card/');
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang đăng ký thẻ");
             return view('login');
         }
     }
@@ -388,7 +386,6 @@ class CardController extends Controller
             }
             // Xử lý thất bại.
             else {
-                WriteLogController::Write_Debug("Cập nhật mã thẻ thành ".$mathe." cho sinh viên ".$machuthe. " thất bại, có lỗi khi xử lý");
                 return false;
             }
         }

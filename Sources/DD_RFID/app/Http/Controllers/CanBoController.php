@@ -34,8 +34,6 @@ class CanBoController extends Controller
             ]);            
         }
         else{
-
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang cán bộ");
             return view('login');
         }
     }
@@ -99,7 +97,6 @@ class CanBoController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để thêm cán bộ");
             return view('login');
         }
     }
@@ -124,7 +121,6 @@ class CanBoController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xem thông tin cán bộ");
             return view('login');
         }
     }
@@ -146,7 +142,6 @@ class CanBoController extends Controller
             return redirect('/staff_info/' . $canbo->mscb);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật cán bộ");
             return view('login');
         }            
     }
@@ -173,7 +168,6 @@ class CanBoController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa cán bộ");
             return view('login');
         }
     }
@@ -209,7 +203,6 @@ class CanBoController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa cán bộ");
             return view('login');
         }
     }

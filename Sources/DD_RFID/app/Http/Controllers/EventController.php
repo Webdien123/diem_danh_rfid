@@ -31,7 +31,6 @@ class EventController extends Controller
             ]);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang sự kiện");
             return view('login');
         }
     }
@@ -256,7 +255,6 @@ class EventController extends Controller
                 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để thêm sự kiện");
             return view('login');
         }
     }
@@ -278,7 +276,6 @@ class EventController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xem thông tin sự kiện");
             return view('login');
         }
     }
@@ -299,7 +296,6 @@ class EventController extends Controller
             return redirect('/event_info/' . $sukien->mask);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật sự kiện");
             return view('login');
         }
     }
@@ -329,7 +325,6 @@ class EventController extends Controller
                 ['mes' => 'Xóa sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóá sự kiện");
             return view('login');
         }
     }
@@ -363,7 +358,6 @@ class EventController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để tìm sự kiện");
             return view('login');
         }
     }

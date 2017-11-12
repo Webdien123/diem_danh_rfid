@@ -491,3 +491,41 @@ Stack trace:
   
 [2017-11-12 14:49:32] local.INFO: Trần Quản Trị vào trang sinh viên
   
+[2017-11-12 14:53:11] local.INFO: Hiển thị kết quả thống kê sự kiện 1
+  
+[2017-11-12 14:54:30] local.INFO: Trần Quản Trị vào trang cán bộ
+  
+[2017-11-12 14:54:34] local.INFO: Trần Quản Trị vào trang cán bộ
+  
+[2017-11-12 14:54:44] local.INFO: Trần Quản Trị vào trang cán bộ
+  
+[2017-11-12 14:57:54] local.INFO: Trần Quản Trị vào trang sự kiện
+  
+[2017-11-12 14:58:00] local.DEBUG: Trần Quản Trị xóa sự kiện 15
+  
+[2017-11-12 14:58:00] local.INFO: Trần Quản Trị vào trang sự kiện
+  
+[2017-11-12 14:58:05] local.DEBUG: Trần Quản Trị xóa sự kiện 1
+  
+[2017-11-12 14:58:05] local.INFO: Trần Quản Trị vào trang sự kiện
+  
+[2017-11-12 14:58:22] local.INFO: Trần Quản Trị vào trang sinh viên
+  
+[2017-11-12 14:58:26] local.DEBUG: Trần Quản Trị hủy thẻ sinh viên B1700002
+  
+[2017-11-12 14:58:26] local.INFO: Trần Quản Trị vào trang sinh viên
+  
+[2017-11-12 14:58:41] local.INFO: Trần Quản Trị vào trang sinh viên
+  
+[2017-11-12 15:00:42] local.INFO: Trần Quản Trị vào trang sự kiện
+  
+[2017-11-12 15:00:44] local.INFO: Trần Quản Trị vào trang cán bộ
+  
+[2017-11-12 15:07:43] local.INFO: Hiển thị trang thống kê rỗng
+  
+[2017-11-12 15:07:46] local.INFO: Trần Quản Trị vào trang cán bộ
+  
+[2017-11-12 20:25:07] local.ALERT: Hết phiên làm việc, đăng nhập để vào trang cán bộ
+  
+[2017-11-12 20:25:10] local.ALERT: Hết phiên làm việc, đăng nhập để vào trang cán bộ
+  

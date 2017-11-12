@@ -138,140 +138,168 @@ class ExcelController extends Controller
         }
     }
 
-    // Hàm export file excel theo mảng dữ liệu cho trước và loại dữ liệu cần xuất.
-    public static function ExportFile($data, $type)
-    {        
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
-			$excel->sheet('mySheet', function($sheet) use ($data)
-	        {
-				$sheet->fromArray($data);
-	        });
-		})->download("xls");
-    }
-
     // Hàm export dữ liệu bảng cán bộ hoặc sinh viên dùng đê backup dữ liệu.
     public function ExportTable($tenbang, $type)
     {
-        if ($tenbang == "sv") {
-            $sinhvien = SinhVien::GetAllSV_RFID();
-            $tenfile = "Danh sách sinh viên";
-            $data = self::ChuyenVeArray($sinhvien);
+        if (\Session::has('uname')) {
+            if ($tenbang == "sv") {
+                $sinhvien = SinhVien::GetAllSV_RFID();
+                if ($sinhvien) {
+                    $tenfile = "Danh sách sinh viên";
+                    $data = self::ChuyenVeArray($sinhvien);
+                } else {
+                    return redirect()->route('Error', 
+                    ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
+                }
+            }
+            if ($tenbang == "cb") {
+                $canbo = CanBo::GetAllCB_RFID();
+                if ($canbo) {
+                    $tenfile = "Danh sách cán bộ";
+                    $data = self::ChuyenVeArray($canbo);
+                } else {
+                    return redirect()->route('Error', 
+                    ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
+                }
+            }
+            
+            return Excel::create($tenfile, function($excel) use ($data) {
+                $excel->sheet('danhsach', function($sheet) use ($data)
+                {
+                    $sheet->fromArray($data);
+                });
+            })->download("xls");
         }
-        if ($tenbang == "cb") {
-            $canbo = CanBo::GetAllCB_RFID();
-            $tenfile = "Danh sách cán bộ";
-            $data = self::ChuyenVeArray($canbo);
+        else{
+            return view('login');
         }
-        
-        return Excel::create($tenfile, function($excel) use ($data) {
-			$excel->sheet('danhsach', function($sheet) use ($data)
-	        {
-				$sheet->fromArray($data);
-	        });
-		})->download("xls");
     }
 
     // Hàm export dữ liệu danh sách điểm danh.
     public function ExportDSach($mask, $tends, $type)
     {
-        // Lấy loại chủ danh sách là cán bộ hay sinh viên
-        $loai_chu_ds = substr($tends, 0, 2);
+        if (\Session::has('uname')) {
+            // Lấy loại chủ danh sách là cán bộ hay sinh viên
+            $loai_chu_ds = substr($tends, 0, 2);
 
-        // Tính lại tên ngắn gọn cho tên danh sách và
-        // Tính lại tên danh sách tương ứng ở modal thống kê
-        $tends = substr($tends, 3);
-        $tends = trim($tends, " ");
+            // Tính lại tên ngắn gọn cho tên danh sách và
+            // Tính lại tên danh sách tương ứng ở modal thống kê
+            $tends = substr($tends, 3);
+            $tends = trim($tends, " ");
 
-        // Tính tên file cần chuyển.
-        $tenfile = self::TinhTenFileDS($loai_chu_ds, $tends, $mask);
+            // Tính tên file cần chuyển.
+            $tenfile = self::TinhTenFileDS($loai_chu_ds, $tends, $mask);
 
-        // Tinh tên danh sách cần chuyển.
-        $tends = self::TinhTenLoaiDS($tends);
+            // Tinh tên danh sách cần chuyển.
+            $tends = self::TinhTenLoaiDS($tends);
 
-        // Lấy danh sách điểm danh tương ứng với loại chủ danh sách,
-        // mã sự kiện và tên danh sách.
-        if ($loai_chu_ds == "cb") {
-            $data = ThongKeDiemDanh::LayDS_CB($mask, $tends);
+            // Lấy danh sách điểm danh tương ứng với loại chủ danh sách,
+            // mã sự kiện và tên danh sách.
+            if ($loai_chu_ds == "cb") {
+                $data = ThongKeDiemDanh::LayDS_CB($mask, $tends);
+            }
+            if ($loai_chu_ds == "sv") {
+                $data = ThongKeDiemDanh::LayDS_SV($mask, $tends);
+            }
+
+            if ($data) {
+                $data = self::ChuyenVeArray($data);
+
+                return Excel::create($tenfile, function($excel) use ($data) {
+                    $excel->sheet('diemdanh', function($sheet) use ($data)
+                    {
+                        $sheet->fromArray($data);
+                    });
+                })->download("xls");
+            } else {
+                return redirect()->route('Error', 
+                ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
+            }
         }
-        if ($loai_chu_ds == "sv") {
-            $data = ThongKeDiemDanh::LayDS_SV($mask, $tends);
-        }
-
-        // Chuyển mảng đối tượng data sang mảng 2 chiều.
-        $data = self::ChuyenVeArray($data);
-
-        return Excel::create($tenfile, function($excel) use ($data) {
-			$excel->sheet('diemdanh', function($sheet) use ($data)
-	        {
-				$sheet->fromArray($data);
-	        });
-		})->download("xls");
+        else{
+            return view('login');
+        } 
     }
 
     // Hàm tính toán lại tên loại danh sách để khớp với hàm Lấy danh sách của
     // modal thống kê điểm danh.
     public static function TinhTenLoaiDS($ten_ban_dau)
     {
-        if ($ten_ban_dau == "vang_mat") {
-            return "vangmat";
+        if (\Session::has('uname')) {
+            if ($ten_ban_dau == "vang_mat") {
+                return "vangmat";
+            }
+            if ($ten_ban_dau == "co_mat") {
+                return "comat";
+            }
+            if ($ten_ban_dau == "co_v_k_ra") {
+                return "covaokra";
+            }
+            if ($ten_ban_dau == "co_ra_k_v") {
+                return "corakvao";
+            }
+            if ($ten_ban_dau == "chua_co_ttin") {
+                return "chuattin";
+            }
         }
-        if ($ten_ban_dau == "co_mat") {
-            return "comat";
-        }
-        if ($ten_ban_dau == "co_v_k_ra") {
-            return "covaokra";
-        }
-        if ($ten_ban_dau == "co_ra_k_v") {
-            return "corakvao";
-        }
-        if ($ten_ban_dau == "chua_co_ttin") {
-            return "chuattin";
-        }
+        else{
+            return view('login');
+        } 
     }
 
     // Hàm tính toán lại tên file danh sách xuất ra theo chủ loại danh sách 
     // và danh sách điểm danh.
     public static function TinhTenFileDS($loai_chu_ds, $ten_ds, $mask)
     {
-        if ($loai_chu_ds == "cb") {
-            $ten_chu = "cán bộ";
-        }
-        if ($loai_chu_ds == "sv") {
-            $ten_chu = "sinh viên";
-        }
+        if (\Session::has('uname')) {
+            if ($loai_chu_ds == "cb") {
+                $ten_chu = "cán bộ";
+            }
+            if ($loai_chu_ds == "sv") {
+                $ten_chu = "sinh viên";
+            }
 
-        if ($ten_ds == "vang_mat") {
-            $ten_dsach = "vắng mặt";
-        }
-        if ($ten_ds == "co_mat") {
-            $ten_dsach = "có mặt";
-        }
-        if ($ten_ds == "co_v_k_ra") {
-            $ten_dsach = "chỉ điểm danh vào";
-        }
-        if ($ten_ds == "co_ra_k_v") {
-            $ten_dsach = "chỉ điểm danh ra";
-        }
-        if ($ten_ds == "chua_co_ttin") {
-            $ten_dsach = "chưa đủ thông tin";
-        }
+            if ($ten_ds == "vang_mat") {
+                $ten_dsach = "vắng mặt";
+            }
+            if ($ten_ds == "co_mat") {
+                $ten_dsach = "có mặt";
+            }
+            if ($ten_ds == "co_v_k_ra") {
+                $ten_dsach = "chỉ điểm danh vào";
+            }
+            if ($ten_ds == "co_ra_k_v") {
+                $ten_dsach = "chỉ điểm danh ra";
+            }
+            if ($ten_ds == "chua_co_ttin") {
+                $ten_dsach = "chưa đủ thông tin";
+            }
 
-        return $ten_chu . " " . $ten_dsach . " sự kiện " . $mask;
+            return $ten_chu . " " . $ten_dsach . " sự kiện " . $mask;
+        }
+        else{
+            return view('login');
+        } 
     }
 
     // Hàm chuyển mảng data về mảng 2 chiều và xóa đi các cột không cần thiết.
     public static function ChuyenVeArray($data)
     {
-        $data_array;
+        if (\Session::has('uname')) {
+            $data_array;
 
-        // Chuyển sang mảng hai chiều và xóa cột Mã sự kiện, mã loại danh sách
-        for ($i = 0; $i < count($data); $i++) { 
-            $data_array[] = (array) $data[$i];
-            unset($data_array[$i]["MASK"]);
-            unset($data_array[$i]["MALOAIDS"]);
-            
+            // Chuyển sang mảng hai chiều và xóa cột Mã sự kiện, mã loại danh sách
+            for ($i = 0; $i < count($data); $i++) { 
+                $data_array[] = (array) $data[$i];
+                unset($data_array[$i]["MASK"]);
+                unset($data_array[$i]["MALOAIDS"]);
+                
+            }
+            return $data_array;
         }
-        return $data_array;
+        else{
+            return view('login');
+        } 
     }
 
     // Hàm tạo dạng dữ liệu có thể lưu trữ vào csdl dựa theo tên bảng và

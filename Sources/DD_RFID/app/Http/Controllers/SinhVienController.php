@@ -46,7 +46,6 @@ class SinhVienController extends Controller
             ]);
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để vào trang sinh viên");
             return view('login');
         }
     }
@@ -93,7 +92,6 @@ class SinhVienController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để thêm sinh viên");
             return view('login');
         }
     }
@@ -120,7 +118,6 @@ class SinhVienController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xem thông tin sinh viên");
             return view('login');
         }
     }
@@ -142,7 +139,6 @@ class SinhVienController extends Controller
             return redirect('/student_info/' . $sinhvien->mssv);       
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để cập nhật sinh viên");
             return view('login');
         }
     }
@@ -169,7 +165,6 @@ class SinhVienController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa sinh viên");
             return view('login');
         }
     }
@@ -206,7 +201,6 @@ class SinhVienController extends Controller
             }
         }
         else{
-            WriteLogController::Write_Alert("Hết phiên làm việc, đăng nhập để xóa sinh viên");
             return view('login');
         }
     }

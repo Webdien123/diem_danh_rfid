@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2017 at 10:43 AM
+-- Generation Time: Nov 12, 2017 at 09:00 AM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.0.20
 
@@ -30,29 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `canbo` (
   `MSCB` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
   `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
-  `EMAIL` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
-  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
+  `TENBOMON` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `EMAIL` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Dumping data for table `canbo`
---
-
-INSERT INTO `canbo` (`MSCB`, `TENBOMON`, `TENKHOA`, `EMAIL`, `HOTEN`) VALUES
-('00123456', 'Hệ thống thông tin', 'Công nghệ thông tin và truyền thông', 'vana@gmail.com', 'Nguyễn Ân Hiên'),
-('00123457', 'Công nghệ thông tin', 'Công nghệ thông tin và truyền thông', 'vanb@gmail.com', 'Trần Văn Bình'),
-('00123458', 'Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông', 'pchuy@gmail.com', 'Phan Công Huy'),
-('00123459', 'Khoa học máy tính', 'Công nghệ thông tin và truyền thông', 'hau@hotmail.com', 'Lê Thị Hậu'),
-('00123460', 'Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông', 'chin@email.com', 'Nguyễn Chín'),
-('00123461', 'Công nghệ thông tin', 'Công nghệ thông tin và truyền thông', 'cong@outlook.com', 'Lê Thành Công'),
-('00123462', 'Tin học ứng dụng', 'Công nghệ thông tin và truyền thông', 'Ptin@gmail.com.vn', 'Phương Tín'),
-('00123463', 'Tin học ứng dụng', 'Công nghệ thông tin và truyền thông', 'ldcuong@gmail.com', 'Lâm Định Cương'),
-('00123464', 'Công nghệ phần mềm', 'Công nghệ thông tin và truyền thông', 'nguyenmaiat@gmail.com', 'Mai Ất Nguyên'),
-('00123465', 'Mạng máy tính và TT', 'Công nghệ thông tin và truyền thông', 'thangthang@gmail.com.vn', 'Phạm Thắng'),
-('00123466', 'Hệ thống thông tin', 'Công nghệ thông tin và truyền thông', 'tkien@yahoo.com.vn', 'Trương Tuấn Kiên'),
-('00123467', 'Hệ thống thông tin', 'Công nghệ thông tin và truyền thông', 'phungquan@gmail.com.vn', 'Đinh Phùng Quân');
 
 -- --------------------------------------------------------
 
@@ -89,13 +71,6 @@ CREATE TABLE `dangkythecb` (
   `MATHE` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
---
--- Dumping data for table `dangkythecb`
---
-
-INSERT INTO `dangkythecb` (`MSCB_THE`, `MATHE`) VALUES
-('00123456', '0005706269');
-
 -- --------------------------------------------------------
 
 --
@@ -106,15 +81,6 @@ CREATE TABLE `dangkythesv` (
   `MSSV_THE` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
   `MATHE` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Dumping data for table `dangkythesv`
---
-
-INSERT INTO `dangkythesv` (`MSSV_THE`, `MATHE`) VALUES
-('B1500003', '0001352398'),
-('B1700001', '0000958866'),
-('B1700002', '0000958819');
 
 -- --------------------------------------------------------
 
@@ -218,7 +184,7 @@ INSERT INTO `kyhieulop` (`KYHIEULOP`) VALUES
 
 CREATE TABLE `loaids` (
   `MALOAIDS` int(11) NOT NULL,
-  `TENLOAIDS` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL
+  `TENLOAIDS` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -230,7 +196,10 @@ INSERT INTO `loaids` (`MALOAIDS`, `TENLOAIDS`) VALUES
 (2, 'Vắng mặt'),
 (3, 'Có vào không ra'),
 (4, 'Có ra không vào'),
-(5, 'Chưa có thông tin');
+(5, 'Có vào không ra, chưa có thông tin'),
+(6, 'Có ra không vào, chưa có thông tin'),
+(7, 'Có mặt, chưa có thông tin'),
+(8, 'Vắng mặt, chưa có thông tin');
 
 -- --------------------------------------------------------
 
@@ -272,21 +241,12 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `sinhvien` (
   `MSSV` char(8) COLLATE utf8_vietnamese_ci NOT NULL,
-  `KYHIEULOP` char(2) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
-  `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
-  `KHOAHOC` char(3) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
   `TENKHOA` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
-  `HOTEN` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
+  `TENCHNGANH` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `KYHIEULOP` char(2) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--',
+  `KHOAHOC` char(3) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT '--'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Dumping data for table `sinhvien`
---
-
-INSERT INTO `sinhvien` (`MSSV`, `KYHIEULOP`, `TENCHNGANH`, `KHOAHOC`, `TENKHOA`, `HOTEN`) VALUES
-('B1500003', 'A3', 'Hệ thống thông tin', 'K41', 'Công nghệ thông tin và truyền thông', 'Phạm Đình Thiên'),
-('B1700001', 'A1', 'Mạng máy tính và TT', 'K43', 'Công nghệ thông tin và truyền thông', 'Nguyễn Thị Linh'),
-('B1700002', 'A1', 'Khoa học máy tính', 'K43', 'Công nghệ thông tin và truyền thông', 'Phạm Tiễn');
 
 -- --------------------------------------------------------
 
@@ -304,13 +264,6 @@ CREATE TABLE `sukien` (
   `DDRA` time NOT NULL,
   `TGIANDDRA` int(11) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Dumping data for table `sukien`
---
-
-INSERT INTO `sukien` (`MASK`, `MATTHAI`, `TENSK`, `NGTHUCHIEN`, `DIADIEM`, `DDVAO`, `DDRA`, `TGIANDDRA`) VALUES
-(1, 1, 'Sự kiện ăn uống hàn quốc', '2017-11-02', 'Lào', '16:43:00', '16:44:00', 10);
 
 -- --------------------------------------------------------
 
@@ -391,7 +344,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Trần Quản Trị', 'abc@gmail.com', '$2y$10$/e6.ldxQqjZJnfpnRH3/v.jOmhM8BQJzLmkEPPzIdYUIDwU0dlvZe', NULL, NULL, NULL);
+(1, 'Trần Quản Trị', 'vanb1305056@student.ctu.edu.vn', '$2y$10$2gpt1fv6QuIU2EAwhNjInOaw2fYCqXOdefo7BN3p10gfKXS5Pav1a', 'DqhTSqJTRq2JbCIXZgKGFVPbmB56ImVWPeyzAebXl8btaQb077kZoYZ2CGCa', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -528,7 +481,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `loaids`
 --
 ALTER TABLE `loaids`
-  MODIFY `MALOAIDS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `MALOAIDS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -538,7 +491,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `sukien`
 --
 ALTER TABLE `sukien`
-  MODIFY `MASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MASK` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --

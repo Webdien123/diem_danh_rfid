@@ -27,7 +27,6 @@ class MailController extends Controller
         }
         catch(\Exception $e){
             return false;
-            // echo $e->getMessage();
         }
     }
 
