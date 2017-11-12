@@ -80,7 +80,7 @@
 
                             {{--  nút chọn sự kiện để điểm danh  --}}
                             <center>
-                                <a class="btn btn-success" href="/chonSuKien/{{ $sk->MASK }}">
+                                <a class="btn btn-success" href="/taoCKSuKien/{{ $sk->MASK }}">
                                     <i class="fa fa-hand-o-up" aria-hidden="true"></i>
                                     Chọn
                                 </a>

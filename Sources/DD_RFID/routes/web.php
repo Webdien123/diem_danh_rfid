@@ -94,6 +94,7 @@ Route::get('xoaSuKien/{mssk}', "EventController@XoaSuKien")->name("DeleteSK");
 Route::get('timkiemSuKien', "EventController@TimSuKien")->name("FindSK");
 
 // Chọn sự kiện để điểm danh.
+Route::get('taoCKSuKien/{mask}', "EventController@TaoCKSuKien")->name("taocksukien");
 Route::get('chonSuKien/{mask}', "EventController@ChonSuKien")->name("chonsukien");
 
 // Kiểm tra trạng thái sự kiện.

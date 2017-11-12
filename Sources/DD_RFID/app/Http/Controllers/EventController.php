@@ -36,6 +36,38 @@ class EventController extends Controller
         }
     }
 
+    // Tính tổng thời gian (phút) của toàn sự kiện tính từ thời điểm hiện tại.
+    public static function TinhTongTGianSKien($sukien)
+    {
+        // Chọn time zone.
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        
+        // Lấy ngày hiện tại.
+        $today = date("Y-m-d");
+
+        // Lấy giá trị thời gian hiện tại.
+        $time = date("H:i:s");
+
+        $time2 = date('H:i:s', strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
+
+        return $time2 - $time;
+    }
+
+    public function TaoCKSuKien($mask)
+    {
+        // Lấy thông tin sự kiện từ mã sự kiện.
+        $sukien = SuKien::GetSK($mask);
+
+        $thoigian = self::TinhTongTGianSKien($sukien);
+
+        \Cookie::queue("sukien_diemdanh", $sukien, $thoigian);
+
+        // Tạo trạng thái sự kiện.
+        $trangthai = self::KiemTraTrangThai($sukien);
+
+        return redirect('chonSuKien/'.$mask);
+    }
+
     // Chọn sự kiện để điểm danh
     public function ChonSuKien($mask)
     {
@@ -46,13 +78,12 @@ class EventController extends Controller
             $sukien = SuKien::GetSK($mask);
 
             // TẠO Session chứa sự kiện đang điểm danh.
-            \Session::put('sukien_diemdanh', $sukien);
-
-            // self::TaoCookieSK($sukien);
+            // \Session::put('sukien_diemdanh', $sukien);
 
             // Tạo trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
-            \Session::put('trangthai_sukien', $trangthai);
+
+            \Session::put("trangthai_sukien", $trangthai);            
 
             // Tính lại thời gian còn lại của sự kiện.
             $thoigian = EventController::ThoiGianConLai($sukien);
@@ -81,16 +112,20 @@ class EventController extends Controller
     // Cập nhật trạng thái sự kiện để hiển thị lên giao diện điểm danh và giao diện sự kiện.
     public static function CapNhatSuKienDiemDanh()
     {
-        if (\Session::get('sukien_diemdanh') == null){
+        if (\Cookie::get('sukien_diemdanh') == null){
             $sukiens = SuKien::GetSuKienSSang();
             return view('chon_sukien', ['sukiens' => $sukiens]);
         }
         // Lấy giá trị sự kiện đang cần điểm danh.
-        $sukien = \Session::get('sukien_diemdanh');
+        $sukien = \Cookie::get('sukien_diemdanh');
 
         // Tính lại trạng thái sự kiện.
         $trangthai = self::KiemTraTrangThai($sukien);
-        \Session::put('trangthai_sukien', $trangthai);
+
+        // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
+        \Session::put("trangthai_sukien", $trangthai);
+
+        \Session::put('ketqua_dangkythe_dd', 2);
 
         if ($trangthai < 4) {
             SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);

@@ -23,7 +23,8 @@
 </head>
 <body>
     <?php
-        $sukien = \Session::get('sukien_diemdanh');
+        //$sukien = \Session::get('sukien_diemdanh');
+        $sukien = \Cookie::get('sukien_diemdanh');
         $sukien = $sukien[0];
     ?>
 

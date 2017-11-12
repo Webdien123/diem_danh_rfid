@@ -1,0 +1,38 @@
+[2017-11-12 09:45:45] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống
+  
+[2017-11-12 09:45:46] local.INFO: Hiển thị kết quả thống kê sự kiện 1
+  
+[2017-11-12 09:45:48] local.INFO: Trần Quản Trị vào trang đăng ký thẻ
+  
+[2017-11-12 09:48:20] local.INFO: Trần Quản Trị kiểm tra thẻ 0000958866
+  
+[2017-11-12 09:48:20] local.DEBUG: Thẻ 0000958866 đã có sinh viên B1700001 sở hữu
+  
+[2017-11-12 09:48:28] local.INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+  
+[2017-11-12 09:48:28] local.DEBUG: Thẻ 0001352122 hợp lệ để đăng ký
+  
+[2017-11-12 09:48:37] local.INFO: Trần Quản Trị kiểm tra thẻ 0000978805
+  
+[2017-11-12 09:48:37] local.DEBUG: Thẻ 0000978805 đã có cán bộ 00123458 sở hữu
+  
+[2017-11-12 09:48:43] local.INFO: Trần Quản Trị kiểm tra thẻ 0001352398
+  
+[2017-11-12 09:48:43] local.DEBUG: Thẻ 0001352398 đã có sinh viên B1500003 sở hữu
+  
+[2017-11-12 09:48:45] local.INFO: Trần Quản Trị kiểm tra thẻ 0000958819
+  
+[2017-11-12 09:48:45] local.DEBUG: Thẻ 0000958819 đã có sinh viên B1700002 sở hữu
+  
+[2017-11-12 09:48:47] local.INFO: Trần Quản Trị kiểm tra thẻ 0005706269
+  
+[2017-11-12 09:48:47] local.DEBUG: Thẻ 0005706269 đã có cán bộ 00123456 sở hữu
+  
+[2017-11-12 09:48:50] local.INFO: Trần Quản Trị kiểm tra thẻ 0007185273
+  
+[2017-11-12 09:48:50] local.DEBUG: Thẻ 0007185273 hợp lệ để đăng ký
+  
+[2017-11-12 09:48:54] local.INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+  
+[2017-11-12 09:48:54] local.DEBUG: Thẻ 0001352122 hợp lệ để đăng ký
+  
