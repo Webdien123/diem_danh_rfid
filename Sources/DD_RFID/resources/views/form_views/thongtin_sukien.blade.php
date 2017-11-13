@@ -20,7 +20,7 @@
 
     <center>
         <h1>Trang cập nhật sự kiện</h1>
-        <div class="container">
+        <div class="container-fluid">
             @if (Session::get('ketqua_up_sk') == 0)
                 {{--  Thông báo thành công  --}}
                 <div class="alert alert-success alert-dismissable" id="success-alert">

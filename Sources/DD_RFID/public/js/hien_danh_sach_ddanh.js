@@ -11,9 +11,20 @@ function DoiNDung_Export(mask, ten_ds) {
 // đang hiển thị.
 function HienDanhSach(id_ds, ten_ds, so_luong_ds) {
     $(".danhsach").hide(0);
-    $("#"+id_ds).show(0);
-    $("#ten_ds").text(ten_ds);
-    $("#so_luong_ds").text(so_luong_ds);
+
+    console.log(so_luong_ds);
+
+    if (ten_ds == "") {
+        $("#ds_rong").show(0);
+        $("#ten_ds").text("rỗng");
+        $("#so_luong_ds").text("số lượng cũ " + so_luong_ds);
+    }
+    else{
+        $("#"+id_ds).show(0);
+        $("#ten_ds").text(ten_ds);
+        $("#so_luong_ds").text(so_luong_ds);
+    }
+    
     var ki_tu = id_ds.substring(0, 2);
     if (ki_tu == "sv") {
         $(".loai_ds").text("sinh viên");

@@ -108,3 +108,51 @@ Stack trace:
 #48 D:\Van\Giao Trinh\LUAN VAN\PROJECT\Sources\DD_RFID\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #49 D:\Van\Giao Trinh\LUAN VAN\PROJECT\Sources\DD_RFID\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 {main}  
+[2017-11-13 18:28:32] local.INFO: Kích hoạt điểm danh sự kiện 1
+  
+[2017-11-13 18:29:00] local.INFO: Sự kiện 1 bắt đầu điểm danh vào
+  
+[2017-11-13 18:29:16] local.INFO: Nhận mã thẻ 0000978805
+  
+[2017-11-13 18:29:16] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh vào.
+  
+[2017-11-13 18:29:17] local.INFO: Nhận mã thẻ 0005706269
+  
+[2017-11-13 18:29:18] local.INFO: 0005706269 - chủ thẻ 00123456 điểm danh vào.
+  
+[2017-11-13 18:29:20] local.INFO: Nhận mã thẻ 0000958866
+  
+[2017-11-13 18:29:20] local.INFO: 0000958866 - chủ thẻ B1700001 điểm danh vào.
+  
+[2017-11-13 18:29:22] local.INFO: Nhận mã thẻ 0001352398
+  
+[2017-11-13 18:29:22] local.INFO: 0001352398 - chủ thẻ B1500003 điểm danh vào.
+  
+[2017-11-13 18:30:00] local.INFO: Sự kiện 1 bắt đầu điểm danh ra
+  
+[2017-11-13 18:30:12] local.INFO: Nhận mã thẻ 0001352122
+  
+[2017-11-13 18:30:25] local.INFO: Nhận mã thẻ 0000958866
+  
+[2017-11-13 18:30:25] local.INFO: 0000958866 - chủ thẻ B1700001 điểm danh ra.
+  
+[2017-11-13 18:30:32] local.INFO: Nhận mã thẻ 0000978805
+  
+[2017-11-13 18:30:32] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh ra.
+  
+[2017-11-13 18:30:32] local.INFO: Nhận mã thẻ 706269
+  
+[2017-11-13 18:30:47] local.INFO: Nhận mã thẻ 0000978805
+  
+[2017-11-13 18:30:47] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh ra nhiều lần.
+  
+[2017-11-13 18:30:52] local.INFO: Nhận mã thẻ 0000958819
+  
+[2017-11-13 18:30:55] local.INFO: 0000958819 - chủ thẻ B1700002 điểm danh ra.
+  
+[2017-11-13 18:31:00] local.INFO: Sự kiện 1 kết thúc điểm danh
+  
+[2017-11-13 18:31:00] local.INFO: Thống kê sự kiên 1 thành công
+  
+[2017-11-13 19:45:08] local.INFO: Thống kê sự kiên 1 thành công
+  

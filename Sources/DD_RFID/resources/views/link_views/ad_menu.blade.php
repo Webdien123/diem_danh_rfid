@@ -43,7 +43,7 @@
                             $file_name = "Admin_".$date.".log";
                             
                         ?>     
-                        <a href="{{ $file_path.$file_name }}" class="btn btn-default">
+                        <a href="{{ $file_path.$file_name }}" target="_blank" class="btn btn-default">
                             <i class="fa fa-history fa-2x" aria-hidden="true"></i>
                         </a>
                     </div>

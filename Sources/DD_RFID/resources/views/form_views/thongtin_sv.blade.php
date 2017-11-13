@@ -31,7 +31,7 @@
     <center>
         <h1>Trang cập nhật sinh viên</h1>
         
-        <div class="container">
+        <div class="container-fluid">
             @if (Session::get('ketqua_up_sv') == 0)
                 {{--  Thông báo thành công  --}}
                 <div class="alert alert-success alert-dismissable" id="success-alert">

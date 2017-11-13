@@ -1,100 +1,90 @@
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 1 của sự kiên 2 thất bại
+[2017-11-13 18:34:24] local.DEBUG: Đăng ký sự kiện (chưa đăng ký) cho cán bộ 00123463 thành công
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 2 của sự kiên 2 thất bại
+[2017-11-13 18:34:24] local.DEBUG: Điểm danh vào (chưa đăng ký sự kiện) trước cho cán bộ 00123463 thành công
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 2 của sự kiên 2 thất bại
+[2017-11-13 18:34:24] local.DEBUG: Điểm danh vào (chưa đăng ký sự kiện) trước cho cán bộ 00123463 thành công
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại
+[2017-11-13 18:34:24] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh vào.
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại
+[2017-11-13 18:34:24] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh vào.
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 1 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 2 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 2 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 3 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 3 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 3 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 00:43:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 00:43:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 00:43:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 00:43:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 00:43:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 00:43:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 1 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.INFO: Thống kê sự kiên 2 thành công
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 2 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.INFO: Thống kê sự kiên 2 thành công
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 2 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.INFO: Thống kê sự kiên 2 thành công
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.INFO: Thống kê sự kiên 2 thành công
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại
+[2017-11-13 18:36:00] local.INFO: Thống kê sự kiên 2 thành công
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 1 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 2 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 2 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 3 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 3 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 3 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 01:00:00] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 4 của sự kiên 2
   
-[2017-11-13 01:00:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 01:00:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 01:00:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 01:00:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 01:00:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 19:45:15] local.DEBUG: Thêm số liệu thành công loại ds 7 của sự kiên 2
   
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 1 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 2 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 2 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 3 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 4 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.DEBUG: Thêm số liệu loại ds 7 của sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.INFO: Thống kê sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.INFO: Thống kê sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.INFO: Thống kê sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.INFO: Thống kê sự kiên 2 thất bại  
-[2017-11-13 13:10:02] local.INFO: Thống kê sự kiên 2 thất bại  
+[2017-11-13 19:45:15] local.INFO: Thống kê sự kiên 2 thành công
+  
+[2017-11-13 19:45:15] local.INFO: Thống kê sự kiên 2 thành công
+  
+[2017-11-13 19:45:15] local.INFO: Thống kê sự kiên 2 thành công
+  
+[2017-11-13 19:45:15] local.INFO: Thống kê sự kiên 2 thành công
+  
+[2017-11-13 19:45:15] local.INFO: Thống kê sự kiên 2 thành công
+  

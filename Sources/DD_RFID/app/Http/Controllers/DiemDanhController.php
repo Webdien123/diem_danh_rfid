@@ -487,7 +487,7 @@ class DiemDanhController extends Controller
         // Nếu kết quả đều thành công hiện thị lại giao diện đăng ký thẻ
         // kèm theo thông báo thành công.
         \Session::put('ketqua_dangkythe_dd', $ketqua);
-        return redirect('/'); 
+        return redirect('/');
     }
 
     public function ThemChuTheDD(Request $R)

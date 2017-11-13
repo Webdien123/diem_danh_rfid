@@ -9,6 +9,7 @@ use App\KyHieuLop;
 use App\KhoaHoc;
 use App\DangKyTheSV;
 use App\DiemDanhSV;
+use App\ThongKeDiemDanh;
 
 class SinhVienController extends Controller
 {
@@ -150,6 +151,7 @@ class SinhVienController extends Controller
             $ketqua_the = DangKyTheSV::DeleteThe($mssv);
             $ketqua_dangky = DiemDanhSV::DeleteDangky_SV($mssv);
             $ketqua_sv = SinhVien::DeleteSV($mssv);
+            
             $name = \Session::get('uname');
 
             // Tính kết quả tổng hợp
@@ -167,6 +169,7 @@ class SinhVienController extends Controller
         else{
             return view('login');
         }
+
     }
 
     // Tìm sinh viên.

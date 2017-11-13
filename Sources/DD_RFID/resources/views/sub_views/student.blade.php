@@ -51,7 +51,7 @@
     </div> {{--  kết thúc container của trang master  --}}
 
     {{--  Thông báo cập nhật thẻ  --}}
-    <div class="container">
+    <div class="container-fluid">
         @if (Session::get('ketqua_capnhatthe') == 0)
             {{--  Thông báo thành công  --}}
             <div class="alert alert-success alert-dismissable" id="success-alert">

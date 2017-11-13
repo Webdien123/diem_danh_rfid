@@ -31,7 +31,7 @@
     <center>
         <h1>Trang cập nhật cán bộ</h1>
         
-        <div class="container">
+        <div class="container-fluid">
             @if (Session::get('ketqua_up_cb') == 0)
                 {{--  Thông báo thành công  --}}
                 <div class="alert alert-success alert-dismissable" id="success-alert">

@@ -175,7 +175,7 @@
                                                     $file_name = "suKien[".$sukien->MASK."]_".$date.".log";
                                                     
                                                 ?>     
-                                                <a href="{{ $file_path.$file_name }}" class="btn btn-primary btn-block">
+                                                <a href="{{ $file_path.$file_name }}" target="_blank" class="btn btn-primary btn-block">
                                                     <i class="fa fa-history" aria-hidden="true"></i>
                                                     Xem nhật kí điểm danh
                                                 </a>
@@ -195,13 +195,13 @@
                                                                         @if ($key == 0)
                                                                             <div class="radio">
                                                                                 <label><input type="radio" name="op_sk" checked value="{{ $value->MASK }}">
-                                                                                    {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
+                                                                                    {{ $value->MASK }}, {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
                                                                                 </label>
                                                                             </div>
                                                                         @else
                                                                             <div class="radio">
                                                                                 <label><input type="radio" name="op_sk" value="{{ $value->MASK }}">
-                                                                                    {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
+                                                                                    {{ $value->MASK }}, {{ $value->TENSK }}, Ngày {{ $value->NGTHUCHIEN }}, Tại {{ $value->DIADIEM }}
                                                                                 </label>
                                                                             </div>
                                                                         @endif                                                                            
@@ -803,6 +803,23 @@
                         </table>
                     </div>
                     @endif
+
+                    {{--  Dánh sách rỗng  --}}
+                    <div class="table-responsive danhsach" id="ds_rong">
+                        <table class="table table-hover table-bordered" style="background-color: white">
+                            <thead>
+                                <tr>
+                                    <th>Danh sách </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                    <tr>
+                                        <td>Những người trong danh sách này đã bị xóa</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <script>

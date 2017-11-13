@@ -28,7 +28,7 @@ class WriteLogController extends Controller
 
         Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'info');
         
-        Log::info($content);
+        Log::info($content.PHP_EOL);
     }
 
     // Ghi log cảnh báo
@@ -39,7 +39,7 @@ class WriteLogController extends Controller
 
         Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'alert');
         
-        Log::alert($content); 
+        Log::alert($content.PHP_EOL); 
     }
 
     // Ghi log Debug
@@ -50,7 +50,7 @@ class WriteLogController extends Controller
 
         Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'debug');
         
-        Log::debug($content);        
+        Log::debug($content.PHP_EOL);        
     }
 
     // Ghi log báo lỗi
@@ -61,7 +61,7 @@ class WriteLogController extends Controller
 
         Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'error');
         
-        Log::error($content);
+        Log::error($content.PHP_EOL);
     }
 
     // public function getDownload($file_path, $file_name)

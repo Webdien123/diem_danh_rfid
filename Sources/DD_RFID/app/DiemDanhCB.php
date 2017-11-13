@@ -74,6 +74,7 @@ class DiemDanhCB extends Model
         // Ngược lại thực hiện xóa kết quả điểm danh.
         try {
             \DB::delete('DELETE FROM diemdanhcb WHERE MSCB = "'.$ma_ng_dky.'"');
+
             return true;
         } catch (\Exception $e) {
             return false;

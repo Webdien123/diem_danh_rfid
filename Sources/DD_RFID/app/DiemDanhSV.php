@@ -73,6 +73,7 @@ class DiemDanhSV extends Model
         // Ngược lại thực hiện xóa kết quả điểm danh.
         try {
             \DB::delete('DELETE FROM diemdanhsv WHERE MSSV = "'.$ma_ng_dky.'"');
+
             return true;
         } catch (\Exception $e) {
             return false;
@@ -100,8 +101,8 @@ class DiemDanhSV extends Model
             \DB::delete('DELETE FROM diemdanhsv WHERE MASK = "'.$mask.'"');
             return true;
         } catch (\Exception $e) {
-            // return false;
-            dd($e->getMessage());
+            return false;
+            // dd($e->getMessage());
         }
     }
 
@@ -110,5 +111,12 @@ class DiemDanhSV extends Model
     {
         $ds_ddanh_sv = \DB::select('select * from diemdanhsv where MASK = ?', [$mask]);
         return $ds_ddanh_sv;
+    }
+
+    // Lấy kết quả điểm danh của một sinh viên.
+    public static function KetQuaDDanh($mssv)
+    {
+        $ds_ketqua = \DB::select('SELECT MASK, MALOAIDS FROM diemdanhsv WHERE MSSV = ?', [$mssv]);
+        return $ds_ketqua;
     }
 }

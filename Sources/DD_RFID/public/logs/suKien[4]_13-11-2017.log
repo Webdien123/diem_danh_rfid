@@ -1,0 +1,44 @@
+[2017-11-13 19:50:19] local.INFO: Kích hoạt điểm danh sự kiện 4
+  
+[2017-11-13 19:51:00] local.INFO: Sự kiện 4 bắt đầu điểm danh vào
+  
+[2017-11-13 19:51:09] local.INFO: Nhận mã thẻ 0001352398
+  
+[2017-11-13 19:51:09] local.INFO: 0001352398 - chủ thẻ B1500003 điểm danh vào.
+  
+[2017-11-13 19:51:13] local.INFO: Nhận mã thẻ 0000978805
+  
+[2017-11-13 19:51:18] local.INFO: Nhận mã thẻ 0005706269
+  
+[2017-11-13 19:51:18] local.INFO: 0005706269 - chủ thẻ 00123456 điểm danh vào.
+  
+[2017-11-13 19:51:23] local.INFO: Nhận mã thẻ 0000958866
+  
+[2017-11-13 19:51:23] local.INFO: 0000958866 - chủ thẻ B1700001 điểm danh vào.
+  
+[2017-11-13 19:52:00] local.INFO: Sự kiện 4 bắt đầu điểm danh ra
+  
+[2017-11-13 19:52:03] local.INFO: Nhận mã thẻ 0000978805
+  
+[2017-11-13 19:52:10] local.INFO: 0000978805 của sinh viên B1600006 điểm danh nặc danh thành công
+  
+[2017-11-13 19:52:10] local.INFO: Sự kiện 4 bắt đầu điểm danh ra
+  
+[2017-11-13 19:52:14] local.INFO: Nhận mã thẻ 0000958819
+  
+[2017-11-13 19:52:14] local.INFO: 0000958819 - chủ thẻ B1700002 điểm danh ra.
+  
+[2017-11-13 19:52:17] local.INFO: Nhận mã thẻ 0005706269
+  
+[2017-11-13 19:52:17] local.INFO: 0005706269 - chủ thẻ 00123456 điểm danh ra.
+  
+[2017-11-13 19:52:20] local.INFO: Nhận mã thẻ 0001352398
+  
+[2017-11-13 19:52:20] local.INFO: 0001352398 - chủ thẻ B1500003 điểm danh ra.
+  
+[2017-11-13 19:53:00] local.INFO: Sự kiện 4 kết thúc điểm danh
+  
+[2017-11-13 19:53:00] local.INFO: Thống kê sự kiên 4 thành công
+  
+[2017-11-13 20:03:31] local.INFO: Thống kê sự kiên 4 thành công
+  

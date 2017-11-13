@@ -56,7 +56,7 @@ function drawChart4() {
             if(topping == "Chưa bổ sung thông tin"){
                 $("#sel1").val("cb_chua_co_ttin");
                 var ten_ds = $('#sel1').find(":selected").text();
-                HienDanhSach("cb_chua_co_ttin", ten_ds);
+                HienDanhSach("cb_chua_co_ttin", ten_ds, cb_k_co_ttin);
             }
         }
     }

@@ -1,31 +1,54 @@
-﻿[2017-11-13 00:39:48] local.INFO: Kích hoạt điểm danh sự kiện 2
+[2017-11-13 18:32:57] local.INFO: Kích hoạt điểm danh sự kiện 2
   
-[2017-11-13 00:39:59] local.INFO: Kích hoạt điểm danh sự kiện 2
+[2017-11-13 18:34:00] local.INFO: Sự kiện 2 bắt đầu điểm danh vào
   
-[2017-11-13 00:41:00] local.INFO: Sự kiện 2 bắt đầu điểm danh vào
+[2017-11-13 18:34:22] local.INFO: Nhận mã thẻ 0001352398
   
-[2017-11-13 00:42:00] local.INFO: Sự kiện 2 bắt đầu điểm danh ra
+[2017-11-13 18:34:22] local.INFO: 0001352398 - chủ thẻ B1500003 điểm danh vào.
   
-[2017-11-13 00:43:00] local.INFO: Sự kiện 2 kết thúc điểm danh
+[2017-11-13 18:34:23] local.INFO: Nhận mã thẻ 0000978805
   
-[2017-11-13 00:43:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:34:24] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh vào.
   
-[2017-11-13 00:44:51] local.INFO: Kích hoạt điểm danh sự kiện 2
+[2017-11-13 18:34:25] local.INFO: Nhận mã thẻ 0005706269
   
-[2017-11-13 00:50:00] local.INFO: Sự kiện 2 bắt đầu điểm danh vào
+[2017-11-13 18:34:26] local.INFO: 0005706269 - chủ thẻ 00123456 điểm danh vào.
   
-[2017-11-13 00:55:00] local.INFO: Sự kiện 2 bắt đầu điểm danh ra
+[2017-11-13 18:34:28] local.INFO: Nhận mã thẻ 0000958866
   
-[2017-11-13 01:00:00] local.INFO: Sự kiện 2 kết thúc điểm danh
+[2017-11-13 18:34:28] local.INFO: 0000958866 - chủ thẻ B1700001 điểm danh vào.
   
-[2017-11-13 01:00:00] local.INFO: Thống kê sự kiên 2 thất bại
+[2017-11-13 18:34:29] local.INFO: Nhận mã thẻ 0000958819
   
-[2017-11-13 12:48:02] local.INFO: Kích hoạt điểm danh sự kiện 2  
-[2017-11-13 12:48:07] local.INFO: Kích hoạt điểm danh sự kiện 2  
-[2017-11-13 12:48:10] local.INFO: Kích hoạt điểm danh sự kiện 2  
-[2017-11-13 12:48:19] local.INFO: Kích hoạt điểm danh sự kiện 2  
-[2017-11-13 12:48:47] local.INFO: Kích hoạt điểm danh sự kiện 2  
-[2017-11-13 13:00:00] local.INFO: Sự kiện 2 bắt đầu điểm danh vào  
-[2017-11-13 13:05:00] local.INFO: Sự kiện 2 bắt đầu điểm danh ra  
-[2017-11-13 13:10:00] local.INFO: Sự kiện 2 kết thúc điểm danh  
-[2017-11-13 13:10:02] local.INFO: Thống kê sự kiên 2 thất bại  
+[2017-11-13 18:34:30] local.INFO: 0000958819 - chủ thẻ B1700002 điểm danh vào.
+  
+[2017-11-13 18:34:31] local.INFO: Nhận mã thẻ 0001352122
+  
+[2017-11-13 18:35:00] local.INFO: Sự kiện 2 bắt đầu điểm danh ra
+  
+[2017-11-13 18:35:03] local.INFO: Nhận mã thẻ 0000958819
+  
+[2017-11-13 18:35:03] local.INFO: 0000958819 - chủ thẻ B1700002 điểm danh ra.
+  
+[2017-11-13 18:35:06] local.INFO: Nhận mã thẻ 0000958866
+  
+[2017-11-13 18:35:06] local.INFO: 0000958866 - chủ thẻ B1700001 điểm danh ra.
+  
+[2017-11-13 18:35:07] local.INFO: Nhận mã thẻ 0005706269
+  
+[2017-11-13 18:35:08] local.INFO: 0005706269 - chủ thẻ 00123456 điểm danh ra.
+  
+[2017-11-13 18:35:09] local.INFO: Nhận mã thẻ 0000978805
+  
+[2017-11-13 18:35:09] local.INFO: 0000978805 - chủ thẻ 00123463 điểm danh ra.
+  
+[2017-11-13 18:35:10] local.INFO: Nhận mã thẻ 0001352398
+  
+[2017-11-13 18:35:11] local.INFO: 0001352398 - chủ thẻ B1500003 điểm danh ra.
+  
+[2017-11-13 18:36:00] local.INFO: Sự kiện 2 kết thúc điểm danh
+  
+[2017-11-13 18:36:00] local.INFO: Thống kê sự kiên 2 thành công
+  
+[2017-11-13 19:45:15] local.INFO: Thống kê sự kiên 2 thành công
+  
