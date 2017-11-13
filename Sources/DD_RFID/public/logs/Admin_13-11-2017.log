@@ -10,3 +10,94 @@
 [2017-11-13 12:28:58] local.DEBUG: Thẻ 0001352122 hợp lệ để đăng ký  
 [2017-11-13 12:29:19] local.INFO: Trần Quản Trị kiểm tra thẻ 0001352122  
 [2017-11-13 12:29:19] local.DEBUG: Thẻ 0001352122 hợp lệ để đăng ký  
+[2017-11-13 12:38:33] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống  
+[2017-11-13 12:38:33] local.INFO: Hiển thị kết quả thống kê sự kiện 2  
+[2017-11-13 12:39:43] local.INFO: Trần Quản Trị vào trang sự kiện  
+[2017-11-13 12:40:14] local.INFO: Trần Quản Trị vào trang sự kiện  
+[2017-11-13 12:40:30] local.DEBUG: Trần Quản Trị xem thông tin sự kiện 2  
+[2017-11-13 12:46:05] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống  
+[2017-11-13 12:46:06] local.INFO: Hiển thị kết quả thống kê sự kiện 1  
+[2017-11-13 12:46:08] local.INFO: Trần Quản Trị vào trang sự kiện  
+[2017-11-13 12:46:10] local.DEBUG: Trần Quản Trị xem thông tin sự kiện 2  
+[2017-11-13 12:46:35] local.DEBUG: Trần Quản Trị cập nhật sự kiện 2  
+[2017-11-13 12:46:35] local.DEBUG: Trần Quản Trị xem thông tin sự kiện 2  
+[2017-11-13 12:48:34] local.DEBUG: Trần Quản Trị cập nhật sự kiện 2  
+[2017-11-13 12:48:35] local.DEBUG: Trần Quản Trị xem thông tin sự kiện 2  
+[2017-11-13 12:53:18] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống  
+[2017-11-13 12:53:20] local.INFO: Hiển thị kết quả thống kê sự kiện 1  
+[2017-11-13 12:55:53] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống  
+[2017-11-13 12:55:54] local.INFO: Hiển thị kết quả thống kê sự kiện 1  
+[2017-11-13 12:56:44] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:57:19] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '99'  
+[2017-11-13 12:57:22] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:57:34] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:57:46] local.DEBUG: Trần Quản Trị thêm cán bộ 00123499  
+[2017-11-13 12:57:47] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:57:51] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '99'  
+[2017-11-13 12:57:59] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:58:03] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123457  
+[2017-11-13 12:58:10] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:58:14] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '99'  
+[2017-11-13 12:58:17] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123499  
+[2017-11-13 12:58:20] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:58:39] local.DEBUG: Trần Quản Trị thêm cán bộ 00123488  
+[2017-11-13 12:58:39] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 12:59:06] local.DEBUG: Trần Quản Trị thêm cán bộ thất bại. Trùng email đã có  
+[2017-11-13 12:59:18] local.DEBUG: Trần Quản Trị thêm cán bộ thất bại. Trùng mã số cán bộ và email đã có  
+[2017-11-13 12:59:35] local.DEBUG: Trần Quản Trị thêm cán bộ thất bại. Trùng mã số cán bộ đã có  
+[2017-11-13 12:59:46] local.DEBUG: Trần Quản Trị thêm cán bộ thất bại. Trùng mã số cán bộ và email đã có  
+[2017-11-13 12:59:55] local.DEBUG: Trần Quản Trị thêm cán bộ thất bại. Trùng email đã có  
+[2017-11-13 13:00:04] local.DEBUG: Trần Quản Trị thêm cán bộ 00123477  
+[2017-11-13 13:00:04] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:02:56] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống  
+[2017-11-13 13:02:56] local.INFO: Hiển thị kết quả thống kê sự kiện 1  
+[2017-11-13 13:03:38] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:03:58] local.DEBUG: Trần Quản Trị thêm cán bộ thất bại. Trùng mã số cán bộ và email đã có  
+[2017-11-13 13:04:05] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '77'  
+[2017-11-13 13:04:07] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '88'  
+[2017-11-13 13:04:10] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '99'  
+[2017-11-13 13:04:14] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:08:00] local.INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống  
+[2017-11-13 13:08:01] local.INFO: Hiển thị kết quả thống kê sự kiện 1  
+[2017-11-13 13:08:54] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:09:15] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:09:23] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:09:30] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123477  
+[2017-11-13 13:09:36] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:09:40] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:09:55] local.DEBUG: Trần Quản Trị xóa cán bộ 00123477  
+[2017-11-13 13:09:56] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:09:59] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:02] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123488  
+[2017-11-13 13:10:06] local.DEBUG: Trần Quản Trị xóa cán bộ 00123488  
+[2017-11-13 13:10:06] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:09] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:13] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123499  
+[2017-11-13 13:10:17] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:20] local.DEBUG: Trần Quản Trị tìm cán bộ theo từ khóa '99'  
+[2017-11-13 13:10:23] local.DEBUG: Trần Quản Trị xóa cán bộ 00123499  
+[2017-11-13 13:10:23] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:27] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:30] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:33] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:10:57] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123456  
+[2017-11-13 13:11:09] local.DEBUG: Trần Quản Trị cập nhật cán bộ 00123456  
+[2017-11-13 13:11:09] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123456  
+[2017-11-13 13:11:12] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:11:24] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123457  
+[2017-11-13 13:11:30] local.DEBUG: Trần Quản Trị cập nhật cán bộ 00123457  
+[2017-11-13 13:11:31] local.DEBUG: Trần Quản Trị xem thông tin cán bộ 00123457  
+[2017-11-13 13:11:32] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:12:43] local.DEBUG: Trần Quản Trị chọn cập nhật thẻ abc cho chủ thẻ 00123457  
+[2017-11-13 13:12:43] local.DEBUG: Cán bộ 00123457 đã cập nhật mã thẻ thành abc  
+[2017-11-13 13:12:43] local.DEBUG: Cán bộ 00123457 đã cập nhật mã thẻ thành abc  
+[2017-11-13 13:12:43] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:13:26] local.DEBUG: Trần Quản Trị chọn cập nhật thẻ cde cho chủ thẻ 00123457  
+[2017-11-13 13:13:26] local.DEBUG: Cán bộ 00123457 đã cập nhật mã thẻ thành cde  
+[2017-11-13 13:13:26] local.DEBUG: Cán bộ 00123457 đã cập nhật mã thẻ thành cde  
+[2017-11-13 13:13:27] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:13:36] local.DEBUG: Trần Quản Trị hủy thẻ cán bộ 00123457  
+[2017-11-13 13:13:37] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:14:25] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:14:27] local.INFO: Trần Quản Trị vào trang cán bộ  
+[2017-11-13 13:18:10] local.INFO: Trần Quản Trị vào trang sinh viên  
