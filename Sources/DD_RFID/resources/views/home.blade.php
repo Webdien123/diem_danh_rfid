@@ -28,6 +28,10 @@
         $sukien = $sukien[0];
     ?>
 
+    <script>
+        var trangthai = "{{ Session::get('trangthai_sukien') }}";
+    </script>
+
     {{--  Thẻ hiển thị ảnh nền  --}}
     <div id="home_bg"></div>
 
@@ -77,7 +81,6 @@
                     $('#getting-started').countdown(tg, function(event) {
                         $(this).html(event.strftime('%H:%M:%S'));
                     }).on('finish.countdown', function() {
-                        var trangthai = "{{ Session::get('trangthai_sukien') }}";
                         if (trangthai == 3) {
                             $.ajax({
                                 type: "GET",
@@ -99,6 +102,11 @@
         <a class="btn btn-primary" href="/login" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
+        </a>
+
+        <a class="btn btn-primary" href="/taoCKSuKien/{{$sukien->MASK}}" role="button">
+            <i class="fa fa-retweet" aria-hidden="true"></i>
+            Cập nhật sự kiện
         </a>
         <hr>
 

@@ -98,33 +98,33 @@ class ThongKeController extends Controller
         $insert7 = ThongKeDiemDanh::NhapDS(7, $mask, $sv_k_co_ttin, $cb_k_co_ttin);
 
         if ($insert1) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 1 của sự kiên ".$mask);
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 1 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 1 của sự kiên ".$mask." thất bại");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 1 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert2) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 2 của sự kiên ".$mask);
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 2 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 2 của sự kiên ".$mask." thất bại");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 2 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert3) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 3 của sự kiên ".$mask);
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 3 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 3 của sự kiên ".$mask." thất bại");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 3 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert4) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 4 của sự kiên ".$mask);
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 4 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 4 của sự kiên ".$mask." thất bại");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 4 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert7) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 7 của sự kiên ".$mask);
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 7 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 7 của sự kiên ".$mask." thất bại");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 7 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
         
 
@@ -133,9 +133,11 @@ class ThongKeController extends Controller
 
         // Nếu mọi thứ đều hoàn thành chính xác, trả về 'thanhcong'
         if ($ketqua_insert == 1) {
+            WriteLogController::Write_Info("Thống kê sự kiên ".$mask." thành công","suKien[".$mask."]");
             return "thanhcong";
             // return dd($ketqua_insert);
         } else {
+            WriteLogController::Write_Info("Thống kê sự kiên ".$mask." thất bại","suKien[".$mask."]");
             return "thatbai";
             // return dd($ketqua_insert);
         }

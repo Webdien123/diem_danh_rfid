@@ -141,34 +141,46 @@ class ExcelController extends Controller
     // Hàm export dữ liệu bảng cán bộ hoặc sinh viên dùng đê backup dữ liệu.
     public function ExportTable($tenbang, $type)
     {
+        $ten_sheet;
         if (\Session::has('uname')) {
             if ($tenbang == "sv") {
+                
                 $sinhvien = SinhVien::GetAllSV_RFID();
                 if ($sinhvien) {
                     $tenfile = "Danh sách sinh viên";
                     $data = self::ChuyenVeArray($sinhvien);
+
+                    return Excel::create($tenfile, function($excel) use ($data) {
+                        $excel->sheet("dssinhvien", function($sheet) use ($data)
+                        {
+                            $sheet->fromArray($data);
+                        });
+                    })->download("xls");
                 } else {
                     return redirect()->route('Error', 
                     ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
                 }
             }
             if ($tenbang == "cb") {
-                $canbo = CanBo::GetAllCB_RFID();
+                $canbo = CanBo::GetAllCB_RFID(); 
                 if ($canbo) {
+                    $ten_sheet = "dscanbo";
                     $tenfile = "Danh sách cán bộ";
                     $data = self::ChuyenVeArray($canbo);
+
+                    return Excel::create($tenfile, function($excel) use ($data) {
+                        $excel->sheet("dscanbo", function($sheet) use ($data)
+                        {
+                            $sheet->fromArray($data);
+                        });
+                    })->download("xls");
                 } else {
                     return redirect()->route('Error', 
                     ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
                 }
             }
-            
-            return Excel::create($tenfile, function($excel) use ($data) {
-                $excel->sheet('danhsach', function($sheet) use ($data)
-                {
-                    $sheet->fromArray($data);
-                });
-            })->download("xls");
+            return redirect()->route('Error', 
+            ['mes' => 'Export thất bại', 'reason' => 'Có lỗi trong quá trình xử lý']);
         }
         else{
             return view('login');

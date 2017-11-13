@@ -149,6 +149,10 @@
                                             <td class="lead">{{ $sukien->TENSK }}</td>
                                         </tr>
                                         <tr>
+                                            <th>Địa điểm</th>
+                                            <td class="lead">{{ $sukien->DIADIEM }}</td>
+                                        </tr>
+                                        <tr>
                                             <th>Ngày thực hiện</th>
                                             <td class="lead">{{ date("d-m-Y", strtotime($sukien->NGTHUCHIEN)) }}</td>
                                         </tr>

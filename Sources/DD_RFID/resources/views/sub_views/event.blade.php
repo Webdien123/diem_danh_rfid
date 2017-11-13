@@ -243,10 +243,12 @@
                         </td>
                                            
                         <td>
-                            <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                Sửa thông tin
-                            </a>
+                            @if ($sk->MATTHAI < '4')
+                                <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Sửa thông tin
+                                </a>
+                            @endif
 
                             <a class="btn btn-danger"
                                 onclick="if(window.confirm('Xóa sự kiện này?')){

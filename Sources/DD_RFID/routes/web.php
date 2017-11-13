@@ -154,6 +154,8 @@ Route::post('chuyendanhsach', "ThongKeController@ChuyenDanhSach")->name("chuyenD
 
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
+
+// Route::get('donwload-file/{file_name}', 'WriteLogController@downloadFile');
 /*
 |--------------------------------------------------------------------------
 | Test route

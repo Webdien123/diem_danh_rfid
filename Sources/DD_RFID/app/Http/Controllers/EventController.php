@@ -48,8 +48,10 @@ class EventController extends Controller
         $time = date("H:i:s");
 
         $time2 = date('H:i:s', strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
+    
+        $khoang_cach = (strtotime($time2) - strtotime($time));
 
-        return $time2 - $time;
+        return $khoang_cach / 60;
     }
 
     public function TaoCKSuKien($mask)
@@ -73,6 +75,8 @@ class EventController extends Controller
         // if (\Session::has('xac_thuc_sk')) {
             // \Session::forget('ma_so_xac_thuc');
 
+            WriteLogController::Write_Info("Kích hoạt điểm danh sự kiện ".$mask,"suKien[".$mask."]");
+
             // Lấy thông tin sự kiện từ mã sự kiện.
             $sukien = SuKien::GetSK($mask);
 
@@ -82,7 +86,9 @@ class EventController extends Controller
             // Tạo trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
 
-            \Session::put("trangthai_sukien", $trangthai);            
+            \Session::put("trangthai_sukien", $trangthai);  
+            
+            \Session::put('ketqua_dangkythe_dd', 2);
 
             // Tính lại thời gian còn lại của sự kiện.
             $thoigian = EventController::ThoiGianConLai($sukien);
@@ -127,9 +133,16 @@ class EventController extends Controller
         \Session::put('ketqua_dangkythe_dd', 2);
 
         if ($trangthai < 4) {
+            if ($trangthai == 2) {
+                WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
+            }
+            if ($trangthai == 3) {
+                WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra","suKien[".$sukien[0]->MASK."]");
+            }
             SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
         }
         else {
+            WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
             SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
         }
 

@@ -43,8 +43,7 @@
                             $file_name = "Admin_".$date.".log";
                             
                         ?>     
-                        <a href="{{ $file_path.$file_name }}" class="btn btn-default"
-                            data-toggle="tooltip" data-placement="bottom" title="Xem nhật kí hoạt động">
+                        <a href="{{ $file_path.$file_name }}" class="btn btn-default">
                             <i class="fa fa-history fa-2x" aria-hidden="true"></i>
                         </a>
                     </div>
