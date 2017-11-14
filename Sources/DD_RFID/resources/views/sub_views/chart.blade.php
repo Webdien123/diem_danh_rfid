@@ -174,7 +174,7 @@
 
                                                     $file_name = "suKien[".$sukien->MASK."]_".$date.".log";
                                                     
-                                                ?>     
+                                                ?>
                                                 <a href="{{ $file_path.$file_name }}" target="_blank" class="btn btn-primary btn-block">
                                                     <i class="fa fa-history" aria-hidden="true"></i>
                                                     Xem nhật kí điểm danh

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Log;
 
 class WriteLogController extends Controller
 {
@@ -25,10 +24,9 @@ class WriteLogController extends Controller
     {        
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
+        $date2 = date("d-m-Y h:m:sa");
 
-        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'info');
-        
-        Log::info($content.PHP_EOL);
+        file_put_contents('./logs/'.$log_type.'_'. $date .'.log', "\xEF\xBB\xBF" . "[$date2] INFO: " . $content.PHP_EOL.PHP_EOL, FILE_APPEND | LOCK_EX);
     }
 
     // Ghi log cảnh báo
@@ -36,10 +34,9 @@ class WriteLogController extends Controller
     {
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
+        $date2 = date("d-m-Y h:m:sa");
 
-        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'alert');
-        
-        Log::alert($content.PHP_EOL); 
+        file_put_contents('./logs/'.$log_type.'_'. $date .'.log', "\xEF\xBB\xBF" . "[$date2] Alert: " . $content.PHP_EOL.PHP_EOL, FILE_APPEND | LOCK_EX);
     }
 
     // Ghi log Debug
@@ -47,10 +44,9 @@ class WriteLogController extends Controller
     {        
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
+        $date2 = date("d-m-Y h:m:sa");
 
-        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'debug');
-        
-        Log::debug($content.PHP_EOL);        
+        file_put_contents('./logs/'.$log_type.'_'. $date .'.log', "\xEF\xBB\xBF" . "[$date2] Debug: " . $content.PHP_EOL.PHP_EOL, FILE_APPEND | LOCK_EX);   
     }
 
     // Ghi log báo lỗi
@@ -58,22 +54,8 @@ class WriteLogController extends Controller
     {        
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $date = date("d-m-Y");
+        $date2 = date("d-m-Y h:m:sa");
 
-        Log::useFiles('./logs/'.$log_type.'_'. $date .'.log', 'error');
-        
-        Log::error($content.PHP_EOL);
+        file_put_contents('./logs/'.$log_type.'_'. $date .'.log', "\xEF\xBB\xBF" . "[$date2] Error: " . $content.PHP_EOL.PHP_EOL, FILE_APPEND | LOCK_EX);   
     }
-
-    // public function getDownload($file_path, $file_name)
-    // {
-    //     //PDF file is stored under project/public/download/info.pdf
-    //     //$file= public_path(). "/download/info.pdf";
-    //     $file = $file_path.$file_name;
-
-    //     $headers = array(
-    //             'Content-Type: application/log',
-    //             );
-
-    //     return Response::download($file, $tenfile, $headers);
-    // }
 }
