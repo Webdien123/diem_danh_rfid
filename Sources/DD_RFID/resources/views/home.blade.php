@@ -26,6 +26,7 @@
         //$sukien = \Session::get('sukien_diemdanh');
         $sukien = \Cookie::get('sukien_diemdanh');
         $sukien = $sukien[0];
+        echo \Session::get('ketqua_dangkythe_dd');
     ?>
 
     <script>
@@ -124,14 +125,14 @@
 
                 {{--  Phần hiển thị thông báo xử lý đăng ký thẻ  --}}
                 <div class="row">
-                    @if (Session::get('ketqua_dangkythe_dd') == 0)
+                    @if (\Session::get('ketqua_dangkythe_dd') == 0)
                         {{--  Thông báo thành công  --}}
                         <div class="alert alert-success alert-dismissable" id="success-alert">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>Đăng ký thẻ thành công, thẻ đã có thể điểm danh</strong>
                         </div>
 
-                    @elseif (Session::get('ketqua_dangkythe_dd') == 1)
+                    @elseif (\Session::get('ketqua_dangkythe_dd') == 1)
                         {{--  Thông báo thất bại  --}}
                         <div class="alert alert-danger alert-dismissable" id="error-alert">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -142,7 +143,7 @@
 
                 {{--  Reset giá trị session để ẩn thông báo đi sau khi đã hiển thi  --}}
                 <?php
-                    \Session::put('ketqua_dangkythe_dd', 2);
+                    // \Session::put('ketqua_dangkythe_dd', 2);
                 ?>
 
                 <!-- Phần quét thẻ -->

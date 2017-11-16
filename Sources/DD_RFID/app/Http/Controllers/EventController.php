@@ -130,8 +130,6 @@ class EventController extends Controller
         // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
         \Session::put("trangthai_sukien", $trangthai);
 
-        \Session::put('ketqua_dangkythe_dd', 2);
-
         if ($trangthai < 4) {
             if ($trangthai == 2) {
                 WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");

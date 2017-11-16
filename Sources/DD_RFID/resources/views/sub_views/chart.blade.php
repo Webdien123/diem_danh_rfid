@@ -308,7 +308,8 @@
                             </select>
                     </div>
 
-                    <div class="col-xs-12 col-sm-4">
+                    {{--  TÌM KIẾM NỘI DUNG TRONG DANH SÁCH  --}}
+                    <div class="col-xs-12 col-sm-4 fade">
                         <form action="#" id="f_tim_ds" class="form-inline" role="search">                            
                             <b>Tìm kiếm:</b>
                             <input type="text" class="form-control" name="TuKhoa" id="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required
