@@ -20,7 +20,7 @@
     <div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-                
+                <h1 class="text-center"> Trang đăng nhập </h1>
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Đăng nhập</h3>

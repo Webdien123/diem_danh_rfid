@@ -40,3 +40,199 @@
 
 ﻿[16-11-2017 10:11:15am] INFO: Trần Quản Trị vào trang sinh viên
 
+﻿[16-11-2017 10:11:23am] Debug: Trần Quản Trị hủy thẻ sinh viên B1305056
+
+﻿[16-11-2017 10:11:24am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 11:11:48am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:32am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:44am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:47am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:25am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:34am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:16am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:20am] INFO: Hiển thị kết quả thống kê sự kiện 7
+
+﻿[16-11-2017 11:11:21am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 11:11:44am] Debug: Trần Quản Trị thêm cán bộ thất bại. Trùng mã số cán bộ và email đã có
+
+﻿[16-11-2017 01:11:06pm] INFO: Trần Quản Trị vào trang đăng ký thẻ
+
+﻿[16-11-2017 01:11:49pm] INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+
+﻿[16-11-2017 01:11:49pm] Debug: Thẻ 0001352122 hợp lệ để đăng ký
+
+﻿[16-11-2017 01:11:15pm] INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+
+﻿[16-11-2017 01:11:15pm] Debug: Thẻ 0001352122 hợp lệ để đăng ký
+
+﻿[16-11-2017 01:11:19pm] INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+
+﻿[16-11-2017 01:11:19pm] Debug: Thẻ 0001352122 hợp lệ để đăng ký
+
+﻿[16-11-2017 01:11:22pm] INFO: Trần Quản Trị kiểm tra thẻ 0005706269
+
+﻿[16-11-2017 01:11:22pm] Debug: Thẻ 0005706269 đã có cán bộ 00123456 sở hữu
+
+﻿[16-11-2017 01:11:44pm] INFO: Trần Quản Trị vào trang đăng ký thẻ
+
+﻿[16-11-2017 01:11:00pm] INFO: Trần Quản Trị kiểm tra thẻ 0005706269
+
+﻿[16-11-2017 01:11:00pm] Debug: Thẻ 0005706269 đã có cán bộ 00123456 sở hữu
+
+﻿[16-11-2017 01:11:25pm] INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+
+﻿[16-11-2017 01:11:25pm] Debug: Thẻ 0001352122 hợp lệ để đăng ký
+
+﻿[16-11-2017 02:11:04pm] Debug: Trần Quản Trị chọn cập nhật thẻ 0001352122 cho chủ thẻ B1305056
+
+﻿[16-11-2017 02:11:05pm] Debug: Sinh viên B1305056 đã cập nhật mã thẻ thành 0001352122
+
+﻿[16-11-2017 02:11:06pm] INFO: Trần Quản Trị vào trang đăng ký thẻ
+
+﻿[16-11-2017 02:11:13pm] INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+
+﻿[16-11-2017 02:11:13pm] Debug: Thẻ 0001352122 đã có sinh viên B1305056 sở hữu
+
+﻿[16-11-2017 02:11:18pm] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 02:11:23pm] Debug: Trần Quản Trị hủy thẻ sinh viên B1305056
+
+﻿[16-11-2017 02:11:23pm] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 02:11:25pm] INFO: Trần Quản Trị vào trang đăng ký thẻ
+
+﻿[16-11-2017 02:11:29pm] INFO: Trần Quản Trị kiểm tra thẻ 0001352122
+
+﻿[16-11-2017 02:11:29pm] Debug: Thẻ 0001352122 hợp lệ để đăng ký
+
+﻿[16-11-2017 02:11:44pm] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 02:11:45pm] Debug: Trần Quản Trị chọn cập nhật thẻ 0001352122 cho chủ thẻ B1500003
+
+﻿[16-11-2017 02:11:46pm] Debug: Sinh viên B1500003 đã cập nhật mã thẻ thành 0001352122
+
+﻿[16-11-2017 02:11:47pm] INFO: Trần Quản Trị vào trang đăng ký thẻ
+
+﻿[16-11-2017 02:11:37pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 02:11:27pm] INFO: Hiển thị kết quả thống kê sự kiện 7
+
+﻿[16-11-2017 02:11:54pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 02:11:56pm] Debug: Trần Quản Trị xóa sự kiện 7
+
+﻿[16-11-2017 02:11:56pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 02:11:36pm] INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống
+
+﻿[16-11-2017 02:11:36pm] INFO: Hiển thị trang thống kê rỗng
+
+﻿[16-11-2017 02:11:47pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 02:11:12pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 02:11:53pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:25pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:56pm] Debug: Trần Quản Trị thêm sự kiện Sự kiện A
+
+﻿[16-11-2017 03:11:56pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:19pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:44pm] Debug: Trần Quản Trị thêm sự kiện Sự kiện B
+
+﻿[16-11-2017 03:11:44pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:15pm] INFO: Trần Quản Trị chọn import danh sách đăng ký sự kiện2 vào hệ thống
+
+﻿[16-11-2017 03:11:23pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:24pm] Debug: Trần Quản Trị thêm sự kiện Sự kiện C
+
+﻿[16-11-2017 03:11:24pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:29pm] INFO: Trần Quản Trị chọn import danh sách đăng ký sự kiện3 vào hệ thống
+
+﻿[16-11-2017 03:11:30pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:52pm] Debug: Trần Quản Trị xem thông tin sự kiện 2
+
+﻿[16-11-2017 03:11:58pm] Debug: Trần Quản Trị cập nhật sự kiện 2
+
+﻿[16-11-2017 03:11:58pm] Debug: Trần Quản Trị xem thông tin sự kiện 2
+
+﻿[16-11-2017 03:11:00pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:13pm] Debug: Trần Quản Trị thêm sự kiện Sự kiện D
+
+﻿[16-11-2017 03:11:14pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:26pm] Debug: Trần Quản Trị xem thông tin sự kiện 4
+
+﻿[16-11-2017 03:11:39pm] Debug: Trần Quản Trị cập nhật sự kiện 4
+
+﻿[16-11-2017 03:11:39pm] Debug: Trần Quản Trị xem thông tin sự kiện 4
+
+﻿[16-11-2017 03:11:42pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:47pm] INFO: Trần Quản Trị chọn import danh sách đăng ký sự kiện4 vào hệ thống
+
+﻿[16-11-2017 03:11:48pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:14pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:38pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:41pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:36pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:52pm] Debug: Trần Quản Trị xem thông tin sự kiện 3
+
+﻿[16-11-2017 03:11:05pm] Debug: Trần Quản Trị cập nhật sự kiện 3
+
+﻿[16-11-2017 03:11:06pm] Debug: Trần Quản Trị xem thông tin sự kiện 3
+
+﻿[16-11-2017 03:11:10pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:36pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:55pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:09pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 03:11:48pm] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 04:11:06pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 04:11:48pm] Debug: Trần Quản Trị xem thông tin sự kiện 2
+
+﻿[16-11-2017 04:11:16pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 05:11:07pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 05:11:15pm] Debug: Trần Quản Trị xem thông tin sự kiện 2
+
+﻿[16-11-2017 05:11:31pm] Debug: Trần Quản Trị cập nhật sự kiện 2
+
+﻿[16-11-2017 05:11:31pm] Debug: Trần Quản Trị xem thông tin sự kiện 2
+
+﻿[16-11-2017 05:11:35pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 05:11:14pm] INFO: Hiển thị kết quả thống kê sự kiện 2
+
+﻿[16-11-2017 05:11:50pm] INFO: Trần Quản Trị vào trang sự kiện
+
+﻿[16-11-2017 05:11:05pm] INFO: Trần Quản Trị vào trang sinh viên
+
