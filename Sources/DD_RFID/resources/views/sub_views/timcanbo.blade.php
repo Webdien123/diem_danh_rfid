@@ -14,7 +14,7 @@
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
@@ -24,7 +24,7 @@
             {{ csrf_field() }}
             <b>Tìm kiếm cán bộ:</b>
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>

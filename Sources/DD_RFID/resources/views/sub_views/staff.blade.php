@@ -28,7 +28,7 @@
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
                 oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
                 oninput="setCustomValidity('')">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
@@ -40,7 +40,7 @@
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
             oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
             oninput="setCustomValidity('')">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
@@ -78,7 +78,7 @@
         <div class="col-xs-12" >  
 
             {{--  Nút thêm cán bộ  --}}
-            <a class="btn btn-primary" class="pull-left" data-toggle="modal" href='#modal-themcb'>
+            <a class="btn btn-success" class="pull-left" data-toggle="modal" href='#modal-themcb'>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 Thêm cán bộ
             </a>
@@ -131,12 +131,12 @@
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Email cán bộ">                                   
 								</div>
 
-								<button type="button" class="btn btn-primary" data-dismiss="modal">
+								<button type="button" class="btn btn-success" data-dismiss="modal">
 									<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
 									Hủy
 								</button>
 
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-success">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 									Thêm cán bộ
 								</button>
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <a href="/export_data/cb/xls" id="btn_export_ds" class="btn btn-primary">
+            <a href="/export_data/cb/xls" id="btn_export_ds" class="btn btn-success">
                 <span class="fa fa-file-excel-o" aria-hidden="true"></span>
                 Xuất danh sách ra excel
             </a>
@@ -162,13 +162,13 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="tenBang" id="tenBang" value="canbo">
                     <input type="file" class="form-control" name="im_file" id="im_file">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-success">
                         <i class="fa fa-upload" aria-hidden="true"></i>
                         Thêm
                     </button>
                 </form>
 
-                <a class="btn btn-primary" href="./download/Mẫu import cán bộ.xls">
+                <a class="btn btn-success" href="./download/Mẫu import cán bộ.xls">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                     tải file đăng ký mẫu
                 </a>
@@ -266,7 +266,7 @@
                                 @else
                                     {!! "<b><i>Chưa đăng ký<i><b>" !!}
                                     {{--  Nút cập nhật mã thẻ mới  --}}
-                                    <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-primary" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Đăng ký thẻ">
+                                    <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Đăng ký thẻ">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                 @endif

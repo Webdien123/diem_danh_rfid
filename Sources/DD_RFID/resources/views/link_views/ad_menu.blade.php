@@ -72,7 +72,7 @@
                 
                 {{--  Trang sinh viên  --}}
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="{{ route('student') }}" class="btn btn-danger btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('student') }}" class="btn btn-info btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-graduation-cap fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Sinh viên</div>
                     </a>
@@ -80,7 +80,7 @@
                 
                 {{--  Trang cán bộ  --}}
                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <a href="{{ route('staff') }}" class="btn btn-primary btn-lg btn-block dash-widget" role="button" style="padding:2px;">
+                    <a href="{{ route('staff') }}" class="btn btn-success btn-lg btn-block dash-widget" role="button" style="padding:2px;">
                         <div id="box_1"><span class="fa fa-users fa-3x"></span></div>
                         <div id="box_2" class="icon-label">Cán bộ</div>
                     </a>

@@ -1,0 +1,42 @@
+﻿[16-11-2017 07:11:31am] INFO: Quản trị viên Trần Quản Trị đăng nhập vào hệ thống
+
+﻿[16-11-2017 07:11:33am] INFO: Hiển thị kết quả thống kê sự kiện 7
+
+﻿[16-11-2017 07:11:14am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 07:11:31am] Debug: Trần Quản Trị thêm sinh viên B1305056
+
+﻿[16-11-2017 07:11:31am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 07:11:03am] Debug: Trần Quản Trị thêm sinh viên thất bại. Trùng mã số sinh viên đã có
+
+﻿[16-11-2017 07:11:06am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 07:11:09am] Debug: Trần Quản Trị xem thông tin sinh viên B1305056
+
+﻿[16-11-2017 09:11:11am] Debug: Trần Quản Trị xem thông tin sinh viên B1305056
+
+﻿[16-11-2017 09:11:32am] Debug: Trần Quản Trị cập nhật sinh viên B1305056
+
+﻿[16-11-2017 09:11:32am] Debug: Trần Quản Trị xem thông tin sinh viên B1305056
+
+﻿[16-11-2017 09:11:57am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 09:11:17am] Debug: Trần Quản Trị tìm sinh viên theo từ khóa 'k41'
+
+﻿[16-11-2017 09:11:02am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 09:11:46am] Debug: Trần Quản Trị tìm sinh viên theo từ khóa 'k41'
+
+﻿[16-11-2017 09:11:09am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 10:11:49am] INFO: Trần Quản Trị vào trang cán bộ
+
+﻿[16-11-2017 10:11:20am] INFO: Trần Quản Trị vào trang sinh viên
+
+﻿[16-11-2017 10:11:14am] Debug: Trần Quản Trị chọn cập nhật thẻ abc cho chủ thẻ B1305056
+
+﻿[16-11-2017 10:11:14am] Debug: Sinh viên B1305056 đã cập nhật mã thẻ thành abc
+
+﻿[16-11-2017 10:11:15am] INFO: Trần Quản Trị vào trang sinh viên
+

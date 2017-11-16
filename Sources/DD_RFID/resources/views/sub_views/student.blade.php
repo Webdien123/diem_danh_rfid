@@ -29,7 +29,7 @@
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
             oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
             oninput="setCustomValidity('')">
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-info">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
@@ -41,7 +41,7 @@
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
             oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
             oninput="setCustomValidity('')">
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-info">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
@@ -78,7 +78,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6">
             {{--  Nút thêm sinh viên  --}}
-            <a class="btn btn-danger" class="pull-left" data-toggle="modal" href='#modal-themsv'>
+            <a class="btn btn-info" class="pull-left" data-toggle="modal" href='#modal-themsv'>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 Thêm sinh viên
             </a>
@@ -150,12 +150,12 @@
                                     </select>
 								</div>
 
-								<button type="button" class="btn btn-primary" data-dismiss="modal">
+								<button type="button" class="btn btn-info" data-dismiss="modal">
 									<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
 									Hủy
 								</button>
 
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-info">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 									Thêm sinh viên
 								</button>
@@ -165,7 +165,7 @@
                 </div>
             </div>
 
-            <a href="/export_data/sv/xls" id="btn_export_ds" class="btn btn-danger">
+            <a href="/export_data/sv/xls" id="btn_export_ds" class="btn btn-info">
                 <span class="fa fa-file-excel-o" aria-hidden="true"></span>
                 Xuất danh sách ra excel
             </a>
@@ -181,13 +181,13 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="tenBang" id="tenBang" value="sinhvien">
                     <input type="file" class="form-control" name="im_file" id="im_file">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-info">
                         <i class="fa fa-upload" aria-hidden="true"></i>
                         Thêm
                     </button>
                 </form>
 
-                <a class="btn btn-danger" href="./download/Mẫu import sinh viên.xls">
+                <a class="btn btn-info" href="./download/Mẫu import sinh viên.xls">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                     tải file đăng ký mẫu
                 </a>
@@ -272,7 +272,7 @@
                                 @if ($sv->MATHE)
                                     {{ $sv->MATHE }}
                                     {{--  Nút cập nhật mã thẻ cũ  --}}
-                                    <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
+                                    <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-info" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </button>
 
@@ -285,13 +285,13 @@
                                 @else
                                     {!! "<b><i>Chưa đăng ký<i><b>" !!}
                                     {{--  Nút cập nhật mã thẻ mới  --}}
-                                    <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-primary" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Đăng ký thẻ">
+                                    <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-info" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Đăng ký thẻ">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                 @endif
                             </td>
                             <td>
-                                <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">
+                                <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-info">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
                                 </a>

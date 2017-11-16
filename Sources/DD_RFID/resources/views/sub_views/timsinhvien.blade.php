@@ -16,7 +16,7 @@
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
             oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
             oninput="setCustomValidity('')">
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-info">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
@@ -28,7 +28,7 @@
             <input type="text" class="form-control" name="tukhoa" placeholder="Nhập nội dung tìm kiếm" required
             oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
             oninput="setCustomValidity('')">
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-info">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 Tìm
             </button>
