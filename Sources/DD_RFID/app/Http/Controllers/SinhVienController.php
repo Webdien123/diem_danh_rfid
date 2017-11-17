@@ -153,6 +153,24 @@ class SinhVienController extends Controller
             $ketqua_sv = SinhVien::DeleteSV($mssv);
             
             $name = \Session::get('uname');
+            
+            if ($ketqua_the == true) {
+                WriteLogController::Write_Debug($name." xóa thẻ sinh viên ".$mscb." thành công", "Admin_Debug");
+            } else {
+                WriteLogController::Write_Debug($name." xóa thẻ sinh viên ".$mscb." thất bại", "Admin_Debug");
+            }
+
+            if ($ketqua_dangky == true) {
+                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện sinh viên ".$mscb." thành công", "Admin_Debug");
+            } else {
+                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện sinh viên ".$mscb." thất bại", "Admin_Debug");
+            }
+
+            if ($ketqua_sv == true) {
+                WriteLogController::Write_Debug($name." xóa thông tin sinh viên ".$mscb." thành công", "Admin_Debug");
+            } else {
+                WriteLogController::Write_Debug($name." xóa thông tin sinh viên ".$mscb." thất bại", "Admin_Debug");
+            }
 
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_sv && $ketqua_the && $ketqua_dangky) ? true : false;
@@ -198,7 +216,7 @@ class SinhVienController extends Controller
                 return view('sub_views.timsinhvien', ['sinhviens' => $sinhviens, 'tukhoa' => $TK]);
             }
             catch (\Exception $e) {
-                WriteLogController::Write_Debug($name." tìm sinh viên thất bại. Mã lỗi:".PHP_EOL.$e->getMessage());
+                WriteLogController::Write_Debug($name." tìm cán bộ thất bại");
                 return redirect()->route('Error', 
                 ['mes' => 'Tìm sinh viên thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }

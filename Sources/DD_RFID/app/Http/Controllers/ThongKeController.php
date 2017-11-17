@@ -291,8 +291,10 @@ class ThongKeController extends Controller
                 // Lấy mã sự kiện.
                 $mask = $sukien_gannhat->MASK;
 
+                // Xóa kết quả thống kê cũ.
                 \DB::delete('delete from thongkediemdanh where MASK = ?', [$mask]);
 
+                // Tính toán lại kết quả mới.
                 self::ThongKeSoLieu_Static($mask);
                 
                 // Lấy kết quả điểm danh của sự kiện.
@@ -379,8 +381,10 @@ class ThongKeController extends Controller
                 // Lấy mã sự kiện.
                 $mask = $sukien_gannhat->MASK;
                 
+                // Xóa kết quả thống kê cũ.
                 \DB::delete('delete from thongkediemdanh where MASK = ?', [$mask]);
                 
+                // Tính toán lại kết quả mới.
                 self::ThongKeSoLieu_Static($mask);
                                 
                 // Lấy kết quả điểm danh của sự kiện.
@@ -462,8 +466,10 @@ class ThongKeController extends Controller
                 // Lấy mã sự kiện.
                 $mask = $sukien_gannhat->MASK;
                 
+                // Xóa kết quả thống kê cũ.
                 \DB::delete('delete from thongkediemdanh where MASK = ?', [$mask]);
                 
+                // Tính toán lại kết quả mới.
                 self::ThongKeSoLieu_Static($mask);
                                 
                 // Lấy kết quả điểm danh của sự kiện.
@@ -535,8 +541,7 @@ class ThongKeController extends Controller
         if (\Session::has('uname')) {
             try{
                 $ds_sukien = \DB::select('SELECT MASK, TENSK, NGTHUCHIEN, DIADIEM FROM sukien WHERE MATTHAI = 4 LIMIT 10');
-                WriteLogController::Write_Debug("Lấy danh sách sự kiện đã điểm danh thành công.");
-                return dd($ds_sukien);
+                WriteLogController::Write_Debug("Lấy danh sách sự kiện đã điểm danh thành công.");                                
             }
             catch(\Exception $e){
                 WriteLogController::Write_Debug("Lấy danh sách sự kiện đã điểm danh thất bại.");

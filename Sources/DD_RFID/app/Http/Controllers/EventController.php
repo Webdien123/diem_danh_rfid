@@ -83,12 +83,15 @@ class EventController extends Controller
             // Tạo trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
 
+            // Lưu trạng thái vừa tính vào session
             \Session::put("trangthai_sukien", $trangthai);
 
+            // Chuyển trạng thái sự kiện sang trạng thái 3 nếu trạng thái điểm danh còn <=3
             if ($trangthai <= 3) {
                 SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
             }
             
+            // Cập nhật giá trị thông báo đăng ký thẻ để ẩn thông báo đi.
             \Session::put('ketqua_dangkythe_dd', 2);
 
             // Tính lại thời gian còn lại của sự kiện.
@@ -363,7 +366,7 @@ class EventController extends Controller
                 return view('sub_views.timsukien', ['sukiens' => $sukiens, 'tukhoa' => $TK]);
             }
             catch (\Exception $e) {
-                WriteLogController::Write_Debug($name." tìm sinh viên thất bại. Mã lỗi:".PHP_EOL.$e->getMessage());
+                WriteLogController::Write_Debug($name." tìm sinh viên thất bại. Có lỗi khi xử lý");
                 return redirect()->route('Error', 
                 ['mes' => 'Tìm sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }

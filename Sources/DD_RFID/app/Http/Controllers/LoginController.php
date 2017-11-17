@@ -40,7 +40,6 @@ class LoginController extends Controller
         // Ngược lại lưu giá trị lỗi vào session để quay về trang đăng nhập
         // hiển thị cảnh báo cho người dùng.
         else {
-
             WriteLogController::Write_Alert("Đăng nhập sai thông tin", "Admin");
             \Session::put('err', '1');
             $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);

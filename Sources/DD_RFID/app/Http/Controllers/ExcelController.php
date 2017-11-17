@@ -48,7 +48,7 @@ class ExcelController extends Controller
                     // Lấy giá trị của mã sự kiện cần đăng ký.
                     self::$mask_dangki = $request->mask_dangki;
 
-                    WriteLogController::Write_InFo($name." chọn import danh sách đăng ký sự kiện".self::$mask_dangki." vào hệ thống");
+                    WriteLogController::Write_InFo($name." chọn import danh sách đăng ký sự kiện ".self::$mask_dangki." vào hệ thống");
 
                     // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien', 'dscanbo'.
                     $data = Excel::selectSheets('dssinhvien', 'dscanbo')->load($path, function($reader) {})->get();
@@ -465,15 +465,20 @@ class ExcelController extends Controller
                     $item['hoten']
                 ]);
 
+                WriteLogController::Write_Debug("Đã import cán bộ ".$item['mscb'], "Admin_Debug");
+
                 if ($item['mathe'] != null) {
                     // Insert dòng dữ liệu vào bảng đăng ký thẻ cán bộ theo giá trị trong mảng item.
                     \DB::insert('insert into dangkythecb (MSCB_THE, MATHE) values (?, ?)', [
                         $item['mscb'],
                         $item['mathe']
                     ]);
+
+                    WriteLogController::Write_Debug("Đã import thẻ ". $item['mathe'] ." cho cán bộ ".$item['mscb'], "Admin_Debug");
                 }
                 return true; //Trả kết quả import về cho hàm ImportDuLieu.
             } catch (\Exception $e) {
+                WriteLogController::Write_Debug("Import cán bộ ".$item['mscb']." thất bại", "Admin_Debug");
                 return false;
                 // dd($e->getMessage());
             }
@@ -497,15 +502,21 @@ class ExcelController extends Controller
                     $item['khoa'],
                     $item['hoten']
                 ]);
+
+                WriteLogController::Write_Debug("Đã import sinh viên ".$item['mssv'], "Admin_Debug");
+
                 if ($item['mathe']) {
                     // Insert dòng dữ liệu vào bảng đăng ký thẻ sv theo giá trị trong mảng item.
                     \DB::insert('insert into dangkythesv (MSSV_THE, MATHE) values (?, ?)', [
                         $item['mssv'],
                         $item['mathe']
                     ]);
+
+                    WriteLogController::Write_Debug("Đã import thẻ ". $item['mathe'] ." cho sinh viên ".$item['mssv'], "Admin_Debug");
                 }
                 return true; //Trả kết quả import về cho hàm ImportDuLieu.
             } catch (\Exception $e) {
+                WriteLogController::Write_Debug("Import sinh viên ".$item['mssv']." thất bại", "Admin_Debug");
                 return false;
             }
         }
@@ -535,6 +546,8 @@ class ExcelController extends Controller
                             self::$mask_dangki,
                             '2'
                         ]);
+
+                        WriteLogController::Write_Debug("Đã đăng kí sự kiện cho sinh viên ".$value['mssv'], "Admin_Debug");
                         
                     }
                 }
@@ -549,11 +562,14 @@ class ExcelController extends Controller
                             $value['mscb'],
                             '2'
                         ]);
+
+                        WriteLogController::Write_Debug("Đã đăng kí sự kiện cho cán bộ ".$value['mscb'], "Admin_Debug");
                     }
                 }
                 return true;
             }
             catch (\Exception $e){
+                WriteLogController::Write_Debug("Đã đăng kí sự kiện ". self::$mask_dangki ." thất bại", "Admin_Debug");
                 return false;
                 // dd($e->getMessage());
             }

@@ -153,7 +153,7 @@ class CardController extends Controller
                 if ($ketqua)
                     return true;
                 else{
-                    WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, có lỗi khi kết nối mạng");    
+                    WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, có lỗi khi kết nối mạng", "Admin_Debug");    
                     return false;
                 }
             }
@@ -161,18 +161,18 @@ class CardController extends Controller
             else {
                 // Báo lỗi trùng cả email và mã số.
                 if ($maso != null && $email != null) {
-                    WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số và email cán bộ");
+                    WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số và email cán bộ", "Admin_Debug");
                     return false;
                 }
                 else
                     // Báo lỗi trùng email
                     if ($maso == null) {
-                        WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng email cán bộ");
+                        WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng email cán bộ", "Admin_Debug");
                         return false;
                     }
                     // Báo lỗi trùng mã số.
                     else {
-                        WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số cán bộ");
+                        WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số cán bộ", "Admin_Debug");
                         return false;
                     }
             }
@@ -200,7 +200,7 @@ class CardController extends Controller
                 if ($ketqua)
                     return true;
                 else{
-                    WriteLogController::Write_Debug("Thêm chủ thẻ sinh viên ".$maso." thất bại, có lỗi khi kết nối mạng");    
+                    WriteLogController::Write_Debug("Thêm chủ thẻ sinh viên ".$maso." thất bại, có lỗi khi kết nối mạng", "Admin_Debug");    
                     return false;
                 }
                     
@@ -208,7 +208,7 @@ class CardController extends Controller
             // Nếu mã số đã bị trùng.
             else {
                 // Báo lỗi trùng mã số
-                WriteLogController::Write_Debug("Thêm chủ thẻ sinh viên ".$maso." thất bại, vì trùng mã số sinh viên");
+                WriteLogController::Write_Debug("Thêm chủ thẻ sinh viên ".$maso." thất bại, vì trùng mã số sinh viên", "Admin_Debug");
                 return false;
             }
         }
@@ -404,6 +404,7 @@ class CardController extends Controller
                 return redirect()->route('staff');
             }
             else{
+                WriteLogController::Write_Debug($name." hủy thẻ cán bộ ".$mssv. " thất bại, có lỗi khi xử lý");
                 return redirect()->route('Error', 
                 ['mes' => 'Hủy thẻ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }
@@ -423,6 +424,7 @@ class CardController extends Controller
                 return redirect()->route('student');
             }
             else{
+                WriteLogController::Write_Debug($name." hủy thẻ sinh viên ".$mssv. " thất bại, có lỗi khi xử lý");
                 return redirect()->route('Error', 
                 ['mes' => 'Hủy thẻ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }

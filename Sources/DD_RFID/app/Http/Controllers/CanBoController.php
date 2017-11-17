@@ -154,9 +154,28 @@ class CanBoController extends Controller
             $ketqua_dangky = DiemDanhCB::DeleteDangky_CB($mscb);
             $ketqua_cb = CanBo::DeleteCB($mscb);
 
+            $name = \Session::get('uname');
+
+            if ($ketqua_the == true) {
+                WriteLogController::Write_Debug($name." xóa thẻ cán bộ ".$mscb." thành công", "Admin_Debug");
+            } else {
+                WriteLogController::Write_Debug($name." xóa thẻ cán bộ ".$mscb." thất bại", "Admin_Debug");
+            }
+
+            if ($ketqua_dangky == true) {
+                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện cán bộ ".$mscb." thành công", "Admin_Debug");
+            } else {
+                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện cán bộ ".$mscb." thất bại", "Admin_Debug");
+            }
+
+            if ($ketqua_cb == true) {
+                WriteLogController::Write_Debug($name." xóa thông tin cán bộ ".$mscb." thành công", "Admin_Debug");
+            } else {
+                WriteLogController::Write_Debug($name." xóa thông tin cán bộ ".$mscb." thất bại", "Admin_Debug");
+            }
+
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_cb && $ketqua_the && $ketqua_dangky) ? true : false;
-            $name = \Session::get('uname');
 
             if ($ketqua){
                 WriteLogController::Write_Debug($name." xóa cán bộ ".$mscb);
@@ -197,7 +216,7 @@ class CanBoController extends Controller
                 return view('sub_views.timcanbo', ['canbos' => $canbos, 'tukhoa' => $TK]);
             }
             catch (\Exception $e) {
-                WriteLogController::Write_Debug($name." tìm cán bộ thất bại. Mã lỗi:".PHP_EOL.$e->getMessage());
+                WriteLogController::Write_Debug($name." tìm cán bộ thất bại");
                 return redirect()->route('Error', 
                 ['mes' => 'Tìm cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }

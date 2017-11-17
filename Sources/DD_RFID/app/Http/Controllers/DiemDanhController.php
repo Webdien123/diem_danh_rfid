@@ -66,7 +66,7 @@ class DiemDanhController extends Controller
 
         // Nếu chủ thẻ đã tồn tại.
         if ($chuthe) {
-            WriteLogController::Write_Info("Điểm danh nặc danh thất bại, ".$loaichuthe." ".$machuthe." đã tồn tại","suKien[".$mask."]");
+            WriteLogController::Write_Info("Điểm danh nặc danh thất bại, ".$loaichuthe." ".$machuthe." đã tồn tại", "suKien[".$mask."]");
             $ketqua = array(
                 'mask' => $mask,
                 'machuthe' => $machuthe,
@@ -85,9 +85,9 @@ class DiemDanhController extends Controller
             }
 
             if ($ketqua_chuthe) {
-                WriteLogController::Write_Debug("Thêm thông tin nặc danh ".$loaichuthe." ".$machuthe." thành công","suKien[".$mask."]_Debug");
+                WriteLogController::Write_Debug("Thêm thông tin nặc danh ".$loaichuthe." ".$machuthe." thành công", "suKien[".$mask."]_Debug");
             } else {
-                WriteLogController::Write_Debug("Thêm thông tin nặc danh ".$loaichuthe." ".$machuthe." thất bại","suKien[".$mask."]_Debug");
+                WriteLogController::Write_Debug("Thêm thông tin nặc danh ".$loaichuthe." ".$machuthe." thất bại", "suKien[".$mask."]_Debug");
             }
             
             // Thêm thông tin thẻ vào hệ thống, ghi nhận kết quả xử lý.
@@ -225,7 +225,7 @@ class DiemDanhController extends Controller
         }
         // Chủ thẻ chưa đăng ký sự kiện.
         else {
-            // Đăng ký sự kiện cho người vừa tạo thẻ.
+            // Đăng ký sự kiện cho người vừa quét thẻ.
             if ($loaichuthe == "cán bộ") {
                 $ketqua_dky = DiemDanhCB::DangKySuKien($machuthe, $mask);
             }
@@ -248,9 +248,9 @@ class DiemDanhController extends Controller
             }
 
             if ($ketqua_ddanh) {
-                WriteLogController::Write_Debug("Điểm danh vào (chưa đăng ký sự kiện) trước cho ".$loaichuthe." ".$machuthe." thành công","suKien[".$mask."]_Debug");
+                WriteLogController::Write_Debug("Điểm danh vào (chưa đăng ký sự kiện) cho ".$loaichuthe." ".$machuthe." thành công","suKien[".$mask."]_Debug");
             } else {
-                WriteLogController::Write_Debug("Điểm danh vào (chưa đăng ký sự kiện) trước cho ".$loaichuthe." ".$machuthe." thất bại","suKien[".$mask."]_Debug");
+                WriteLogController::Write_Debug("Điểm danh vào (chưa đăng ký sự kiện) cho ".$loaichuthe." ".$machuthe." thất bại","suKien[".$mask."]_Debug");
             }
 
             // Tính kết quả tổng hợp
