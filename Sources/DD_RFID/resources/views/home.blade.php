@@ -26,7 +26,6 @@
         //$sukien = \Session::get('sukien_diemdanh');
         $sukien = \Cookie::get('sukien_diemdanh');
         $sukien = $sukien[0];
-        echo \Session::get('ketqua_dangkythe_dd');
     ?>
 
     <script>

@@ -72,21 +72,22 @@ class EventController extends Controller
     // Chọn sự kiện để điểm danh
     public function ChonSuKien($mask)
     {
-        // if (\Session::has('xac_thuc_sk')) {
-            // \Session::forget('ma_so_xac_thuc');
+        if (\Session::has('xac_thuc_sk')) {
+            \Session::forget('ma_so_xac_thuc');
 
             WriteLogController::Write_Info("Kích hoạt điểm danh sự kiện ".$mask,"suKien[".$mask."]");
 
             // Lấy thông tin sự kiện từ mã sự kiện.
             $sukien = SuKien::GetSK($mask);
 
-            // TẠO Session chứa sự kiện đang điểm danh.
-            // \Session::put('sukien_diemdanh', $sukien);
-
             // Tạo trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
 
-            \Session::put("trangthai_sukien", $trangthai);  
+            \Session::put("trangthai_sukien", $trangthai);
+
+            if ($trangthai <= 3) {
+                SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
+            }
             
             \Session::put('ketqua_dangkythe_dd', 2);
 
@@ -103,15 +104,14 @@ class EventController extends Controller
                 'lops' => $lops,
                 'khoahocs' => $khoahocs
             ]);
-        // }
-        // else{
-        //     if (\Session::has('ma_so_xac_thuc')) {
-        //         $ma_so_xac_thuc = \Session::get('ma_so_xac_thuc');
-        //         return view('xac_thuc', ['mask' => $mask, 'ma_so_xac_thuc' => $ma_so_xac_thuc]);
-        //     } else {
-        //         return view('xac_thuc', ['mask' => $mask, 'ma_so_xac_thuc' => null]);
-        //     }            
-        // }
+        }
+        else{
+            if (\Session::has('ma_so_xac_thuc')) {
+                return view('xac_thuc', ['mask' => $mask]);
+            } else {
+                return view('xac_thuc', ['mask' => $mask]);
+            }            
+        }
     }
 
     // Cập nhật trạng thái sự kiện để hiển thị lên giao diện điểm danh và giao diện sự kiện.

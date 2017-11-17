@@ -40,8 +40,7 @@ class MailController extends Controller
             if($ma_so_xac_thuc == \Session()->get('ma_so_xac_thuc')){
                 \Session()->put('xac_thuc_sk', $mask);
                 return redirect()->route('chonsukien', [
-                    'mask' => $mask,
-                    'ma_so_xac_thuc' => $ma_so_xac_thuc
+                    'mask' => $mask
                 ]);
             }
             else {
@@ -69,9 +68,8 @@ class MailController extends Controller
                 WriteLogController::Write_Debug("Gửi mail đến ".$email." thất bại");
             }
 
-            return redirect()->route('chonsukien', [
-                'mask' => $mask,
-                'ma_so_xac_thuc' => $ma_so_xac_thuc
+            return redirect()->route('taocksukien', [
+                'mask' => $mask
             ]);
         }
         else {

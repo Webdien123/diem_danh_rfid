@@ -65,7 +65,7 @@
                                     </tr>
                                     <tr>
                                         <th>Ngày thực hiện</th>
-                                        <td>{{ $sk->NGTHUCHIEN }}</td>
+                                        <td>{{ date("d-m-Y", strtotime($sk->NGTHUCHIEN)) }}</td>
                                     </tr>
                                     <tr>
                                         <th>Giờ bắt đầu điểm danh</th>

@@ -17,6 +17,10 @@
 	</style>
 </head>
 <body>
+	<?php
+		$ma_so_xac_thuc = \Session::get('ma_so_xac_thuc');
+	?>
+
     {{--  Script import jquery validate  --}}
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
