@@ -16,8 +16,10 @@ class LoginController extends Controller
         $email = $user->input('email');
         $password = $user->input('pass');
 
+        // Lấy thông tin tài khoản theo email
         $taikhoan = User::LayThongTinTK($email);
 
+        // Nếu tài khoản không tồn tại
         if ($taikhoan == null) {
             WriteLogController::Write_Alert("Đăng nhập sai email", "Admin");
             \Session::put('err', '1');
@@ -25,6 +27,7 @@ class LoginController extends Controller
             return redirect()->back()->withInput()->withErrors($errors);
         }
         
+        // Nếu xác thực mật khẩu đúng
         if (User::KiemTraTaiKhoan($password, $taikhoan[0]->password)) {
 
             $name = $taikhoan[0]->name;
@@ -48,36 +51,6 @@ class LoginController extends Controller
             $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
             return redirect()->back()->withInput()->withErrors($errors);
         }
-
-        // Nếu thông tin được xác thực đúng.
-        // if( $name != null) {
-
-        //     // Truy vấn tên người đã đăng nhập lưu vào session.
-        //     $name = \DB::select('SELECT name FROM users WHERE email = ?', [$email]);
-        //     $name = $name[0]->name;
-        //     \Session::put('uname', $name);
-
-        //     // Reset giá trị các session khác.
-        //     \Session::put('ketqua_up_cb', 2);
-        //     \Session::put('ketqua_up_sv', 2);
-        //     \Session::put('ketqua_up_sk', 2);
-        //     \Session::put('ketqua_dangkythe', 2);
-        //     \Session::put('ketqua_dangkythe_dd', 2);
-        //     \Session::put('ketqua_capnhatthe', 2);
-
-        //     WriteLogController::Write_InFo("Quản trị viên ".$name." đăng nhập vào hệ thống", "Admin");
-            
-        //     // Chuyển về trang quản trị.
-        //     return redirect()->route('admin');
-        // } 
-        // // Ngược lại lưu giá trị lỗi vào session để quay về trang đăng nhập
-        // // hiển thị cảnh báo cho người dùng.
-        // else {
-        //     WriteLogController::Write_Alert("Đăng nhập sai thông tin", "Admin");
-        //     \Session::put('err', '1');
-        //     $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
-        //     return redirect()->back()->withInput()->withErrors($errors);
-        // }
     }
 
     // Xử lý đăng xuất.
