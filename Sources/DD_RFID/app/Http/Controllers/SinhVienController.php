@@ -155,21 +155,21 @@ class SinhVienController extends Controller
             $name = \Session::get('uname');
             
             if ($ketqua_the == true) {
-                WriteLogController::Write_Debug($name." xóa thẻ sinh viên ".$mscb." thành công", "Admin_Debug");
+                WriteLogController::Write_Debug($name." xóa thẻ sinh viên ".$mssv." thành công", "Admin_Debug");
             } else {
-                WriteLogController::Write_Debug($name." xóa thẻ sinh viên ".$mscb." thất bại", "Admin_Debug");
+                WriteLogController::Write_Debug($name." xóa thẻ sinh viên ".$mssv." thất bại", "Admin_Debug");
             }
 
             if ($ketqua_dangky == true) {
-                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện sinh viên ".$mscb." thành công", "Admin_Debug");
+                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện sinh viên ".$mssv." thành công", "Admin_Debug");
             } else {
-                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện sinh viên ".$mscb." thất bại", "Admin_Debug");
+                WriteLogController::Write_Debug($name." xóa đăng ký sự kiện sinh viên ".$mssv." thất bại", "Admin_Debug");
             }
 
             if ($ketqua_sv == true) {
-                WriteLogController::Write_Debug($name." xóa thông tin sinh viên ".$mscb." thành công", "Admin_Debug");
+                WriteLogController::Write_Debug($name." xóa thông tin sinh viên ".$mssv." thành công", "Admin_Debug");
             } else {
-                WriteLogController::Write_Debug($name." xóa thông tin sinh viên ".$mscb." thất bại", "Admin_Debug");
+                WriteLogController::Write_Debug($name." xóa thông tin sinh viên ".$mssv." thất bại", "Admin_Debug");
             }
 
             // Tính kết quả tổng hợp

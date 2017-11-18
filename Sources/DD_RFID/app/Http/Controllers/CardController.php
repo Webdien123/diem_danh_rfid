@@ -74,13 +74,7 @@ class CardController extends Controller
             }
             
             // Thêm thông tin chủ thẻ vào hệ thống ghi nhận kết quả xử lý.
-            $ketqua_chuthe = $this->ThemChuThe($R);
-
-            if ($ketqua_chuthe == true) {
-                WriteLogController::Write_Debug("Thêm chủ thẻ ".$R->chon_cb_sv." ".$R->maso." thành công", "Admin_Debug");
-            } else {
-                WriteLogController::Write_Debug("Thêm chủ thẻ ".$R->chon_cb_sv." ".$R->maso." thất bại", "Admin_Debug");
-            }            
+            $ketqua_chuthe = $this->ThemChuThe($R);          
 
             // Thêm thông tin thẻ vào hệ thống, ghi nhận kết quả xử lý.
             if ($R->chon_cb_sv == "cán bộ") {
@@ -91,19 +85,19 @@ class CardController extends Controller
             }
             
             if ($ketqua_the == true) {
-                WriteLogController::Write_Debug("Đăng ký thẻ ".$R->mathe." cho".$R->chon_cb_sv." ".$R->maso." thành công", "Admin_Debug");
+                WriteLogController::Write_Debug("Đăng ký thẻ ".$R->mathe." cho ".$R->chon_cb_sv." ".$R->maso." thành công", "Admin_Debug");
             } else {
-                WriteLogController::Write_Debug("Đăng ký thẻ ".$R->mathe." cho".$R->chon_cb_sv." ".$R->maso." thất bại", "Admin_Debug");
+                WriteLogController::Write_Debug("Đăng ký thẻ ".$R->mathe." cho ".$R->chon_cb_sv." ".$R->maso." thất bại", "Admin_Debug");
             }  
 
             // Tính kết quả tổng hợp
             $ketqua = ($ketqua_chuthe && $ketqua_the) ? 0 : 1 ;
 
             if ($ketqua == 0) {
-                WriteLogController::Write_Info("Đăng ký thẻ ".$R->mathe." và thông tin mới cho ".$R->chon_cb_sv." ".$R->maso." thành công");
+                WriteLogController::Write_Info($name." đăng ký thẻ ".$R->mathe." và thông tin mới cho ".$R->chon_cb_sv." ".$R->maso." thành công");
             } else {
-                WriteLogController::Write_Info("Đăng ký thẻ ".$R->mathe." và thông tin mới cho ".$R->chon_cb_sv." ".$R->maso." thất bại");
-            }  
+                WriteLogController::Write_Info($name." đăng ký thẻ ".$R->mathe." và thông tin mới cho ".$R->chon_cb_sv." ".$R->maso." thất bại");
+            }
 
             // Nếu kết quả đều thành công hiện thị lại giao diện đăng ký thẻ
             // kèm theo thông báo thành công.

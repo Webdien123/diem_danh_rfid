@@ -32,14 +32,11 @@ class ExcelController extends Controller
                 $tenbang = $request->tenBang;            
 
                 if ($tenbang == "sinhvien") {
-                    
-                    WriteLogController::Write_InFo($name." chọn import sinh viên vào hệ thống");
+
                     // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien'.
                     $data = Excel::selectSheets('dssinhvien')->load($path, function($reader) {})->get();
                 }
                 if ($tenbang == "canbo") {
-
-                    WriteLogController::Write_InFo($name." chọn import cán bộ vào hệ thống");
                     // Lấy dữ liệu trong file mẫu tại sheet 'dscanbo'.
                     $data = Excel::selectSheets('dscanbo')->load($path, function($reader) {})->get();
                 }
@@ -47,8 +44,6 @@ class ExcelController extends Controller
 
                     // Lấy giá trị của mã sự kiện cần đăng ký.
                     self::$mask_dangki = $request->mask_dangki;
-
-                    WriteLogController::Write_InFo($name." chọn import danh sách đăng ký sự kiện ".self::$mask_dangki." vào hệ thống");
 
                     // Lấy dữ liệu trong file mẫu tại sheet 'dssinhvien', 'dscanbo'.
                     $data = Excel::selectSheets('dssinhvien', 'dscanbo')->load($path, function($reader) {})->get();
@@ -92,7 +87,12 @@ class ExcelController extends Controller
                                                 5. Kiểm tra xem mã số người đăng ký đã có trong hệ thống hay chưa'
                                         ]);
                                     }
-                                    WriteLogController::Write_Debug("Có lỗi khi import sự kiện ".self::$mask_dangki." ở dòng thứ ".$sodong);
+                                    if ($tenbang == "sinhvien") {
+                                        WriteLogController::Write_Debug("Có lỗi khi import sinh viên ".self::$mask_dangki." ở dòng thứ ".$sodong);
+                                    }
+                                    if ($tenbang == "canbo") {
+                                        WriteLogController::Write_Debug("Có lỗi khi import cán bộ ".self::$mask_dangki." ở dòng thứ ".$sodong);
+                                    }
                                     return redirect()->route('Error',[
                                         'mes' => 'Import thất bại tại dòng dữ liệu thứ '.$sodong, 
                                         'reason' => 
@@ -125,7 +125,6 @@ class ExcelController extends Controller
                     }
                 }
                 catch (\Exception $e) {
-                    WriteLogController::Write_Debug("Có lỗi khi đang thực hiện chức năng import");
                     return redirect()->route('Error', 
                     ['mes' => 'Import cán bộ thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
                 }
@@ -143,12 +142,16 @@ class ExcelController extends Controller
     {
         $ten_sheet;
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+
             if ($tenbang == "sv") {
                 
                 $sinhvien = SinhVien::GetAllSV_RFID();
                 if ($sinhvien) {
                     $tenfile = "Danh sách sinh viên";
                     $data = self::ChuyenVeArray($sinhvien);
+
+                    WriteLogController::Write_InFo($name." export danh sách sinh viên");
 
                     return Excel::create($tenfile, function($excel) use ($data) {
                         $excel->sheet("dssinhvien", function($sheet) use ($data)
@@ -157,6 +160,8 @@ class ExcelController extends Controller
                         });
                     })->download("xls");
                 } else {
+                    WriteLogController::Write_InFo($name." export danh sách sinh viên thất bại, không có dữ liệu xuất ra");
+
                     return redirect()->route('Error', 
                     ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
                 }
@@ -168,6 +173,8 @@ class ExcelController extends Controller
                     $tenfile = "Danh sách cán bộ";
                     $data = self::ChuyenVeArray($canbo);
 
+                    WriteLogController::Write_InFo($name." export danh sách cán bộ");
+
                     return Excel::create($tenfile, function($excel) use ($data) {
                         $excel->sheet("dscanbo", function($sheet) use ($data)
                         {
@@ -175,6 +182,8 @@ class ExcelController extends Controller
                         });
                     })->download("xls");
                 } else {
+                    WriteLogController::Write_InFo($name." export danh sách cán bộ thất bại, không có dữ liệu xuất ra");
+
                     return redirect()->route('Error', 
                     ['mes' => 'Export thất bại', 'reason' => 'Không có dữ liệu để xuất ra']);
                 }
@@ -191,6 +200,8 @@ class ExcelController extends Controller
     public function ExportDSach($mask, $tends, $type)
     {
         if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+
             // Lấy loại chủ danh sách là cán bộ hay sinh viên
             $loai_chu_ds = substr($tends, 0, 2);
 
@@ -198,6 +209,8 @@ class ExcelController extends Controller
             // Tính lại tên danh sách tương ứng ở modal thống kê
             $tends = substr($tends, 3);
             $tends = trim($tends, " ");
+
+            WriteLogController::Write_InFo($name." export danh sách $loai_chu_ds $tends cho sự kiện $mask");
 
             // Tính tên file cần chuyển.
             $tenfile = self::TinhTenFileDS($loai_chu_ds, $tends, $mask);
