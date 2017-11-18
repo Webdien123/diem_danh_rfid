@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function LayThongTinTK($email)
+    {
+        $tk = \DB::select('SELECT * FROM `users` WHERE email = ?', [$email]);
+        if ($tk) {
+            return $tk;
+        } else {
+            return null;
+        }
+        
+    }
+
+    public static function KiemTraTaiKhoan($password, $mk_da_luu)
+    {
+        if (Hash::check($password, $mk_da_luu)) {
+            return true;
+
+        } else {
+            return false;
+
+        }
+        
+    }
 }

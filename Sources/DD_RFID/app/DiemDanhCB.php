@@ -101,8 +101,8 @@ class DiemDanhCB extends Model
             \DB::delete('DELETE FROM diemdanhcb WHERE MASK = "'.$mask.'"');
             return true;
         } catch (\Exception $e) {
-            // return false;
-            dd($e->getMessage());
+            return false;
+            // dd($e->getMessage());
         }
     }
 

@@ -74,8 +74,8 @@ class SuKien extends Model
             \DB::delete('DELETE FROM sukien WHERE MASK = "'.$mssk.'"');
             return true;
         } catch (\Exception $e) {
-            // return false;
-            dd($e->getMessage());
+            return false;
+            // dd($e->getMessage());
         }
     }
 

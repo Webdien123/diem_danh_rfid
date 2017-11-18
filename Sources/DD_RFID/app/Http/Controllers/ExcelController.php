@@ -534,8 +534,6 @@ class ExcelController extends Controller
 
                 $key = array_keys($item[0]);
 
-                // dd($key[0]);
-
                 // Nếu số cột đầu tiên tên là mssv thì thêm cho sinh viên đăng ký.
                 if ($key[0] == "mssv") {
 
