@@ -46,17 +46,17 @@
             <?php
                 $ma_so_su_kien = $sukien->MASK;
 
-                $sv_co_mat;
-                $sv_vang_mat;
-                $sv_co_vao_k_ra;
-                $sv_co_ra_k_vao;
-                $sv_k_co_ttin;
+                $sv_co_mat = 0;
+                $sv_vang_mat = 0;
+                $sv_co_vao_k_ra = 0;
+                $sv_co_ra_k_vao = 0;
+                $sv_k_co_ttin = 0;
 
-                $cb_co_mat;
-                $cb_vang_mat;
-                $cb_co_vao_k_ra;
-                $cb_co_ra_k_vao;
-                $cb_k_co_ttin;
+                $cb_co_mat = 0;
+                $cb_vang_mat = 0;
+                $cb_co_vao_k_ra = 0;
+                $cb_co_ra_k_vao = 0;
+                $cb_k_co_ttin = 0;
 
                 foreach ($kq_thke as $key => $value) {
                     if($value->MALOAIDS == 1){
@@ -85,7 +85,6 @@
             {{--  Chuuyển các giá trị sang js  --}}
             <script type="text/javascript">
                 var ma_so_su_kien = "{{ $ma_so_su_kien }}";
-                console.log(ma_so_su_kien);
                 var sv_co_mat = "{{ $sv_co_mat }}";
                 var sv_vang_mat = "{{ $sv_vang_mat }}";
                 var sv_co_vao_k_ra = "{{ $sv_co_vao_k_ra }}";
@@ -170,7 +169,7 @@
                                                     // Khởi tạo ngày hiện tại.
                                                     $date = date("d-m-Y");
 
-                                                    $file_path = "./logs/";
+                                                    $file_path = "/logs/";
 
                                                     $file_name = "suKien[".$sukien->MASK."]_".$date.".log";
                                                     

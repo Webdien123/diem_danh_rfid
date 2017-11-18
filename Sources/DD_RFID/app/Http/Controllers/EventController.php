@@ -87,7 +87,7 @@ class EventController extends Controller
             \Session::put("trangthai_sukien", $trangthai);
 
             // Chuyển trạng thái sự kiện sang trạng thái 3 nếu trạng thái điểm danh còn <=3
-            if ($trangthai <= 3) {
+            if ($trangthai < 3) {
                 SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
             }
             

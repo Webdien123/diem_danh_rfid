@@ -38,7 +38,7 @@
                             // Khởi tạo ngày hiện tại.
                             $date = date("d-m-Y");
 
-                            $file_path = "./logs/";
+                            $file_path = "/logs/";
 
                             $file_name = "Admin_".$date.".log";
                             

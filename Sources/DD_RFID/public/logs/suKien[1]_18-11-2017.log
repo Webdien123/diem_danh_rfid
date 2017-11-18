@@ -16,3 +16,49 @@
 
 ﻿[18-11-2017 02:11:18pm] INFO: Thống kê sự kiên 1 thành công
 
+﻿[18-11-2017 03:11:34pm] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[18-11-2017 03:11:00pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[18-11-2017 03:11:10pm] INFO: Nhận mã thẻ 0001352122
+
+﻿[18-11-2017 03:11:10pm] INFO: 0001352122 - chủ thẻ B1500003 điểm danh vào nhiều lần.
+
+﻿[18-11-2017 03:11:13pm] INFO: Nhận mã thẻ 0000978805
+
+﻿[18-11-2017 03:11:13pm] INFO: 0000978805 - chủ thẻ B1305056 điểm danh vào.
+
+﻿[18-11-2017 03:11:16pm] INFO: Nhận mã thẻ abc
+
+﻿[18-11-2017 03:11:23pm] INFO: Đăng ký thẻ abc và thông tin mới cho sinh viên B1305056 thành công.
+
+﻿[18-11-2017 03:11:23pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[18-11-2017 03:11:28pm] INFO: Nhận mã thẻ 0000978805
+
+﻿[18-11-2017 03:11:29pm] INFO: 0000978805 - chủ thẻ B1305056 điểm danh vào nhiều lần.
+
+﻿[18-11-2017 03:11:31pm] INFO: Nhận mã thẻ abc
+
+﻿[18-11-2017 03:11:31pm] INFO: abc - chủ thẻ B1305056 điểm danh vào.
+
+﻿[18-11-2017 03:11:01pm] INFO: Sự kiện 1 bắt đầu điểm danh ra
+
+﻿[18-11-2017 03:11:01pm] INFO: Thống kê sự kiên 1 thất bại
+
+﻿[18-11-2017 03:11:54pm] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[18-11-2017 03:11:00pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[18-11-2017 03:11:00pm] INFO: Sự kiện 1 bắt đầu điểm danh ra
+
+﻿[18-11-2017 03:11:01pm] INFO: Thống kê sự kiên 1 thất bại
+
+﻿[18-11-2017 03:11:10pm] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[18-11-2017 03:11:00pm] INFO: Sự kiện 1 bắt đầu điểm danh ra
+
+﻿[18-11-2017 03:11:00pm] INFO: Sự kiện 1 kết thúc điểm danh
+
+﻿[18-11-2017 03:11:00pm] INFO: Thống kê sự kiên 1 thất bại
+
