@@ -154,18 +154,20 @@ class CardController extends Controller
             // Nếu mã số hoặc email đã bị trùng.
             else {
                 // Báo lỗi trùng cả email và mã số.
-                if ($maso != null && $email != null) {
+                if ($maso_tim != null && $email_tim != null) {
                     WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số và email cán bộ", "Admin_Debug");
                     return false;
                 }
                 else
                     // Báo lỗi trùng email
-                    if ($maso == null) {
+                    if ($maso_tim == null) {
+                    
                         WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng email cán bộ", "Admin_Debug");
                         return false;
                     }
                     // Báo lỗi trùng mã số.
                     else {
+                    
                         WriteLogController::Write_Debug("Thêm chủ thẻ cán bộ ".$maso." thất bại, vì trùng mã số cán bộ", "Admin_Debug");
                         return false;
                     }

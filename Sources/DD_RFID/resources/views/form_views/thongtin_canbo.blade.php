@@ -43,7 +43,14 @@
                 {{--  Thông báo thất bại  --}}
                 <div class="alert alert-danger alert-dismissable" id="error-alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Cập nhật thất bại!</strong>, có thể do đường truyền hoặc dữ liệu mới không hợp lệ.
+                    <strong>Cập nhật thất bại!</strong>, có lỗi trong quá trình xử lý.
+                </div>
+
+            @elseif (Session::get('ketqua_up_cb') == 3)
+                {{--  Thông báo thất bại  --}}
+                <div class="alert alert-danger alert-dismissable" id="error-alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Cập nhật thất bại!</strong>, Trùng email đã có.
                 </div>                
             @endif
         </div>

@@ -55,6 +55,7 @@ class CanBoController extends Controller
 
             // Tìm xem có cán bộ nào đã có email này chưa.
             $email = CanBo::GetCB_Email($canbo->email);
+
             $name = \Session::get('uname');
             // Nếu mã số và email đều chưa có.
             if ($maso == null && $email == null) {
@@ -129,17 +130,34 @@ class CanBoController extends Controller
     public function XuLyCapNhat(Request $canbo)
     {
         if (\Session::has('uname')) {
-            $ketqua = CanBo::UpdateCB($canbo);
-            $ketqua = ($ketqua) ? 0 : 1 ;
-            $name = \Session::get('uname');
-            if ($ketqua == 0) {
-                WriteLogController::Write_Debug($name." cập nhật cán bộ ".$canbo->mscb);
-            } else {
-                WriteLogController::Write_Debug($name." cập nhật cán bộ thất bại. Có lỗi khi xử lý");
-            }
+
+            // Tìm xem có cán bộ nào đã có email này chưa.
+            $email = CanBo::GetCB_Email($canbo->email);
             
-            \Session::put('ketqua_up_cb', $ketqua);
-            return redirect('/staff_info/' . $canbo->mscb);
+            $name = \Session::get('uname');
+            // Nếu mã số và email đều chưa có.
+            if ($email == null) {
+
+                // Cập nhật cán bộ vào hệ thống
+                $ketqua = CanBo::UpdateCB($canbo);
+
+                $ketqua = ($ketqua) ? 0 : 1 ;
+                $name = \Session::get('uname');
+                if ($ketqua == 0) {
+                    WriteLogController::Write_Debug($name." cập nhật cán bộ ".$canbo->mscb);
+                } else {
+                    WriteLogController::Write_Debug($name." cập nhật cán bộ thất bại. Có lỗi khi xử lý");
+                }
+
+                \Session::put('ketqua_up_cb', $ketqua);
+                return redirect('/staff_info/' . $canbo->mscb);
+            }
+            // Nếu mã số hoặc email đã bị trùng.
+            else {
+                WriteLogController::Write_Debug($name." cập nhật cán bộ thất bại. Trùng email cán bộ");
+                \Session::put('ketqua_up_cb', 3);
+                return redirect('/staff_info/' . $canbo->mscb);
+            }
         }
         else{
             return view('login');
