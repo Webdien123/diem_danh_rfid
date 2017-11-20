@@ -259,7 +259,10 @@ class EventController extends Controller
             // Nếu xử lý thành công thì về trang sự kiện
             // ngược lại báo lỗi do xử lý.
             if ($ketqua){
-                WriteLogController::Write_Debug($name." thêm sự kiện ".$sukien->tensk);
+
+                $id_sk = \DB::select('SELECT * FROM sukien ORDER BY MASK DESC LIMIT 1 ');
+                $id_sk = $id_sk[0]->MASK;
+                WriteLogController::Write_Debug($name." thêm sự kiện ".$id_sk);
                 return redirect()->route('event');
             }
                 

@@ -124,7 +124,7 @@ class ExcelController extends Controller
                             }
 
                             if ($tenbang == "sukien") {
-                                WriteLogController::Write_Debug("Đăng kí sự kiện ".self::$mask_dangki. " thành công");
+                                WriteLogController::Write_Debug("import danh sách đăng ký sự kiện ".self::$mask_dangki. " thành công");
                             }
                         }
                         // Nếu lấy dữ liệu insert thất bại.
