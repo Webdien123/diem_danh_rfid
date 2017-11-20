@@ -112,8 +112,19 @@ class ExcelController extends Controller
                                             return redirect()->route('Error', 
                                             ['mes' => 'Import thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
                                         }
-                                    }
+                                    }   
                                 }
+                            }
+                            if ($tenbang == "sinhvien") {
+                                WriteLogController::Write_Debug("import thành công $sodong sinh viên");
+                            }
+
+                            if ($tenbang == "canbo") {
+                                WriteLogController::Write_Debug("import thành công $sodong cán bộ");
+                            }
+
+                            if ($tenbang == "sukien") {
+                                WriteLogController::Write_Debug("Đăng kí sự kiện ".self::$mask_dangki. " thành công");
                             }
                         }
                         // Nếu lấy dữ liệu insert thất bại.
