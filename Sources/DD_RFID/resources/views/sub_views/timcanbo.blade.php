@@ -5,8 +5,19 @@
 
 @section('timcanbo')
 
-    {{--  Import code tô màu từ khóa sau khi hiển thị kết quả  --}}
-    @include('link_views.to_mau_tu_khoa')
+    {{--  Import script thư viện tô màu từ khóa  --}}
+    <script type="text/javascript" src="{{ asset('js/jquery.mark.min.js') }}"></script>
+
+    {{--  Style tô màu phần từ khóa tìm kiếm  --}}
+    <link rel="stylesheet" href="{{ asset('css/to_mau_tu_khoa.css') }}">
+
+    {{--  Script tô màu từ khóa  --}}
+    <script>
+        $(document).ready(function () {
+            tk = "{{ $tukhoa }}";
+            $(".table-responsive td").mark(tk);
+        });
+    </script>
 
     {{--  Tìm kiếm cán bộ  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
@@ -99,14 +110,14 @@
                     {{--  Phần nội dung khi có cán bộ  --}}
                     @foreach ($canbos as $canbo)
                         <tr>
-                            <td>{!! ToMau($canbo->MSCB, $tukhoa) !!}</td>
-                            <td>{!! ToMau($canbo->HOTEN, $tukhoa) !!}</td>
-                            <td>{!! ToMau($canbo->TENKHOA, $tukhoa) !!}</td>
-                            <td>{!! ToMau($canbo->TENBOMON, $tukhoa) !!}</td>
-                            <td>{!! ToMau($canbo->EMAIL, $tukhoa) !!}</td>
-                            <td>
+                            <td>{{ $canbo->MSCB }}</td>
+                            <td>{{ $canbo->HOTEN }}</td>
+                            <td>{{ $canbo->TENKHOA }}</td>
+                            <td>{{ $canbo->TENBOMON }}</td>
+                            <td>{{ $canbo->EMAIL }}</td>
+                            <th>
                                 @if ($canbo->MATHE)
-                                    {!! ToMau($canbo->MATHE, $tukhoa) !!}
+                                    {{ $canbo->MATHE }}
                                     {{--  Nút cập nhật mã thẻ cũ  --}}
                                     <button onclick="HienMaSo('{{ $canbo->MSCB }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -120,8 +131,8 @@
                                 @endif
 
                                 
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 <a href="/staff_info/{{ $canbo->MSCB }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
@@ -134,7 +145,7 @@
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
                                 </button>
-                            </td>
+                            </th>
                             
                         </tr>
                     @endforeach

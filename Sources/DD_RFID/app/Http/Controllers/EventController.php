@@ -51,7 +51,7 @@ class EventController extends Controller
     
         $khoang_cach = (strtotime($time2) - strtotime($time));
 
-        return $khoang_cach / 60;
+        return ceil($khoang_cach / 60);        
     }
 
     public function TaoCKSuKien($mask)

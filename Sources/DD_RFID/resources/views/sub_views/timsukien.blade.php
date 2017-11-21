@@ -5,8 +5,19 @@
 
 @section('timcanbo')
 
-    {{--  Import code tô màu từ khóa sau khi hiển thị kết quả  --}}
-    @include('link_views.to_mau_tu_khoa')
+    {{--  Import script thư viện tô màu từ khóa  --}}
+    <script type="text/javascript" src="{{ asset('js/jquery.mark.min.js') }}"></script>
+
+    {{--  Style tô màu phần từ khóa tìm kiếm  --}}
+    <link rel="stylesheet" href="{{ asset('css/to_mau_tu_khoa.css') }}">
+
+    {{--  Script tô màu từ khóa  --}}
+    <script>
+        $(document).ready(function () {
+            tk = "{{ $tukhoa }}";
+            $(".table-responsive td").mark(tk);
+        });
+    </script>
 
     {{--  Tìm kiếm sự kiện  --}}
     <div class="col-xs-12 col-sm-4 col-sm-offset-8">
@@ -110,15 +121,15 @@
                     {{-- Phần nội dung khi có sự kiện   --}}
                     @foreach ($sukiens as $sk)
                     <tr>
-                        <td>{!! ToMau($sk->MASK, $tukhoa) !!}</td>            
-                        <td>{!! ToMau($sk->TENSK, $tukhoa) !!}</td>
-                        <td>{!! ToMau($sk->NGTHUCHIEN, $tukhoa) !!}</td>
-                        <td>{!! ToMau($sk->DIADIEM, $tukhoa) !!}</td>
-                        <td>{!! ToMau($sk->DDVAO, $tukhoa) !!}</td>
-                        <td>{!! ToMau($sk->DDRA, $tukhoa) !!}</td>
+                        <td>{{ $sk->MASK }}</td>            
+                        <td>{{ $sk->TENSK }}</td>
+                        <td>{{ $sk->NGTHUCHIEN }}</td>
+                        <td>{{ $sk->DIADIEM }}</td>
+                        <td>{{ $sk->DDVAO }}</td>
+                        <td>{{ $sk->DDRA }}</td>
 
                         {{--  Phần hiển thị chức năng tùy vào trạng thái sự kiện  --}}
-                        <td>
+                        <th>
 
                             {{--  Nếu trạng thái là 1  --}}
                             @if ($sk->MATTHAI == '1')
@@ -150,9 +161,9 @@
                                 <b>
                             @endif
 
-                        </td>
+                        </th>
 
-                        <td>
+                        <th>
                             <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 Sửa thông tin
@@ -165,7 +176,7 @@
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 Xóa
                             </a>
-                        </td>
+                        </th>
                     </tr>
                     @endforeach
                 @endif

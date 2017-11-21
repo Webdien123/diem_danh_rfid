@@ -5,8 +5,19 @@
 
 @section('timcanbo')
 
-    {{--  Import code tô màu từ khóa sau khi hiển thị kết quả  --}}
-    @include('link_views.to_mau_tu_khoa')
+    {{--  Import script thư viện tô màu từ khóa  --}}
+    <script type="text/javascript" src="{{ asset('js/jquery.mark.min.js') }}"></script>
+
+    {{--  Style tô màu phần từ khóa tìm kiếm  --}}
+    <link rel="stylesheet" href="{{ asset('css/to_mau_tu_khoa.css') }}">
+
+    {{--  Script tô màu từ khóa  --}}
+    <script>
+        $(document).ready(function () {
+            tk = "{{ $tukhoa }}";
+            $(".table-responsive td").mark(tk);
+        });
+    </script>
 
     {{--  Tìm kiếm sinh viên  --}}
     <div class="col-xs-12 col-sm-5 col-sm-offset-7">
@@ -103,15 +114,15 @@
                     {{--  Phần nội dung khi có sinh viên  --}}
                     @foreach ($sinhviens as $sv)
                         <tr>
-                            <td>{!! ToMau($sv->MSSV, $tukhoa) !!}</td>
-                            <td>{!! ToMau($sv->HOTEN, $tukhoa) !!}</td>
-                            <td>{!! ToMau($sv->TENKHOA, $tukhoa) !!}</td>
-                            <td>{!! ToMau($sv->TENCHNGANH, $tukhoa) !!}</td>
-                            <td>{!! ToMau($sv->KYHIEULOP, $tukhoa) !!}</td>
-                            <td>{!! ToMau($sv->KHOAHOC, $tukhoa) !!}</td>
-                            <td>
+                            <td>{{ $sv->MSSV }}</td>
+                            <td>{{ $sv->HOTEN }}</td>
+                            <td>{{ $sv->TENKHOA }}</td>
+                            <td>{{ $sv->TENCHNGANH }}</td>
+                            <td>{{ $sv->KYHIEULOP }}</td>
+                            <td>{{ $sv->KHOAHOC }}</td>
+                            <th>
                                 @if ($sv->MATHE)
-                                    {!! ToMau($sv->MATHE, $tukhoa) !!}
+                                    {{ $sv->MATHE }}
                                     {{--  Nút cập nhật mã thẻ cũ  --}}
                                     <button onclick="HienMaSo('{{ $sv->MSSV }}')" class="btn btn-success" data-toggle="modal" href='#modal-updatethe' data-toggle="tooltip" data-placement="top" title="Cập nhật thẻ mới">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -123,8 +134,8 @@
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                 @endif
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
@@ -137,7 +148,7 @@
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Xóa
                                 </button>
-                            </td>
+                            </th>
                         </tr>
                     @endforeach
 
