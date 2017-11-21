@@ -6,28 +6,6 @@
 
 @section('chart')
 
-    <script type="text/javascript">
-        function highlight_words(keywords, element) {
-            if(keywords) {
-                var textNodes;
-                keywords = keywords.replace(/\W/g, '');
-                var str = keywords.split(" ");
-                $(str).each(function() {
-                    var term = this;
-                    var textNodes = $(element).contents().filter(function() { return this.nodeType === 3 });
-                    textNodes.each(function() {
-                    var content = $(this).text();
-                    var regex = new RegExp(term, "gi");
-                    content = content.replace(regex, '<span class="bg-success">' + term + '</span>');
-                    $(this).replaceWith(content);
-                    });
-                });
-
-                $(window).scrollTop(element.offset().top);
-            }
-        }
-    </script>
-
     {{--  Nội dung trang thống kê  --}}
     <div class="col-xs-12">            
 
@@ -114,6 +92,30 @@
 
             <!-- Tạo biểu đồ số liệu bất thường cán bộ lên id piechart4-->
             <script type="text/javascript" src="{{ asset('js/exc_teacher_chart.js') }}"></script>
+
+            {{--  Import script thư viện tô màu từ khóa  --}}
+            <script type="text/javascript" src="{{ asset('js/jquery.mark.min.js') }}"></script>
+
+            {{--  Style tô màu phần từ khóa tìm kiếm  --}}
+            <link rel="stylesheet" href="{{ asset('css/to_mau_tu_khoa.css') }}">
+
+            <script>
+                function to_mau_tu_khoa() {
+                    $(".danhsach td").unmark();
+                    tk = $("#TuKhoa").val();
+                    $(".danhsach td").mark(tk);
+                    $('html, body').animate({
+                        scrollTop: $("mark").offset().top
+                    }, 100);
+                    $("#TuKhoa").val("");
+                }
+
+                $(document).ready(function () {
+                    $("#btn_timkiem").click(function (e) {
+                        to_mau_tu_khoa();
+                    });
+                });
+            </script>
 
             <!-- Auto resize các biểu độ -->
             <script>
@@ -308,20 +310,16 @@
                     </div>
 
                     {{--  TÌM KIẾM NỘI DUNG TRONG DANH SÁCH  --}}
-                    <div class="col-xs-12 col-sm-4 fade">
-                        <form action="#" id="f_tim_ds" class="form-inline" role="search">                            
+                    <div class="col-xs-12 col-sm-4">
+                        <span class="form-inline">                          
                             <b>Tìm kiếm:</b>
-                            <input type="text" class="form-control" name="TuKhoa" id="TuKhoa" placeholder="Nhập nội dung tìm kiếm" required
-                            oninvalid="this.setCustomValidity('Vui lòng nhập từ khóa trước khi tìm')"
-                            oninput="setCustomValidity('')">
-                            <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"tabindex="-1" />
+                            <input type="text" class="form-control" name="TuKhoa" id="TuKhoa" placeholder="Nhập nội dung tìm kiếm">
                             <button type="button" id="btn_timkiem" class="btn btn-info">
                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                 Tìm
                             </button>
-                        </form> 
-                    </div>
-                            
+                        </span> 
+                    </div>      
                 </div>
 
                 {{--  Phần hiển thị các danh sách thống kê --}}
@@ -404,7 +402,7 @@
                                             <td>{{ $sv->KYHIEULOP }}</td>
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -414,7 +412,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -448,7 +446,7 @@
                                         <td>{{ $sv->KYHIEULOP }}</td>
                                         <td>{{ $sv->KHOAHOC }}</td>                        
                                         {{--  Phần thao tác thông tin sinh viên  --}}
-                                        <td>      
+                                        <th>      
                                             <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                 Sửa kết quả
@@ -458,7 +456,7 @@
                                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                 Sửa thông tin
                                             </a>
-                                        </td> 
+                                        </th> 
                                     </tr>
                                 @endforeach
                                 
@@ -493,7 +491,7 @@
                                             <td>{{ $sv->KYHIEULOP }}</td>
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -503,7 +501,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -537,7 +535,7 @@
                                             <td>{{ $sv->KYHIEULOP }}</td>
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $sv->MSSV }}', '{{ $sv->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -547,7 +545,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -581,12 +579,12 @@
                                             <td>{{ $sv->KYHIEULOP }}</td>
                                             <td>{{ $sv->KHOAHOC }}</td>                        
                                             {{--  Phần thao tác thông tin sinh viên  --}}
-                                            <td>                                                
+                                            <th>                                                
                                                 <a href="/student_info/{{ $sv->MSSV }}" target="_blank" class="btn btn-success">
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -619,7 +617,7 @@
                                             <td>{{ $canbo->EMAIL }}</td>
                                                             
                                             {{--  Phần thao tác thông tin cán bộ  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -629,7 +627,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -662,7 +660,7 @@
                                             <td>{{ $canbo->EMAIL }}</td>
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -672,7 +670,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -705,7 +703,7 @@
                                             <td>{{ $canbo->EMAIL }}</td>
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -715,7 +713,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -748,7 +746,7 @@
                                             <td>{{ $canbo->EMAIL }}</td>
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
-                                            <td>      
+                                            <th>      
                                                 <a class="btn btn-info" onclick="HienTTinNguoiChuyen('{{ $canbo->MSCB}}' , '{{ $canbo->MALOAIDS }}')" data-toggle="modal" href='#modal-id-ds'>
                                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                                     Sửa kết quả
@@ -758,7 +756,7 @@
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
@@ -791,12 +789,12 @@
                                             <td>{{ $canbo->EMAIL }}</td>
 
                                             {{--  Phần thao tác thông tin cán bộ  --}}
-                                            <td>
+                                            <th>
                                                 <a href="/staff_info/{{ $canbo->MSCB }}" target="_blank" class="btn btn-success">
                                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     Sửa thông tin
                                                 </a>
-                                            </td> 
+                                            </th> 
                                         </tr>
                                     @endforeach
                             </tbody>
