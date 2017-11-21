@@ -76,6 +76,7 @@ class ExcelController extends Controller
                                 if (!$ketqua) {
                                     if ($tenbang == "sukien") {
                                         WriteLogController::Write_Debug("Có lỗi khi import sự kiện ".self::$mask_dangki." ở sheet thứ ".$sodong);
+
                                         return redirect()->route('Error',[
                                             'mes' => 'Import thất bại tại sheet thứ '.$sodong, 
                                             'reason' => 
@@ -89,10 +90,31 @@ class ExcelController extends Controller
                                     }
                                     if ($tenbang == "sinhvien") {
                                         WriteLogController::Write_Debug("Có lỗi khi import sinh viên ".self::$mask_dangki." ở dòng thứ ".$sodong);
+                                        
+                                        return redirect()->route('Error',[
+                                            'mes' => 'Import sinh viên thất bại tại dòng dữ liệu thứ '.$sodong, 
+                                            'reason' => 
+                                                'Vui lòng kiếm tra lại các thông tin sau:<br>
+                                                1. Tên các cột so với file import mẫu<br>
+                                                2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
+                                                3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
+                                                4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.<br>'                                            
+                                        ]);
                                     }
                                     if ($tenbang == "canbo") {
                                         WriteLogController::Write_Debug("Có lỗi khi import cán bộ ".self::$mask_dangki." ở dòng thứ ".$sodong);
+
+                                        return redirect()->route('Error',[
+                                            'mes' => 'Import cán bộ thất bại tại dòng dữ liệu thứ '.$sodong, 
+                                            'reason' => 
+                                                'Vui lòng kiếm tra lại các thông tin sau:<br>
+                                                1. Tên các cột so với file import mẫu<br>
+                                                2. Mã số các dòng trong file có trùng với nhau hoặc trùng với mã số đã có trong hệ thống.<br>
+                                                3. Email các dòng trong file có trùng với nhau hoặc trùng với email đã có trong hệ thống.<br>
+                                                4. Dữ liệu ở hàng báo lỗi có hợp lệ chưa.<br>'                                            
+                                        ]);
                                     }
+
                                     return redirect()->route('Error',[
                                         'mes' => 'Import thất bại tại dòng dữ liệu thứ '.$sodong, 
                                         'reason' => 

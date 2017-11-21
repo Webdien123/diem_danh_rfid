@@ -35,7 +35,7 @@ $(document).ready(function () {
         errorClass: "has-error",
         validClass: "has-success",
         highlight: function(element,errorClass,validClass){
-            $(element).parent(".form-group").addClass(errorClass).removeClass(validClass);   
+            $(element).parent(".form-group").addClass(errorClass).removeClass(validClass);
         },
                     
         unhighlight: function(element, errorClass, validClass) {

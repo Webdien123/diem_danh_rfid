@@ -158,6 +158,33 @@
                             Thêm danh sách
                         </button>
                     </form>
+
+                    <style>
+                        .gi-2x{font-size: 2em;}
+                        .gi-3x{font-size: 3em;}
+                        .gi-4x{font-size: 4em;}
+                        .gi-5x{font-size: 5em;}
+                    </style>
+
+                    <div id="slow_warning" style="display:none" class="text-center">
+                        {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
+                        @include('link_views.rotation_icon')
+
+                        <h3 class="text-info">
+                            <span class="glyphicon glyphicon-refresh gly-spin gi-2x"></span>
+                            Đang import, vui lòng chờ.
+                        </h3>
+                    </div>
+
+                    <script>
+                        $("#f-dangky-sk").submit(function (e) {
+                            if ($("#f-dangky-sk").valid()) {
+                                $("#slow_warning").show(); 
+                            } else {
+                                $("#slow_warning").hide();
+                            }
+                        });
+                    </script>
                     
                 </div>
             </div>

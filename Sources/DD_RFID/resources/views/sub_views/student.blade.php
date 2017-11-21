@@ -76,7 +76,7 @@
     {{--  Hiển thị tiêu đề và các nút thêm, import sinh viên  --}}
     <center><h1>Danh sách sinh viên</h1></center>
     <div class="row">
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12">
             {{--  Nút thêm sinh viên  --}}
             <a class="btn btn-info" class="pull-left" data-toggle="modal" href='#modal-themsv'>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
@@ -187,6 +187,16 @@
                     </button>
                 </form>
 
+                <script>
+                    $("#f_import_sv").submit(function (e) {
+                        if ($("#f_import_sv").valid()) {
+                            $("#slow_warning").show();    
+                        } else {
+                            $("#slow_warning").hide();
+                        }
+                    });
+                </script>
+
                 <a class="btn btn-info" href="./download/Mẫu import sinh viên.xls">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
                     tải file đăng ký mẫu
@@ -194,8 +204,25 @@
             </div>            
 
             {{--  Script xử lý ẩn hiện phần import sinh viên.  --}}
-            <script src="{{ asset('js/toggle_import.js') }}"></script>  
+            <script src="{{ asset('js/toggle_import.js') }}"></script>
         </div>
+    </div>
+
+    <style>
+        .gi-2x{font-size: 2em;}
+        .gi-3x{font-size: 3em;}
+        .gi-4x{font-size: 4em;}
+        .gi-5x{font-size: 5em;}
+    </style>
+
+    <div id="slow_warning" style="display:none" class="text-center">
+        {{--  Gọi code thực hiện xoay icon Đang điểm danh  --}}
+        @include('link_views.rotation_icon')
+
+        <h3 class="text-info">
+            <span class="glyphicon glyphicon-refresh gly-spin gi-2x"></span>
+            Đang import, vui lòng chờ.
+        </h3>
     </div>
 
     {{--  Hiển thị danh sách sinh viên  --}}
