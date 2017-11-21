@@ -1,0 +1,72 @@
+﻿[21-11-2017 11:11:24am] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[21-11-2017 11:11:00am] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[21-11-2017 11:11:17am] INFO: Nhận mã thẻ 0001352122
+
+﻿[21-11-2017 11:11:21am] INFO: Nhận mã thẻ 0005706269
+
+﻿[21-11-2017 11:11:21am] INFO: 0005706269 - chủ thẻ 00123456 điểm danh vào.
+
+﻿[21-11-2017 11:11:00am] INFO: Sự kiện 1 bắt đầu điểm danh ra
+
+﻿[21-11-2017 11:11:02am] INFO: Thống kê sự kiên 1 thành công
+
+﻿[21-11-2017 11:11:11am] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[21-11-2017 11:11:00am] INFO: Sự kiện 1 bắt đầu điểm danh ra
+
+﻿[21-11-2017 11:11:00am] INFO: Sự kiện 1 kết thúc điểm danh
+
+﻿[21-11-2017 11:11:01am] INFO: Thống kê sự kiên 1 thất bại
+
+﻿[21-11-2017 11:11:11am] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[21-11-2017 11:11:04am] INFO: Thống kê sự kiên 1 thành công
+
+﻿[21-11-2017 11:11:16am] INFO: Thống kê sự kiên 1 thành công
+
+﻿[21-11-2017 11:11:37am] INFO: Thống kê sự kiên 1 thành công
+
+﻿[21-11-2017 12:11:20pm] INFO: Thống kê sự kiên 1 thành công
+
+﻿[21-11-2017 12:11:56pm] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[21-11-2017 12:11:54pm] INFO: Kích hoạt điểm danh sự kiện 1
+
+﻿[21-11-2017 12:11:00pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[21-11-2017 12:11:22pm] INFO: Nhận mã thẻ cde
+
+﻿[21-11-2017 12:11:30pm] INFO: Điểm danh nặc danh thất bại, cán bộ 00123456 đã tồn tại
+
+﻿[21-11-2017 12:11:30pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[21-11-2017 12:11:34pm] INFO: Nhận mã thẻ cde
+
+﻿[21-11-2017 12:11:45pm] INFO: cde của cán bộ B1300004 điểm danh nặc danh thành công
+
+﻿[21-11-2017 12:11:45pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[21-11-2017 12:11:48pm] INFO: Nhận mã thẻ cde
+
+﻿[21-11-2017 12:11:49pm] INFO: cde - chủ thẻ B1300004 điểm danh vào nhiều lần.
+
+﻿[21-11-2017 12:11:53pm] INFO: Nhận mã thẻ fff
+
+﻿[21-11-2017 12:11:03pm] INFO: Đăng ký thẻ fff và thông tin mới cho cán bộ B1305056 thành công.
+
+﻿[21-11-2017 12:11:03pm] INFO: Sự kiện 1 bắt đầu điểm danh vào
+
+﻿[21-11-2017 12:11:08pm] INFO: Nhận mã thẻ fff
+
+﻿[21-11-2017 12:11:08pm] INFO: fff - chủ thẻ B1305056 điểm danh vào.
+
+﻿[21-11-2017 12:11:00pm] INFO: Sự kiện 1 bắt đầu điểm danh ra
+
+﻿[21-11-2017 12:11:00pm] INFO: Sự kiện 1 kết thúc điểm danh
+
+﻿[21-11-2017 12:11:01pm] INFO: Thống kê sự kiên 1 thất bại
+
+﻿[21-11-2017 12:11:11pm] INFO: Thống kê sự kiên 1 thành công
+

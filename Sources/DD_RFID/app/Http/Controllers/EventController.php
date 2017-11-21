@@ -74,6 +74,7 @@ class EventController extends Controller
     {
         if (\Session::has('xac_thuc_sk')) {
             \Session::forget('ma_so_xac_thuc');
+            \Session::forget('xac_thuc_sk');
 
             WriteLogController::Write_Info("Kích hoạt điểm danh sự kiện ".$mask,"suKien[".$mask."]");
 

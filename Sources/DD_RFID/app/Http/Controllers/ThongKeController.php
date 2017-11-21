@@ -466,23 +466,23 @@ class ThongKeController extends Controller
                 WriteLogController::Write_Debug("Chuyển danh sách cho ".$ma_ng_chuyen." thành công");
             }
 
-            // Tính danh sách thống kê cần chuyển
-            $ds_can_chuyen = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_can_chuyen);
-            $ds_hien_tai = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_hien_tai);
+            // // Tính danh sách thống kê cần chuyển
+            // $ds_can_chuyen = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_can_chuyen);
+            // $ds_hien_tai = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_hien_tai);
 
-            // Xử lý cập nhật số liệu thống kê và lưu kết quả xử lý.
-            $ketqua_solieu = ThongKeDiemDanh::CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai);
+            // // Xử lý cập nhật số liệu thống kê và lưu kết quả xử lý.
+            // $ketqua_solieu = ThongKeDiemDanh::CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai);
 
-            if ($ketqua_solieu == 0) {
-                WriteLogController::Write_Debug("Cập nhật số liệu thống kê cho ".$ma_ng_chuyen." thất bại");
-            }
-            else {
-                WriteLogController::Write_Debug("Cập nhật số liệu thống kê cho ".$ma_ng_chuyen." thành công");
-            }
+            // if ($ketqua_solieu == 0) {
+            //     WriteLogController::Write_Debug("Cập nhật số liệu thống kê cho ".$ma_ng_chuyen." thất bại");
+            // }
+            // else {
+            //     WriteLogController::Write_Debug("Cập nhật số liệu thống kê cho ".$ma_ng_chuyen." thành công");
+            // }
 
-            $ketqua = $ketqua_ds * $ketqua_solieu;
+            // $ketqua = $ketqua_ds * $ketqua_solieu;
 
-            if ($ketqua == 1) {
+            if ($ketqua_ds == 1) {
                 WriteLogController::Write_InFo($name." chuyển danh sách cho "
                     .$loai_ng_chuyen." ".$ma_ng_chuyen." từ ".$ds_hien_tai." sang ".$ds_can_chuyen." thành công");
                 return \Redirect::route('chart_old_get', $mask);

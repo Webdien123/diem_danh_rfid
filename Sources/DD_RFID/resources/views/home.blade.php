@@ -104,11 +104,13 @@
             TRANG QUẢN TRỊ
         </a>
 
-        <a class="btn btn-primary" href="/taoCKSuKien/{{$sukien->MASK}}" role="button">
-            <i class="fa fa-retweet" aria-hidden="true"></i>
-            Cập nhật sự kiện
-        </a>
-        <hr>
+        @if (Session::get('trangthai_sukien') != 4)
+            <a class="btn btn-primary" href="/taoCKSuKien/{{$sukien->MASK}}" role="button">
+                <i class="fa fa-retweet" aria-hidden="true"></i>
+                Cập nhật sự kiện
+            </a>
+            <hr>
+        @endif
 
         @if (Session::get('trangthai_sukien') == 2 || Session::get('trangthai_sukien') == 3)
 

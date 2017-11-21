@@ -148,15 +148,15 @@
                             <input type="file" class="form-control" name="im_file" id="im_file">
                         </div>
 
-                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
-                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                            tải file đăng ký mẫu
-                        </a>
-                    
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-upload" aria-hidden="true"></i>
                             Thêm danh sách
                         </button>
+
+                        <a class="btn btn-success" href="./download/Mẫu đăng ký sự kiện.xls">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                            tải file đăng ký mẫu
+                        </a>                        
                     </form>
 
                     <style>

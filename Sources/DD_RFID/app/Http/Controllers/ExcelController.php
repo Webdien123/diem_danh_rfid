@@ -78,7 +78,7 @@ class ExcelController extends Controller
                                         WriteLogController::Write_Debug("Có lỗi khi import sự kiện ".self::$mask_dangki." ở sheet thứ ".$sodong);
 
                                         return redirect()->route('Error',[
-                                            'mes' => 'Import thất bại tại sheet thứ '.$sodong, 
+                                            'mes' => 'Import sự kiện thất bại tại sheet thứ '.$sodong, 
                                             'reason' => 
                                                 'Vui lòng kiếm tra lại các thông tin sau:<br>
                                                 1. Tên các cột so với file import mẫu<br>
