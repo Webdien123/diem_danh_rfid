@@ -11,6 +11,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert('insert into users (name, email, password) values (?, ?, ?)', ['Trần Quản Trị', 'abc@gmail.com', bcrypt('123456')]);
+        DB::insert('insert into users (name, email, password) values (?, ?, ?)', ['Trần Quản Trị', 'vanb1305056@student.ctu.edu.vn', bcrypt('123456')]);
     }
 }
