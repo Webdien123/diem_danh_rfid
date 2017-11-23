@@ -284,10 +284,23 @@ class EventController extends Controller
             $name = \Session::get('uname');
             $sukien = SuKien::GetSK($mssk);
             if ($sukien != null) {
-                WriteLogController::Write_Debug($name." xem thông tin sự kiện ".$mssk);
-                return view('form_views.thongtin_sukien', [
-                    'sukien' => $sukien
-                ]);
+                if ($sukien[0]->MATTHAI == 4) {
+                    WriteLogController::Write_Debug($name." không thể xem thông tin sự kiện ".$mssk. " vì đã hoàn thành điểm danh");
+                    
+                    WriteLogController::Write_InFo($name." vào trang sự kiện");
+                    
+                    $sukiens = SuKien::GetSuKien();
+        
+                    return view('sub_views.event', [
+                        'sukiens' => $sukiens
+                    ]);
+                } else {
+                    WriteLogController::Write_Debug($name." xem thông tin sự kiện ".$mssk);
+                    return view('form_views.thongtin_sukien', [
+                        'sukien' => $sukien
+                    ]);
+                }
+                
             } else {
                 return redirect()->route('Error',
                 ['mes' => 'Lấy thông tin sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
@@ -312,6 +325,30 @@ class EventController extends Controller
             }
             \Session::put('ketqua_up_sk', $ketqua);
             return redirect('/event_info/' . $sukien->mask);
+        }
+        else{
+            return view('login');
+        }
+    }
+
+    // Xem danh sách cán bộ và sinh viên đã đăng ký sự kiện
+    public function XemDSDangKi($mssk)
+    {
+        if (\Session::has('uname')) {
+            $name = \Session::get('uname');
+            
+            // Truy xuất danh sách điểm danh của cán bộ và sinh viên.
+            $ds_ddanh_cb = DiemDanhCB::LayDSDiemDanh($mask);
+            $ds_ddanh_sv = DiemDanhSV::LayDSDiemDanh($mask);
+
+            if ($sukien != null) {
+                return view('sub_views.xemDSDK_SuKien', [
+                    'sukien' => $sukien
+                ]);
+            } else {
+                return redirect()->route('Error',
+                ['mes' => 'Xem danh sách đăng ký thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
+            }
         }
         else{
             return view('login');
