@@ -20,6 +20,12 @@
     <script src="{{ asset('js/card.js') }}"></script>
 </head>
 <body>
+    <?php
+        \Session::forget('trangthai_sukien');
+        \Session::forget('xac_thuc_sk');    
+        \Session::forget('ma_so_xac_thuc'); 
+    ?>
+
     {{--  Thẻ hiển thị ảnh nền  --}}
     <div id="home_bg"></div>
 

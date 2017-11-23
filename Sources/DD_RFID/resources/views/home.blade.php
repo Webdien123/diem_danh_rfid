@@ -476,11 +476,8 @@
             <h1>Hết giờ điểm danh</h1>
             <?php
                 \Cookie::queue(
-                    Cookie::forget('sukien_diemdanh')
+                    \Cookie::forget('sukien_diemdanh')
                 );
-                //\Session::forget('sukien_diemdanh');
-                \Session::forget('trangthai_sukien');
-                \Session::forget('xac_thuc_sk');    
                 \Session::forget('ma_so_xac_thuc'); 
             ?>
         @endif

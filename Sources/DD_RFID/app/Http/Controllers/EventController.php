@@ -330,30 +330,6 @@ class EventController extends Controller
         }
     }
 
-    // Xem danh sách cán bộ và sinh viên đã đăng ký sự kiện
-    public function XemDSDangKi($mssk)
-    {
-        if (\Session::has('uname')) {
-            $name = \Session::get('uname');
-            
-            // Truy xuất danh sách điểm danh của cán bộ và sinh viên.
-            $ds_ddanh_cb = DiemDanhCB::LayDSDiemDanh($mask);
-            $ds_ddanh_sv = DiemDanhSV::LayDSDiemDanh($mask);
-
-            if ($sukien != null) {
-                return view('sub_views.xemDSDK_SuKien', [
-                    'sukien' => $sukien
-                ]);
-            } else {
-                return redirect()->route('Error',
-                ['mes' => 'Xem danh sách đăng ký thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại. Hãy thử lại sau.']);
-            }
-        }
-        else{
-            return view('login');
-        }
-    }
-
     // Xóa thông tin sự kiện.
     public function XoaSuKien($mssk)
     {
@@ -366,6 +342,21 @@ class EventController extends Controller
             $name = \Session::get('uname');
             // Xóa thông tin sự kiện.
             $ketqua_sk = SuKien::DeleteSK($mssk);
+
+            $ds_sk = \DB::select('select * from sukien');
+
+            if (!$ds_sk) {
+                WriteLogController::Write_Debug("Bảng sự kiện rỗng");
+                $reset = \DB::statement('ALTER TABLE sukien AUTO_INCREMENT = 1');
+
+                if ($reset) {
+                    WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thành công");
+                } else {
+                    WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thất bại");
+                }
+                
+                
+            }
 
             // Tính kết quả tổng hợp.
             $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv && $ketqua_thke) ? true : false;
