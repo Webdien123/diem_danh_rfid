@@ -38,8 +38,8 @@ class MailController extends Controller
         $mask = $R->mask;
         if ($ma_so_xac_thuc != null) {
             if($ma_so_xac_thuc == \Session()->get('ma_so_xac_thuc')){
-                \Session()->put('xac_thuc_sk', $mask);
-                return redirect()->route('chonsukien', [
+                \Session::put('xac_thuc_sk', $mask);
+                return redirect()->route('taocksukien', [
                     'mask' => $mask
                 ]);
             }
