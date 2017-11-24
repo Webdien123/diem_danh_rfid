@@ -28,7 +28,7 @@ class CanBo extends Model
                 $canbo->bomon,
                 $canbo->khoa,
                 $canbo->email,
-                $canbo->hoten
+                ucwords($canbo->hoten)
             ]);
             return true; //Trả kết quả thêm để controller Cán bộ tiếp tục thực thi.
         } catch (\Exception $e) {
@@ -45,7 +45,7 @@ class CanBo extends Model
                 $bomon,
                 $khoa,
                 $email,
-                $hoten
+                ucwords($hoten)
             ]);
             return true; //Trả kết quả thêm để controller tiếp tục thực thi.
         } catch (\Exception $e) {

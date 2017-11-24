@@ -24,12 +24,12 @@ class SinhVien extends Model
     {
         try {
             \DB::insert('insert into sinhvien (MSSV, KYHIEULOP, TENCHNGANH, KHOAHOC, TENKHOA, HOTEN) values (?, ?, ?, ?, ?, ?)', [
-                $sinhvien->mssv, 
+                ucwords($sinhvien->mssv), 
                 $sinhvien->lop,
                 $sinhvien->chnganh,
                 $sinhvien->khoahoc,
                 $sinhvien->khoa,
-                $sinhvien->hoten
+                ucwords($sinhvien->hoten)
             ]);
             return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
         } catch (\Exception $e) {
@@ -42,12 +42,12 @@ class SinhVien extends Model
     {
         try {
             \DB::insert('insert into sinhvien (MSSV, KYHIEULOP, TENCHNGANH, KHOAHOC, TENKHOA, HOTEN) values (?, ?, ?, ?, ?, ?)', [
-                $maso, 
+                ucwords($maso), 
                 $lop,
                 $chnganh,
                 $khoahoc,
                 $khoa,
-                $hoten
+                ucwords($hoten)
             ]);
             return true; //Trả kết quả thêm để controller sinh viên tiếp tục thực thi.
         } catch (\Exception $e) {

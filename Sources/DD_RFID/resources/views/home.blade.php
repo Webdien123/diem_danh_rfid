@@ -268,7 +268,7 @@
                                             <div class="form-group">
                                                 <label for="">Người điểm danh là:</label><br>
                                                 <div class="radio-inline">
-                                                    <label><input type="radio" name="rd_sv_cb" id="rd_sv" checked value="sinh viên">
+                                                    <label><input type="radio" name="rd_sv_cb" id="rd_sv_cb" checked value="sinh viên">
                                                         <span class="text-danger">
                                                             <span class="fa fa-graduation-cap fa-2x"></span>
                                                             Sinh viên
@@ -276,7 +276,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="radio-inline">
-                                                    <label><input type="radio" name="rd_sv_cb" id="rd_cb" value="cán bộ">
+                                                    <label><input type="radio" name="rd_sv_cb" id="rd_sv_cb" value="cán bộ">
                                                         <span class="text-primary">
                                                             <span class="fa fa-users fa-2x"></span>
                                                             Cán bộ

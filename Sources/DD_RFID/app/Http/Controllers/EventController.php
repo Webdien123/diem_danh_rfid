@@ -340,34 +340,46 @@ class EventController extends Controller
             $ketqua_dd_sv = DiemDanhSV::DeleteDangky_SK($mssk);
             $ketqua_thke = ThongKeDiemDanh::DeleteThKe($mssk);
             $name = \Session::get('uname');
-            // Xóa thông tin sự kiện.
-            $ketqua_sk = SuKien::DeleteSK($mssk);
+            $sukien = SuKien::GetSK($mssk);
+            if ($sukien[0]->MATTHAI == 3) {
+                WriteLogController::Write_Debug($name." không thể xóa sự kiện ".$mssk. " vì đang điểm danh");
+                
+                WriteLogController::Write_InFo($name." vào trang sự kiện");
+                
+                $sukiens = SuKien::GetSuKien();
+    
+                return view('sub_views.event', [
+                    'sukiens' => $sukiens
+                ]);
+            } else {
+                // Xóa thông tin sự kiện.
+                $ketqua_sk = SuKien::DeleteSK($mssk);
 
-            $ds_sk = \DB::select('select * from sukien');
+                $ds_sk = \DB::select('select * from sukien');
 
-            if (!$ds_sk) {
-                WriteLogController::Write_Debug("Bảng sự kiện rỗng");
-                $reset = \DB::statement('ALTER TABLE sukien AUTO_INCREMENT = 1');
+                if (!$ds_sk) {
+                    WriteLogController::Write_Debug("Bảng sự kiện rỗng");
+                    $reset = \DB::statement('ALTER TABLE sukien AUTO_INCREMENT = 1');
 
-                if ($reset) {
-                    WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thành công");
-                } else {
-                    WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thất bại");
+                    if ($reset) {
+                        WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thành công");
+                    } else {
+                        WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thất bại");
+                    }
                 }
-                
-                
-            }
 
-            // Tính kết quả tổng hợp.
-            $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv && $ketqua_thke) ? true : false;
+                // Tính kết quả tổng hợp.
+                $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv && $ketqua_thke) ? true : false;
 
-            if ($ketqua){
-                WriteLogController::Write_Debug($name." xóa sự kiện ".$mssk);
-                return redirect()->route('event');
+                if ($ketqua){
+                    WriteLogController::Write_Debug($name." xóa sự kiện ".$mssk);
+                    return redirect()->route('event');
+                }
+                else
+                    return redirect()->route('Error', 
+                    ['mes' => 'Xóa sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
             }
-            else
-                return redirect()->route('Error', 
-                ['mes' => 'Xóa sự kiện thất bại', 'reason' => 'Có lỗi trong quá trình xử lý, vui lòng thử lại']);
+                
         }
         else{
             return view('login');
