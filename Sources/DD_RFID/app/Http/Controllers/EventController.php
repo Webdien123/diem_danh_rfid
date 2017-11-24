@@ -124,42 +124,54 @@ class EventController extends Controller
             $sukiens = SuKien::GetSuKienSSang();
             return view('chon_sukien', ['sukiens' => $sukiens]);
         }
+
         // Lấy giá trị sự kiện đang cần điểm danh.
         $sukien = \Cookie::get('sukien_diemdanh');
 
-        // Tính lại trạng thái sự kiện.
-        $trangthai = self::KiemTraTrangThai($sukien);
+        if (\Session::has('xac_thuc_sk')) {
+            \Session::forget('ma_so_xac_thuc');            
 
-        // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
-        \Session::put("trangthai_sukien", $trangthai);
+            // Tính lại trạng thái sự kiện.
+            $trangthai = self::KiemTraTrangThai($sukien);
 
-        if ($trangthai < 4) {
-            if ($trangthai == 2) {
-                WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
+            // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
+            \Session::put("trangthai_sukien", $trangthai);
+
+            if ($trangthai < 4) {
+                if ($trangthai == 2) {
+                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
+                }
+                if ($trangthai == 3) {
+                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra","suKien[".$sukien[0]->MASK."]");
+                }
+                SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
             }
-            if ($trangthai == 3) {
-                WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra","suKien[".$sukien[0]->MASK."]");
+            else {
+                WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
+                SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
             }
-            SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
+
+            // Tính lại thời gian còn lại của sự kiện.
+            $thoigian = EventController::ThoiGianConLai($sukien);
+
+            $khoas = Khoa_Phong::GetKhoa();
+            $lops = KyHieuLop::LayKyHieuLop();
+            $khoahocs = KhoaHoc::LayKhoaHoc();
+
+            return view('home', [
+                'thoigian' => $thoigian, 
+                'khoas' => $khoas,
+                'lops' => $lops,
+                'khoahocs' => $khoahocs
+            ]);
         }
-        else {
-            WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
-            SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
+        else{
+            if (\Session::has('ma_so_xac_thuc')) {
+                return view('xac_thuc', ['mask' => $sukien[0]->MASK]);
+            } else {
+                return view('xac_thuc', ['mask' => $sukien[0]->MASK]);
+            }            
         }
-
-        // Tính lại thời gian còn lại của sự kiện.
-        $thoigian = EventController::ThoiGianConLai($sukien);
-
-        $khoas = Khoa_Phong::GetKhoa();
-        $lops = KyHieuLop::LayKyHieuLop();
-        $khoahocs = KhoaHoc::LayKhoaHoc();
-
-        return view('home', [
-            'thoigian' => $thoigian, 
-            'khoas' => $khoas,
-            'lops' => $lops,
-            'khoahocs' => $khoahocs
-        ]);
     }
 
     // Tính trạng thái điểm danh của sự kiện so với thời điểm hiện tại.
