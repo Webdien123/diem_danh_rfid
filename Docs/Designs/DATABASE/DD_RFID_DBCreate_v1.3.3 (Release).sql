@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     07-11-17 2:50:23 PM                          */
+/* Created on:     24-11-17 2:36:52 PM                          */
 /*==============================================================*/
 
 
@@ -40,6 +40,7 @@ drop table if exists TRANGTHAISK;
 create table CANBO
 (
    MSCB                 char(8) not null,
+   TO__TENKHOA          varchar(50) not null,
    HOTEN                varchar(50) not null default '--',
    TENKHOA              varchar(50) not null default '--',
    TENBOMON             varchar(50) not null default '--',
@@ -52,9 +53,9 @@ create table CANBO
 /*==============================================================*/
 create table CHUYENNGANH
 (
-   TENCHNGANH           varchar(50) not null,
    TENKHOA              varchar(50) not null,
-   primary key (TENCHNGANH)
+   TENCHNGANH           varchar(50) not null,
+   primary key (TENKHOA, TENCHNGANH)
 );
 
 /*==============================================================*/
@@ -142,6 +143,7 @@ create table LOAIDS
 create table SINHVIEN
 (
    MSSV                 char(8) not null,
+   CHU_TENKHOA          varchar(50) not null,
    HOTEN                varchar(50) not null default '--',
    TENKHOA              varchar(50) not null default '--',
    TENCHNGANH           varchar(50) not null default '--',
@@ -183,9 +185,9 @@ create table THONGKEDIEMDANH
 /*==============================================================*/
 create table TO_BOMON
 (
-   TENBOMON             varchar(50) not null,
    TENKHOA              varchar(50) not null,
-   primary key (TENBOMON)
+   TENBOMON             varchar(50) not null,
+   primary key (TENKHOA, TENBOMON)
 );
 
 /*==============================================================*/
@@ -198,8 +200,8 @@ create table TRANGTHAISK
    primary key (MATTHAI)
 );
 
-alter table CANBO add constraint FK_BOMONCB foreign key (TENBOMON)
-      references TO_BOMON (TENBOMON) on delete restrict on update restrict;
+alter table CANBO add constraint FK_BOMONCB foreign key (TO__TENKHOA, TENBOMON)
+      references TO_BOMON (TENKHOA, TENBOMON) on delete restrict on update restrict;
 
 alter table CANBO add constraint FK_KHOACB foreign key (TENKHOA)
       references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
@@ -240,8 +242,8 @@ alter table SINHVIEN add constraint FK_KHOASV foreign key (TENKHOA)
 alter table SINHVIEN add constraint FK_LOPSV foreign key (KYHIEULOP)
       references KYHIEULOP (KYHIEULOP) on delete restrict on update restrict;
 
-alter table SINHVIEN add constraint FK_NGANHSV foreign key (TENCHNGANH)
-      references CHUYENNGANH (TENCHNGANH) on delete restrict on update restrict;
+alter table SINHVIEN add constraint FK_NGANHSV foreign key (CHU_TENKHOA, TENCHNGANH)
+      references CHUYENNGANH (TENKHOA, TENCHNGANH) on delete restrict on update restrict;
 
 alter table SUKIEN add constraint FK_TTHAISK foreign key (MATTHAI)
       references TRANGTHAISK (MATTHAI) on delete restrict on update restrict;
