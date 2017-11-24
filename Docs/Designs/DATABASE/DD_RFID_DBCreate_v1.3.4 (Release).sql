@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     24-11-17 2:36:52 PM                          */
+/* Created on:     24-11-17 3:40:22 PM                          */
 /*==============================================================*/
 
 
@@ -40,9 +40,8 @@ drop table if exists TRANGTHAISK;
 create table CANBO
 (
    MSCB                 char(8) not null,
-   TO__TENKHOA          varchar(50) not null,
+   TENKHOA              varchar(50) not null,
    HOTEN                varchar(50) not null default '--',
-   TENKHOA              varchar(50) not null default '--',
    TENBOMON             varchar(50) not null default '--',
    EMAIL                varchar(50) not null default '--',
    primary key (MSCB)
@@ -143,9 +142,8 @@ create table LOAIDS
 create table SINHVIEN
 (
    MSSV                 char(8) not null,
-   CHU_TENKHOA          varchar(50) not null,
+   TENKHOA              varchar(50) not null,
    HOTEN                varchar(50) not null default '--',
-   TENKHOA              varchar(50) not null default '--',
    TENCHNGANH           varchar(50) not null default '--',
    KYHIEULOP            char(2) not null default '--',
    KHOAHOC              char(3) not null default '--',
@@ -200,11 +198,8 @@ create table TRANGTHAISK
    primary key (MATTHAI)
 );
 
-alter table CANBO add constraint FK_BOMONCB foreign key (TO__TENKHOA, TENBOMON)
+alter table CANBO add constraint FK_BOMONCB foreign key (TENKHOA, TENBOMON)
       references TO_BOMON (TENKHOA, TENBOMON) on delete restrict on update restrict;
-
-alter table CANBO add constraint FK_KHOACB foreign key (TENKHOA)
-      references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
 
 alter table CHUYENNGANH add constraint FK_KHOACHNGANH foreign key (TENKHOA)
       references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
@@ -236,13 +231,10 @@ alter table DIEMDANHSV add constraint FK_SKIENDDSV foreign key (MASK)
 alter table SINHVIEN add constraint FK_KHOAHOCSV foreign key (KHOAHOC)
       references KHOAHOC (KHOAHOC) on delete restrict on update restrict;
 
-alter table SINHVIEN add constraint FK_KHOASV foreign key (TENKHOA)
-      references KHOA_PHONG (TENKHOA) on delete restrict on update restrict;
-
 alter table SINHVIEN add constraint FK_LOPSV foreign key (KYHIEULOP)
       references KYHIEULOP (KYHIEULOP) on delete restrict on update restrict;
 
-alter table SINHVIEN add constraint FK_NGANHSV foreign key (CHU_TENKHOA, TENCHNGANH)
+alter table SINHVIEN add constraint FK_NGANHSV foreign key (TENKHOA, TENCHNGANH)
       references CHUYENNGANH (TENKHOA, TENCHNGANH) on delete restrict on update restrict;
 
 alter table SUKIEN add constraint FK_TTHAISK foreign key (MATTHAI)
