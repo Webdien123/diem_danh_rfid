@@ -90,6 +90,9 @@ Route::post('themSuKien/', "EventController@ThemSuKien")->name("AddSK");
 // Lấy trang chỉnh sửa sự kiện.
 Route::get('event_info/{mssk}', "EventController@CapNhatSuKien")->name("SV_Info");
 
+// Xem danh sách điểm danh.
+Route::get('xemDSDangKy/{mssk}', "EventController@HienDanhSachDKy");
+
 // Chỉnh sửa sự kiện.
 Route::post('capnhatSuKien', "EventController@XuLyCapNhat")->name("UpdateSK");
 

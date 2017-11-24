@@ -342,6 +342,19 @@ class EventController extends Controller
         }
     }
 
+    // Hiển thị danh sách đăng ký sự kiện.
+    public function HienDanhSachDKy($mssk)
+    {
+        $sukien = SuKien::GetSK($mssk);
+        $ds_dki_sv = DiemDanhSV::LayDSDangKy($mssk);
+        $ds_dki_cb = DiemDanhCB::LayDSDangKy($mssk);
+        return view('sub_views.xemDSDky', [
+            'sukien' => $sukien[0],
+            'ds_dki_sv' => $ds_dki_sv,
+            'ds_dki_cb' => $ds_dki_cb
+        ]);
+    }
+
     // Xóa thông tin sự kiện.
     public function XoaSuKien($mssk)
     {

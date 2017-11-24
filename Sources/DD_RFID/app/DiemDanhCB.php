@@ -112,4 +112,11 @@ class DiemDanhCB extends Model
         $ds_ddanh_cb = \DB::select('select * from diemdanhcb where MASK = ?', [$mask]);
         return $ds_ddanh_cb;
     }
+
+    // Truy xuất danh sách đăng ký sự kiện.
+    public static function LayDSDangKy($mask)
+    {
+        $ds_dki_cb = \DB::select('SELECT * FROM diemdanhcb, canbo WHERE canbo.MSCB = diemdanhcb.MSCB AND MASK = ? AND (MALOAIDS = 1 OR MALOAIDS = 2 OR MALOAIDS = 3 OR MALOAIDS = 4)', [$mask]);
+        return $ds_dki_cb;
+    }
 }
