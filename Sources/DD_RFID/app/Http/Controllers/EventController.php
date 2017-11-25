@@ -14,7 +14,7 @@ use App\ThongKeDiemDanh;
 class EventController extends Controller
 {
     // Lưu số dòng phân trang cho trang sinh viên.
-    public static $so_dong = 20;
+    public static $so_dong = 10;
     
     // Hiện trang sự kiện.
     public function GetPageSK()

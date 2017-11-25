@@ -14,7 +14,7 @@ class CanBoController extends Controller
     public static $khoas;
 
     // Lưu số dòng phân trang cho trang cán bộ.
-    public static $so_dong = 5;
+    public static $so_dong = 10;
 
     public function __construct() {
         self::$khoas = Khoa_Phong::GetKhoa();

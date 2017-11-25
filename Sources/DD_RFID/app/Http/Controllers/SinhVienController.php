@@ -23,7 +23,7 @@ class SinhVienController extends Controller
     public static $khoahocs;
 
     // Lưu số dòng phân trang cho trang sinh viên.
-    public static $so_dong = 5;
+    public static $so_dong = 10;
 
     public function __construct() {
         self::$khoas = Khoa_Phong::GetKhoa();

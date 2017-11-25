@@ -19,18 +19,23 @@ function LayNgay() {
 
 // Hàm cập nhật giờ tối thiếu cho time1 và time2.
 function LayGio() {
-    var d = new Date();
-    h = d.getHours();
-    m1 = d.getMinutes() + 1;
-    m2 = d.getMinutes() + 2;
-    if(h < 10) h = '0' + h;
-    if(m1 < 10) m1 = '0' + m1;
-    if(m2 < 10) m2 = '0' + m2;
-    time1 = h + ':' + m1;
-    time2 = h + ':' + m2;
+    var date = new Date();
+    var currentDate = date.toISOString().slice(0,10);
+    time1 = date.getHours() + ':' + (date.getMinutes() + 1);
+    time2 = date.getHours() + ':' + (date.getMinutes() + 1);
 
-    // console.log("time1: " + time1);
-    // console.log("time2: " + time2);
+    // var d = new Date();
+    // h = d.getHours();
+    // m1 = d.getMinutes() + 1;
+    // m2 = d.getMinutes() + 2;
+    // if(h < 10) h = '0' + h;
+    // if(m1 < 10) m1 = '0' + m1;
+    // if(m2 < 10) m2 = '0' + m2;
+    // time1 = h + ':' + m1;
+    // time2 = h + ':' + m2;
+
+    console.log("time1: " + time1);
+    console.log("time2: " + time2);
 }
 
 // Gọi hàm lấy ngày hiện tại một lần.
