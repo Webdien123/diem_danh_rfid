@@ -120,7 +120,25 @@ class EventController extends Controller
     // Cập nhật trạng thái sự kiện để hiển thị lên giao diện điểm danh và giao diện sự kiện.
     public static function CapNhatSuKienDiemDanh()
     {
+
         if (\Cookie::get('sukien_diemdanh') == null){
+
+            $ma_sk = \Session::get('xac_thuc_sk');
+
+            if ($ma_sk != null) {
+                // Lấy thông tin sự kiện từ mã sự kiện.
+                $sukien = SuKien::GetSK($ma_sk);
+            
+                // Tính lại trạng thái sự kiện.
+                $trangthai = self::KiemTraTrangThai($sukien);
+    
+                if(\Session::get("trangthai_sukien") == 3 && $trangthai == 4){
+                    \Session::put("trangthai_sukien", $trangthai);
+                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
+                    SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
+                }
+            }            
+
             $sukiens = SuKien::GetSuKienSSang();
             return view('chon_sukien', ['sukiens' => $sukiens]);
         }
@@ -129,7 +147,7 @@ class EventController extends Controller
         $sukien = \Cookie::get('sukien_diemdanh');
 
         if (\Session::has('xac_thuc_sk')) {
-            \Session::forget('ma_so_xac_thuc');            
+            \Session::forget('ma_so_xac_thuc');
 
             // Tính lại trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
@@ -137,7 +155,7 @@ class EventController extends Controller
             if ($trangthai == \Session::get("trangthai_sukien")) {
                 return redirect("/updateTrangThaiSK");
             } else {
-                // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
+                
                 \Session::put("trangthai_sukien", $trangthai);
                 
                 if ($trangthai < 4) {
