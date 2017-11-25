@@ -25,6 +25,20 @@ class ChuyenNganhSeeder extends Seeder
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Biên dịch- Phiên dịch tiếng Anh', 'Ngoại ngữ']);
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Ngôn ngữ Pháp', 'Ngoại ngữ']);
 
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Xây dựng dân dụng', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Xây dựng công trình thuỷ', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Xây dựng cầu đường', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Cơ khí chế tạo máy', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Cơ khí giao thông', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Cơ khí chế biến', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Quản lý công nghiệp', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Kỹ thuật điện', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Công nghệ hoá học', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Kỹ thuật máy tính', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Điện tử viễn thông', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Kỹ thuật cơ điện tử', 'Công nghệ']);
+        DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Kỹ thuật điều khiển', 'Công nghệ']);
+
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Hóa dược', 'Khoa học tự nhiên']);
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Hóa học', 'Khoa học tự nhiên']);
         DB::insert('insert into chuyennganh (TENCHNGANH, TENKHOA) values (?, ?)', ['Hóa học (hóa dược)', 'Khoa học tự nhiên']);

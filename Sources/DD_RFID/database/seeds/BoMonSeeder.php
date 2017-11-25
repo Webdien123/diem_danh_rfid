@@ -27,6 +27,18 @@ class BoMonSeeder extends Seeder
         DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['TIẾNG ANH CB VÀ CN', 'Ngoại ngữ']);
         DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Văn phòng khoa', 'Ngoại ngữ']);       
 
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Kỹ thuật xây dựng', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Kỹ thuật cơ khí', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Quản lý công nghiệp', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Kỹ thuật điện', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Công nghệ hoá học', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Điện tử viễn thông', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Tự động hoá', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['TT Kiểm định & Tư vấn xây dựng', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['TT Nghiên cứu & ƯD Công nghệ', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['T Điện - Điện tử', 'Công nghệ']);
+        DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Văn phòng khoa', 'Công nghệ']);
+
         DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Toán học', 'Khoa học tự nhiên']);       
         DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Vật lý', 'Khoa học tự nhiên']);       
         DB::insert('insert into to_bomon (TENBOMON, TENKHOA) values (?, ?)', ['Hóa học', 'Khoa học tự nhiên']);       
