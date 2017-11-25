@@ -134,36 +134,40 @@ class EventController extends Controller
             // Tính lại trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
 
-            // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
-            \Session::put("trangthai_sukien", $trangthai);
-
-            if ($trangthai < 4) {
-                if ($trangthai == 2) {
-                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
+            if ($trangthai == \Session::get("trangthai_sukien")) {
+                return redirect("/updateTrangThaiSK");
+            } else {
+                // \Cookie::queue("trangthai_sukien", $trangthai, $thoigian_tong);
+                \Session::put("trangthai_sukien", $trangthai);
+                
+                if ($trangthai < 4) {
+                    if ($trangthai == 2) {
+                        WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
+                    }
+                    if ($trangthai == 3) {
+                        WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra","suKien[".$sukien[0]->MASK."]");
+                    }
+                    SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
                 }
-                if ($trangthai == 3) {
-                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra","suKien[".$sukien[0]->MASK."]");
+                else {
+                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
+                    SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
                 }
-                SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
-            }
-            else {
-                WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
-                SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
-            }
 
-            // Tính lại thời gian còn lại của sự kiện.
-            $thoigian = EventController::ThoiGianConLai($sukien);
+                // Tính lại thời gian còn lại của sự kiện.
+                $thoigian = EventController::ThoiGianConLai($sukien);
 
-            $khoas = Khoa_Phong::GetKhoa();
-            $lops = KyHieuLop::LayKyHieuLop();
-            $khoahocs = KhoaHoc::LayKhoaHoc();
+                $khoas = Khoa_Phong::GetKhoa();
+                $lops = KyHieuLop::LayKyHieuLop();
+                $khoahocs = KhoaHoc::LayKhoaHoc();
 
-            return view('home', [
-                'thoigian' => $thoigian, 
-                'khoas' => $khoas,
-                'lops' => $lops,
-                'khoahocs' => $khoahocs
-            ]);
+                return view('home', [
+                    'thoigian' => $thoigian, 
+                    'khoas' => $khoas,
+                    'lops' => $lops,
+                    'khoahocs' => $khoahocs
+                ]);
+            }            
         }
         else{
             if (\Session::has('ma_so_xac_thuc')) {
@@ -244,7 +248,7 @@ class EventController extends Controller
         $time2 = (strtotime($time2) - strtotime($time));
 
         if ($time2 > 0) {
-            return $today." ".$sukien[0]->DDVAO;
+            return $today." ".$sukien[0]->DDVAO;            
         } else {
             // Lấy thời điểm điểm danh ra.
             $time2 = date($sukien[0]->DDRA);
