@@ -14,28 +14,34 @@ function LayNgay() {
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     today = now.getFullYear()+"-"+(month)+"-"+(day);
 
-    // console.log("today: " + today);
+    console.log("today: " + today);
 }
 
 // Hàm cập nhật giờ tối thiếu cho time1 và time2.
 function LayGio() {
     var date = new Date();
-    var currentDate = date.toISOString().slice(0,10);
-    time1 = date.getHours() + ':' + (date.getMinutes() + 1);
-    time2 = date.getHours() + ':' + (date.getMinutes() + 1);
+
+    // time1 = date.getHours() + ':' + (date.getMinutes() + 1);
+    // time2 = date.getHours() + ':' + (date.getMinutes() + 2);
 
     // var d = new Date();
-    // h = d.getHours();
-    // m1 = d.getMinutes() + 1;
-    // m2 = d.getMinutes() + 2;
-    // if(h < 10) h = '0' + h;
-    // if(m1 < 10) m1 = '0' + m1;
-    // if(m2 < 10) m2 = '0' + m2;
-    // time1 = h + ':' + m1;
-    // time2 = h + ':' + m2;
+    h = ("0" + date.getHours()).slice(-2);
+    
+    m1 = date.getMinutes() + 1;
+    m1 = ("0" + m1).slice(-2);
+
+    m2 = date.getMinutes() + 2;
+    m2 = ("0" + m2).slice(-2);
+
+    // s = date.getSeconds();
+    // s = ("0" + s).slice(-2);
+
+    time1 = h + ':' + m1 + ':00';
+    time2 = h + ':' + m2 + ':00';
 
     console.log("time1: " + time1);
     console.log("time2: " + time2);
+    // console.log("time3: " + time3);
 }
 
 // Gọi hàm lấy ngày hiện tại một lần.

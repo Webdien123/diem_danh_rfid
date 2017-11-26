@@ -96,7 +96,7 @@
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                         Lưu
                     </button>
-
+                    @if ($sukien[0]->MATTHAI != '3')
                     <a class="btn btn-danger"
                         onclick="if(window.confirm('Xóa sự kiện này?')){
                         window.location.replace('<?php echo route("DeleteSK", 
@@ -104,6 +104,7 @@
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         Xóa
                     </a>
+                    @endif
                 </form>
             </div>
         </div>

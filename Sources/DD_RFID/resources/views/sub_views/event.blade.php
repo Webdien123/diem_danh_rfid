@@ -274,7 +274,7 @@
                         </td>
                                            
                         <td>
-                            @if ($sk->MATTHAI < '4')
+                            @if ($sk->MATTHAI < '3')
                                 <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Sửa thông tin
