@@ -36,12 +36,25 @@
         {{--  Tên sự kiện  --}}
         <h2><strong id="event_name" class="text-info">Vui lòng chọn sự kiện cần điểm danh</strong></h2>        
 
-        <a class="btn btn-primary" href="/login" role="button">
+        {{--  <a class="btn btn-primary" href="/login" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
-        </a>
+        </a>  --}}
         <hr>
-        </div>        
+        </div>   
+
+        {{--  script xử lý bật trang quản trị khi bấm ctrl + click  --}}
+        <script>
+            $(document).ready(function() {
+
+                $(document).bind('click', function(e) {
+                    e.preventDefault(); 
+                    if (e.ctrlKey){
+                        window.open('/login','_blank')
+                    }
+                });
+            });
+        </script>
 
         {{--  Nếu không có sự kiện nào sẳn sàng  --}}
         @if (count($sukiens) == 0)
