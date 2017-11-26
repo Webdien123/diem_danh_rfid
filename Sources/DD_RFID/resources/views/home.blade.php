@@ -99,6 +99,7 @@
             </div>
         </div>
 
+        {{--  script xử lý bật trang quản trị khi bấm ctrl + click  --}}
         <script>
             $(document).ready(function() {
 

@@ -152,12 +152,20 @@ class EventController extends Controller
             // Tính lại trạng thái sự kiện.
             $trangthai = self::KiemTraTrangThai($sukien);
 
+            // Nếu trạng thái hiện tại cập nhật không kịp với nhau.
             if ($trangthai == \Session::get("trangthai_sukien")) {
+
+                // Gọi trang chọn sự kiện để cập nhật trạng thái sự kiện.
                 return redirect("/chonSuKien/".$sukien[0]->MASK);
-            } else {
+            }
+
+            // nếu trạng thái cập nhật kịp thời
+            else {
                 
+                // Lưu trạng thái vào session.
                 \Session::put("trangthai_sukien", $trangthai);
                 
+                // Nếu sự kiện chưu kết thúc điểm danh.
                 if ($trangthai < 4) {
                     if ($trangthai == 2) {
                         WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
@@ -167,6 +175,8 @@ class EventController extends Controller
                     }
                     SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
                 }
+
+                // Nếu sự kiện đã kết thúc điểm danh.
                 else {
                     WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
                     SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
