@@ -44,17 +44,7 @@
         </div>   
 
         {{--  script xử lý bật trang quản trị khi bấm ctrl + click  --}}
-        <script>
-            $(document).ready(function() {
-
-                $(document).bind('click', function(e) {
-                    e.preventDefault(); 
-                    if (e.ctrlKey){
-                        window.open('/login','_blank')
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('js/shortcut_key_goto_admin.js') }}"></script>
 
         {{--  Nếu không có sự kiện nào sẳn sàng  --}}
         @if (count($sukiens) == 0)
