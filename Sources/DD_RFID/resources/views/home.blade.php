@@ -99,7 +99,19 @@
             </div>
         </div>
 
-        <a class="btn btn-primary" href="/login" role="button">
+        <script>
+            $(document).ready(function() {
+
+                $(document).bind('click', function(e) {
+                    e.preventDefault(); 
+                    if (e.ctrlKey){
+                        window.open('/login','_blank')
+                    }
+                });
+            });
+        </script>
+
+        {{--  <a class="btn btn-primary" href="/login" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
         </a>
@@ -110,7 +122,7 @@
                 Cập nhật sự kiện
             </a>
             <hr>
-        @endif
+        @endif  --}}
 
         @if (Session::get('trangthai_sukien') == 2 || Session::get('trangthai_sukien') == 3)
 

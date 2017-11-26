@@ -153,7 +153,7 @@ class EventController extends Controller
             $trangthai = self::KiemTraTrangThai($sukien);
 
             if ($trangthai == \Session::get("trangthai_sukien")) {
-                return redirect("/updateTrangThaiSK");
+                return redirect("/chonSuKien/".$sukien[0]->MASK);
             } else {
                 
                 \Session::put("trangthai_sukien", $trangthai);
