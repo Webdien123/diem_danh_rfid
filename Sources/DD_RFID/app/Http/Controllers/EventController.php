@@ -402,18 +402,18 @@ class EventController extends Controller
                 // Xóa thông tin sự kiện.
                 $ketqua_sk = SuKien::DeleteSK($mssk);
 
-                $ds_sk = \DB::select('select * from sukien');
+                // $ds_sk = \DB::select('select * from sukien');
 
-                if (!$ds_sk) {
-                    WriteLogController::Write_Debug("Bảng sự kiện rỗng");
-                    $reset = \DB::statement('ALTER TABLE sukien AUTO_INCREMENT = 1');
+                // if (!$ds_sk) {
+                //     WriteLogController::Write_Debug("Bảng sự kiện rỗng");
+                //     $reset = \DB::statement('ALTER TABLE sukien AUTO_INCREMENT = 1');
 
-                    if ($reset) {
-                        WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thành công");
-                    } else {
-                        WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thất bại");
-                    }
-                }
+                //     if ($reset) {
+                //         WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thành công");
+                //     } else {
+                //         WriteLogController::Write_Debug("Reset số thứ tự bảng sự kiện thất bại");
+                //     }
+                // }
 
                 // Tính kết quả tổng hợp.
                 $ketqua = ($ketqua_sk && $ketqua_dd_cb && $ketqua_dd_sv && $ketqua_thke) ? true : false;
