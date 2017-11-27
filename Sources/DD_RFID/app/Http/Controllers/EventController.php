@@ -92,7 +92,9 @@ class EventController extends Controller
             }
             
             // Cập nhật giá trị thông báo đăng ký thẻ để ẩn thông báo đi.
-            \Session::put('ketqua_dangkythe_dd', 2);
+            // if (\Session::get('ketqua_dangkythe_dd') == 2)
+            //     \Session::put('ketqua_dangkythe_dd', 2);
+
 
             // Tính lại thời gian còn lại của sự kiện.
             $thoigian = EventController::ThoiGianConLai($sukien);

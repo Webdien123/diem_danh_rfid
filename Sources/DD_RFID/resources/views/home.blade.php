@@ -147,7 +147,7 @@
 
                 {{--  Reset giá trị session để ẩn thông báo đi sau khi đã hiển thi  --}}
                 <?php
-                    // \Session::put('ketqua_dangkythe_dd', 2);
+                    \Session::put('ketqua_dangkythe_dd', 2);
                 ?>
 
                 <!-- Phần quét thẻ -->
