@@ -591,7 +591,7 @@ class ExcelController extends Controller
                             '2'
                         ]);
 
-                        WriteLogController::Write_Debug("Đã đăng kí sự kiện cho sinh viên ".$value['mssv'], "Admin_Debug");
+                        WriteLogController::Write_Debug("Đã đăng kí sự kiện ".self::$mask_dangki." cho sinh viên ".$value['mssv'], "Admin_Debug");
                         
                     }
                 }
@@ -601,13 +601,15 @@ class ExcelController extends Controller
 
                     // Chèn dữ liệu vào bảng diemdanhcb.
                     foreach ($item as $key => $value) {
+                        // dd($value);
+
                         \DB::insert('insert into diemdanhcb (MASK, MSCB, MALOAIDS) values (?, ?, ?)', [
                             self::$mask_dangki,
                             $value['mscb'],
                             '2'
                         ]);
 
-                        WriteLogController::Write_Debug("Đã đăng kí sự kiện cho cán bộ ".$value['mscb'], "Admin_Debug");
+                        WriteLogController::Write_Debug("Đã đăng kí sự kiện ".self::$mask_dangki." cho cán bộ ".$value['mscb'], "Admin_Debug");
                     }
                 }
                 return true;

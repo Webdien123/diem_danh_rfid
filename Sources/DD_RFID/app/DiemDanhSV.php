@@ -123,7 +123,7 @@ class DiemDanhSV extends Model
     // Truy xuất danh sách đăng ký sự kiện.
     public static function LayDSDangKy($mask)
     {
-        $ds_dki_sv = \DB::select('SELECT * FROM diemdanhsv, sinhvien WHERE sinhvien.MSSV = diemdanhsv.MSSV AND MASK = 1 AND (MALOAIDS = 1 OR MALOAIDS = 2 OR MALOAIDS = 3 OR MALOAIDS = 4)', [$mask]);
+        $ds_dki_sv = \DB::select('SELECT * FROM diemdanhsv, sinhvien WHERE sinhvien.MSSV = diemdanhsv.MSSV AND MASK = ? AND (MALOAIDS = 1 OR MALOAIDS = 2 OR MALOAIDS = 3 OR MALOAIDS = 4)', [$mask]);
         return $ds_dki_sv;
     }
 }
