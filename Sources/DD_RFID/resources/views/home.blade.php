@@ -105,7 +105,7 @@
         {{--  <a class="btn btn-primary" href="/login" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
-        </a>
+        </a>  --}}
 
         @if (Session::get('trangthai_sukien') != 4)
             <a class="btn btn-primary" href="/taoCKSuKien/{{$sukien->MASK}}" role="button">
@@ -113,7 +113,7 @@
                 Cập nhật sự kiện
             </a>
             <hr>
-        @endif  --}}
+        @endif
 
         @if (Session::get('trangthai_sukien') == 2 || Session::get('trangthai_sukien') == 3)
 

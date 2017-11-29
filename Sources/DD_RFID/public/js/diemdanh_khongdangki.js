@@ -17,7 +17,20 @@ $(document).ready(function () {
                 $("#machuthe").val("");
                 // console.log(response);
 
-                if (response['ketqua'] == 0) {
+                if (response['ketqua'] == 1) {
+                    // Ẩn thông báo lỗi.
+                    $(".thongbao_kdgki_loi").hide();
+
+                    // Hiện thông báo thành công.
+                    $(".thongbao_kdgki_thcong").show();
+
+                    // Đặt nội dung thông báo thành công
+                    $('#bao_thcong').text(response['noidung']);
+
+                    // Reload lại trang
+                    location.reload();
+                }
+                else {
                     // Ẩn thông báo thành công.
                     $(".thongbao_kdgki_thcong").hide();
 
@@ -26,17 +39,11 @@ $(document).ready(function () {
                 
                     // Đặt nội dung thông báo lỗi
                     $('#trung_chu_the').text(response['noidung']);
-                } else {
-                    // Ẩn thông báo lỗi.
-                    $(".thongbao_kdgki_loi").hide();
 
-                    // Hiện thông báo thành công.
-                    $(".thongbao_kdgki_thcong").show();
-
-                    // Đặt nội dung thông báo lỗi
-                    $('#bao_thcong').text(response['noidung']);
+                    $(".thongbao_kdgki_loi").fadeTo(3000, 500).slideUp(500, function(){
+                        $(".thongbao_kdgki_loi").slideUp(500);
+                    });
                 }
-                location.reload();                
             },
             error: function(xhr,err){
                 console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);

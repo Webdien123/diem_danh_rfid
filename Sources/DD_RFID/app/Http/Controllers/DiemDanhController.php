@@ -71,7 +71,7 @@ class DiemDanhController extends Controller
                 'mask' => $mask,
                 'machuthe' => $machuthe,
                 'loaichuthe' => $loaichuthe,
-                'ketqua' => "0",
+                'ketqua' => 0,
                 'noidung' => "Mã số chủ thẻ đã tồn tại"
             );
         } else {
@@ -144,7 +144,7 @@ class DiemDanhController extends Controller
             }
 
             // Tính kết quả tổng hợp
-            $kq = ($ketqua_chuthe && $ketqua_the && $ketqua_dky && $ketqua_ddanh) ? 1 : 0 ;
+            $kq = ($ketqua_chuthe && $ketqua_the && $ketqua_dky && $ketqua_ddanh) ? 1 : 2 ;
 
             if ($kq == 1) {
                 WriteLogController::Write_Info($mathe." của ".$loaichuthe." ".$machuthe." điểm danh nặc danh thành công","suKien[".$mask."]");
@@ -162,7 +162,7 @@ class DiemDanhController extends Controller
                     '$ketqua_chuthe' => $ketqua_chuthe,
                     '$ketqua_the' => $ketqua_the,
                     'ketqua' => $kq,
-                    'noidung' => "Có lỗi trong quá trình xử lý, Vui lòng"
+                    'noidung' => "Có lỗi trong quá trình xử lý, Vui lòng thử lại"
                 );
             }            
         }
