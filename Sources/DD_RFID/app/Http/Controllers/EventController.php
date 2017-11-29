@@ -170,17 +170,17 @@ class EventController extends Controller
                 // Nếu sự kiện chưu kết thúc điểm danh.
                 if ($trangthai < 4) {
                     if ($trangthai == 2) {
-                        WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào","suKien[".$sukien[0]->MASK."]");
+                        WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh vào >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>","suKien[".$sukien[0]->MASK."]");
                     }
                     if ($trangthai == 3) {
-                        WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra","suKien[".$sukien[0]->MASK."]");
+                        WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." bắt đầu điểm danh ra >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>","suKien[".$sukien[0]->MASK."]");
                     }
                     SuKien::ChuyenTrangThai($sukien[0]->MASK, 3);
                 }
 
                 // Nếu sự kiện đã kết thúc điểm danh.
                 else {
-                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
+                    WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>","suKien[".$sukien[0]->MASK."]");
                     SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
                 }
 
