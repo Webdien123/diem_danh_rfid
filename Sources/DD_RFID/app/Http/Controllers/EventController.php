@@ -400,6 +400,7 @@ class EventController extends Controller
             $ketqua_thke = ThongKeDiemDanh::DeleteThKe($mssk);
             $name = \Session::get('uname');
             $sukien = SuKien::GetSK($mssk);
+            
             if ($sukien[0]->MATTHAI == 3) {
                 WriteLogController::Write_Debug($name." không thể xóa sự kiện ".$mssk. " vì đang điểm danh");
                 

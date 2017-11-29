@@ -72,14 +72,22 @@
                         <input type="text" name="diadiem" id="diadiem" value="{{ $sukien[0]->DIADIEM }}" class="form-control" placeholder="Nơi diễn ra sự kiện">
                     </div>
                     
+                    @if ($sukien[0]->MATTHAI < '3')
                     <div class="form-group">
                         <label>Giờ điểm danh vào:</label>
                         <input type="time" name="ddvao" id="ddvao" value="{{ $sukien[0]->DDVAO }}" class="form-control" required="required" title="Ngày diễn ra sự kiện">
                     </div>
+                    @else
+                    <div class="form-group">
+                        <label>Giờ điểm danh vào:</label>
+                        <input type="hidden" name="ddvao" id="ddvao" value="{{ $sukien[0]->DDVAO }}" class="form-control">
+                        <input type="time" value="{{ $sukien[0]->DDVAO }}" class="form-control" disabled>
+                    </div>
+                    @endif
 
                     <div class="form-group">
                         <label>Giờ điểm danh ra:</label>
-                        <input type="time" name="ddra" id="ddra" value="{{ $sukien[0]->DDRA }}" class="form-control" required="required" title="Ngày diễn ra sự kiện">
+                        <input type="time" name="ddra" id="ddra" value="{{ $sukien[0]->DDRA }}" class="form-control">
                     </div>
 
                     <div class="form-group">

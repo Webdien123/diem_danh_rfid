@@ -1,6 +1,9 @@
 $(document).ready(function () {
     
-        $("#ddvao").change(function (e) {
+    $("#ddra").attr("min", $("#ddvao").val());
+    console.log("ddvao = " + $("#ddvao").val());
+
+    $("#ddvao").change(function (e) {
             var T = $("#ddvao").val();
             T = T + ":00";
             T = new Date("1/1/1900 " + T);

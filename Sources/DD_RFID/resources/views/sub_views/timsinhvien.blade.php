@@ -120,7 +120,7 @@
                             <td>{{ $sv->TENCHNGANH }}</td>
                             <td>{{ $sv->KYHIEULOP }}</td>
                             <td>{{ $sv->KHOAHOC }}</td>
-                            <th>
+                            <td>
                                 @if ($sv->MATHE)
                                     {{ $sv->MATHE }}
                                     {{--  Nút cập nhật mã thẻ cũ  --}}
@@ -134,7 +134,7 @@
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                 @endif
-                            </th>
+                            </td>
                             <th>
                                 <a href="/student_info/{{ $sv->MSSV }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

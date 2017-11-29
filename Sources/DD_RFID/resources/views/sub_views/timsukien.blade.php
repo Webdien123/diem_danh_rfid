@@ -129,7 +129,7 @@
                         <td>{{ $sk->DDRA }}</td>
 
                         {{--  Phần hiển thị chức năng tùy vào trạng thái sự kiện  --}}
-                        <th>
+                        <td>
 
                             {{--  Nếu trạng thái là 1  --}}
                             @if ($sk->MATTHAI == '1')
@@ -161,7 +161,7 @@
                                 <b>
                             @endif
 
-                        </th>
+                        </td>
 
                         <th>
                             <a href="/event_info/{{ $sk->MASK }}" class="btn btn-success">

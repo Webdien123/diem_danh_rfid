@@ -115,7 +115,7 @@
                             <td>{{ $canbo->TENKHOA }}</td>
                             <td>{{ $canbo->TENBOMON }}</td>
                             <td>{{ $canbo->EMAIL }}</td>
-                            <th>
+                            <td>
                                 @if ($canbo->MATHE)
                                     {{ $canbo->MATHE }}
                                     {{--  Nút cập nhật mã thẻ cũ  --}}
@@ -129,9 +129,7 @@
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </button>
                                 @endif
-
-                                
-                            </th>
+                            </td>
                             <th>
                                 <a href="/staff_info/{{ $canbo->MSCB }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

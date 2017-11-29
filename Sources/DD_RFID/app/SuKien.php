@@ -99,7 +99,7 @@ class SuKien extends Model
         $sukiens = \DB::select(\DB::raw(
         "SELECT * FROM sukien WHERE NGTHUCHIEN = :v1
             AND DDVAO >= :v2
-           AND MATTHAI = 2"),
+            AND MATTHAI = 2"),
             array(
             'v1' => $today,
             'v2' => $time
