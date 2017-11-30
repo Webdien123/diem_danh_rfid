@@ -22,6 +22,25 @@ $(document).ready(function () {
         // Mã thẻ đã quét.
         var mathe = $("#id_the").val();
 
+        noidung = "Nhận thẻ " + mathe + " điểm danh vào";
+        log_type = "suKien[" + mask + "]";
+
+        $.ajax({
+            type: "GET",
+            url: "/ghiLog/"+noidung+"/"+log_type,
+            // data: {
+            //     content: "noidung",
+            //     log_type: "SUKIEN"
+            // },
+            success: function (response) {                
+                console.log(response);
+            },
+            error: function(xhr,err){
+                console.log("Ghi log thất bại");
+                console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+            }
+        });
+
         // Lấy giá trị token để xác thực.
         var token = $('input[name=_token]').val();
 

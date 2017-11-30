@@ -19,7 +19,6 @@ class DiemDanhController extends Controller
         // Lấy mã thẻ.
         $mathe = $R->id_the;
         $mask = $R->mask;
-        WriteLogController::Write_Info("Nhận mã thẻ ".$mathe,"suKien[".$mask."]");
 
         // Lấy thông tin cán bộ có mã thẻ tương ứng.
         $canbo = DangKyTheCB::LayThongTinCanBo($mathe);
@@ -574,6 +573,22 @@ class DiemDanhController extends Controller
         else {
             WriteLogController::Write_Debug("Thêm sinh viên ".$maso." để điểm danh thất bại. Trùng mã số sinh viên đã có", "suKien[".$mask."]_Debug");
             return false;
+        }
+    }
+
+    public function Write_InFo_Client($content, $log_type = "Admin")
+    {
+        try{
+            date_default_timezone_set("Asia/Ho_Chi_Minh");
+            $date = date("d-m-Y");
+            $date2 = date("d-m-Y h:m:sa");
+    
+            file_put_contents('./logs/'.$log_type.'_'. $date .'.log', "\xEF\xBB\xBF" . "[$date2] INFO: " . $content.PHP_EOL.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+            return "ok";
+        }
+        catch(\Exception $e){
+            return "false";
         }
     }
 }

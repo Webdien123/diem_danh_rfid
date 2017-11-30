@@ -134,7 +134,7 @@ class EventController extends Controller
                 // Tính lại trạng thái sự kiện.
                 $trangthai = self::KiemTraTrangThai($sukien);
     
-                if(\Session::get("trangthai_sukien") == 3 && $trangthai == 4){
+                if(\Session::get("trangthai_sukien") == '3' && $trangthai == '4'){
                     \Session::put("trangthai_sukien", $trangthai);
                     WriteLogController::Write_Info("Sự kiện ".$sukien[0]->MASK." kết thúc điểm danh","suKien[".$sukien[0]->MASK."]");
                     SuKien::ChuyenTrangThai($sukien[0]->MASK, 4);
@@ -221,42 +221,48 @@ class EventController extends Controller
         // Lấy giá trị thời gian hiện tại.
         $time = date("H:i:s");
 
-        // Lấy thời điểm điểm danh vào.
-        $time2 = date($sukien[0]->DDVAO);
-
-        // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
-        $kq = (strtotime($time2) - strtotime($time));
-
-        // Nếu chưa đến giờ điểm danh vào. Trạng thái là 1.
-        if ($kq > 0) {
-            return 1;
-        } else {
-
-            // Lấy thời điểm điểm danh ra.
-            $time2 = date($sukien[0]->DDRA);
-
-            // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
+        if ($sukien) {
+            // Lấy thời điểm điểm danh vào.
+            $time2 = date($sukien[0]->DDVAO);
+        
+            // Tính khoản thời gian còn lại đến thời gian điểm danh vào.
             $kq = (strtotime($time2) - strtotime($time));
-
-            // Nếu chưa đến giờ điểm danh ra, đã qua giờ điểm danh vào,
-            // trạng thái là 2.
+    
+            // Nếu chưa đến giờ điểm danh vào. Trạng thái là 1.
             if ($kq > 0) {
-                return 2;
-            } 
-
-            // Nếu đã qua giờ điểm danh ra.
-            else {
-                $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
-                
-                $kq = (strtotime($endtime) - strtotime($time));
-                
+                return 1;
+            } else {
+    
+                // Lấy thời điểm điểm danh ra.
+                $time2 = date($sukien[0]->DDRA);
+    
+                // Tính khoản thời gian còn lại đến thời gian điểm danh ra.
+                $kq = (strtotime($time2) - strtotime($time));
+    
+                // Nếu chưa đến giờ điểm danh ra, đã qua giờ điểm danh vào,
+                // trạng thái là 2.
                 if ($kq > 0) {
-                    return 3;
-                } else {
-                    return 4;
+                    return 2;
+                } 
+    
+                // Nếu đã qua giờ điểm danh ra.
+                else {
+                    $endtime = date('H:i:s',strtotime($sukien[0]->DDRA . ' + ' . $sukien[0]->TGIANDDRA . ' minutes'));
+                    
+                    $kq = (strtotime($endtime) - strtotime($time));
+                    
+                    if ($kq > 0) {
+                        return 3;
+                    } else {
+                        return 4;
+                    }
                 }
             }
         }
+        else {
+            return redirect("/");
+        }
+        
     }
 
     // Tính thời gian còn lại của sự kiện tùy vào trạng thái đang có.

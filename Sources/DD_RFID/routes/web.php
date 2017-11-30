@@ -155,6 +155,9 @@ Route::get('chart_old/{mask}', "ThongKeController@GetPageThongKe_Old_GET")->name
 // Thay đổi kết quả điểm danh.
 Route::post('chuyendanhsach', "ThongKeController@ChuyenDanhSach")->name("chuyenDS");
 
+// Xử lý yêu cầu ghi log từ client.
+Route::get('ghiLog/{content}/{log_type}', "DiemDanhController@Write_InFo_Client");
+
 // Trang thông báo lỗi.
 Route::get('Error/{mes}/{re}', 'ErrorController@Error')->name('Error');
 
