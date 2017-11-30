@@ -28,10 +28,6 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: "/ghiLog/"+noidung+"/"+log_type,
-            // data: {
-            //     content: "noidung",
-            //     log_type: "SUKIEN"
-            // },
             success: function (response) {                
                 console.log(response);
             },

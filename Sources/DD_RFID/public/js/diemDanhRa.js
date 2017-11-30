@@ -22,16 +22,12 @@ $(document).ready(function () {
             // Mã thẻ đã quét.
             var mathe = $("#id_the").val();
 
-            noidung = "Nhận thẻ " + mathe + " điểm danh vào";
+            noidung = "Nhận thẻ " + mathe + " điểm danh ra";
             log_type = "suKien[" + mask + "]";
     
             $.ajax({
                 type: "GET",
                 url: "/ghiLog/"+noidung+"/"+log_type,
-                // data: {
-                //     content: "noidung",
-                //     log_type: "SUKIEN"
-                // },
                 success: function (response) {                
                     console.log(response);
                 },
