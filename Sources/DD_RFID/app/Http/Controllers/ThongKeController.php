@@ -98,33 +98,33 @@ class ThongKeController extends Controller
         $insert7 = ThongKeDiemDanh::NhapDS(7, $mask, $sv_k_co_ttin, $cb_k_co_ttin);
 
         if ($insert1) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 1 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 1 của sự kiện ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 1 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 1 của sự kiện ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert2) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 2 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 2 của sự kiện ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 2 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 2 của sự kiện ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert3) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 3 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 3 của sự kiện ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 3 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 3 của sự kiện ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert4) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 4 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 4 của sự kiện ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 4 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 4 của sự kiện ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
 
         if ($insert7) {
-            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 7 của sự kiên ".$mask,"suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu thành công loại ds 7 của sự kiện ".$mask,"suKien[".$mask."]_Debug");
         } else {
-            WriteLogController::Write_Debug("Thêm số liệu loại ds 7 của sự kiên ".$mask." thất bại","suKien[".$mask."]_Debug");
+            WriteLogController::Write_Debug("Thêm số liệu loại ds 7 của sự kiện ".$mask." thất bại","suKien[".$mask."]_Debug");
         }
         
 
@@ -133,11 +133,11 @@ class ThongKeController extends Controller
 
         // Nếu mọi thứ đều hoàn thành chính xác, trả về 'thanhcong'
         if ($ketqua_insert == 1) {
-            WriteLogController::Write_Info("Thống kê sự kiên ".$mask." thành công","suKien[".$mask."]");
+            WriteLogController::Write_Info("Thống kê sự kiện ".$mask." thành công","suKien[".$mask."]");
             return "thanhcong";
             // return dd($ketqua_insert);
         } else {
-            WriteLogController::Write_Info("Thống kê sự kiên ".$mask." thất bại","suKien[".$mask."]");
+            WriteLogController::Write_Info("Thống kê sự kiện ".$mask." thất bại","suKien[".$mask."]");
             return "thatbai";
             // return dd($ketqua_insert);
         }
@@ -465,22 +465,6 @@ class ThongKeController extends Controller
             else {
                 WriteLogController::Write_Debug("Chuyển danh sách cho ".$ma_ng_chuyen." thành công");
             }
-
-            // // Tính danh sách thống kê cần chuyển
-            // $ds_can_chuyen = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_can_chuyen);
-            // $ds_hien_tai = ThongKeDiemDanh::TinhDS_TKe_Can_Chuyen($ds_hien_tai);
-
-            // // Xử lý cập nhật số liệu thống kê và lưu kết quả xử lý.
-            // $ketqua_solieu = ThongKeDiemDanh::CapNhatKetQuaThKe($loai_ng_chuyen, $mask, $ds_can_chuyen, $ds_hien_tai);
-
-            // if ($ketqua_solieu == 0) {
-            //     WriteLogController::Write_Debug("Cập nhật số liệu thống kê cho ".$ma_ng_chuyen." thất bại");
-            // }
-            // else {
-            //     WriteLogController::Write_Debug("Cập nhật số liệu thống kê cho ".$ma_ng_chuyen." thành công");
-            // }
-
-            // $ketqua = $ketqua_ds * $ketqua_solieu;
 
             if ($ketqua_ds == 1) {
                 WriteLogController::Write_InFo($name." chuyển danh sách cho "
