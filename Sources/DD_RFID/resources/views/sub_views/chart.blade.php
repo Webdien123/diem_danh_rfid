@@ -178,7 +178,7 @@
                                                 ?>
                                                 <a href="{{ $file_path.$file_name }}" target="_blank" class="btn btn-primary btn-block">
                                                     <i class="fa fa-history" aria-hidden="true"></i>
-                                                    Xem nhật kí điểm danh
+                                                    Xem nhật ký điểm danh
                                                 </a>
                                                 <div class="modal fade" id="modal-id-sk">
                                                     <div class="modal-dialog">
