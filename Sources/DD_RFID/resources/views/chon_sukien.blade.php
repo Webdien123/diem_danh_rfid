@@ -23,7 +23,8 @@
     <?php
         \Session::forget('trangthai_sukien');
         \Session::forget('xac_thuc_sk');    
-        \Session::forget('ma_so_xac_thuc'); 
+        \Session::forget('ma_so_xac_thuc');
+        \Session::put('ketqua_dangkythe_dd', 2);
     ?>
 
     {{--  Thẻ hiển thị ảnh nền  --}}

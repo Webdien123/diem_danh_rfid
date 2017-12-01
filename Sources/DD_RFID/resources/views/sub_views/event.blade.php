@@ -243,7 +243,7 @@
                                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                     Đã đăng ký
                                 <b>
-                                <a class="btn btn-success" href="/xemDSDangKy/{{ $sk->MASK }}" role="button">
+                                <a class="btn btn-success" target="_blank" href="/xemDSDangKy/{{ $sk->MASK }}" role="button">
                                     <i class="fa fa-list-ol" aria-hidden="true"></i>
                                     Xem danh sách đăng ký
                                 </a>
