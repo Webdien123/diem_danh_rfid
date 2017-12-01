@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class WriteLogController extends Controller
 {
     // Biến lưu trữ ngày hiện tại, dùng kèm theo tên file log.
-    public static $date;
+    // public static $date;
 
     // Khởi tạo thời gian cho log file.
     public function __construct(Type $var = null) {

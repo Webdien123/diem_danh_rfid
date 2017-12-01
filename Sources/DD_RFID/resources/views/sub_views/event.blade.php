@@ -86,17 +86,17 @@
                                 
                                 <div class="form-group">
 									<label>Giờ điểm danh vào:</label>
-                                    <input type="time" name="ddvao" id="ddvao" class="form-control">
+                                    <input type="time" name="ddvao" id="ddvao" class="form-control" title="Thời điểm điểm danh vào">
                                 </div>
 
                                 <div class="form-group">
 									<label>Giờ điểm danh ra:</label>
-                                    <input type="time" name="ddra" min="document.getElementById('ddvao').value" id="ddra" class="form-control">
+                                    <input type="time" name="ddra" min="document.getElementById('ddvao').value" id="ddra" class="form-control" title="Thời điểm điểm danh ra">
                                 </div>
 
                                 <div class="form-group">
 									<label>Thời gian điểm danh ra:</label>                                    
-                                    <input type="number" name="tgian_ddra" class="form-control" value="10" min="1" step="1">
+                                    <input type="number" name="tgian_ddra" class="form-control" value="10" min="1" step="1" title="Độ dài thời gian điểm danh ra">
                                 </div>
 
 								<button type="button" class="btn btn-success" data-dismiss="modal">

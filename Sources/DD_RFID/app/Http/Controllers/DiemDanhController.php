@@ -579,9 +579,9 @@ class DiemDanhController extends Controller
     public function Write_InFo_Client($content, $log_type = "Admin")
     {
         try{
-            date_default_timezone_set("Asia/Ho_Chi_Minh");
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
             $date = date("d-m-Y");
-            $date2 = date("d-m-Y h:m:sa");
+            $date2 = date('d/m/Y H:i:s');
     
             file_put_contents('./logs/'.$log_type.'_'. $date .'.log', "\xEF\xBB\xBF" . "[$date2] INFO: " . $content.PHP_EOL.PHP_EOL, FILE_APPEND | LOCK_EX);
 

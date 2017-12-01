@@ -44,6 +44,8 @@ LayGio();
 
 // Hàm khởi tạo lại giá trị cho các trường thông tin của form sự kiện
 function KhoiTaoModelSK() {
+    // LayNgay();
+    // $("#ngthuchien").attr("min", today);
     
     // Lấy ngày tự trường 'ngthuchien'.
     var ngth = $("#ngthuchien").val();
