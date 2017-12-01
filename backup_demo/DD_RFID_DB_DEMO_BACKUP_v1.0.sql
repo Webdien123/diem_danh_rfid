@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2017 at 05:23 PM
+-- Generation Time: Dec 01, 2017 at 06:14 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.0.20
 
@@ -176,9 +176,9 @@ CREATE TABLE `diemdanhsv` (
 --
 
 INSERT INTO `diemdanhsv` (`MSSV`, `MASK`, `MALOAIDS`) VALUES
-('B1700001', 1, 1),
+('B1500003', 1, 1),
 ('B1700002', 1, 1),
-('B1500003', 1, 3);
+('B1700001', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -356,7 +356,7 @@ CREATE TABLE `sukien` (
 --
 
 INSERT INTO `sukien` (`MASK`, `MATTHAI`, `TENSK`, `NGTHUCHIEN`, `DIADIEM`, `DDVAO`, `DDRA`, `TGIANDDRA`) VALUES
-(1, 4, 'Sự kiện Lỗi', '2017-12-01', 'Địa điểm ABC', '23:12:00', '23:13:00', 1);
+(1, 4, 'Sự kiện A', '2017-12-02', 'Địa điểm A', '00:08:00', '00:09:00', 1);
 
 -- --------------------------------------------------------
 
