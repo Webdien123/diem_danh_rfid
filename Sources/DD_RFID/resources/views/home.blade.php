@@ -101,13 +101,10 @@
             </div>
         </div>
 
-        {{--  script xử lý bật trang quản trị khi bấm ctrl + click  --}}
-        <script src="{{ asset('js/shortcut_key_goto_admin.js') }}"></script>
-
-        {{--  <a class="btn btn-primary" href="/login" role="button">
+        <a class="btn btn-primary" href="/login" role="button">
             <i class="fa fa-lock" aria-hidden="true"></i>
             TRANG QUẢN TRỊ
-        </a>  --}}
+        </a>
 
         @if (Session::get('trangthai_sukien') != 4)
             <a class="btn btn-primary" href="/taoCKSuKien/{{$sukien->MASK}}" role="button">
