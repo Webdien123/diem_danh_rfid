@@ -44,7 +44,7 @@ class LoginController extends Controller
             WriteLogController::Write_InFo("Quản trị viên ".$name." đăng nhập vào hệ thống", "Admin");
             
             // Chuyển về trang quản trị.
-            return redirect()->route('admin');            
+            return redirect()->route('admin');        
         } else {
             WriteLogController::Write_Alert("Đăng nhập sai mật khẩu", "Admin");
             \Session::put('err', '1');
